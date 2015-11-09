@@ -1,3 +1,4 @@
+//For another way to do the same thing, see my other demo: https://github.com/wesyah234/fileUploadDemo2 which uses https://github.com/tomitrescak/meteor-uploads
 YourFileCollection = new FS.Collection("yourFileCollection", {
   stores: [new FS.Store.FileSystem("yourFileCollection", {path: "~/meteor_uploads"})]
 });
