@@ -6,8 +6,11 @@
       <br/>
   <input class="your-upload-class" type="file">
   <br/><br/>
-  
-  <form>
+    <form class="keyword-form">
+      <input type="text" name="keywords" placeholder="Enter keywords" id="keywords">
+    </form>
+    <br>
+  <form class="search-form">
         <input type="text" name="docName">
         <input type="submit" value="Search">
     </form>
@@ -16,7 +19,7 @@
     <tbody>
       {{#each theFiles}}
       <tr>
-        <td>{{uploadedAt}}</td><td>{{original.name}}</td><td><a href="{{url}}">link</a></td><td>{{#if isUploaded}}uploaded{{else}}uploading...{{/if}}</td><td><button id="deleteFileButton">delete</button></td><td><button id="addKeywordButton">add keywords</button></td>
+        <td>{{uploadedAt}}</td><td>{{original.name}}</td><td><a href="{{url}}">link</a></td><td>{{#if isUploaded}}uploaded{{else}}uploading...{{/if}}</td><td><button id="deleteFileButton">delete</button></td><td><button id="editKeywordButton">edit keywords</button></td>
       </tr>
       {{/each}}
     </tbody>
