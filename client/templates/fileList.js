@@ -2,8 +2,19 @@
   Meteor.subscribe("fileMeta");
   Template.fileList.helpers({
     theFiles: function () {
-      var docName=Session.get('docName');
-      return YourFileCollection.find({"original.name":new RegExp(docName, "i")});
+      var searchField=Session.get('searchField');//search field data from the session
+      var fileDetailsFiltered=[];
+      if(searchField!=undefined && searchField!="")//if there is text in the search filter
+      {
+        var searchFieldArray=searchField.split(',');//separate into array
+      fileDetailsFiltered=_.pluck(fileDetails.find({ keywords: { $in: searchFieldArray} }).fetch(),'fileId');//filter fileDetails fileIds where keywords include the text
+      return YourFileCollection.find({"_id": {$in: fileDetailsFiltered}});//return filtered objects
+    }
+    else
+    {return YourFileCollection.find();//return all objects
+}
+    //looks at title of the doc:
+      //return YourFileCollection.find({"original.name":new RegExp(searchField, "i")});
     }
   });
     Template.fileList.events({
@@ -13,14 +24,6 @@
       YourFileCollection.remove({_id: this._id});
       fileDetails.remove({_id:fileDetailsId});
     },
-    /*'click #addKeywordButton ': function (event) {
-      var fsId= this._id;
-      var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
-      var keywords=Session.get('keyword');
-      var array = keywords.split(',');
-      console.log(array);
-      fileDetails.update(fileDetailsID,{$set: {"keywords":array}});
-    },*/
     'click #editKeywordButton ': function (event) {
       var fsId= this._id;
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
@@ -60,8 +63,7 @@
     ,
     'submit .search-form': function(event,template){
         event.preventDefault();
-        var docNameVar;
-        docNameVar=event.target.docName.value;
-        Session.set('docName',docNameVar);
+        var searchField=event.target.searchName.value;
+        Session.set('searchField',searchField);
     }
   });
