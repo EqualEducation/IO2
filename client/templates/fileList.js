@@ -28,6 +28,7 @@
       var fsId= this._id;
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
       var fileDetailsKeywords=fileDetails.findOne({fileId:fsId}).keywords;
+      //console.log(fileDetailsKeywords)
       var keywords=fileDetailsKeywords.join()
       document.getElementById("keywords").value = keywords;
       Session.set('fileDetailsID',fileDetailsID);
@@ -43,7 +44,7 @@
           console.log("callback for the insert, err: ", err);
           if (!err) {
             console.log("inserted without error",fileObj)
-            fileDetails.insert({name:yourFile.original.name,fileId:fileObj._id});
+            fileDetails.insert({name:yourFile.original.name,fileId:fileObj._id,keywords:[]});
             console.log(fileDetails.find());
           }
           else {
