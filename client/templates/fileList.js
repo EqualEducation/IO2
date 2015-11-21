@@ -7,7 +7,7 @@
       if(searchField!=undefined && searchField!="")//if there is text in the search filter
       {
         var searchFieldArray=searchField.split(',');//separate into array
-      fileDetailsFiltered=_.pluck(fileDetails.find({ keywords: { $in: searchFieldArray} }).fetch(),'fileId');//filter fileDetails fileIds where keywords include the text
+      fileDetailsFiltered=_.pluck(fileDetails.find({$or : [{keywords:{ $in: searchFieldArray}},{ name: new RegExp(searchField, "i")}]}).fetch(),'fileId');//filter fileDetails fileIds where keywords include the text
       return YourFileCollection.find({"_id": {$in: fileDetailsFiltered}});//return filtered objects
     }
     else
