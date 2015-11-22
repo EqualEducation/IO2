@@ -1,5 +1,34 @@
   Meteor.subscribe("fileUploads");
   Meteor.subscribe("fileMeta");
+  fileIndex = new EasySearch.Index({
+  engine: new EasySearch.MongoDB({
+    sort: function () {
+      return { name: -1 };
+    },
+    selector: function (searchObject, options, aggregation) {
+       "use strict";
+      let selector = this.defaultConfiguration().selector(searchObject, options, aggregation),
+        categoryFilter = options.search.props.categoryFilter;
+
+      if (_.isString(categoryFilter) && !_.isEmpty(categoryFilter)) {
+        selector.category = categoryFilter;
+      }
+
+      return selector;
+    }
+  }),
+  collection: fileDetails,
+  fields: ['name'],
+  defaultSearchOptions: {
+    limit: 8
+  },
+  permission: () => {
+    //console.log(Meteor.userId());
+
+    return true;
+  }
+});
+
   Template.fileList.helpers({
     theFiles: function () {
       var searchField=Session.get('searchField');//search field data from the session
@@ -15,6 +44,9 @@
 }
     //looks at title of the doc:
       //return YourFileCollection.find({"original.name":new RegExp(searchField, "i")});
+    },
+    index: function () {
+      return fileIndex;
     }
   });
     Template.fileList.events({
