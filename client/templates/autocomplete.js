@@ -25,14 +25,6 @@ var data = _.map(_.countBy(keywords), function(value, key){
     };
 });
 
-// var distinctKeywords = _.uniq(keywords);
-
-// var Keywords = new Mongo.Collection(null);
-// debugger;
-// _.each(distinctKeywords,function(k){
-// Keywords.insert({keyword:k});
-// });
-
 _.each(data,function(k){
   Keywords.insert({keyword:k.keyword, count: k.count});
 });
