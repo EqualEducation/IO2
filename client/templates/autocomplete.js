@@ -1,22 +1,44 @@
+
 Template.autocomplete.onCreated(function () {
   // Use this.subscribe inside onCreated callback
   this.subscribe("files");
   this.subscribe("fileMeta");
+  Keywords = new Mongo.Collection(null);
+
 });
 
+Template.autocomplete.onRendered(function () {
 var keywords = [];
-console.log(fileDetails.find().fetch())
+//console.log(fileDetails.find().fetch())
 _.each(fileDetails.find().fetch(), function(k){
  
    _.each(k.keywords, function(kw) {
       keywords.push(kw);
-      console.log(kw);
   });
 
 });
-console.log(keywords)
-var distinctKeywords = _.unique(keywords);
-console.log(distinctKeywords);
+
+var data = _.map(_.countBy(keywords), function(value, key){
+    return {
+        keyword: key,
+        count: value
+    };
+});
+
+// var distinctKeywords = _.uniq(keywords);
+
+// var Keywords = new Mongo.Collection(null);
+// debugger;
+// _.each(distinctKeywords,function(k){
+// Keywords.insert({keyword:k});
+// });
+
+_.each(data,function(k){
+  Keywords.insert({keyword:k.keyword, count: k.count});
+});
+
+console.log(Keywords.find().fetch());
+});
 Template.autocomplete.helpers({
   settings: function() {
     return {
@@ -25,12 +47,12 @@ Template.autocomplete.helpers({
       rules: [
 
         {
-          token: '!',
-          collection: fileDetails,
-          field: "keywords",
+          //token: '!',
+          collection: Keywords,
+          field: "keyword",
           options: '',
           matchAll: true,
-          //filter: { type: "autocomplete" },
+          //filter: { type: "autocomplete" }
           template: Template.userPill
         }
       ]
