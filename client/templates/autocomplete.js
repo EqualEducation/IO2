@@ -1,4 +1,8 @@
-
+Template.autocomplete.onCreated(function () {
+  // Use this.subscribe inside onCreated callback
+  this.subscribe("files");
+  this.subscribe("fileMeta");
+});
 
 var keywords = [];
 console.log(fileDetails.find().fetch())
