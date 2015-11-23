@@ -31,7 +31,7 @@ Template.autocomplete.helpers({
           options: '',
           matchAll: true,
           //filter: { type: "autocomplete" },
-          template: Template.dataPiece
+          template: Template.userPill
         }
       ]
     };
