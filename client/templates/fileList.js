@@ -1,4 +1,4 @@
-  Meteor.subscribe("fileUploads");
+Meteor.subscribe("fileUploads");
   Meteor.subscribe("fileMeta");
   fileIndex = new EasySearch.Index({
   engine: new EasySearch.MongoDB({
@@ -30,6 +30,12 @@
 });
 
   Template.fileList.helpers({
+    inputAttributes: function () {
+      return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
+    },
+files: function () {
+      return fileList.find({}, { sort: { keywords: -1, name: 1 } });
+    },
     theFiles: function () {
       var searchField=Session.get('searchField');//search field data from the session
       var fileDetailsFiltered=[];
@@ -47,7 +53,14 @@
     },
     index: function () {
       return fileIndex;
-    }
+    },
+    resultsCount: function () {
+      return fileIndex.getComponentDict().get('count');
+    },
+    showMore: function () {
+      return false;
+    },
+    renderTmpl: () => Template.renderTemplate
   });
     Template.fileList.events({
     'click #deleteFileButton ': function (event) {
