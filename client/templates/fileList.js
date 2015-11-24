@@ -1,32 +1,16 @@
 Meteor.subscribe("fileUploads");
   Meteor.subscribe("fileMeta");
   fileIndex = new EasySearch.Index({
-  engine: new EasySearch.MongoDB({
-    sort: function () {
-      return { name: -1 };
-    },
-    selector: function (searchObject, options, aggregation) {
-       "use strict";
-      let selector = this.defaultConfiguration().selector(searchObject, options, aggregation),
-        categoryFilter = options.search.props.categoryFilter;
+    collection: fileDetails,
+     fields: ['keywords','name'],
+     engine: new EasySearch.MongoDB()
+   });
 
-      if (_.isString(categoryFilter) && !_.isEmpty(categoryFilter)) {
-        selector.category = categoryFilter;
-      }
+Tracker.autorun(function () {
+  let cursor = fileDetails.search('Colorbar.jpg');
 
-      return selector;
-    }
-  }),
-  collection: fileDetails,
-  fields: ['name'],
-  defaultSearchOptions: {
-    limit: 8
-  },
-  permission: () => {
-    //console.log(Meteor.userId());
-
-    return true;
-  }
+  console.log(cursor.fetch()); // log found documents with default search limit
+  console.log(cursor.count()); // log count of all found documents
 });
 
   Template.fileList.helpers({

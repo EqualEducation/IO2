@@ -1,0 +1,15 @@
+<template name="search">
+  {{> EasySearch.Input index=fileIndex}}
+
+  <ul>
+    {{#EasySearch.Each index=fileIndex}}
+      <li>Name of the player: {{name}} ({{score}})</li>
+    {{/EasySearch.Each}}
+  </ul>
+
+  {{> EasySearch.LoadMore index=fileIndex}}
+
+  {{#EasySearch.IfNoResults index=fileIndex}}
+    <div class="no-results">No results found!</div>
+  {{/EasySearch.IfNoResults}}
+</template>
