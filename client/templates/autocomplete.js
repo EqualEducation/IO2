@@ -11,7 +11,7 @@ Template.autocomplete.onRendered(function () {
 var keywords = [];
 //console.log(fileDetails.find().fetch())
 _.each(fileDetails.find().fetch(), function(k){
- 
+
    _.each(k.keywords, function(kw) {
       keywords.push(kw);
   });
