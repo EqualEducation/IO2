@@ -3,14 +3,14 @@ Meteor.subscribe("fileUploads");
   fileIndex = new EasySearch.Index({
     collection: fileDetails,
      fields: ['keywords','name'],
-     engine: new EasySearch.MongoDB()
+     engine: new EasySearch.Minimongo()
    });
 
 Tracker.autorun(function () {
-  // let cursor = fileDetails.search('Colorbar.jpg');
+  var cursor = fileIndex.search('dog');
 
-  // console.log(cursor.fetch()); // log found documents with default search limit
-  // console.log(cursor.count()); // log count of all found documents
+   console.log(cursor.fetch()); // log found documents with default search limit
+   console.log(cursor.count()); // log count of all found documents
 });
 
   Template.fileList.helpers({
