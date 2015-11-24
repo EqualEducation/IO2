@@ -7,10 +7,10 @@ Meteor.subscribe("fileUploads");
    });
 
 Tracker.autorun(function () {
-  let cursor = fileDetails.search('Colorbar.jpg');
+  // let cursor = fileDetails.search('Colorbar.jpg');
 
-  console.log(cursor.fetch()); // log found documents with default search limit
-  console.log(cursor.count()); // log count of all found documents
+  // console.log(cursor.fetch()); // log found documents with default search limit
+  // console.log(cursor.count()); // log count of all found documents
 });
 
   Template.fileList.helpers({
