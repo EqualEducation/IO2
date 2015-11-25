@@ -1,13 +1,6 @@
 Meteor.subscribe("fileUploads");
   Meteor.subscribe("fileMeta");
-
-
-Tracker.autorun(function () {
-  var cursor = fileIndex.search('dog');
-
-  console.log(cursor.fetch()); // log found documents with default search limit
-  console.log(cursor.count()); // log count of all found documents
-});
+console.log(fileDetails.find().fetch())
 
   Template.fileList.helpers({
     inputAttributes: function () {
@@ -69,7 +62,7 @@ files: function () {
           console.log("callback for the insert, err: ", err);
           if (!err) {
             console.log("inserted without error",fileObj)
-            fileDetails.insert({name:yourFile.original.name,fileId:fileObj._id,keywords:[]});
+            fileDetails.insert({name:yourFile.original.name,fileId:fileObj._id,keywords:[],type:yourFile.original.type});
             console.log(fileDetails.find());
           }
           else {

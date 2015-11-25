@@ -1,15 +1,42 @@
 <template name="search">
   {{> EasySearch.Input index=fileIndex}}
 
-  <ul>
-    {{#EasySearch.Each index=fileIndex}}
-      <li>Name of the player: {{name}} ({{score}})</li>
-    {{/EasySearch.Each}}
-  </ul>
+  <table border="1">
+    <tbody>
+      {{#EasySearch.Each index=fileIndex}}
+      <tr>
+        <td>{{name}}</td> <td>({{keywords}})</td>
+      </tr>
+<!--       <tr>
+        <td>{{testLink.original.type}} - {{testLink.original.url}}</td>
+      </tr> -->
+      {{#with testLink}}
+      <tr>
+        <td>
+          <a href="{{url}}">{{original.type}}</a>
+        </td>
+      </tr>
+      {{/with}}
+      {{/EasySearch.Each}}
+    </tbody>
+  </table>
+
+<!--   <div class="autosuggest-component">
+  {{> EasySearch.Autosuggest index=fileIndex}}
+</div> -->
+ <!--    <table border="1">
+    <tbody>
+      {{#EasySearch.Each index=fileIndex}}
+      <tr>
+        <td>{{uploadedAt}}</td><td>{{original.name}}</td><td><a href="{{url}}">link</a></td><td>{{#if isUploaded}}uploaded{{else}}uploading...{{/if}}</td><td><button id="deleteFileButton">delete</button></td><td><button id="editKeywordButton">edit keywords</button></td>
+      </tr>
+      {{/EasySearch.Each}}
+    </tbody>
+  </table> -->
 
   {{> EasySearch.LoadMore index=fileIndex}}
 
   {{#EasySearch.IfNoResults index=fileIndex}}
-    <div class="no-results">No results found!</div>
+  <div class="no-results">No results found!</div>
   {{/EasySearch.IfNoResults}}
 </template>
