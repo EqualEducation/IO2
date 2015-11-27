@@ -1,6 +1,11 @@
 <template name="search">
-  {{> EasySearch.Input index=fileIndex}} Search
-  <br>
+  <!-- {{> reactiveTable collection=myCollection}} -->
+  {{> EasySearch.Input field="name" index=fileIndex}}
+
+<!--   {{> EasySearch.Input field="name" index=fileIndex}}
+
+  {{> EasySearch.Input field="keywords" index=fileIndex}} -->
+  <br/><br/>
 
   <table border="1">
       <tr>
@@ -12,7 +17,7 @@
     <th>Edit</th>
   </tr>
     <tbody>
-      {{#EasySearch.Each index=fileIndex}}
+      {{#EasySearch.Each index=fileIndex attributes=myAttributes}}
 <!--       <tr>
         <td>{{name}}</td> <td>({{keywords}})</td>
       </tr> -->

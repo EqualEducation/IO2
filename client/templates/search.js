@@ -4,13 +4,22 @@ Meteor.subscribe("fileUploads");
 Template.search.helpers({
   fileIndex: () => fileIndex,//, // instanceof EasySearch.Index
 
-  testLink: function(id) {
-    // debugger;
+  testLink: function() {
     //look in YourFile collection
     var details = YourFileCollection.findOne(this.fileId)
 
     return details;
-  }
+  },
+  myAttributes: function() {
+  return {
+     placeholder: "Search here"
+  };
+}
+// ,
+// myCollection: function() {
+//   return YourFileCollection;
+// }
+
 })
 //   inputAttributes: function () {
 //       return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
