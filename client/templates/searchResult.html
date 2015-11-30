@@ -1,0 +1,28 @@
+<template name="searchResult">
+  <div id='search-result'>
+    <div id="search-meta">
+      {{#if isLoading}}
+        searching ...
+      {{/if}}
+    </div>
+
+    {{#each getFiles}}
+    {{#with testLink}}
+      <div class="file">
+      <h4 class="name">
+         <!-- {{name}} -->
+
+          <a href="{{url}}" target="_blank">{{name}}</a>
+        </h4>
+      <div class="description">
+        {{keywords}}
+        </div>
+
+        {{type}}
+        {{#if isUploaded}}uploaded{{else}}uploading...{{/if}}
+        <button id="deleteFileButton">delete</button><button id="editKeywordButton">edit keywords</button>
+</div>
+      {{/with}}
+    {{/each}}
+  </div>
+</template>

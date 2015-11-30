@@ -1,41 +1,5 @@
-Meteor.subscribe("fileUploads");
-  Meteor.subscribe("fileMeta");
-console.log(fileDetails.find().fetch())
 
-  Template.fileList.helpers({
-    inputAttributes: function () {
-      return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
-    },
-files: function () {
-      return fileList.find({}, { sort: { keywords: -1, name: 1 } });
-    },
-    theFiles: function () {
-      var searchField=Session.get('searchField');//search field data from the session
-      var fileDetailsFiltered=[];
-      if(searchField!=undefined && searchField!="")//if there is text in the search filter
-      {
-        var searchFieldArray=searchField.split(',');//separate into array
-      fileDetailsFiltered=_.pluck(fileDetails.find({$or : [{keywords:{ $in: searchFieldArray}},{ name: new RegExp(searchField, "i")}]}).fetch(),'fileId');//filter fileDetails fileIds where keywords include the text
-      return YourFileCollection.find({"_id": {$in: fileDetailsFiltered}});//return filtered objects
-    }
-    else
-    {return YourFileCollection.find();//return all objects
-}
-    //looks at title of the doc:
-      //return YourFileCollection.find({"original.name":new RegExp(searchField, "i")});
-    },
-    index: function () {
-      return fileIndex;
-    },
-    resultsCount: function () {
-      return fileIndex.getComponentDict().get('count');
-    },
-    showMore: function () {
-      return false;
-    },
-    renderTmpl: () => Template.renderTemplate
-  });
-    Template.fileList.events({
+Template.fileList.events({
     'click #deleteFileButton ': function (event) {
       var fsId= this._id;
       var fileDetailsId=fileDetails.findOne({fileId:fsId})._id;
@@ -86,3 +50,4 @@ files: function () {
         Session.set('searchField',searchField);
     }
   });
+
