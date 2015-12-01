@@ -1,10 +1,12 @@
 
+
 Template.fileList.events({
     'click #deleteFileButton ': function (event) {
       var fsId= this._id;
       var fileDetailsId=fileDetails.findOne({fileId:fsId})._id;
       YourFileCollection.remove({_id: this._id});
       fileDetails.remove({_id:fileDetailsId});
+      Session.set('fileSearch',fileSearch.getData());
     },
     'click #editKeywordButton ': function (event) {
       console.log(this);
@@ -15,6 +17,7 @@ Template.fileList.events({
       var keywords=fileDetailsKeywords.join()
       document.getElementById("keywords").value = keywords;
       Session.set('fileDetailsID',fileDetailsID);
+      Session.set('fileSearch',fileSearch.getData());
     },
     'click #editDescriptionButton ': function (event) {
       var fsId= this._id;
@@ -24,6 +27,7 @@ Template.fileList.events({
       var description=fileDetailsDescription
       document.getElementById("description").value = description;
       Session.set('fileDetailsID',fileDetailsID);
+      Session.set('fileSearch',fileSearch.getData());
     },
 
 
@@ -39,6 +43,7 @@ Template.fileList.events({
           if (!err) {
             console.log("inserted without error",fileObj)
             fileDetails.insert({name:yourFile.original.name,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
+            Session.set('fileSearch',fileSearch.getData());
             //Session.set('fileSearchVar',fileSearch.find().fetch())
             //console.log(fileDetails.find());
           }

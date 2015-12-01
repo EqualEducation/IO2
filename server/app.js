@@ -5,6 +5,7 @@ SearchSource.defineSource('filesToSearch', function(searchText, options) {
     var regExp = buildRegExp(searchText);
     var selector = {$or: [
       {name: regExp},
+      {description: regExp},
       {keywords: regExp}
     ]};
 

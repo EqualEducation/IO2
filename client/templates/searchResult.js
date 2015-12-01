@@ -35,11 +35,19 @@ Template.searchResult.helpers({
     // FIX THIS TO MAKE TEXT BOLD
     // return fileSearch.getData({
     //   transform: function(matchText, regExp) {
+    //     console.log(matchText);
+    //     console.log(regExp);
     //     return matchText.replace(regExp, "<b>$&</b>")
     //   },
-    //   sort: {isoScore: -1}
+    //   sort: {name: -1}
     // });
 //ADD FUZZY LOGIC HERE!
+//return Session.get('fileSearch');
+//console.log(Session.get('fileSearch'));
+// console.log('here');
+// Session.set('fileSearch',fileSearch.getData());
+// console.log('session data:');
+// console.log(Session.get('fileSearch'));
     return fileSearch.getData();
   },
 
