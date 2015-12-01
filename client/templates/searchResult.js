@@ -4,13 +4,10 @@ var options = {
   keepHistory: 1000 * 60 * 5,
   localSearch: true
 };
-var fields = ['keywords', 'name'];
+var fields = ['description'];
 fileSearch = new SearchSource('filesToSearch', fields, options);
 //initialise the search
 fileSearch.search("");
-// Tracker.autorun(function () {
-//   fileSearch.getData();
-// });
 Template.searchResult.helpers({
   testLink: function() {
     //look in YourFile collection
@@ -32,15 +29,28 @@ Template.searchResult.helpers({
     //console.log('here');
     //wait until fileSearch is initiated
     //console.log(fileSearch.getData());
+    var theFiles
+    var theFilesReturned
+Tracker.autorun(function () {
+  theFiles=(Session.get('filesToReturn'));
+  theFilesReturned=fileSearch.getData({
+      transform: function(matchText, regExp) {
+        console.log(matchText);
+        console.log(regExp);
+        return matchText.replace(regExp, "<b>$&</b>")
+      },
+      sort: {name: -1}
+    });
+});
     // FIX THIS TO MAKE TEXT BOLD
-    // return fileSearch.getData({
-    //   transform: function(matchText, regExp) {
-    //     console.log(matchText);
-    //     console.log(regExp);
-    //     return matchText.replace(regExp, "<b>$&</b>")
-    //   },
-    //   sort: {name: -1}
-    // });
+    return fileSearch.getData({
+      transform: function(matchText, regExp) {
+        console.log(matchText);
+        console.log(regExp);
+        return matchText.replace(regExp, "<b>$&</b>")
+      },
+      sort: {name: -1}
+    });
 //ADD FUZZY LOGIC HERE!
 //return Session.get('fileSearch');
 //console.log(Session.get('fileSearch'));
@@ -48,7 +58,8 @@ Template.searchResult.helpers({
 // Session.set('fileSearch',fileSearch.getData());
 // console.log('session data:');
 // console.log(Session.get('fileSearch'));
-    return fileSearch.getData();
+// console.log(Session.get('filesToReturn'))
+    // return fileSearch.getData();
   },
 
   isLoading: function() {

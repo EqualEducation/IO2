@@ -60,6 +60,7 @@ Template.fileList.events({
         var array=keywordsVar.split(',');
         var fileDetailsID=Session.get('fileDetailsID');
         fileDetails.update(fileDetailsID,{$set: {"keywords":array}});
+        Session.set('filesToReturn',fileSearch.getData());
     }
     ,
      'submit .description-form': function(event,template){
