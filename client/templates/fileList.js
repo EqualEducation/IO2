@@ -42,8 +42,21 @@ Template.fileList.events({
           console.log("callback for the insert, err: ", err);
           if (!err) {
             console.log("inserted without error",fileObj)
-            fileDetails.insert({name:yourFile.original.name,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
-            Session.set('fileSearch',fileSearch.getData());
+            var name = yourFile.original.name;
+            var index=name.indexOf(".");
+            var nameTrunc=name.substring(0,index);
+            //console.log(nameTrunc)
+            fileDetails.insert({name:nameTrunc,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
+            fileSearch.search("");
+            Session.set('filesToReturn',fileSearch.getData());
+            console.log("REFRESH");
+            // var delay=4000; //1 seconds
+
+          setTimeout(function(){
+
+            location.reload();
+
+          }, 2000);
             //Session.set('fileSearchVar',fileSearch.find().fetch())
             //console.log(fileDetails.find());
           }

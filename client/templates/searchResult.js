@@ -12,10 +12,11 @@ Template.searchResult.helpers({
   testLink: function() {
     //look in YourFile collection
     var details = YourFileCollection.findOne(this.fileId)
+    // console.log(this);
     //console.log(details.original)
     return {
       URL: details.url,
-      name: details.original.name,
+      name: this.name,
       type: details.original.type,
       isUploaded: details.original.updatedAt,
       details:details,
@@ -31,35 +32,19 @@ Template.searchResult.helpers({
     //console.log(fileSearch.getData());
     var theFiles
     var theFilesReturned
-Tracker.autorun(function () {
-  theFiles=(Session.get('filesToReturn'));
-  theFilesReturned=fileSearch.getData({
-      transform: function(matchText, regExp) {
-        console.log(matchText);
-        console.log(regExp);
-        return matchText.replace(regExp, "<b>$&</b>")
-      },
-      sort: {name: -1}
-    });
-});
-    // FIX THIS TO MAKE TEXT BOLD
+  // Tracker.autorun(function () {
+    theFiles=(Session.get('filesToReturn'));
+    console.log("IN AUTORUN");
+    fileSearch.search("")
+    console.log(fileSearch.getData());
     return fileSearch.getData({
       transform: function(matchText, regExp) {
-        console.log(matchText);
-        console.log(regExp);
-        return matchText.replace(regExp, "<b>$&</b>")
+        return matchText.replace(regExp, "<b>$&</b>")//makes text bold
       },
-      sort: {name: -1}
+      sort: {name: 1}
     });
-//ADD FUZZY LOGIC HERE!
-//return Session.get('fileSearch');
-//console.log(Session.get('fileSearch'));
-// console.log('here');
-// Session.set('fileSearch',fileSearch.getData());
-// console.log('session data:');
-// console.log(Session.get('fileSearch'));
-// console.log(Session.get('filesToReturn'))
-    // return fileSearch.getData();
+  // }
+
   },
 
   isLoading: function() {
