@@ -47,18 +47,19 @@ Template.fileList.events({
             var nameTrunc=name.substring(0,index);
             //console.log(nameTrunc)
             fileDetails.insert({name:nameTrunc,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
+            fileSearch.cleanHistory();
             fileSearch.search("");
             Session.set('filesToReturn',fileSearch.getData());
             console.log("REFRESH");
             // var delay=4000; //1 seconds
 
-          setTimeout(function(){
-
-            location.reload();
-
-          }, 2000);
-            //Session.set('fileSearchVar',fileSearch.find().fetch())
-            //console.log(fileDetails.find());
+          // setTimeout(function(){
+          //
+          //   location.reload();
+          //
+          // }, 2000);
+          //   //Session.set('fileSearchVar',fileSearch.find().fetch())
+          //   //console.log(fileDetails.find());
           }
           else {
             console.log("there was an error", err);
@@ -89,4 +90,3 @@ Template.fileList.events({
     //     Session.set('searchField',searchField);
     // }
   });
-

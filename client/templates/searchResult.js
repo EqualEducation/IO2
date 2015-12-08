@@ -30,13 +30,13 @@ Template.searchResult.helpers({
     //console.log('here');
     //wait until fileSearch is initiated
     //console.log(fileSearch.getData());
-    var theFiles
-    var theFilesReturned
+    // var theFiles
+    // var theFilesReturned
   // Tracker.autorun(function () {
-    theFiles=(Session.get('filesToReturn'));
-    console.log("IN AUTORUN");
-    fileSearch.search("")
-    console.log(fileSearch.getData());
+    // theFiles=(Session.get('filesToReturn'));
+    // console.log("IN AUTORUN");
+    // fileSearch.search("")
+    // console.log(fileSearch.getData());
     return fileSearch.getData({
       transform: function(matchText, regExp) {
         return matchText.replace(regExp, "<b>$&</b>")//makes text bold
@@ -51,4 +51,3 @@ Template.searchResult.helpers({
     return fileSearch.getStatus().loading;
   }
 })
-
