@@ -7,6 +7,8 @@ Template.fileList.events({
       YourFileCollection.remove({_id: this._id});
       fileDetails.remove({_id:fileDetailsId});
       Session.set('fileSearch',fileSearch.getData());
+      fileSearch.cleanHistory();
+      fileSearch.search("");
     },
     'click #editKeywordButton ': function (event) {
       console.log(this);
@@ -75,6 +77,8 @@ Template.fileList.events({
         var fileDetailsID=Session.get('fileDetailsID');
         fileDetails.update(fileDetailsID,{$set: {"keywords":array}});
         Session.set('filesToReturn',fileSearch.getData());
+        fileSearch.cleanHistory();
+        fileSearch.search("");
     }
     ,
      'submit .description-form': function(event,template){
@@ -82,6 +86,8 @@ Template.fileList.events({
         var descriptionVar=event.target.description.value;
         var fileDetailsID=Session.get('fileDetailsID');
         fileDetails.update(fileDetailsID,{$set: {"description":descriptionVar}});
+        fileSearch.cleanHistory();
+        fileSearch.search("");
     }
     // ,
     // 'submit .search-form': function(event,template){
