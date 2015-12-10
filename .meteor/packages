@@ -31,3 +31,6 @@ easysearch:autosuggest
 aslagle:reactive-table
 perak:fuzzy-search
 meteorhacks:search-source
+cfs:gridfs
+cfs:s3
+ecmascript
