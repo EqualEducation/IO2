@@ -34,3 +34,5 @@ meteorhacks:search-source
 cfs:gridfs
 cfs:s3
 ecmascript
+semantic:ui
+flemay:less-autoprefixer
