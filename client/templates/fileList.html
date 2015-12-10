@@ -6,11 +6,17 @@
       <br/>
   <input class="your-upload-class" type="file">
   <br/><br/>
+  <form class="description-form">
+      <input type="text" name="description" placeholder="Enter description" id="description" >
+    </form>
+    <br/>
     <form class="keyword-form">
       <input type="text" name="keywords" placeholder="Enter keywords" id="keywords">
     </form>
     <br>
-  <form class="search-form">
+    {{> searchBox }}
+    {{> searchResult}}
+<!--   <form class="search-form">
         <input type="text" name="searchName">
         <input type="submit" value="Search">
     </form>
@@ -23,6 +29,6 @@
       </tr>
       {{/each}}
     </tbody>
-  </table>
+  </table> -->
   {{/if}}
 </template>

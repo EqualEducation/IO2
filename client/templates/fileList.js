@@ -1,30 +1,17 @@
-  Meteor.subscribe("fileUploads");
-  Meteor.subscribe("fileMeta");
-  Template.fileList.helpers({
-    theFiles: function () {
-      var searchField=Session.get('searchField');//search field data from the session
-      var fileDetailsFiltered=[];
-      if(searchField!=undefined && searchField!="")//if there is text in the search filter
-      {
-        var searchFieldArray=searchField.split(',');//separate into array
-      fileDetailsFiltered=_.pluck(fileDetails.find({$or : [{keywords:{ $in: searchFieldArray}},{ name: new RegExp(searchField, "i")}]}).fetch(),'fileId');//filter fileDetails fileIds where keywords include the text
-      return YourFileCollection.find({"_id": {$in: fileDetailsFiltered}});//return filtered objects
-    }
-    else
-    {return YourFileCollection.find();//return all objects
-}
-    //looks at title of the doc:
-      //return YourFileCollection.find({"original.name":new RegExp(searchField, "i")});
-    }
-  });
-    Template.fileList.events({
+
+
+Template.fileList.events({
     'click #deleteFileButton ': function (event) {
       var fsId= this._id;
       var fileDetailsId=fileDetails.findOne({fileId:fsId})._id;
       YourFileCollection.remove({_id: this._id});
       fileDetails.remove({_id:fileDetailsId});
+      Session.set('fileSearch',fileSearch.getData());
+      fileSearch.cleanHistory();
+      fileSearch.search("");
     },
     'click #editKeywordButton ': function (event) {
+      console.log(this);
       var fsId= this._id;
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
       var fileDetailsKeywords=fileDetails.findOne({fileId:fsId}).keywords;
@@ -32,7 +19,20 @@
       var keywords=fileDetailsKeywords.join()
       document.getElementById("keywords").value = keywords;
       Session.set('fileDetailsID',fileDetailsID);
+      Session.set('fileSearch',fileSearch.getData());
     },
+    'click #editDescriptionButton ': function (event) {
+      var fsId= this._id;
+      var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
+      var fileDetailsDescription=fileDetails.findOne({fileId:fsId}).description;
+      //console.log(fileDetailsKeywords)
+      var description=fileDetailsDescription
+      document.getElementById("description").value = description;
+      Session.set('fileDetailsID',fileDetailsID);
+      Session.set('fileSearch',fileSearch.getData());
+    },
+
+
     'change .your-upload-class': function (event, template) {
       console.log("uploading...")
       FS.Utility.eachFile(event, function (file) {
@@ -44,8 +44,24 @@
           console.log("callback for the insert, err: ", err);
           if (!err) {
             console.log("inserted without error",fileObj)
-            fileDetails.insert({name:yourFile.original.name,fileId:fileObj._id,keywords:[]});
-            console.log(fileDetails.find());
+            var name = yourFile.original.name;
+            var index=name.indexOf(".");
+            var nameTrunc=name.substring(0,index);
+            //console.log(nameTrunc)
+            fileDetails.insert({name:nameTrunc,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
+            fileSearch.cleanHistory();
+            fileSearch.search("");
+            Session.set('filesToReturn',fileSearch.getData());
+            console.log("REFRESH");
+            // var delay=4000; //1 seconds
+
+          // setTimeout(function(){
+          //
+          //   location.reload();
+          //
+          // }, 2000);
+          //   //Session.set('fileSearchVar',fileSearch.find().fetch())
+          //   //console.log(fileDetails.find());
           }
           else {
             console.log("there was an error", err);
@@ -60,11 +76,23 @@
         var array=keywordsVar.split(',');
         var fileDetailsID=Session.get('fileDetailsID');
         fileDetails.update(fileDetailsID,{$set: {"keywords":array}});
+        Session.set('filesToReturn',fileSearch.getData());
+        fileSearch.cleanHistory();
+        fileSearch.search("");
     }
     ,
-    'submit .search-form': function(event,template){
+     'submit .description-form': function(event,template){
         event.preventDefault();
-        var searchField=event.target.searchName.value;
-        Session.set('searchField',searchField);
+        var descriptionVar=event.target.description.value;
+        var fileDetailsID=Session.get('fileDetailsID');
+        fileDetails.update(fileDetailsID,{$set: {"description":descriptionVar}});
+        fileSearch.cleanHistory();
+        fileSearch.search("");
     }
+    // ,
+    // 'submit .search-form': function(event,template){
+    //     event.preventDefault();
+    //     var searchField=event.target.searchName.value;
+    //     Session.set('searchField',searchField);
+    // }
   });

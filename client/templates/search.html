@@ -1,0 +1,57 @@
+<template name="search">
+  <!-- {{> reactiveTable collection=myCollection}} -->
+  {{> EasySearch.Input field="name" index=fileIndex}}
+
+<!--   {{> EasySearch.Input field="name" index=fileIndex}}
+
+  {{> EasySearch.Input field="keywords" index=fileIndex}} -->
+  <br/><br/>
+
+  <table border="1">
+      <tr>
+    <th>Name</th>
+    <th>File</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th>Delete</th>
+    <th>Edit</th>
+  </tr>
+    <tbody>
+      {{#EasySearch.Each index=fileIndex attributes=myAttributes}}
+<!--       <tr>
+        <td>{{name}}</td> <td>({{keywords}})</td>
+      </tr> -->
+      {{#with testLink}}
+      <tr>
+         <td>{{name}}</td>
+        <td>
+          <a href="{{url}}">Link</a>
+        </td>
+        <td>{{type}}</td>
+        <td>{{#if isUploaded}}uploaded{{else}}uploading...{{/if}}</td>
+        <td><button id="deleteFileButton">delete</button></td><td><button id="editKeywordButton">edit keywords</button></td>
+      </tr>
+      {{/with}}
+      {{/EasySearch.Each}}
+    </tbody>
+  </table>
+
+<!--   <div class="autosuggest-component">
+  {{> EasySearch.Autosuggest index=fileIndex}}
+</div> -->
+ <!--    <table border="1">
+    <tbody>
+      {{#EasySearch.Each index=fileIndex}}
+      <tr>
+        <td>{{uploadedAt}}</td><td>{{original.name}}</td><td><a href="{{url}}">link</a></td><td>{{#if isUploaded}}uploaded{{else}}uploading...{{/if}}</td><td><button id="deleteFileButton">delete</button></td><td><button id="editKeywordButton">edit keywords</button></td>
+      </tr>
+      {{/EasySearch.Each}}
+    </tbody>
+  </table> -->
+
+  {{> EasySearch.LoadMore index=fileIndex}}
+
+  {{#EasySearch.IfNoResults index=fileIndex}}
+  <div class="no-results">No results found!</div>
+  {{/EasySearch.IfNoResults}}
+</template>
