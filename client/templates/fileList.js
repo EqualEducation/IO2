@@ -1,6 +1,5 @@
-
-
 Template.fileList.events({
+
     'click #deleteFileButton ': function (event) {
       var fsId= this._id;
       var fileDetailsId=fileDetails.findOne({fileId:fsId})._id;
@@ -11,6 +10,7 @@ Template.fileList.events({
       fileSearch.search("");
     },
     'click #editKeywordButton ': function (event) {
+      $('.ui.modal').modal('show')
       console.log(this);
       var fsId= this._id;
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;

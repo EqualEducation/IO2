@@ -1,6 +1,6 @@
 <template name="fileList">
   {{#if currentUser}}
-    Upload Files Below<br/>
+    <h1>Upload Files Below</h1>
     <br/>
       {{> dropzone}}
       <br/>
@@ -31,4 +31,26 @@
     </tbody>
   </table> -->
   {{/if}}
+  {{> editFileModal}}
+</template>
+
+<template name="editFileModal">
+  <div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Modal Title
+  </div>
+  <div class="image content">
+    <div class="image">
+      An image can appear on left or an icon
+    </div>
+    <div class="description">
+      A description can appear on the right
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button">OK</div>
+  </div>
+</div>
 </template>
