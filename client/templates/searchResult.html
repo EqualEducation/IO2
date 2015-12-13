@@ -20,10 +20,10 @@
         </div>
         {{keywords}}
         {{type}}
-        {{#if isUploaded}}uploaded{{else}}uploading...{{/if}}
+        <!-- {{#if isUploaded}}uploaded{{else}}uploading...{{/if}} -->
+        <button class="ui button" id="editKeywordButton">edit metadata</button>
         <button class="ui button" id="deleteFileButton">delete</button>
-        <button class="ui button" id="editDescriptionButton">edit description</button>
-        <button class="ui button" id="editKeywordButton">edit keywords</button>
+        <!-- <button class="ui button" id="editDescriptionButton">edit description</button> -->
 </div>
       {{/with}}
     {{/each}}

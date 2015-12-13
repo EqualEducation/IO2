@@ -6,51 +6,40 @@
       <br/>
   <input class="your-upload-class" type="file">
   <br/><br/>
-  <form class="description-form">
+<!--   <form class="description-form">
       <input type="text" name="description" placeholder="Enter description" id="description" >
-    </form>
+    </form> -->
     <br/>
-    <form class="keyword-form">
+<!--     <form class="keyword-form">
       <input type="text" name="keywords" placeholder="Enter keywords" id="keywords">
-    </form>
+    </form> -->
     <br>
     {{> searchBox }}
     {{> searchResult}}
-<!--   <form class="search-form">
-        <input type="text" name="searchName">
-        <input type="submit" value="Search">
-    </form>
-    <br/>
-  <table border="1">
-    <tbody>
-      {{#each theFiles}}
-      <tr>
-        <td>{{uploadedAt}}</td><td>{{original.name}}</td><td><a href="{{url}}">link</a></td><td>{{#if isUploaded}}uploaded{{else}}uploading...{{/if}}</td><td><button id="deleteFileButton">delete</button></td><td><button id="editKeywordButton">edit keywords</button></td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table> -->
   {{/if}}
   {{> editFileModal}}
 </template>
 
 <template name="editFileModal">
   <div class="ui modal">
-  <i class="close icon"></i>
   <div class="header">
-    Modal Title
+    Edit the file metadata
   </div>
-  <div class="image content">
-    <div class="image">
-      An image can appear on left or an icon
-    </div>
+  <div class="description">
+    Enter decription
+  <form class="description-form">
+      <input type="text" name="description" placeholder="Enter description" id="description" >
+    </form>
     <div class="description">
-      A description can appear on the right
+      Enter keywords
+          <form class="keyword-form">
+            <input type="text" name="keywords" placeholder="Enter keywords" id="keywords">
+          </form>
     </div>
   </div>
   <div class="actions">
-    <div class="ui button">Cancel</div>
-    <div class="ui button">OK</div>
+    <div class="ui deny button">Cancel</div>
+    <div class="ui approve button">OK</div>
   </div>
 </div>
 </template>

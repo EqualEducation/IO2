@@ -10,27 +10,47 @@ Template.fileList.events({
       fileSearch.search("");
     },
     'click #editKeywordButton ': function (event) {
-      $('.ui.modal').modal('show')
       console.log(this);
       var fsId= this._id;
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
       var fileDetailsKeywords=fileDetails.findOne({fileId:fsId}).keywords;
-      //console.log(fileDetailsKeywords)
+      var fileDetailsDescription=fileDetails.findOne({fileId:fsId}).description;
+      var description=fileDetailsDescription
+      document.getElementById("description").value = description;
       var keywords=fileDetailsKeywords.join()
       document.getElementById("keywords").value = keywords;
       Session.set('fileDetailsID',fileDetailsID);
       Session.set('fileSearch',fileSearch.getData());
+      $('.ui.modal')
+        .modal({
+          onDeny    : function(){
+          return true;
+          },
+          onApprove : function() {
+            var keywordsVar=(document.getElementById("keywords").value);
+            var descriptionVar=(document.getElementById("description").value);
+            var array=keywordsVar.split(',');
+            var fileDetailsID=Session.get('fileDetailsID');
+            fileDetails.update(fileDetailsID,{$set: {"keywords":array,"description":descriptionVar}});
+            Session.set('filesToReturn',fileSearch.getData());
+            fileSearch.cleanHistory();
+            fileSearch.search("");
+            return true;
+        }
+        })
+      .modal('show')
+      ;
     },
-    'click #editDescriptionButton ': function (event) {
-      var fsId= this._id;
-      var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
-      var fileDetailsDescription=fileDetails.findOne({fileId:fsId}).description;
-      //console.log(fileDetailsKeywords)
-      var description=fileDetailsDescription
-      document.getElementById("description").value = description;
-      Session.set('fileDetailsID',fileDetailsID);
-      Session.set('fileSearch',fileSearch.getData());
-    },
+    // 'click #editDescriptionButton ': function (event) {
+    //   var fsId= this._id;
+    //   var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
+    //   var fileDetailsDescription=fileDetails.findOne({fileId:fsId}).description;
+    //   //console.log(fileDetailsKeywords)
+    //   var description=fileDetailsDescription
+    //   document.getElementById("description").value = description;
+    //   Session.set('fileDetailsID',fileDetailsID);
+    //   Session.set('fileSearch',fileSearch.getData());
+    // },
 
 
     'change .your-upload-class': function (event, template) {
@@ -53,15 +73,6 @@ Template.fileList.events({
             fileSearch.search("");
             Session.set('filesToReturn',fileSearch.getData());
             console.log("REFRESH");
-            // var delay=4000; //1 seconds
-
-          // setTimeout(function(){
-          //
-          //   location.reload();
-          //
-          // }, 2000);
-          //   //Session.set('fileSearchVar',fileSearch.find().fetch())
-          //   //console.log(fileDetails.find());
           }
           else {
             console.log("there was an error", err);
@@ -72,22 +83,10 @@ Template.fileList.events({
     },
      'submit .keyword-form': function(event,template){
         event.preventDefault();
-        var keywordsVar=event.target.keywords.value;
-        var array=keywordsVar.split(',');
-        var fileDetailsID=Session.get('fileDetailsID');
-        fileDetails.update(fileDetailsID,{$set: {"keywords":array}});
-        Session.set('filesToReturn',fileSearch.getData());
-        fileSearch.cleanHistory();
-        fileSearch.search("");
     }
     ,
      'submit .description-form': function(event,template){
         event.preventDefault();
-        var descriptionVar=event.target.description.value;
-        var fileDetailsID=Session.get('fileDetailsID');
-        fileDetails.update(fileDetailsID,{$set: {"description":descriptionVar}});
-        fileSearch.cleanHistory();
-        fileSearch.search("");
     }
     // ,
     // 'submit .search-form': function(event,template){
