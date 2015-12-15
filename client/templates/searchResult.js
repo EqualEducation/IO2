@@ -39,6 +39,8 @@ Template.searchResult.helpers({
     // console.log(fileSearch.getData());
     return fileSearch.getData({
       transform: function(matchText, regExp) {
+        //regExpString=regExp.toString();
+
         return matchText.replace(regExp, "<b>$&</b>")//makes text bold
       },
       sort: {name: 1}

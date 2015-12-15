@@ -46,5 +46,6 @@ SearchSource.defineSource('filesToSearch', function(searchText, options) {
 function buildRegExp(searchText) {
   // this is a dumb implementation
   var parts = searchText.trim().split(/[ \-]+/);
+  //define regExp with flags (case insensitive + global search)
   return new RegExp("(" + parts.join('|') + ")", "ig");
 }

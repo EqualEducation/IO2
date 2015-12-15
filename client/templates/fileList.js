@@ -15,10 +15,13 @@ Template.fileList.events({
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
       var fileDetailsKeywords=fileDetails.findOne({fileId:fsId}).keywords;
       var fileDetailsDescription=fileDetails.findOne({fileId:fsId}).description;
-      var description=fileDetailsDescription
-      document.getElementById("description").value = description;
+      var description=fileDetailsDescription;
+      $form=$('.ui.form');
+      $form.form('set value', 'description',description);
+      //document.getElementById("description").value = description;
       var keywords=fileDetailsKeywords.join()
-      document.getElementById("keywords").value = keywords;
+      //document.getElementById("keywords").value = keywords;
+      $form.form('set value', 'keywords',keywords);
       Session.set('fileDetailsID',fileDetailsID);
       Session.set('fileSearch',fileSearch.getData());
       $('.ui.modal')
@@ -27,8 +30,8 @@ Template.fileList.events({
           return true;
           },
           onApprove : function() {
-            var keywordsVar=(document.getElementById("keywords").value);
-            var descriptionVar=(document.getElementById("description").value);
+            var keywordsVar=$form.form('get value', 'keywords');
+            var descriptionVar=$form.form('get value', 'description');
             var array=keywordsVar.split(',');
             var fileDetailsID=Session.get('fileDetailsID');
             fileDetails.update(fileDetailsID,{$set: {"keywords":array,"description":descriptionVar}});
@@ -40,6 +43,30 @@ Template.fileList.events({
         })
       .modal('show')
       ;
+      $('.ui.form')
+  .form({
+    fields: {
+      name: {
+        identifier: 'keywords',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter keywords'
+          }
+        ]
+      },
+      skills: {
+        identifier: 'description',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter description'
+          }
+        ]
+      }
+    }
+  })
+;
     },
     // 'click #editDescriptionButton ': function (event) {
     //   var fsId= this._id;

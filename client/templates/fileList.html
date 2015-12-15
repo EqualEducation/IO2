@@ -24,17 +24,29 @@
   <div class="header">
     Edit the file metadata
   </div>
-  <div class="description">
-    Enter decription
-  <form class="description-form">
-      <input type="text" name="description" placeholder="Enter description" id="description" >
-    </form>
-    <div class="description">
-      Enter keywords
-          <form class="keyword-form">
-            <input type="text" name="keywords" placeholder="Enter keywords" id="keywords">
-          </form>
-    </div>
+  <div class="ui form">
+  <div class="field">
+    <label>Description</label>
+    <input type="text" placeholder="Description" name="description">
+  </div>
+  <div class="field">
+    <label>Keywords</label>
+    <input type="text" placeholder="Keywords" name="keywords">
+  </div>
+  <div class="ui error message"></div>
+</div>
+<div class="field">
+    <label>Skills</label>
+    <select name="skills" multiple="" class="ui dropdown">
+      <option value="">Select Skills</option>
+      <option value="css">CSS</option>
+      <option value="html">HTML</option>
+      <option value="javascript">Javascript</option>
+      <option value="design">Graphic Design</option>
+      <option value="plumbing">Plumbing</option>
+      <option value="mech">Mechanical Engineering</option>
+      <option value="repair">Kitchen Repair</option>
+    </select>
   </div>
   <div class="actions">
     <div class="ui deny button">Cancel</div>

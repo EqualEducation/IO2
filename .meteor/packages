@@ -36,3 +36,5 @@ cfs:s3
 ecmascript
 semantic:ui
 flemay:less-autoprefixer
+semantic:ui-dropdown
+semantic:ui-form
