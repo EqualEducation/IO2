@@ -10,6 +10,7 @@ SearchSource.defineSource('filesToSearch', function(searchText, options) {
     var selector=null;
     if(containsColon<0)
     {
+      //maybe worth sorting by number of matches??
     selector = {$or: [
       {name: regExp},
       {description: regExp},
