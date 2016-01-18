@@ -8,19 +8,19 @@ Template.uploadResource.events({
 		// attach events to buttons
 		$('.uploadDetails.modal')
 		  .modal('attach events', '.chooseType.modal #next')
+
 		;
 		// show first now
 		$('.chooseType.modal')
 			.modal('show')
-		;
-
-		$('.chooseType.modal')
 			.modal('attach events', '.uploadDetails.modal #back')
+			.modal({
+				 onApprove : function() {
+					console.log('next');
+					var modalInputValue = $('input:radio[name=example2]:checked').val();
+			 		console.log(modalInputValue);
+				 }
+			})
 		;
 	},
-	'click #next': function(event, template) {
-		var element = template.find('input:radio[name=example2]:checked');
-		console.log(template.find('input:radio[name=example2]'));
-
-	}
 })
