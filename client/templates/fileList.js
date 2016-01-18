@@ -68,16 +68,6 @@ Template.fileList.events({
   })
 ;
     },
-    // 'click #editDescriptionButton ': function (event) {
-    //   var fsId= this._id;
-    //   var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
-    //   var fileDetailsDescription=fileDetails.findOne({fileId:fsId}).description;
-    //   //console.log(fileDetailsKeywords)
-    //   var description=fileDetailsDescription
-    //   document.getElementById("description").value = description;
-    //   Session.set('fileDetailsID',fileDetailsID);
-    //   Session.set('fileSearch',fileSearch.getData());
-    // },
 
 
     'change .your-upload-class': function (event, template) {
@@ -104,6 +94,7 @@ Template.fileList.events({
           else {
             console.log("there was an error", err);
           }
+
         });
         //
       });
