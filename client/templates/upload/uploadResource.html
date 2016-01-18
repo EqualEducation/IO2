@@ -3,7 +3,7 @@
   		Add New Resource
 	</button>
 
-	<div class="ui upload modal">
+	<div class="ui chooseType modal">
   <i class="close icon"></i>
   <div class="header">
   	New Resource
@@ -14,37 +14,37 @@
 		    <label>What type of resource would you like to upload?</label>
 		    <div class="field">
 		      <div class="ui radio checkbox">
-		        <input type="radio" name="example2" checked="checked">
+		        <input type="radio" name="example2" value="activity">
 		        <label>Activity</label>
 		      </div>
 		    </div>
 		    <div class="field">
 		      <div class="ui radio checkbox">
-		        <input type="radio" name="example2">
+						<input type="radio" name="example2" value="shortReading">
 		        <label>Short Reading</label>
 		      </div>
 		    </div>
 		    <div class="field">
 		      <div class="ui radio checkbox">
-		        <input type="radio" name="example2">
+						<input type="radio" name="example2" value="curriculum">
 		        <label>Curriculum</label>
 		      </div>
 		    </div>
 		    <div class="field">
 		      <div class="ui radio checkbox">
-		        <input type="radio" name="example2">
+						<input type="radio" name="example2" value="book">
 		        <label>Book</label>
 		      </div>
 		    </div>
 				<div class="field">
 					<div class="ui radio checkbox">
-						<input type="radio" name="example2">
+						<input type="radio" name="example2" value="film">
 						<label>Film</label>
 					</div>
 				</div>
 				<div class="field">
 					<div class="ui radio checkbox">
-						<input type="radio" name="example2">
+						<input type="radio" name="example2" value="other">
 						<label>Other</label>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
     <div class="ui black deny button">
       Cancel
     </div>
-    <div class="ui positive right labeled icon button">
+    <div id="next" class="ui positive right labeled icon button">
 		Next
 		<i class="right arrow icon"></i>
     </div>
@@ -73,7 +73,7 @@
 			<label>What type of resource would you like to upload?</label>
 			<div class="field">
 				<div class="ui radio checkbox">
-					<input type="radio" name="example2" checked="checked">
+					<input type="radio" name="details">
 					<label>Activity</label>
 				</div>
 			</div>
@@ -81,11 +81,11 @@
 	</div>
 </div>
 <div class="actions">
-	<div class="ui black deny button">
-		Cancel
+	<div id="back" class="ui black deny button">
+		Back
 	</div>
 	<div class="ui positive right labeled icon button">
-	Next
+	Done
 	<i class="right arrow icon"></i>
 	</div>
 </div>
