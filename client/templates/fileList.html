@@ -1,12 +1,7 @@
 <template name="fileList">
   {{#if currentUser}}
-    <h1>Upload Files Below</h1>
-    <br/>
-      {{> dropzone}}
-      <br/>
-  <input class="your-upload-class" type="file">
-    <br/>
-    <br>
+    {{> uploadResource}}
+    <br />
     {{> searchBox }}
     {{> searchResult}}
   {{/if}}
