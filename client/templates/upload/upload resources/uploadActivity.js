@@ -1,6 +1,6 @@
 
 Template.uploadActivity.onRendered(function () {
-  $('.ui.dropdown')
+  $('.ui.search.dropdown')
     .dropdown()
   ;
 });
