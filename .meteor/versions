@@ -110,6 +110,7 @@ semantic:ui@2.1.6
 semantic:ui-data@2.1.6
 semantic:ui-dropdown@2.1.6
 semantic:ui-form@2.1.6
+semantic:ui-menu@2.1.7
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4
