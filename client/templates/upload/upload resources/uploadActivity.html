@@ -1,0 +1,55 @@
+<template name="uploadActivity">
+  <i class="close icon"></i>
+  <div class="header">
+  	New Activity
+  </div>
+
+  <div class="content">
+  	<div class="ui form">
+      <div class="field">
+        <label>Topic</label>
+        <input type="text">
+      </div>
+      <div class="field">
+        <label>Aims</label>
+        <textarea rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label>Materials Needed</label>
+        <textarea rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label>Icebreaker</label>
+        <textarea rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label>Trigger</label>
+        <textarea rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label>Method</label>
+        <textarea rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label>Discussion</label>
+        <textarea rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label>Conclusion</label>
+        <textarea rows="2"></textarea>
+      </div>
+      {{> connectBooks}}
+      {{> connectFilms}}
+      {{> uploadFile}}
+  	</div>
+  </div>
+  <div class="actions">
+  	<div id="back" class="ui black deny button">
+  		Back
+  	</div>
+  	<div class="ui positive right labeled icon button">
+  	Done
+  	<i class="right arrow icon"></i>
+  	</div>
+  </div>
+</template>
