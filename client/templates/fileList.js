@@ -24,7 +24,7 @@ Template.fileList.events({
       $form.form('set value', 'keywords',keywords);
       Session.set('fileDetailsID',fileDetailsID);
       Session.set('fileSearch',fileSearch.getData());
-      $('.ui.modal')
+      $('.ui.edit.modal')
         .modal({
           onDeny    : function(){
           return true;
