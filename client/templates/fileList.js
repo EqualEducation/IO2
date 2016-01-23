@@ -12,18 +12,19 @@ Template.fileList.events({
     'click #resourceName': function (event) {
       var fsId= this._id;
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
+      var fileDetailsName=fileDetails.findOne({fileId:fsId}).name;
       var fileDetailsKeywords=fileDetails.findOne({fileId:fsId}).keywords;
       var fileDetailsDescription=fileDetails.findOne({fileId:fsId}).description;
       var description=fileDetailsDescription;
       $form=$('.ui.form');
-      $form.form('set value', 'description',description);
+      //$form.form('set value', 'description',description);
       //document.getElementById("description").value = description;
       var keywords=fileDetailsKeywords.join()
       //document.getElementById("keywords").value = keywords;
-      $form.form('set value', 'keywords',keywords);
+      //$form.form('set value', 'keywords',keywords);
       Session.set('fileDetailsID',fileDetailsID);
       Session.set('fileSearch',fileSearch.getData());
-      $('.ui.edit.modal')
+      $('.ui.activitydetail.modal')
         .modal({
           onDeny    : function(){
           return true;
