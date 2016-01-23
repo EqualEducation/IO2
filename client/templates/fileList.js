@@ -9,8 +9,7 @@ Template.fileList.events({
       fileSearch.cleanHistory();
       fileSearch.search("");
     },
-    'click #editKeywordButton ': function (event) {
-      console.log(this);
+    'click #resourceName': function (event) {
       var fsId= this._id;
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
       var fileDetailsKeywords=fileDetails.findOne({fileId:fsId}).keywords;
