@@ -19,8 +19,11 @@
     <label>Tags (you can select multiple)</label>
     <select multiple="" class="ui fluid search dropdown">
       <option value="">Select</option>
-      {{#each activity.keywords}}
-      <option selected = "selected" value="{{@index}}">{{this}}</option>
+<!--       {{#each activity.keywords}}
+      <option value="{{@index}}" selected = "selected">{{this}}</option>
+      {{/each}} -->
+      {{#each uniqueKeywords}}
+      <option>{{this}}</option>
       {{/each}}
       <!-- <option value="AF">Long walk to Freedom - Nelson Mandela (1995)</option>
       <option value="AX">Cry the Beloved Country - Alan Paton (1948)</option>
@@ -29,9 +32,9 @@
   </div>
 </div>
 <br>
-  <button class="ui primary button">
+  <a class="ui primary button" href="{{activity.url}}" target="_blank">
   Download Activity
-</button>
+</a>
   </div>
   <div class="actions">
     <div class="ui black deny button">Cancel</div>

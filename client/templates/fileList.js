@@ -1,3 +1,10 @@
+
+Template.fileList.onRendered(function(){
+  $('.menu .item')
+  .tab({
+  })
+;
+})
 Template.fileList.events({
 
     'click #deleteFileButton ': function (event) {
