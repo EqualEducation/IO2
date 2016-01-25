@@ -9,7 +9,10 @@
   outline: 0;
   font-size: 15px;
 }
-
+#resourceName {
+  font-family:Verdana, Geneva, sans-serif;
+  cursor:pointer
+}
 #search-result {
   margin: 20px 0 100px 0;
 }

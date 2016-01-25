@@ -1,0 +1,44 @@
+<template name="activityDetail">
+  <div class="ui activitydetail modal">
+  <div class="header">
+
+    {{activity.name}}
+  </div>
+  <div class="content">
+  <div class="ui form">
+  <div class="field">
+    <label>Description</label>
+    <input type="text" placeholder="Description" name="description" value = "{{activity.description}}">
+  </div>
+  <div class="field">
+    <label>Keywords</label>
+    <input type="text" placeholder="Keywords" name="keywords" value = "{{activity.keywords}}">
+  </div>
+  <div class="ui error message"></div>
+    <div class="field">
+    <label>Tags (you can select multiple)</label>
+    <select multiple="" class="ui fluid search dropdown">
+      <option value="">Select</option>
+<!--       {{#each activity.keywords}}
+      <option value="{{@index}}" selected = "selected">{{this}}</option>
+      {{/each}} -->
+      {{#each uniqueKeywords}}
+      <option>{{this}}</option>
+      {{/each}}
+      <!-- <option value="AF">Long walk to Freedom - Nelson Mandela (1995)</option>
+      <option value="AX">Cry the Beloved Country - Alan Paton (1948)</option>
+      <option value="AL">Disgrace - J.M Coetzee (1999)</option> -->
+    </select>
+  </div>
+</div>
+<br>
+  <a class="ui primary button" href="{{activity.url}}" target="_blank">
+  Download Activity
+</a>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">Cancel</div>
+    <div class="ui green approve button">OK</div>
+</div>
+</div>
+</template>

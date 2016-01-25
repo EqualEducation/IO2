@@ -1,3 +1,10 @@
+
+Template.fileList.onRendered(function(){
+  $('.menu .item')
+  .tab({
+  })
+;
+})
 Template.fileList.events({
 
     'click #deleteFileButton ': function (event) {
@@ -9,22 +16,22 @@ Template.fileList.events({
       fileSearch.cleanHistory();
       fileSearch.search("");
     },
-    'click #editKeywordButton ': function (event) {
-      console.log(this);
+    'click #resourceName': function (event) {
       var fsId= this._id;
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
+      var fileDetailsName=fileDetails.findOne({fileId:fsId}).name;
       var fileDetailsKeywords=fileDetails.findOne({fileId:fsId}).keywords;
       var fileDetailsDescription=fileDetails.findOne({fileId:fsId}).description;
       var description=fileDetailsDescription;
       $form=$('.ui.form');
-      $form.form('set value', 'description',description);
+      //$form.form('set value', 'description',description);
       //document.getElementById("description").value = description;
       var keywords=fileDetailsKeywords.join()
       //document.getElementById("keywords").value = keywords;
-      $form.form('set value', 'keywords',keywords);
+      //$form.form('set value', 'keywords',keywords);
       Session.set('fileDetailsID',fileDetailsID);
       Session.set('fileSearch',fileSearch.getData());
-      $('.ui.modal')
+      $('.ui.activitydetail.modal')
         .modal({
           onDeny    : function(){
           return true;

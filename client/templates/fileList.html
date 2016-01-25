@@ -3,43 +3,41 @@
     {{> uploadResource}}
     <br />
     {{> searchBox }}
+
+<div class="ui secondary pointing  menu">
+  <a class="item active" data-tab="fourth">
+    All
+  </a>
+  <a class="item" data-tab="fifth">
+    EE Activities
+  </a>
+  <a class="item" data-tab="sixth">
+    Short Readings
+  </a>
+    <a class="item">
+    Curriculums
+  </a>
+    <a class="item">
+    Books
+  </a>
+    <a class="item">
+    Films
+  </a>
+  <a class="item">
+    Other Resources
+  </a>
+</div>
+ <div class="ui active tab segment" data-tab="fourth">
     {{> searchResult}}
+  </div>
+  <div class="ui tab segment" data-tab="fifth">
+    5
+  </div>
+  <div class="ui tab segment" data-tab="sixth">
+    6
+  </div>
   {{/if}}
-  {{> editFileModal}}
+  {{> activityDetail}}
 </template>
 
-<template name="editFileModal">
-  <div class="ui modal">
-  <div class="header">
-    Edit the file metadata
-  </div>
-  <div class="ui form">
-  <div class="field">
-    <label>Description</label>
-    <input type="text" placeholder="Description" name="description">
-  </div>
-  <div class="field">
-    <label>Keywords</label>
-    <input type="text" placeholder="Keywords" name="keywords">
-  </div>
-  <div class="ui error message"></div>
-</div>
-<div class="field">
-    <label>Skills</label>
-    <select name="skills" multiple="" class="ui dropdown">
-      <option value="">Select Skills</option>
-      <option value="css">CSS</option>
-      <option value="html">HTML</option>
-      <option value="javascript">Javascript</option>
-      <option value="design">Graphic Design</option>
-      <option value="plumbing">Plumbing</option>
-      <option value="mech">Mechanical Engineering</option>
-      <option value="repair">Kitchen Repair</option>
-    </select>
-  </div>
-  <div class="actions">
-    <div class="ui deny button">Cancel</div>
-    <div class="ui approve button">OK</div>
-  </div>
-</div>
-</template>
+

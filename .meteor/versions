@@ -110,6 +110,8 @@ semantic:ui@2.1.6
 semantic:ui-data@2.1.6
 semantic:ui-dropdown@2.1.6
 semantic:ui-form@2.1.6
+semantic:ui-menu@2.1.7
+semantic:ui-tab@2.1.7
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4
@@ -120,6 +122,7 @@ standard-minifiers@1.0.2
 templating@1.1.5
 templating-tools@1.0.0
 tracker@1.0.9
+twbs:bootstrap@3.3.6
 ui@1.0.8
 underscore@1.0.4
 url@1.0.5
