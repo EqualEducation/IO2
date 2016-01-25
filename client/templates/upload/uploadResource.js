@@ -1,5 +1,11 @@
 Template.uploadResource.events({
 	'click #uploadResourceButton': function(event, template) {
+		$('#chooseTypeForm').form('reset');
+		// var chooseTypeForm = template.find("#chooseTypeForm");//[0].reset();
+		// console.log(chooseTypeForm);
+		//
+		// chooseTypeForm.form('reset');
+
 		$('.coupled.modal')
 		  .modal({
 		    allowMultiple: false
