@@ -7,15 +7,16 @@ Template.fileList.onRendered(function(){
 })
 Template.fileList.events({
 
-    'click #deleteFileButton ': function (event) {
-      var fsId= this._id;
-      var fileDetailsId=fileDetails.findOne({fileId:fsId})._id;
-      YourFileCollection.remove({_id: this._id});
-      fileDetails.remove({_id:fileDetailsId});
-      Session.set('fileSearch',fileSearch.getData());
-      fileSearch.cleanHistory();
-      fileSearch.search("");
-    },
+    // 'click #deleteFileButton ': function (event) {
+    //   console.log('here');
+    //   var fsId= this._id;
+    //   var fileDetailsId=fileDetails.findOne({fileId:fsId})._id;
+    //   YourFileCollection.remove({_id: this._id});
+    //   fileDetails.remove({_id:fileDetailsId});
+    //   Session.set('fileSearch',fileSearch.getData());
+    //   fileSearch.cleanHistory();
+    //   fileSearch.search("");
+    // },
     'click #resourceName': function (event) {
       var fsId= this._id;
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
