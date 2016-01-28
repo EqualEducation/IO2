@@ -16,18 +16,15 @@
   </div>
   <div class="ui error message"></div>
     <div class="field">
-    <label>Tags (you can select multiple)</label>
-    <select multiple="" class="ui fluid search dropdown">
+    <label>Tag (you can select multiple)</label>
+    <select multiple class="ui fluid search dropdown">
       <option value="">Select</option>
-<!--       {{#each activity.keywords}}
-      <option value="{{@index}}" selected = "selected">{{this}}</option>
-      {{/each}} -->
-      {{#each uniqueKeywords}}
-      <option>{{this}}</option>
+      {{#each activity.keywords}}
+      <option value="{{@index}}" selected>{{this}}</option>
       {{/each}}
-      <!-- <option value="AF">Long walk to Freedom - Nelson Mandela (1995)</option>
-      <option value="AX">Cry the Beloved Country - Alan Paton (1948)</option>
-      <option value="AL">Disgrace - J.M Coetzee (1999)</option> -->
+<!--       {{#each uniqueKeywords}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}} -->
     </select>
   </div>
 </div>
@@ -35,6 +32,12 @@
   <a class="ui primary button" href="{{activity.details.url}}" target="_blank">
   Download Activity
 </a>
+<br>
+<br>
+<br>
+<button class="ui primary button" id="deleteFile">
+  Delete Activity
+</button>
   </div>
   <div class="actions">
     <div class="ui black deny button">Cancel</div>
