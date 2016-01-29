@@ -23,10 +23,10 @@ tab: function() {
      fileDetails.find().fetch(),
         // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
       ],
-      "movies": [
+      "activities": [
         fileDetails.find().fetch(),
       ],
-      "games": [
+      "readings": [
       fileDetails.find().fetch(),
       ]
     };

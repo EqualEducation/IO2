@@ -12,10 +12,10 @@
   <a class="item active" data-tab="all">
     All
   </a>
-  <a class="item" data-tab="movies">
+  <a class="item" data-tab="activities">
     EE Activities
   </a>
-  <a class="item" data-tab="games">
+  <a class="item" data-tab="readings">
     Short Readings
   </a>
     <a class="item">
@@ -33,12 +33,12 @@
 </div>
  <div class="ui active tab segment" data-tab="all">
     <!-- {?{> Template.dynamic template="content" data=tabData}} -->
-    {{> searchResult}}
-  </div>
-  <div class="ui tab segment" data-tab="movies">
     {{> Template.dynamic template="content" data=tabData}}
   </div>
-  <div class="ui tab segment" data-tab="games">
+  <div class="ui tab segment" data-tab="activities">
+    {{> Template.dynamic template="content" data=tabData}}
+  </div>
+  <div class="ui tab segment" data-tab="readings">
     {{> Template.dynamic template="content" data=tabData}}
   </div>
   {{/if}}

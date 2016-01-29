@@ -2,8 +2,17 @@
   <h3 class="page-header" style="text-transform: capitalize;">{{this.contentType}}</h3>
 
   <ul class="list-group">
-    {{#each this.items}}
-      <li class="list-group-item"><strong>{{name}}</strong> {{description}}</li>
+    {{#each getFiles}}
+    {{#with testLink}}
+    <h4 class="name">
+         <!-- {{name}} -->
+
+          <!-- <a href="{{details.url}}" target="_blank">{{name}}</a> -->
+          <a id="resourceName">{{name}}</a>
+        </h4>
+        {{{description}}}
+      <!-- <li class="list-group-item"><strong>{{name}}</strong> {{description}}</li> -->
+    {{/with}}
     {{/each}}
   </ul>
 </template>
