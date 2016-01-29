@@ -39,3 +39,4 @@ flemay:less-autoprefixer
 semantic:ui-dropdown
 semantic:ui-form
 semantic:ui-menu
+reactive-var

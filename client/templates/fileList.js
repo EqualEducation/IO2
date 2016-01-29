@@ -1,22 +1,46 @@
 
+Template.fileList.onCreated( function() {
+  this.currentTab = new ReactiveVar( "all" );
+});
+
 Template.fileList.onRendered(function(){
   $('.menu .item')
   .tab({
   })
 ;
 })
-Template.fileList.events({
+Template.fileList.helpers({
+tab: function() {
+  console.log('tab');
+  console.log(Template.instance().currentTab.get());
+    return Template.instance().currentTab.get();
+  },
+  tabData: function() {
+    var tab = Template.instance().currentTab.get();
+    console.log(tab);
+ var data = {
+     "all": [
+     fileDetails.find().fetch(),
+        // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
+      ],
+      "movies": [
+        fileDetails.find().fetch(),
+      ],
+      "games": [
+      fileDetails.find().fetch(),
+      ]
+    };
+    console.log(data[tab])
+    console.log(data[tab][0])
+     return { contentType: tab, items: data[ tab ][0] };
+  }
 
-    // 'click #deleteFileButton ': function (event) {
-    //   console.log('here');
-    //   var fsId= this._id;
-    //   var fileDetailsId=fileDetails.findOne({fileId:fsId})._id;
-    //   YourFileCollection.remove({_id: this._id});
-    //   fileDetails.remove({_id:fileDetailsId});
-    //   Session.set('fileSearch',fileSearch.getData());
-    //   fileSearch.cleanHistory();
-    //   fileSearch.search("");
-    // },
+})
+Template.fileList.events({
+    'click .item': function(event,template){
+      var currentTab=($( event.target ).attr("data-tab"));
+      template.currentTab.set(currentTab);
+    },
     'click #resourceName': function (event) {
       var fsId= this._id;
       var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;

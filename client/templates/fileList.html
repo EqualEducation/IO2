@@ -3,15 +3,19 @@
     {{> uploadResource}}
     <br />
     {{> searchBox }}
-
+<!-- <ul>
+  <li data-template="books" role="presentation" class="active"><a href="#">Books</a></li>
+    <li data-template="movies" role="presentation"><a href="#">Movies</a></li>
+    <li data-template="games" role="presentation"><a href="#">Games</a></li>
+</ul> -->
 <div class="ui secondary pointing  menu">
-  <a class="item active" data-tab="fourth">
+  <a class="item active" data-tab="all">
     All
   </a>
-  <a class="item" data-tab="fifth">
+  <a class="item" data-tab="movies">
     EE Activities
   </a>
-  <a class="item" data-tab="sixth">
+  <a class="item" data-tab="games">
     Short Readings
   </a>
     <a class="item">
@@ -27,14 +31,15 @@
     Other Resources
   </a>
 </div>
- <div class="ui active tab segment" data-tab="fourth">
+ <div class="ui active tab segment" data-tab="all">
+    <!-- {?{> Template.dynamic template="content" data=tabData}} -->
     {{> searchResult}}
   </div>
-  <div class="ui tab segment" data-tab="fifth">
-    5
+  <div class="ui tab segment" data-tab="movies">
+    {{> Template.dynamic template="content" data=tabData}}
   </div>
-  <div class="ui tab segment" data-tab="sixth">
-    6
+  <div class="ui tab segment" data-tab="games">
+    {{> Template.dynamic template="content" data=tabData}}
   </div>
   {{/if}}
   {{> activityDetail}}
