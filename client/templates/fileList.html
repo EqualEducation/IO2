@@ -18,16 +18,16 @@
   <a class="item" data-tab="readings">
     Short Readings
   </a>
-    <a class="item">
+    <a class="item" data-tab="curriculums">
     Curriculums
   </a>
-    <a class="item">
+    <a class="item" data-tab="books">
     Books
   </a>
-    <a class="item">
+    <a class="item" data-tab="films">
     Films
   </a>
-  <a class="item">
+  <a class="item" data-tab="other">
     Other Resources
   </a>
 </div>
@@ -39,6 +39,18 @@
     {{> Template.dynamic template="content" data=tabData}}
   </div>
   <div class="ui tab segment" data-tab="readings">
+    {{> Template.dynamic template="content" data=tabData}}
+  </div>
+    <div class="ui tab segment" data-tab="curriculums">
+    {{> Template.dynamic template="content" data=tabData}}
+  </div>
+    <div class="ui tab segment" data-tab="books">
+    {{> Template.dynamic template="content" data=tabData}}
+  </div>
+    <div class="ui tab segment" data-tab="films">
+    {{> Template.dynamic template="content" data=tabData}}
+  </div>
+    <div class="ui tab segment" data-tab="other">
     {{> Template.dynamic template="content" data=tabData}}
   </div>
   {{/if}}

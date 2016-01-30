@@ -1,3 +1,13 @@
+Meteor.subscribe("fileUploads");
+  Meteor.subscribe("fileMeta");
+var options = {
+  keepHistory: 1000 * 60 * 5,
+  localSearch: true
+};
+var fields = ['description'];
+fileSearch = new SearchSource('filesToSearch', fields, options);
+//initialise the search
+fileSearch.search("");
 Template.content.helpers({
     testLink: function() {
     //look in YourFile collection
@@ -21,5 +31,9 @@ Template.content.helpers({
       },
       sort: {name: 1}
     })
+  },
+
+  isLoading: function() {
+    return fileSearch.getStatus().loading;
   }
 })

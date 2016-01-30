@@ -28,6 +28,18 @@ tab: function() {
       ],
       "readings": [
       fileDetails.find().fetch(),
+      ],
+      "curriculums": [
+        fileDetails.find().fetch(),
+      ],
+      "books": [
+        fileDetails.find().fetch(),
+      ],
+      "films": [
+        fileDetails.find().fetch(),
+      ],
+      "other": [
+        fileDetails.find().fetch(),
       ]
     };
     console.log(data[tab])
