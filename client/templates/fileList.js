@@ -18,33 +18,35 @@ tab: function() {
   tabData: function() {
     var tab = Template.instance().currentTab.get();
     // console.log(tab);
- var data = {
-     "all": [
-     fileDetails.find().fetch(),
-        // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
-      ],
-      "activities": [
+    var data = {
+       "all": [
+       fileDetails.find().fetch(),
+          // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
+        ],
+        "activities": [
+          fileDetails.find().fetch(),
+        ],
+        "readings": [
         fileDetails.find().fetch(),
-      ],
-      "readings": [
-      fileDetails.find().fetch(),
-      ],
-      "curriculums": [
-        fileDetails.find().fetch(),
-      ],
-      "books": [
-        fileDetails.find().fetch(),
-      ],
-      "films": [
-        fileDetails.find().fetch(),
-      ],
-      "other": [
-        fileDetails.find().fetch(),
-      ]
+        ],
+        "curriculums": [
+          fileDetails.find().fetch(),
+        ],
+        "books": [
+        fileDetails.find("ibPhZtGX87r3LnRSG").fetch(),
+          // fileDetails.find().fetch(),
+        ],
+        "films": [
+          fileDetails.find().fetch(),
+        ],
+        "other": [
+          fileDetails.find().fetch(),
+        ]
     };
     // console.log(data[tab])
-    // console.log(data[tab][0])
-     return { contentType: tab, items: data[ tab ][0] };
+    console.log(data[tab][0])
+    var numResults=(data[tab][0].length);
+     return {contentType: tab, numResults: numResults,items: data[tab][0]};
   }
 
 })

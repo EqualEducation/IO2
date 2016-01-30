@@ -1,6 +1,7 @@
 <template name="content">
-  <h3 class="page-header" style="text-transform: capitalize;">{{this.contentType}}</h3>
-
+  <h3 class="page-header" style="text-transform: capitalize;">{{this.contentType}}
+<span style="float:right;">Results: {{this.numResults}}</span>
+  </h3>
   <ul class="list-group">
     {{#each getFiles}}
     {{#with testLink}}
