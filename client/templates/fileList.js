@@ -11,13 +11,13 @@ Template.fileList.onRendered(function(){
 })
 Template.fileList.helpers({
 tab: function() {
-  console.log('tab');
-  console.log(Template.instance().currentTab.get());
+  // console.log('tab');
+  // console.log(Template.instance().currentTab.get());
     return Template.instance().currentTab.get();
   },
   tabData: function() {
     var tab = Template.instance().currentTab.get();
-    console.log(tab);
+    // console.log(tab);
  var data = {
      "all": [
      fileDetails.find().fetch(),
@@ -42,8 +42,8 @@ tab: function() {
         fileDetails.find().fetch(),
       ]
     };
-    console.log(data[tab])
-    console.log(data[tab][0])
+    // console.log(data[tab])
+    // console.log(data[tab][0])
      return { contentType: tab, items: data[ tab ][0] };
   }
 
@@ -51,6 +51,9 @@ tab: function() {
 Template.fileList.events({
     'click .item': function(event,template){
       var currentTab=($( event.target ).attr("data-tab"));
+      var currentTabStatus=$( event.target );
+      currentTabStatus.addClass( "active" );
+      $( ".menu a" ).not( currentTabStatus ).removeClass( "active" );
       template.currentTab.set(currentTab);
     },
     'click #resourceName': function (event) {
@@ -122,10 +125,4 @@ Template.fileList.events({
      'submit .description-form': function(event,template){
         event.preventDefault();
     }
-    // ,
-    // 'submit .search-form': function(event,template){
-    //     event.preventDefault();
-    //     var searchField=event.target.searchName.value;
-    //     Session.set('searchField',searchField);
-    // }
   });
