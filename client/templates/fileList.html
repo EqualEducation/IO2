@@ -1,7 +1,9 @@
 <template name="fileList">
   {{#if currentUser}}
     {{> uploadResource}}
-    <br />
+      {{/if}}
+    <br>
+     <br>
     {{> searchBox }}
 <!-- <ul>
   <li data-template="books" role="presentation" class="active"><a href="#">Books</a></li>
@@ -53,7 +55,6 @@
     <div class="ui tab segment" data-tab="other">
     {{> Template.dynamic template="content" data=tabData}}
   </div>
-  {{/if}}
   {{> activityDetail}}
 </template>
 
