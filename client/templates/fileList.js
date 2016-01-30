@@ -1,3 +1,10 @@
+function buildRegExp(searchText) {
+  // this is a dumb implementation
+  var parts = searchText.trim().split(/[ \-]+/);
+  //define regExp with flags (case insensitive + global search)
+  return new RegExp("(" + parts.join('|') + ")", "ig");
+}
+
 
 Template.fileList.onCreated( function() {
   this.currentTab = new ReactiveVar( "all" );
@@ -16,41 +23,81 @@ tab: function() {
     return Template.instance().currentTab.get();
   },
   tabData: function() {
+    var text=Session.get('searchText');
+    var options = {sort: {name: 1}, limit: 20};
+    var regExp = buildRegExp(text);
+    var selector=selector = {$or: [
+      {name: regExp},
+      {description: regExp},
+      {keywords: regExp}
+    ]};
+    var filteredData=(fileDetails.find(selector, options).fetch());
+    // console.log(filteredData);
     var tab = Template.instance().currentTab.get();
     // console.log(tab);
     var data = {
        "all": [
-       fileDetails.find().fetch(),
+       fileDetails.find(selector, options).fetch(),
           // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
         ],
         "activities": [
-          fileDetails.find().fetch(),
+          fileDetails.find(selector, options).fetch(),
         ],
         "readings": [
-        fileDetails.find().fetch(),
+        fileDetails.find(selector, options).fetch(),
         ],
         "curriculums": [
-          fileDetails.find().fetch(),
+          fileDetails.find(selector, options).fetch(),
         ],
         "books": [
-        fileDetails.find("ibPhZtGX87r3LnRSG").fetch(),
+        fileDetails.find(selector, options).fetch(),
           // fileDetails.find().fetch(),
         ],
         "films": [
-          fileDetails.find().fetch(),
+          fileDetails.find(selector, options).fetch(),
         ],
         "other": [
-          fileDetails.find().fetch(),
+          fileDetails.find(selector, options).fetch(),
         ]
     };
     // console.log(data[tab])
-    console.log(data[tab][0])
+    // console.log(data[tab][0])
     var numResults=(data[tab][0].length);
      return {contentType: tab, numResults: numResults,items: data[tab][0]};
   }
 
 })
 Template.fileList.events({
+    "keyup #search-box": _.throttle(function(e) {
+      var text="";
+      if($(e.target).val()==undefined)
+      {
+          text = "";
+      }
+      else
+    { text = $(e.target).val().trim();
+    }
+
+    Session.set('searchText',text);
+    // console.log(data[tab][0]);
+  // fileSearch.search(text);
+  // console.log(this.name)
+    //if nothing is returned
+  //   if(fileSearch.getData()==""){
+  //     //compute fuzzy search (look for closest match)
+  //     var tempCursor = fileDetails.find({}, { name: true ,description:true});
+  //     var bestName = mostSimilarString(tempCursor, "name", text, -1, false);
+  //     console.log('did you mean');
+  //     var bestDescription = mostSimilarString(tempCursor, "description", text, -1, false);
+  //     console.log(bestName+", "+bestDescription);
+  //     fileSearch.cleanHistory();
+  //     fileSearch.search(bestName+bestDescription);
+  //   }
+  //   else{
+  //   console.log("FOUND");
+  // }
+  }, 200),
+
     'click .item': function(event,template){
       var currentTab=($( event.target ).attr("data-tab"));
       var currentTabStatus=$( event.target );
@@ -72,7 +119,7 @@ Template.fileList.events({
       //document.getElementById("keywords").value = keywords;
       //$form.form('set value', 'keywords',keywords);
       Session.set('fileDetailsID',fileDetailsID);
-      Session.set('fileSearch',fileSearch.getData());
+      // Session.set('fileSearch',fileSearch.getData());
       $('.ui.activitydetail.modal')
         .modal({
           onDeny    : function(){

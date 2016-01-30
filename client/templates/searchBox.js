@@ -2,6 +2,7 @@ Template.searchBox.events({
   "keyup #search-box": _.throttle(function(e) {
     var text = $(e.target).val().trim();
   fileSearch.search(text);
+  // console.log(this.name)
     //if nothing is returned
   //   if(fileSearch.getData()==""){
   //     //compute fuzzy search (look for closest match)

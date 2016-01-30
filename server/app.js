@@ -1,4 +1,6 @@
-SearchSource.defineSource('filesToSearch', function(searchText, options) {
+SearchSource.defineSource('filesToSearch', function(searchText,options) {
+  // console.log(searchText);
+  // console.log(searchData);
   var options = {sort: {name: 1}, limit: 20};
 
   if(searchText) {
