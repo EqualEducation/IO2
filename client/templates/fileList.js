@@ -131,9 +131,7 @@ Template.fileList.events({
             var array=keywordsVar.split(',');
             var fileDetailsID=Session.get('fileDetailsID');
             fileDetails.update(fileDetailsID,{$set: {"keywords":array,"description":descriptionVar}});
-            Session.set('filesToReturn',fileSearch.getData());
-            fileSearch.cleanHistory();
-            fileSearch.search("");
+            //Session.set('filesToReturn',fileSearch.getData());
             return true;
         }
         })
