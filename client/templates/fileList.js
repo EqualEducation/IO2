@@ -13,8 +13,8 @@ Template.fileList.onCreated( function() {
 Template.fileList.onRendered(function(){
   $('.menu .item')
   .tab({
-  })
-;
+  });
+  Session.set('searchText',"")
 })
 Template.fileList.helpers({
 tab: function() {
