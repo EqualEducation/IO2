@@ -1,11 +1,10 @@
-<template name="uploadActivity">
-  <i class="close icon"></i>
+<template name="header_activity">
   <div class="header">
-  	New Activity
+    New Activity
   </div>
+</template>
 
-  <div class="content">
-  	<div class="ui form">
+<template name="content_activity">
       <div class="field">
         <label>Topic</label>
         <input type="text">
@@ -40,16 +39,4 @@
       </div>
       {{> connectBooks}}
       {{> connectFilms}}
-      {{> uploadFile}}
-  	</div>
-  </div>
-  <div class="actions">
-  	<div id="back" class="ui black deny button">
-  		Back
-  	</div>
-  	<div class="ui positive right labeled icon button">
-  	Done
-  	<i class="right arrow icon"></i>
-  	</div>
-  </div>
 </template>

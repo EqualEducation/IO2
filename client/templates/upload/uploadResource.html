@@ -2,6 +2,8 @@
 	<button id="uploadResourceButton" class="ui primary button">
   		Add New Resource
 	</button>
+	<!-- <button class="modal" data-modal-template="modalOne">Modal One</button>
+	<button class="modal" data-modal-template="modalTwo">Modal Two</button> -->
 
 	<div class="ui chooseType modal">
 	  <i class="close icon"></i>
@@ -14,7 +16,7 @@
 			    <label>What type of resource would you like to upload?</label>
 			    <div class="field">
 			      <div class="ui radio checkbox">
-			        <input type="radio" name="example2" value="activity" id="activity">
+			        <input type="radio" name="example2" value="activity">
 			        <label>Activity</label>
 			      </div>
 			    </div>
@@ -62,22 +64,23 @@
 	  </div>
 </div>
 
-<div class="ui activity modal">
-	{{> uploadActivity}}
-</div>
-<div class="ui shortReading modal">
-	{{> uploadShortReading}}
-</div>
-<div class="ui curriculum modal">
-	{{> uploadCurriculum}}
-</div>
-<div class="ui book modal">
-	{{> uploadBook}}
-</div>
-<div class="ui film modal">
-	{{> uploadFilm}}
-</div>
-<div class="ui other modal">
-	{{> uploadOther}}
+<div class="ui resourceDetails modal">
+	<i class="close icon"></i>
+	{{> Template.dynamic template=header}}
+	<div class="content">
+		<div class="ui form">
+			{{> Template.dynamic template=content}}
+		</div>
+		{{> uploadFile}}
+	</div>
+	<div class="actions">
+		<div id="back" class="ui black deny button">
+			Back
+		</div>
+		<div class="ui positive right labeled icon button">
+		Done
+		<i class="right arrow icon"></i>
+		</div>
+	</div>
 </div>
 </template>
