@@ -11,7 +11,7 @@
 	  	New Resource
 	  </div>
 		<div class="content">
-			<form id="chooseTypeForm" class="ui form segment">
+			<form id="chooseTypeForm" class="ui form">
 			  <div class="grouped fields">
 			    <label>What type of resource would you like to upload?</label>
 			    <div class="field">
@@ -68,17 +68,18 @@
 	<i class="close icon"></i>
 	{{> Template.dynamic template=header}}
 	<div class="content">
-		<div class="ui form">
+		<!-- <div class="content ui form"> -->
+		<form id="resourceDetailsForm" class="ui form">
 			{{> Template.dynamic template=content}}
-		</div>
+		</form>
 		{{> uploadFile}}
 	</div>
 	<div class="actions">
 		<div id="back" class="ui black deny button">
 			Back
 		</div>
-		<div class="ui positive right labeled icon button">
-		Done
+		<div id="save" class="ui positive right labeled icon button">
+			Save
 		<i class="right arrow icon"></i>
 		</div>
 	</div>
