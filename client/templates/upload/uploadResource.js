@@ -104,14 +104,8 @@ Template.uploadResource.events({
 								var newResource = new Object();
 								newResource.type = Session.get('activeModal')
 								newResource.details = allFields;
-
-								console.log(newResource);
-								// $.each(allFields, function(key, value) {
-								// 	console.log("KEY: " + key);
-								// 	console.log("VALUE: " + value);
-								// 
-								// });
-
+								newResource.fileIDs = Session.get('fileIDs');
+								resources.insert(newResource);
 
 		          //  $('.ui.form').submit();
 		           //Return false as to not close modal dialog
