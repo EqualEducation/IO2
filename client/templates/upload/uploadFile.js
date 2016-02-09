@@ -12,10 +12,7 @@ Template.uploadFile.events({
 					var name = yourFile.original.name;
 					var index=name.indexOf(".");
 					var nameTrunc=name.substring(0,index);
-					console.log("SETTING SESSION VARIABLE: " + fileObj._id)
-
 					Session.set('fileIDs', fileObj._id)
-
 					fileDetails.insert({name:nameTrunc,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
 					fileSearch.cleanHistory();
 					fileSearch.search("");
@@ -28,6 +25,5 @@ Template.uploadFile.events({
 			});
 			//
 		});
-
 	},
 })
