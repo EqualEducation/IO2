@@ -90,7 +90,6 @@ Template.uploadResource.events({
 					$('.resourceDetails.modal')
 					.modal({
 						 onDeny    : function(){
-							 window.alert('Wait not yet!');
 							 return false;
 						 },
 						 onApprove : function() {
@@ -104,12 +103,14 @@ Template.uploadResource.events({
 								var newResource = new Object();
 								newResource.type = Session.get('activeModal')
 								newResource.details = allFields;
+								console.log('filed ids')
+								console.log(Session.get('fileIDs'));
 								newResource.fileIDs = Session.get('fileIDs');
 								resources.insert(newResource);
 
 		          //  $('.ui.form').submit();
 		           //Return false as to not close modal dialog
-		           return false;
+		           return true;
 						 }
 						})
 						.modal('show')

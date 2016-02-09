@@ -5,8 +5,6 @@ Template.uploadFile.events({
 
 			console.log("each file...");
 			var yourFile = new FS.File(file);
-			console.log('yourfile')
-			console.log(yourFile)
 			YourFileCollection.insert(yourFile, function (err, fileObj) {
 				console.log("callback for the insert, err: ", err);
 				if (!err) {
@@ -14,13 +12,14 @@ Template.uploadFile.events({
 					var name = yourFile.original.name;
 					var index=name.indexOf(".");
 					var nameTrunc=name.substring(0,index);
-					console.log(nameTrunc)
+					console.log("SETTING SESSION VARIABLE: " + fileObj._id)
+
+					Session.set('fileIDs', fileObj._id)
+
 					fileDetails.insert({name:nameTrunc,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
 					fileSearch.cleanHistory();
 					fileSearch.search("");
 					Session.set('filesToReturn',fileSearch.getData());
-					Session.set('fileIDs', fileObj._id);
-					console.log("REFRESH");
 				}
 				else {
 					console.log("there was an error", err);
@@ -29,5 +28,6 @@ Template.uploadFile.events({
 			});
 			//
 		});
+
 	},
 })
