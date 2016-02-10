@@ -59,7 +59,7 @@ Template.uploadResource.events({
 								console.log('file ids')
 								console.log(Session.get('fileIDs'));
 								newResource.fileIDs = Session.get('fileIDs');
-								Resources.insert(newResource);
+								Meteor.call("addResource", newResource);
 
 		          //  $('.ui.form').submit();
 		           //Return false as to not close modal dialog
