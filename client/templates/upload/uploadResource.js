@@ -52,15 +52,14 @@ Template.uploadResource.events({
 							 var form = $('#resourceDetailsForm');
 								var topic =	form.form('get field', 'topic').val();
 								var allFields = form.form('get values')
+								console.log(allFields)
 
 								var newResource = new Object();
 								newResource.type = Session.get('activeModal')
 								newResource.details = allFields;
-								console.log('file ids')
-								console.log(Session.get('fileIDs'));
 								newResource.fileIDs = Session.get('fileIDs');
 								Meteor.call("addResource", newResource);
-
+								form.form('clear')
 		          //  $('.ui.form').submit();
 		           //Return false as to not close modal dialog
 		           return true;
