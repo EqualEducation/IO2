@@ -3,3 +3,12 @@ Template.content_book.onRendered(function () {
     .dropdown()
   ;
 });
+
+Template.connectBooks.helpers({
+  'allBooks' : function() {
+    var books = Resources.find({'type':'book'});
+    console.log("ALL BOOKS");
+    console.log(books);
+    return books;
+  }
+})

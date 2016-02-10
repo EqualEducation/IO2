@@ -25,6 +25,14 @@ Associated Resources -->
           <textarea rows="2" name="description"></textarea>
         </div>
         <div class="field">
+          <label>Author</label>
+          <input name="author" type="text">
+        </div>
+        <div class="field">
+          <label>Year</label>
+          <input name="year" type="number">
+        </div>
+        <div class="field">
           <label>Keywords</label>
           <textarea rows="2" name="keywords"></textarea>
         </div>
@@ -40,7 +48,6 @@ Associated Resources -->
           <label>Source</label>
           <textarea rows="2" name="source"></textarea>
         </div>
-        {{> connectBooks}}
         {{> connectFilms}}
   </template>
 
@@ -50,6 +57,9 @@ Associated Resources -->
     <label>Books (you can select multiple)</label>
     <select multiple="" class="ui search dropdown" name="books">
       <option value="">Select</option>
+      {{#each allBooks}}
+        <option value={{_id}}>{{details.title}} - {{details.author}} ({{details.year}})</option>
+      {{/each}}
       <option value="AF">Long walk to Freedom - Nelson Mandela (1995)</option>
       <option value="AX">Cry the Beloved Country - Alan Paton (1948)</option>
       <option value="AL">Disgrace - J.M Coetzee (1999)</option>
