@@ -24,12 +24,12 @@ tab: function() {
   },
   tabData: function() {
     var text=Session.get('searchText');
-    var options = {sort: {name: 1}, limit: 20};
+    var options = {sort: {"details.title": 1}, limit: 20};
     var regExp = buildRegExp(text);
     var selector=selector = {$or: [
-      {name: regExp},
-      {description: regExp},
-      {keywords: regExp}
+      {"details.title": regExp},
+      {"details.description": regExp},
+      {"details.keywords": regExp}
     ]};
     var filteredData=(fileDetails.find(selector, options).fetch());
     // console.log(filteredData);
@@ -37,14 +37,14 @@ tab: function() {
     // console.log(tab);
     var data = {
        "all": [
-       fileDetails.find(selector, options).fetch(),
+       Resources.find(selector, options).fetch(),
           // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
         ],
         "activities": [
-          fileDetails.find(selector, options).fetch(),
+          Resources.find({type:"activity"}).fetch(),
         ],
         "readings": [
-        fileDetails.find(selector, options).fetch(),
+        Resources.find({type:"shortReading"}).fetch(),
         ],
         "curriculums": [
           fileDetails.find(selector, options).fetch(),

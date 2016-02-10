@@ -26,6 +26,22 @@ Template.content.helpers({
     };
 
   },
+  resourceLink: function() {
+      console.log('link')
+      console.log(this)
+    //look in YourFile collection
+    var details = YourFileCollection.findOne(this.fileIDs);
+    return {
+      URL: details.url,
+      name: this.details.title,
+      type: details.original.type,
+      isUploaded: details.original.updatedAt,
+      details:details,
+      keywords: this.details.keywords,
+      description:this.details.description,
+      _id:details._id
+    };
+  },
   allResources: function() {
   //look in YourFile collection
   var resources = Resources.find().fetch();
