@@ -1,57 +1,9 @@
-// //Get value from an input field
-// 	function getFieldValue(fieldId) {
-// 		 // 'get field' is part of Semantics form behavior API
-// 		 return $('.ui.form').form('get field', fieldId).val();
-// 	}
-//
-// 	function submitForm() {
-// 		 var formData = {
-// 				 field1: getFieldValue('someId')
-// 		 };
-//
-// 		 $.ajax({ type: 'POST', url: '/api/someRestEndpoint', data: formData, success: onFormSubmitted });
-// 	}
-//
-// 	// Handle post response
-// 	function onFormSubmitted(response) {
-// 			 // Do something with response ...
-// 	}
-
-
-var formValidationRules =
-{
-    // title: {
-    //     identifier  : 'title',
-    //     rules: [
-    //         {
-    //             type   : 'empty',
-    //             prompt : 'Please enter a title'
-    //         },
-    //         {
-    //             type   : 'length[2]',
-    //             prompt : 'At least 6 characters'
-    //         }
-    //     ]
-    // }
-}
-
-var formSettings =
-{
-	fields: true
-    onSuccess : function()
-    {
-      //Hides modal on validation success
-      // alert("Valid Submission, modal will close.");
-			// this.
-			console.log(this);
-      // $('.modal').modal('hide');
-    }
-}
-
 Template.uploadResource.onRendered(function(){
+	Meteor.subscribe("resources");
+
 	// $('.ui.form').form(validationRules, { onSuccess: submitForm });
 
-	$('.content.ui.form').form(formValidationRules, formSettings);
+	$('.content.ui.form').form();
 })
 
 Template.uploadResource.events({
@@ -107,7 +59,7 @@ Template.uploadResource.events({
 								console.log('file ids')
 								console.log(Session.get('fileIDs'));
 								newResource.fileIDs = Session.get('fileIDs');
-								resources.insert(newResource);
+								Resources.insert(newResource);
 
 		          //  $('.ui.form').submit();
 		           //Return false as to not close modal dialog

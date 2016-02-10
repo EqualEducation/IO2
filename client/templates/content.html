@@ -9,8 +9,7 @@
   </ul> -->
 
 
-  <ul class="list-group">
-    {{#each this.items}}
+  {{#each this.items}}
     {{#with testLink}}
     <h4 class="name">
          <!-- {{name}} -->
@@ -21,6 +20,11 @@
         {{{description}}}
       <!-- <li class="list-group-item"><strong>{{name}}</strong> {{description}}</li> -->
     {{/with}}
-    {{/each}}
-  </ul>
+  {{/each}}
+  <h3>ALL RESOURCES</h3>
+  {{#each allResources}}
+    <h4><a>{{this.details.title}}</a></h4>
+    <p>{{this.details.description}}</p>
+  {{/each}}
+
 </template>

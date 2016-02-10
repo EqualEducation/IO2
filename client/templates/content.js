@@ -1,5 +1,7 @@
 Meteor.subscribe("fileUploads");
   Meteor.subscribe("fileMeta");
+  Meteor.subscribe("resources");
+
 // var options = {
 //   keepHistory: 1000 * 60 * 5,
 //   localSearch: true
@@ -24,6 +26,13 @@ Template.content.helpers({
     };
 
   },
+  allResources: function() {
+  //look in YourFile collection
+  var resources = Resources.find().fetch();
+  console.log(resources);
+  return resources;
+
+},
 
 
   isLoading: function() {
