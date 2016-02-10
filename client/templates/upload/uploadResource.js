@@ -38,13 +38,14 @@ var formValidationRules =
 var formSettings =
 {
 	fields: true
-    // onSuccess : function()
-    // {
-    //   //Hides modal on validation success
-    //   // alert("Valid Submission, modal will close.");
-		// 	console.log(this);
-    //   // $('.modal').modal('hide');
-    // }
+    onSuccess : function()
+    {
+      //Hides modal on validation success
+      // alert("Valid Submission, modal will close.");
+			// this.
+			console.log(this);
+      // $('.modal').modal('hide');
+    }
 }
 
 Template.uploadResource.onRendered(function(){
@@ -103,7 +104,7 @@ Template.uploadResource.events({
 								var newResource = new Object();
 								newResource.type = Session.get('activeModal')
 								newResource.details = allFields;
-								console.log('filed ids')
+								console.log('file ids')
 								console.log(Session.get('fileIDs'));
 								newResource.fileIDs = Session.get('fileIDs');
 								resources.insert(newResource);
@@ -120,8 +121,6 @@ Template.uploadResource.events({
 					$('.chooseType.modal')
 						.modal('attach events', '#back')
 					;
-
-
 				 }
 			})
 		;
