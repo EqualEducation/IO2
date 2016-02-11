@@ -26,7 +26,7 @@ tab: function() {
     var text=Session.get('searchText');
     var options = {sort: {"details.title": 1}, limit: 20};
     var regExp = buildRegExp(text);
-    var selector=selector = {$or: [
+    var selector=selector={$or: [
       {"details.title": regExp},
       {"details.description": regExp},
       {"details.keywords": regExp}
@@ -41,23 +41,23 @@ tab: function() {
           // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
         ],
         "activities": [
-          Resources.find({type:"activity"}).fetch(),
+          Resources.find({$and: [{type:"activity"},selector]},options).fetch(),
         ],
         "readings": [
-        Resources.find({type:"shortReading"}).fetch(),
+        Resources.find({$and: [{type:"shortReading"},selector]},options).fetch(),
         ],
         "curriculums": [
-          fileDetails.find(selector, options).fetch(),
+          Resources.find({$and: [{type:"curriculum"},selector]},options).fetch(),
         ],
         "books": [
-        fileDetails.find(selector, options).fetch(),
+        Resources.find({$and: [{type:"book"},selector]},options).fetch(),
           // fileDetails.find().fetch(),
         ],
         "films": [
-          fileDetails.find(selector, options).fetch(),
+          Resources.find({$and: [{type:"film"},selector]},options).fetch(),
         ],
         "other": [
-          fileDetails.find(selector, options).fetch(),
+        Resources.find({$and: [{type:"other"},selector]},options).fetch(),
         ]
     };
     // console.log(data[tab])
