@@ -1,4 +1,4 @@
-Template.activityDetail.onRendered(function () {
+Template.resourceDetail.onRendered(function () {
   $("#deleteFile").click(function(){
     //var fsId= Session.get('fileDetailsID');
       var fileDetailsId=Session.get('fileDetailsID');
@@ -9,27 +9,32 @@ Template.activityDetail.onRendered(function () {
       fileSearch.cleanHistory();
       fileSearch.search("");
       //MAKE THE MODAL CLOSE!
-      $('.ui.activitydetail.modal').modal("hide");
+      $('.ui.resourceDetail.modal').modal("hide");
   })
 });
 
-Template.activityDetail.helpers({
-  activity: function() {
-    if(Session.get('fileDetailsID')===undefined){
+Template.resourceDetail.helpers({
+  resource: function() {
+    if(Session.get('resourceDetailsID')===undefined){
       return 0;
     }
     else{
-      var file=fileDetails.findOne({_id:Session.get('fileDetailsID')});
-      var details = YourFileCollection.findOne(file.fileId);
+      //var file=fileDetails.findOne({_id:Session.get('fileDetailsID')});
+      //
+      var resource=Resources.findOne({_id:Session.get('resourceDetailsID')});
+      var file = YourFileCollection.findOne(resource.fileIDs);
+      // console.log(resource);
+      // console.log("file")
+      // console.log(details);
+      // console.log(details.url)
+      // console.log(resource);
       return {
-        URL: details.url,
-        name: file.name,
-        type: details.original.type,
-        isUploaded: details.original.updatedAt,
-        details:details,
-        keywords: file.keywords,
-        description:file.description,
-        _id:details._id
+        file:file,
+        URL: file.url,
+        name: resource.details.title,
+        keywords: resource.details.keywords,
+        description:resource.details.description
+        //_id:details._id
       };
   }
   },

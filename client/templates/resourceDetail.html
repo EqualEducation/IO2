@@ -1,25 +1,24 @@
-<template name="activityDetail">
-  <div class="ui activitydetail modal">
+<template name="resourceDetail">
+  <div class="ui resourceDetail modal">
   <div class="header">
-
-    {{activity.name}}
+    {{resource.name}}
   </div>
   <div class="content">
   <div class="ui form">
   <div class="field">
     <label>Description</label>
-    <input type="text" placeholder="Description" name="description" value = "{{activity.description}}">
+    <input type="text" placeholder="Description" name="description" value = "{{resource.description}}">
   </div>
   <div class="field">
     <label>Keywords</label>
-    <input type="text" placeholder="Keywords" name="keywords" value = "{{activity.keywords}}">
+    <input type="text" placeholder="Keywords" name="keywords" value = "{{resource.keywords}}">
   </div>
   <div class="ui error message"></div>
     <div class="field">
     <label>Tag (you can select multiple)</label>
     <select multiple class="ui fluid search dropdown">
       <option value="">Select</option>
-      {{#each activity.keywords}}
+      {{#each resource.keywords}}
       <option value="{{@index}}" selected>{{this}}</option>
       {{/each}}
 <!--       {{#each uniqueKeywords}}
@@ -29,7 +28,7 @@
   </div>
 </div>
 <br>
-  <a class="ui primary button" href="{{activity.details.url}}" target="_blank">
+  <a class="ui primary button" href="{{resource.file.url}}" target="_blank">
   Download Activity
 </a>
 <br>

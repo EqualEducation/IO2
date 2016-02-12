@@ -1,6 +1,12 @@
 function buildRegExp(searchText) {
   // this is a dumb implementation
-  var parts = searchText.trim().split(/[ \-]+/);
+  var parts="";
+  if (searchText===undefined)
+  {}
+  else
+  {
+    parts = searchText.trim().split(/[ \-]+/);
+  }
   //define regExp with flags (case insensitive + global search)
   return new RegExp("(" + parts.join('|') + ")", "ig");
 }
@@ -106,21 +112,28 @@ Template.fileList.events({
       template.currentTab.set(currentTab);
     },
     'click #resourceName': function (event) {
-      var fsId= this._id;
-      var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
-      var fileDetailsName=fileDetails.findOne({fileId:fsId}).name;
-      var fileDetailsKeywords=fileDetails.findOne({fileId:fsId}).keywords;
-      var fileDetailsDescription=fileDetails.findOne({fileId:fsId}).description;
-      var description=fileDetailsDescription;
+      //var fsId= this._id;
+      //var resourceDetailsID=this._id;
+      //console.log('click');
+      var resource=this;
+      //console.log(resource);
+      //var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
+      //var fileDetailsName=fileDetails.findOne({fileId:fsId}).name;
+      var resourceKeywords=resource.keywords;
+      //console.log(resourceKeywords)
+      var resourceDescription=resource.description;
+      //console.log(resourceDescription)
+      //var description=fileDetailsDescription;
       $form=$('.ui.form');
       //$form.form('set value', 'description',description);
       //document.getElementById("description").value = description;
-      var keywords=fileDetailsKeywords.join()
+      var keywords=resourceKeywords;//.join()
       //document.getElementById("keywords").value = keywords;
       //$form.form('set value', 'keywords',keywords);
-      Session.set('fileDetailsID',fileDetailsID);
+      //Session.set('resourceDetailsID',resourceDetailsID);
+      Session.set('resourceDetailsID',resource._id);
       // Session.set('fileSearch',fileSearch.getData());
-      $('.ui.activitydetail.modal')
+      $('.ui.resourceDetail.modal')
         .modal({
           onDeny    : function(){
           return true;
@@ -129,8 +142,9 @@ Template.fileList.events({
             var keywordsVar=$form.form('get value', 'keywords');
             var descriptionVar=$form.form('get value', 'description');
             var array=keywordsVar.split(',');
-            var fileDetailsID=Session.get('fileDetailsID');
-            fileDetails.update(fileDetailsID,{$set: {"keywords":array,"description":descriptionVar}});
+            var resourceDetailsID=Session.get('resourceDetailsID');
+            Resources.update(resource._id,{$set: {"keywords":array,"description":descriptionVar}});
+            //fileDetails.update(fileDetailsID,{$set: {"keywords":array,"description":descriptionVar}});
             //Session.set('filesToReturn',fileSearch.getData());
             return true;
         }
