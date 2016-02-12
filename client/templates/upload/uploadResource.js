@@ -56,6 +56,11 @@ Template.uploadResource.events({
 
 								var newResource = new Object();
 								newResource.type = Session.get('activeModal')
+								var keywords = allFields.keywords;
+								var array=keywords.split(',');
+								allFields.keywords = array;
+
+								console.log(allFields.keywords);
 								newResource.details = allFields;
 								newResource.fileIDs = Session.get('fileIDs');
 								Meteor.call("addResource", newResource);
