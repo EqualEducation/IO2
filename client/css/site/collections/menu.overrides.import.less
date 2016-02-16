@@ -1,3 +1,14 @@
 /*******************************
          Site Overrides
 *******************************/
+/* Primary */
+.ui.inverted.menu .primary.active.item,
+.ui.inverted.primary.menu {
+  background-color: @primaryColor;
+}
+.ui.inverted.primary.menu .item:before {
+  background-color: @invertedColoredDividerBackground;
+}
+.ui.inverted.primary.menu .active.item {
+  background-color: @invertedColoredActiveBackground !important;
+}
