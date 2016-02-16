@@ -1,3 +1,12 @@
 <template name="searchBox">
-<input type="search" id="search-box" placeholder="search files here" />
+
+    <!-- {{> searchBox }} -->
+    <div>
+      <input type="search" style="color:black" id="search-box" placeholder="Search resources here" />
+    </div>
+    <div>
+      {{#if currentUser}}
+        {{> uploadResource}}
+      {{/if}}
+    </div>
 </template>
