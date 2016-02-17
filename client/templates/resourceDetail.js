@@ -1,4 +1,12 @@
 Template.resourceDetail.onRendered(function () {
+
+  $('.ui.dropdown')
+  .dropdown({
+    allowAdditions: true
+  })
+;
+
+
   $("#deleteFile").click(function(){
     //var fsId= Session.get('fileDetailsID');
       var fileDetailsId=Session.get('fileDetailsID');
@@ -47,5 +55,3 @@ return _.uniq(_.flatten(fileDetails.find({keywords:{$not:""}}, {
 }), true)).sort();
   }
 })
-
-
