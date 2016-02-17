@@ -1,4 +1,11 @@
 Template.resourceDetail.onRendered(function () {
+  $('.ui.dropdown')
+.dropdown({
+  allowAdditions: true
+})
+;
+
+
   $("#deleteFile").click(function(){
     //var fsId= Session.get('fileDetailsID');
       var fileDetailsId=Session.get('fileDetailsID');

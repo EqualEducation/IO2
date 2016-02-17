@@ -16,15 +16,25 @@
   <div class="ui error message"></div>
     <div class="field">
     <label>Tag (you can select multiple)</label>
-    <select multiple="" class="ui fluid search dropdown">
+    <div class="ui fluid multiple search selection dropdown">
+    <!-- <input name="tags" type="hidden" value="design"> -->
+    <i class="dropdown icon"></i>
+    <div class="default text">Select</div>
+    <div class="menu">
+      {{#each resource.keywords}}
+        <div class="item" data-value="{{@index}}">{{this}}</div>
+      {{/each}}
+    </div>
+  </div>
+    <!-- <select multiple="" class="ui fluid search dropdown">
       <option value="">Select</option>
       {{#each resource.keywords}}
       <option value="{{@index}}" selected>{{this}}</option>
-      {{/each}}
+      {{/each}} -->
 <!--       {{#each uniqueKeywords}}
       <option value="{{this}}">{{this}}</option>
       {{/each}} -->
-    </select>
+    <!-- </select> -->
   </div>
 </div>
 <br>
