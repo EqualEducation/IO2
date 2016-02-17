@@ -22,7 +22,12 @@ Template.resourceDetail.helpers({
       //var file=fileDetails.findOne({_id:Session.get('fileDetailsID')});
       //
       var resource=Resources.findOne({_id:Session.get('resourceDetailsID')});
-      var file = YourFileCollection.findOne(resource.fileIDs);
+      var file = null;
+      var fileURL = null;
+      if (resource.fileIDs != undefined) {
+        file = YourFileCollection.findOne(resource.fileIDs);
+        fileURL = file.url;
+      }
       // console.log(resource);
       // console.log("file")
       // console.log(details);
@@ -30,7 +35,7 @@ Template.resourceDetail.helpers({
       // console.log(resource);
       return {
         file:file,
-        URL: file.url,
+        URL: fileURL,
         name: resource.details.title,
         keywords: resource.details.keywords,
         description:resource.details.description
@@ -47,5 +52,3 @@ return _.uniq(_.flatten(fileDetails.find({keywords:{$not:""}}, {
 }), true)).sort();
   }
 })
-
-
