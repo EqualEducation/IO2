@@ -73,6 +73,8 @@ tab: function() {
   }
 
 })
+
+
 Template.fileList.events({
     "keyup #search-box": _.throttle(function(e) {
       var text="";
