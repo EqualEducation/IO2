@@ -1,23 +1,5 @@
 <template name="page">
-  <div class="ui main text container" style="background-color: white; box-shadow:22px 23px 43px 0px rgba(0, 0, 0, 0.31);">
-
-    <div class="ui equal width aligned padded grid">
-      <div class="row">
-        <div class="column">
-          <h1 class="ui header">Search Resources</h1>
-          <input type="search" style="color:black" id="search-box" placeholder="Search resources here" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">
-          {{#if currentUser}}
-            {{> uploadResource}}
-          {{/if}}
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">{{>fileList}}</div>
-      </div>
+    <div class="ui main text container fluid" style="background-color: white; box-shadow:22px 23px 43px 0px rgba(0, 0, 0, 0.31);">
+      {{> fileList}}
     </div>
-  </div>
 </template>

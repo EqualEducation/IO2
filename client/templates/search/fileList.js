@@ -1,5 +1,6 @@
 function buildRegExp(searchText) {
   // this is a dumb implementation
+  console.log('searching')
   var parts=[""];
   if (searchText===undefined)
   {}
