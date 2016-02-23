@@ -1,6 +1,15 @@
 body {
   background-color: #FFFFFF;
 }
+
+page {
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+  min-width: 320px;
+  height: 100%;
+  display: block;
+}
 /*
 .ui.fixed.menu {
   background-color: @primaryColor;
@@ -13,7 +22,7 @@ body {
   margin-top: 7em;
 }
 .wireframe {
-  margin-top: 2em;
+  /*margin-top: 2em;*/
 }
 .ui.footer.segment {
   margin: 5em 0em 0em;
