@@ -23,6 +23,7 @@ Template.fileList.onRendered(function(){
   });
   Session.set('searchText',"")
 })
+
 Template.fileList.helpers({
 tab: function() {
   // console.log('tab');

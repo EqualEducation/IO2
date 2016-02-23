@@ -1,9 +1,13 @@
-<head>
-  <title>EqualEducationDB</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-</head>
-<body style="background-image: url(images/background.jpeg); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;background-color : lightGrey">
-    {{> navigationBar}}
-    {{> page}}
-    {{> footer}}
-</body>
+<template name="main">
+  <head>
+    <title>EqualEducationDB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  </head>
+  <!-- <body style="background-image: url(images/background.jpeg); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;background-color : lightGrey"> -->
+      {{> navigationBar}}
+      <div class="ui main text container fluid" style="background-color: white; box-shadow:22px 23px 43px 0px rgba(0, 0, 0, 0.31);">
+        {{> yield}}
+      </div>
+      {{> footer}}
+  <!-- </body> -->
+</template>
