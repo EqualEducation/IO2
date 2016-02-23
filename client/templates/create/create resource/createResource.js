@@ -1,4 +1,4 @@
-Template.uploadResource.onRendered(function(){
+Template.createResource.onRendered(function(){
 	Meteor.subscribe("resources");
 
 	// $('.ui.form').form(validationRules, { onSuccess: submitForm });
@@ -6,13 +6,13 @@ Template.uploadResource.onRendered(function(){
 	$('.content.ui.form').form();
 })
 
-Template.uploadResource.events({
+Template.createResource.events({
 	'click button.modal': function(event, template) {
 	var name = template.$(event.target).data('modal-template');
 	console.log(name)
 	Session.set('activeModal', name);
 },
-	'click #uploadResourceButton': function(event, template) {
+	'click #createResourceButton': function(event, template) {
 		$('#chooseTypeForm').form('reset');
 		// var chooseTypeForm = template.find("#chooseTypeForm");//[0].reset();
 		// console.log(chooseTypeForm);
@@ -83,7 +83,7 @@ Template.uploadResource.events({
 	},
 })
 
-Template.uploadResource.helpers({
+Template.createResource.helpers({
   content: function() {
 		var ret = 'content_' + Session.get('activeModal')
 		return ret ;
