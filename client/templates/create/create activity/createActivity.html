@@ -1,3 +1,26 @@
+<template name="createActivity">
+<div class="ui createActivity modal">
+	<i class="close icon"></i>
+	{{> header_activity}}
+	<div class="content">
+		<!-- <div class="content ui form"> -->
+		<form id="resourceDetailsForm" class="ui form">
+			{{> content_activity}}
+		</form>
+		{{> uploadFile}}
+	</div>
+	<div class="actions">
+		<div id="back" class="ui black deny button">
+			Back
+		</div>
+		<div id="save" class="ui positive right labeled icon button">
+			Save
+		<i class="right arrow icon"></i>
+		</div>
+	</div>
+</div>
+</template>
+
 <template name="header_activity">
   <div class="header">
     New Activity

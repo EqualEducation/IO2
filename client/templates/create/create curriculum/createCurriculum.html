@@ -1,3 +1,26 @@
+<template name="createCurriculum">
+<div class="ui createCurriculum modal">
+	<i class="close icon"></i>
+	{{> header_curriculum}}
+	<div class="content">
+		<!-- <div class="content ui form"> -->
+		<form id="resourceDetailsForm" class="ui form">
+			{{> content_curriculum}}
+		</form>
+		{{> uploadFile}}
+	</div>
+	<div class="actions">
+		<div id="back" class="ui black deny button">
+			Back
+		</div>
+		<div id="save" class="ui positive right labeled icon button">
+			Save
+		<i class="right arrow icon"></i>
+		</div>
+	</div>
+</div>
+</template>
+
 <template name="header_curriculum">
   <div class="header">
     New Curriculum

@@ -6,8 +6,15 @@ Template.create.onRendered(function(){
 Template.create.events({
 	'click button.modal': function(event, template) {
 	var name = template.$(event.target).data('modal-template');
-	console.log(name)
 	Session.set('activeModal', name);
+},
+'click #createCurriculumButton': function(event, template) {
+	$('.createCurriculum.modal')
+		.modal('show')
+},
+'click #createActivityButton': function(event, template) {
+	$('.createActivity.modal')
+		.modal('show')
 },
 	'click #createResourceButton': function(event, template) {
 		$('#chooseTypeForm').form('reset');
