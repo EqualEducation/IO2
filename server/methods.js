@@ -23,6 +23,18 @@ Meteor.methods({
 
     Activities.insert(activity);
   },
+  addCurriculum: function (curriculum) {
+    console.log('ADDING CURRICULUM');
+    // Make sure the user is logged in before inserting a task
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    curriculum.createdAt = new Date();
+    curriculum.owner = Meteor.userId();
+    curriculum.username = Meteor.user().username;
+
+    Curricula.insert(curriculum);
+  },
   deleteResource: function (resourceId) {
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
