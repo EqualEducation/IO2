@@ -1,8 +1,27 @@
-<template name="common_fields">
+<!-- Title	Text	n
+Main Topic	Dropdown	n
+Subtopic	Dropdown	n
+Key Words	dropdown	y
+Description	Text area	n
+Audience	Dropdown	y
+Source	Text	n -->
+
+<template name="createCommon">
   <div class="field">
     <label>Title</label>
     <input type="text" name="title">
   </div>
+  <div class="field">
+    <label>Main Topic</label>
+    <div class="topic ui fluid search selection dropdown">
+    <i class="dropdown icon"></i>
+    <div class="default text">Select</div>
+    <div class="menu">
+        <div class="item" data-value="0">0</div>
+        <div class="item" data-value="1">1</div>
+    </div>
+  </div>
+</div>
   <div class="field">
     <label>Keywords</label>
     <textarea rows="2" name="keywords"></textarea>

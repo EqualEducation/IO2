@@ -28,18 +28,7 @@
 </template>
 
 <template name="content_activity">
-  <div class="field">
-      <label>Title</label>
-      <input type="text" name="title">
-    </div>
-    <div class="field">
-      <label>Keywords</label>
-      <textarea rows="2" name="keywords"></textarea>
-    </div>
-    <div class="field">
-      <label>Description</label>
-      <textarea rows="2" name="description"></textarea>
-    </div>
+	{{> createCommon}}
     <div class="field">
       <label>Duration</label>
       <textarea rows="2" name="duration"></textarea>
@@ -51,14 +40,6 @@
     <div class="field">
       <label>Method</label>
       <textarea rows="2" name="method"></textarea>
-    </div>
-    <div class="field">
-      <label>Audience</label>
-      <textarea rows="2" name="audience"></textarea>
-    </div>
-    <div class="field">
-      <label>Source</label>
-      <textarea rows="2" name="source"></textarea>
     </div>
     {{> connectBooks}}
     {{> connectFilms}}

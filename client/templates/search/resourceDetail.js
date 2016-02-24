@@ -1,5 +1,5 @@
 Template.resourceDetail.onRendered(function () {
-  $('.ui.dropdown')
+  $('.keywords.ui.dropdown')
 .dropdown({
   allowAdditions: true
 })
