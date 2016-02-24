@@ -44,14 +44,14 @@
 <template name="connectBooks">
   <div class="field">
     <label>Books (you can select multiple)</label>
-    <select multiple="" class="ui search dropdown" name="books">
+    <select multiple="" class="resource ui search dropdown" name="books">
       <option value="">Select</option>
       {{#each allBooks}}
         <option value={{_id}}>{{details.title}} - {{details.author}} ({{details.year}})</option>
       {{/each}}
-      <option value="AF">Long walk to Freedom - Nelson Mandela (1995)</option>
+      <!-- <option value="AF">Long walk to Freedom - Nelson Mandela (1995)</option>
       <option value="AX">Cry the Beloved Country - Alan Paton (1948)</option>
-      <option value="AL">Disgrace - J.M Coetzee (1999)</option>
+      <option value="AL">Disgrace - J.M Coetzee (1999)</option> -->
     </select>
   </div>
 </template>

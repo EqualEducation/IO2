@@ -31,16 +31,17 @@
 	{{> createCommon}}
     <div class="field">
       <label>Duration</label>
-      <textarea rows="2" name="duration"></textarea>
+			<input type="number" name="duration">
     </div>
-    <div class="field">
-      <label>Length</label>
-      <textarea rows="2" name="length"></textarea>
-    </div>
-    <div class="field">
-      <label>Method</label>
-      <textarea rows="2" name="method"></textarea>
-    </div>
+		<div class="field">
+		  <label>Method</label>
+		  <select name="keywords" class="allowAdditions ui fluid search dropdown multiple">
+		    <option value="">Search...</option>
+		    {{#each topics}}
+		      <option value="{{@index}}">{{this}}</option>
+		    {{/each}}
+		  </select>
+		</div>
     {{> connectBooks}}
     {{> connectFilms}}
-  </template>
+</template>
