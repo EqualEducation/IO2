@@ -13,18 +13,18 @@ function buildRegExp(searchText) {
 }
 
 
-Template.fileList.onCreated( function() {
+Template.searchPage.onCreated( function() {
   this.currentTab = new ReactiveVar( "all" );
 });
 
-Template.fileList.onRendered(function(){
+Template.searchPage.onRendered(function(){
   $('.menu .item')
   .tab({
   });
   Session.set('searchText',"")
 })
 
-Template.fileList.helpers({
+Template.searchPage.helpers({
 tab: function() {
   // console.log('tab');
   // console.log(Template.instance().currentTab.get());
@@ -51,21 +51,36 @@ tab: function() {
         "activities": [
           Resources.find({$and: [{type:"activity"},selector]},options).fetch(),
         ],
-        "readings": [
-        Resources.find({$and: [{type:"shortReading"},selector]},options).fetch(),
-        ],
-        "curriculums": [
+        "curricula": [
           Resources.find({$and: [{type:"curriculum"},selector]},options).fetch(),
         ],
-        "books": [
-        Resources.find({$and: [{type:"book"},selector]},options).fetch(),
+        "resources": [
+        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
           // fileDetails.find().fetch(),
         ],
-        "films": [
-          Resources.find({$and: [{type:"film"},selector]},options).fetch(),
+        "allResources": [
+        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+          // fileDetails.find().fetch(),
+        ],
+        "book": [
+        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+          // fileDetails.find().fetch(),
+        ],
+        "film": [
+        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+          // fileDetails.find().fetch(),
+        ],
+        "shortreading": [
+        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+          // fileDetails.find().fetch(),
+        ],
+        "icebreaker": [
+        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+          // fileDetails.find().fetch(),
         ],
         "other": [
-        Resources.find({$and: [{type:"other"},selector]},options).fetch(),
+        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+          // fileDetails.find().fetch(),
         ]
     };
     // console.log(data[tab])
@@ -77,7 +92,7 @@ tab: function() {
 })
 
 
-Template.fileList.events({
+Template.searchPage.events({
     "keyup #search-box": _.throttle(function(e) {
       var text="";
       if($(e.target).val()==undefined)

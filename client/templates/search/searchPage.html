@@ -1,0 +1,55 @@
+<template name="searchPage">
+  <div class="ui equal width aligned padded grid fluid">
+    <div class="row">
+      <div class="column">
+        <h1 class="ui header">Search</h1>
+        <input type="search" style="color:black" id="search-box" placeholder="Search here" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <div class="ui secondary pointing  menu">
+          <a class="item active" data-tab="all">
+            All
+          </a>
+          <a class="item" data-tab="curricula">
+            Curricula
+          </a>
+          <a class="item" data-tab="activities">
+            Activities
+          </a>
+          <a class="item" data-tab="resources">
+            Resources
+          </a>
+        </div>
+         <div class="ui active tab segment" data-tab="all">
+            <!-- {?{> Template.dynamic template="content" data=tabData}} -->
+            {{> Template.dynamic template="content" data=tabData}}
+          </div>
+          <div class="ui tab segment" data-tab="activities">
+            {{> Template.dynamic template="content" data=tabData}}
+          </div>
+          <div class="ui tab segment" data-tab="resources">
+            <div class="ui top attached tabular menu">
+              <a class="active item" data-tab="allResources">All</a>
+              <a class="item" data-tab="book">Book</a>
+              <a class="item" data-tab="film">Film</a>
+              <a class="item" data-tab="shortreading">Short Reading</a>
+              <a class="item" data-tab="icebreaker">Icebreakers</a>
+              <a class="item" data-tab="other">Other</a>
+            </div>
+            {{> Template.dynamic template="content" data=tabData}}
+          </div>
+<!--           {{> curriculumDetail}}
+          {{> activityDetail}} -->
+          {{> resourceDetail}}
+      </div>
+    </div>
+</div>
+  <!-- {{> searchBox}} -->
+<!-- <ul>
+  <li data-template="books" role="presentation" class="active"><a href="#">Books</a></li>
+    <li data-template="movies" role="presentation"><a href="#">Movies</a></li>
+    <li data-template="games" role="presentation"><a href="#">Games</a></li>
+</ul> -->
+</template>
