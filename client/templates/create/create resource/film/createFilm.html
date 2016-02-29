@@ -8,7 +8,7 @@
   {{> durationField}}
   <div class="field">
     <label>Film Type</label>
-    <select name="filmType" class="ui fluid search dropdown multiple">
+    <select name="filmType" multiple="" class="film ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each filmTypes}}
         <option value="{{@index}}">{{this}}</option>

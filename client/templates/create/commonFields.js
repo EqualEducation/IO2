@@ -1,3 +1,25 @@
+Template.commonFields.onRendered(function() {
+  console.log('RENDERING')
+  console.log($('.commonFields.allowAdditions.ui.dropdown'))
+  console.log($('.commonFields.noAdditions.ui.dropdown'))
+
+  $('.commonFields.noAdditions.ui.dropdown')
+    .dropdown()
+  ;
+
+  $('.commonFields.allowAdditions.ui.dropdown')
+    .dropdown({
+      allowAdditions: true
+    })
+  ;
+
+  // $('.keywords.ui.dropdown')
+  //   .dropdown({
+  //     allowAdditions: true
+  //   })
+  // ;
+})
+
 Template.commonFields.helpers({
   'topics' : function() {
     var items = MainTopics.find({});

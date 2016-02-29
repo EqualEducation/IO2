@@ -1,8 +1,10 @@
 Template.content_film.onRendered(function () {
-
+  $('.film.ui.dropdown')
+    .dropdown()
+  ;
 });
 
-Template.methodField.helpers({
+Template.content_film.helpers({
   'filmTypes' : function() {
     // var books = Resources.find({'type':'book'});
     // console.log("ALL BOOKS");

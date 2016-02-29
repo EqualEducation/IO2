@@ -5,7 +5,7 @@
   </div>
   <div class="field">
     <label>Main Topic</label>
-    <select name="topic" class="ui fluid search dropdown">
+    <select name="topic" class="commonFields noAdditions ui fluid search dropdown">
       <option value="">Search...</option>
       {{#each topics}}
         <option value="{{@index}}">{{value}}</option>
@@ -14,7 +14,7 @@
 </div>
 <div class="field">
   <label>Sub Topic</label>
-  <select name="subtopic" class="allowAdditions ui fluid search dropdown">
+  <select name="subtopic" class="commonFields allowAdditions ui fluid search dropdown">
     <option value="">Search...</option>
     {{#each subTopics}}
       <option value="{{@index}}">{{value}}</option>
@@ -23,7 +23,7 @@
 </div>
 <div class="field">
   <label>Keywords</label>
-  <select name="keywords" class="allowAdditions ui fluid search dropdown multiple">
+  <select name="keywords" multiple="" class="commonFields allowAdditions ui dropdown search multiple">
     <option value="">Search...</option>
     {{#each keywords}}
       <option value="{{@index}}">{{value}}</option>
@@ -36,7 +36,7 @@
   </div>
   <div class="field">
     <label>Audience</label>
-    <select name="audience" class="ui fluid search dropdown multiple">
+    <select name="audience" multiple="" class="commonFields noAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each audiences}}
         <option value="{{@index}}">{{value}}</option>
@@ -66,7 +66,7 @@
 <template name="methodField">
   <div class="field">
     <label>Method</label>
-    <select name="method" class="allowAdditions ui fluid search dropdown multiple">
+    <select name="method" multiple="" class="commonFields allowAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each methods}}
         <option value="{{@index}}">{{value}}</option>
@@ -78,7 +78,7 @@
 <template name="materialsField">
   <div class="field">
     <label>Materials Needed</label>
-    <select name="materialsNeeded" class="allowAdditions ui fluid search dropdown multiple">
+    <select name="materialsNeeded" multiple="" class="commonFields allowAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each materialsNeeded}}
         <option value="{{@index}}">{{value}}</option>
