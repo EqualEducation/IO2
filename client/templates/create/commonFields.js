@@ -1,8 +1,4 @@
 Template.commonFields.onRendered(function() {
-  console.log('RENDERING')
-  console.log($('.commonFields.allowAdditions.ui.dropdown'))
-  console.log($('.commonFields.noAdditions.ui.dropdown'))
-
   $('.commonFields.noAdditions.ui.dropdown')
     .dropdown()
   ;
@@ -13,11 +9,6 @@ Template.commonFields.onRendered(function() {
     })
   ;
 
-  // $('.keywords.ui.dropdown')
-  //   .dropdown({
-  //     allowAdditions: true
-  //   })
-  // ;
 })
 
 Template.commonFields.helpers({
