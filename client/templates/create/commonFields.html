@@ -1,4 +1,4 @@
-<template name="createCommon">
+<template name="commonFields">
   <div class="field">
     <label>Title</label>
     <input type="text" name="title">
@@ -16,7 +16,7 @@
   <label>Sub Topic</label>
   <select name="subtopic" class="allowAdditions ui fluid search dropdown">
     <option value="">Search...</option>
-    {{#each topics}}
+    {{#each subTopics}}
       <option value="{{@index}}">{{this}}</option>
     {{/each}}
   </select>
@@ -25,7 +25,7 @@
   <label>Keywords</label>
   <select name="keywords" class="allowAdditions ui fluid search dropdown multiple">
     <option value="">Search...</option>
-    {{#each topics}}
+    {{#each keywords}}
       <option value="{{@index}}">{{this}}</option>
     {{/each}}
   </select>
@@ -38,7 +38,7 @@
     <label>Audience</label>
     <select name="audience" class="allowAdditions ui fluid search dropdown">
       <option value="">Search...</option>
-      {{#each topics}}
+      {{#each audiences}}
         <option value="{{@index}}">{{this}}</option>
       {{/each}}
     </select>
@@ -46,5 +46,31 @@
   <div class="field">
     <label>Source</label>
     <textarea rows="2" name="source"></textarea>
+  </div>
+</template>
+
+<template name="durationField">
+  <div class="field">
+    <label>Duration</label>
+    <input type="number" name="duration">
+  </div>
+</template>
+
+<template name="lengthField">
+  <div class="field">
+    <label>Length</label>
+    <input type="number" name="length">
+  </div>
+</template>
+
+<template name="methodField">
+  <div class="field">
+    <label>Method</label>
+    <select name="method" class="allowAdditions ui fluid search dropdown">
+      <option value="">Search...</option>
+      {{#each methods}}
+        <option value="{{@index}}">{{this}}</option>
+      {{/each}}
+    </select>
   </div>
 </template>

@@ -119,14 +119,3 @@ Template.create.events({
 		;
 	},
 })
-
-Template.create.helpers({
-  content: function() {
-		var ret = 'content_' + Session.get('activeModal')
-		return ret ;
-  },
-	header: function() {
-		var ret = 'header_' + Session.get('activeModal')
-		return ret ;
-	},
-});

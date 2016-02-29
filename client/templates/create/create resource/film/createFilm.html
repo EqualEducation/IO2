@@ -1,0 +1,26 @@
+<template name="header_film">
+  <div class="header">
+    New Film
+  </div>
+</template>
+
+<template name="content_film">
+  {{> durationField}}
+  <div class="field">
+    <label>Film Type</label>
+    <select name="filmType" class="ui fluid search dropdown">
+      <option value="">Search...</option>
+      {{#each filmTypes}}
+        <option value="{{@index}}">{{this}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="field">
+    <label>Storage Location Online</label>
+    <input type="number" name="storageLocationOnline">
+  </div>
+  <div class="field">
+    <label>Storage Location Offline</label>
+    <input type="number" name="storageLocationOffline">
+  </div>
+</template>
