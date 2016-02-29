@@ -86,15 +86,18 @@ Template.create.events({
 							 var form = $('#resourceDetailsForm');
 								var topic =	form.form('get field', 'topic').val();
 								var allFields = form.form('get values')
-								console.log(allFields)
+								console.log('SAVING');
+								console.log(allFields);
 
 								var newResource = new Object();
-								// newResource.type = Session.get('activeModal')
-								// var keywords = allFields.keywords;
-								// var array=keywords.split(',');
-								// allFields.keywords = array;
 
-								// console.log(allFields.keywords);
+								newResource.type = Session.get('activeModal')
+								var subTopic = allFields.subTopic;
+								var keywords = allFields.keywords;
+								var methods = allFields.methods;
+								var materials = allFields.materials;
+
+
 								newResource.details = allFields;
 								newResource.fileIDs = Session.get('fileIDs');
 								Meteor.call("addResource", newResource);

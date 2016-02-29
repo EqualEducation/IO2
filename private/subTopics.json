@@ -1,8 +1,8 @@
 {
   "items":
   [
-    { "value": "Apartheid" },
-    { "value": "Holocaust" },
-    { "value": "Genocide" }
+    "Discussion",
+    "Game",
+    "Dance"
   ]
 }

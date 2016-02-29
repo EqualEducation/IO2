@@ -1,3 +1,9 @@
+Template.commonFields.onCreated(function() {
+  var items = Options.findOne();
+  this.options = new ReactiveVar(items);
+
+})
+
 Template.commonFields.onRendered(function() {
   $('.commonFields.noAdditions.ui.dropdown')
     .dropdown()
@@ -13,26 +19,26 @@ Template.commonFields.onRendered(function() {
 
 Template.commonFields.helpers({
   'topics' : function() {
-    var items = MainTopics.find({});
-    return items;
+    var options = Template.instance().options.get();
+    return options.mainTopics;
   },
   'subTopics' : function() {
-    var items = SubTopics.find({});
-    return items;
+    var options = Template.instance().options.get();
+    return options.subTopics;
   },
   'keywords' : function() {
-    var items = Keywords.find({});
-    return items;
+    var options = Template.instance().options.get();
+    return options.keywords;
   },
   'audiences' : function() {
-    var items = Audiences.find({});
-    return items;
+    var options = Template.instance().options.get();
+    return options.audiences;
   },
 })
 
 Template.methodField.helpers({
   'methods' : function() {
-    var items = Methods.find({});
-    return items;
+    var options = Template.instance().options.get();
+    return options.methods;
   }
 })

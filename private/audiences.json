@@ -1,7 +1,6 @@
 {
   "items":
-  [
-    { "value": "Youth" },
-    { "value": "Parents" }
+  [ "Youth",
+     "Parents"
   ]
 }

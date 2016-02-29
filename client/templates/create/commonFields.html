@@ -5,19 +5,19 @@
   </div>
   <div class="field">
     <label>Main Topic</label>
-    <select name="topic" class="commonFields noAdditions ui fluid search dropdown">
+    <select name="mainTopic" class="commonFields noAdditions ui fluid search dropdown">
       <option value="">Search...</option>
       {{#each topics}}
-        <option value="{{@index}}">{{value}}</option>
+        <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
 </div>
 <div class="field">
   <label>Sub Topic</label>
-  <select name="subtopic" class="commonFields allowAdditions ui fluid search dropdown">
+  <select name="subTopic" class="commonFields allowAdditions ui fluid search dropdown">
     <option value="">Search...</option>
     {{#each subTopics}}
-      <option value="{{@index}}">{{value}}</option>
+      <option value="{{this}}">{{this}}</option>
     {{/each}}
   </select>
 </div>
@@ -26,7 +26,7 @@
   <select name="keywords" multiple="" class="commonFields allowAdditions ui dropdown search multiple">
     <option value="">Search...</option>
     {{#each keywords}}
-      <option value="{{@index}}">{{value}}</option>
+      <option value="{{this}}">{{this}}</option>
     {{/each}}
   </select>
   </div>
@@ -39,7 +39,7 @@
     <select name="audience" multiple="" class="commonFields noAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each audiences}}
-        <option value="{{@index}}">{{value}}</option>
+        <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
   </div>
@@ -69,7 +69,7 @@
     <select name="method" multiple="" class="commonFields allowAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each methods}}
-        <option value="{{@index}}">{{value}}</option>
+        <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
   </div>
@@ -81,7 +81,7 @@
     <select name="materialsNeeded" multiple="" class="commonFields allowAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each materialsNeeded}}
-        <option value="{{@index}}">{{value}}</option>
+        <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
   </div>

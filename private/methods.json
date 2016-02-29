@@ -1,8 +1,8 @@
 {
   "items":
   [
-    { "value": "Discussion" },
-    { "value": "Game" },
-    { "value": "Dance" }
+    "Discussion",
+    "Game",
+    "Dance"
   ]
 }

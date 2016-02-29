@@ -1,7 +1,7 @@
 {
-  "items":
+  "items" :
   [
-    { "value": "Drama" },
-    { "value": "Comedy" }
+    "Drama",
+    "Comedy"
   ]
 }

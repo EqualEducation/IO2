@@ -35,6 +35,9 @@ Meteor.methods({
 
     Curricula.insert(curriculum);
   },
+  optionsUpsert: function(collection, data){
+     Customers.upsert( id, doc );
+  },
   deleteResource: function (resourceId) {
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");

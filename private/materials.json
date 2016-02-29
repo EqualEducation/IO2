@@ -1,8 +1,8 @@
 {
   "items":
   [
-    { "value": "Pens" },
-    { "value": "Paper" },
-    { "value": "Kokis" }
+    "Pens",
+    "Paper",
+    "Scissors"
   ]
 }

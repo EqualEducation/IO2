@@ -1,8 +1,8 @@
 {
   "items":
   [
-    { "value": "Education" },
-    { "value": "Politics" },
-    { "value": "Socialism" }
+    "Education",
+    "Politics",
+    "Socialism"
   ]
 }
