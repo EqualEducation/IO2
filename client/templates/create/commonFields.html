@@ -5,7 +5,7 @@
   </div>
   <div class="field">
     <label>Main Topic</label>
-    <select name="topic" class="allowAdditions ui fluid search dropdown">
+    <select name="topic" class="ui fluid search dropdown">
       <option value="">Search...</option>
       {{#each topics}}
         <option value="{{@index}}">{{this}}</option>
@@ -36,7 +36,7 @@
   </div>
   <div class="field">
     <label>Audience</label>
-    <select name="audience" class="allowAdditions ui fluid search dropdown">
+    <select name="audience" class="ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each audiences}}
         <option value="{{@index}}">{{this}}</option>
@@ -66,9 +66,21 @@
 <template name="methodField">
   <div class="field">
     <label>Method</label>
-    <select name="method" class="allowAdditions ui fluid search dropdown">
+    <select name="method" class="allowAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each methods}}
+        <option value="{{@index}}">{{this}}</option>
+      {{/each}}
+    </select>
+  </div>
+</template>
+
+<template name="materialsField">
+  <div class="field">
+    <label>Materials Needed</label>
+    <select name="materialsNeeded" class="allowAdditions ui fluid search dropdown multiple">
+      <option value="">Search...</option>
+      {{#each materialsNeeded}}
         <option value="{{@index}}">{{this}}</option>
       {{/each}}
     </select>

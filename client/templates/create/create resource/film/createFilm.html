@@ -8,7 +8,7 @@
   {{> durationField}}
   <div class="field">
     <label>Film Type</label>
-    <select name="filmType" class="ui fluid search dropdown">
+    <select name="filmType" class="ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each filmTypes}}
         <option value="{{@index}}">{{this}}</option>
@@ -17,10 +17,10 @@
   </div>
   <div class="field">
     <label>Storage Location Online</label>
-    <input type="number" name="storageLocationOnline">
+    <input type="text" name="storageLocationOnline">
   </div>
   <div class="field">
     <label>Storage Location Offline</label>
-    <input type="number" name="storageLocationOffline">
+    <input type="text" name="storageLocationOffline">
   </div>
 </template>
