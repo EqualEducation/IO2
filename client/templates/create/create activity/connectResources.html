@@ -1,14 +1,11 @@
 <template name="connectBooks">
   <div class="field">
     <label>Books (you can select multiple)</label>
-    <select multiple="" class="resource ui search dropdown" name="books">
+    <select multiple="" class="connectResources ui search dropdown" name="books">
       <option value="">Select</option>
-      {{#each allBooks}}
-        <option value={{_id}}>{{details.title}} - {{details.author}} ({{details.year}})</option>
+      {{#each allResourcesForType "book"}}
+        <option value={{_id}}>{{details.title}})</option>
       {{/each}}
-      <!-- <option value="AF">Long walk to Freedom - Nelson Mandela (1995)</option>
-      <option value="AX">Cry the Beloved Country - Alan Paton (1948)</option>
-      <option value="AL">Disgrace - J.M Coetzee (1999)</option> -->
     </select>
   </div>
 </template>
@@ -16,12 +13,11 @@
 <template name="connectFilms">
   <div class="field">
     <label>Films (you can select multiple)</label>
-    <select multiple="" class="resource ui search dropdown" name="films">
+    <select multiple="" class="connectResources ui search dropdown" name="films">
       <option value="">Select</option>
-      <option value="AF">Totsi (2005)</option>
-      <option value="AX">District 9 (2009)</option>
-      <option value="AL">Blood Diamond (2006)</option>
-      <option value="DZ">Invictus (2009)</option>
+      {{#each allResourcesForType "film"}}
+        <option value={{_id}}>{{details.title}})</option>
+      {{/each}}
     </select>
   </div>
 </template>
