@@ -1,7 +1,4 @@
 Template.create.onRendered(function(){
-	Meteor.subscribe("resources");
-	Meteor.subscribe("activities");
-	Meteor.subscribe("curricula");
 	$('.content.ui.form').form();
 })
 
@@ -48,11 +45,11 @@ Template.create.events({
 								console.log(allFields)
 
 								var newActivity = new Object();
-								var keywords = allFields.keywords;
-								var array=keywords.split(',');
-								allFields.keywords = array;
+								// var keywords = allFields.keywords;
+								// var array=keywords.split(',');
+								// allFields.keywords = array;
 
-								console.log(allFields.keywords);
+								// console.log(allFields.keywords);
 								newActivity.details = allFields;
 								newActivity.fileIDs = Session.get('fileIDs');
 								Meteor.call("addActivity", newActivity);
@@ -92,12 +89,12 @@ Template.create.events({
 								console.log(allFields)
 
 								var newResource = new Object();
-								newResource.type = Session.get('activeModal')
-								var keywords = allFields.keywords;
-								var array=keywords.split(',');
-								allFields.keywords = array;
+								// newResource.type = Session.get('activeModal')
+								// var keywords = allFields.keywords;
+								// var array=keywords.split(',');
+								// allFields.keywords = array;
 
-								console.log(allFields.keywords);
+								// console.log(allFields.keywords);
 								newResource.details = allFields;
 								newResource.fileIDs = Session.get('fileIDs');
 								Meteor.call("addResource", newResource);

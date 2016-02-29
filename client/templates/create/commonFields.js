@@ -1,41 +1,25 @@
 Template.commonFields.helpers({
   'topics' : function() {
-    // var books = Resources.find({'type':'book'});
-    // console.log("ALL BOOKS");
-    // console.log(books);
-    // return books;
+    var items = MainTopics.find({});
+    return items;
   },
   'subTopics' : function() {
-    // var books = Resources.find({'type':'book'});
-    // console.log("ALL BOOKS");
-    // console.log(books);
-    // return books;
+    var items = SubTopics.find({});
+    return items;
   },
   'keywords' : function() {
-    // var books = Resources.find({'type':'book'});
-    // console.log("ALL BOOKS");
-    // console.log(books);
-    // return books;
+    var items = Keywords.find({});
+    return items;
   },
   'audiences' : function() {
-    // var books = Resources.find({'type':'book'});
-    // console.log("ALL BOOKS");
-    // console.log(books);
-    // return books;
+    var items = Audiences.find({});
+    return items;
   },
-  'audiences' : function() {
-    // var books = Resources.find({'type':'book'});
-    // console.log("ALL BOOKS");
-    // console.log(books);
-    // return books;
-  }
 })
 
 Template.methodField.helpers({
   'methods' : function() {
-    // var books = Resources.find({'type':'book'});
-    // console.log("ALL BOOKS");
-    // console.log(books);
-    // return books;
+    var items = Methods.find({});
+    return items;
   }
 })

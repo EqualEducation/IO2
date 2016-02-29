@@ -8,7 +8,7 @@
     <select name="topic" class="ui fluid search dropdown">
       <option value="">Search...</option>
       {{#each topics}}
-        <option value="{{@index}}">{{this}}</option>
+        <option value="{{@index}}">{{value}}</option>
       {{/each}}
     </select>
 </div>
@@ -17,7 +17,7 @@
   <select name="subtopic" class="allowAdditions ui fluid search dropdown">
     <option value="">Search...</option>
     {{#each subTopics}}
-      <option value="{{@index}}">{{this}}</option>
+      <option value="{{@index}}">{{value}}</option>
     {{/each}}
   </select>
 </div>
@@ -26,7 +26,7 @@
   <select name="keywords" class="allowAdditions ui fluid search dropdown multiple">
     <option value="">Search...</option>
     {{#each keywords}}
-      <option value="{{@index}}">{{this}}</option>
+      <option value="{{@index}}">{{value}}</option>
     {{/each}}
   </select>
   </div>
@@ -39,7 +39,7 @@
     <select name="audience" class="ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each audiences}}
-        <option value="{{@index}}">{{this}}</option>
+        <option value="{{@index}}">{{value}}</option>
       {{/each}}
     </select>
   </div>
@@ -69,7 +69,7 @@
     <select name="method" class="allowAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each methods}}
-        <option value="{{@index}}">{{this}}</option>
+        <option value="{{@index}}">{{value}}</option>
       {{/each}}
     </select>
   </div>
@@ -81,7 +81,7 @@
     <select name="materialsNeeded" class="allowAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each materialsNeeded}}
-        <option value="{{@index}}">{{this}}</option>
+        <option value="{{@index}}">{{value}}</option>
       {{/each}}
     </select>
   </div>

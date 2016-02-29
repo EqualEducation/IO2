@@ -1,3 +1,8 @@
+Template.createResource.onRendered(function() {
+
+})
+
+
 Template.createResource.helpers({
   content: function() {
     console.log("ACTIVE MODAL");
