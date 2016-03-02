@@ -1,2 +1,2 @@
-export MONGO_URL="mongodb://production-db-e1.meteor.io:27017/ieutu_meteor_com"
+export MONGO_URL="mongodb://ee:ee@sg-mother1-6242.servers.mongodirector.com:27017/ietu_meteor_com"
 export METEOR_SETTINGS="$(cat config/settings.json)"
