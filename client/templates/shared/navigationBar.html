@@ -7,7 +7,9 @@
       </a>
       <a href="/explore" class="item">Explore</a>
       <a href="/search" class="item">Search</a>
+      {{#if currentUser}}
       <a href="/create" class="item">Create</a>
+      {{/if}}
       <a href="#" class="item right">{{> loginButtons}}</a>
     </div>
   </div>
