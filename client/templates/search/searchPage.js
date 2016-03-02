@@ -46,16 +46,18 @@ tab: function() {
     var data = {
        "all": [
        Resources.find(selector, options).fetch(),
+       Activities.find(selector, options).fetch(),
+       Curricula.find(selector, options).fetch(),
           // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
         ],
         "activities": [
-          Resources.find({$and: [{type:"activity"},selector]},options).fetch(),
+          Activities.find(selector, options).fetch(),
         ],
         "curricula": [
-          Resources.find({$and: [{type:"curriculum"},selector]},options).fetch(),
+          Curricula.find(selector, options).fetch(),
         ],
         "resources": [
-        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+        Resources.find(selector, options).fetch(),
           // fileDetails.find().fetch(),
         ],
         "allResources": [

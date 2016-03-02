@@ -8,7 +8,7 @@ Meteor.methods({
 		resource.createdAt = new Date();
 		resource.owner = Meteor.userId();
 		resource.username = Meteor.user().username;
-
+    resource.itemType='Resource';
     Resources.insert(resource);
   },
   addActivity: function (activity) {
@@ -20,7 +20,7 @@ Meteor.methods({
     activity.createdAt = new Date();
     activity.owner = Meteor.userId();
     activity.username = Meteor.user().username;
-
+    activity.itemType='Activity';
     Activities.insert(activity);
   },
   addCurriculum: function (curriculum) {
@@ -32,7 +32,7 @@ Meteor.methods({
     curriculum.createdAt = new Date();
     curriculum.owner = Meteor.userId();
     curriculum.username = Meteor.user().username;
-
+    curriculum.itemType='Curriculum';
     Curricula.insert(curriculum);
   },
   optionsUpsert: function(collection, data){
