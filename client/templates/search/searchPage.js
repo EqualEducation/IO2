@@ -59,7 +59,7 @@ tab: function() {
           // fileDetails.find().fetch(),
         ],
         "allResources": [
-        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+        Resources.find(selector, options).fetch(),
           // fileDetails.find().fetch(),
         ],
         "book": [
