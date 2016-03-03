@@ -41,8 +41,9 @@ Template.create.events({
 				 onApprove : function() {
 							 var form = $('#activityDetailsForm');
 								var topic =	form.form('get field', 'topic').val();
-								var allFields = form.form('get values')
-								console.log(allFields)
+								var allFields = form.form('get values');
+								console.log('SAVING');
+								console.log(allFields);
 
 								var newActivity = new Object();
 								// var keywords = allFields.keywords;

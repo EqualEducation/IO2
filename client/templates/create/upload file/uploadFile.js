@@ -14,9 +14,9 @@ Template.uploadFile.events({
 					var nameTrunc=name.substring(0,index);
 					Session.set('fileIDs', fileObj._id)
 					fileDetails.insert({name:nameTrunc,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
-					fileSearch.cleanHistory();
-					fileSearch.search("");
-					Session.set('filesToReturn',fileSearch.getData());
+					// fileSearch.cleanHistory();
+					// fileSearch.search("");
+					// Session.set('filesToReturn',fileSearch.getData());
 				}
 				else {
 					console.log("there was an error", err);

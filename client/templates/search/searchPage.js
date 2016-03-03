@@ -45,9 +45,9 @@ tab: function() {
     // console.log(tab);
     var data = {
        "all": [
-       Resources.find(selector, options).fetch(),
+       _.union(Resources.find(selector, options).fetch(),
        Activities.find(selector, options).fetch(),
-       Curricula.find(selector, options).fetch(),
+       Curricula.find(selector, options).fetch()),
           // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
         ],
         "activities": [
@@ -65,7 +65,7 @@ tab: function() {
           // fileDetails.find().fetch(),
         ],
         "book": [
-        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+        Resources.find({$and: [{type:"book"},selector]},options).fetch(),
           // fileDetails.find().fetch(),
         ],
         "film": [
