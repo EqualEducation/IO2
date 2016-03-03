@@ -1,6 +1,3 @@
-Meteor.subscribe("fileUploads");
-  Meteor.subscribe("fileMeta");
-  Meteor.subscribe("resources");
 
 // var options = {
 //   keepHistory: 1000 * 60 * 5,
