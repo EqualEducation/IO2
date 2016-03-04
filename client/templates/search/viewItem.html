@@ -1,17 +1,17 @@
-<template name="viewResource">
-  <div class="ui editResource modal">
+<template name="viewItem">
+  <div class="ui viewItem modal">
   <div class="header">
-    {{resource.name}}
+    {{item.itemType}}
   </div>
   <div class="content">
   <div class="ui form">
   <div class="field">
     <label>Description</label>
-    <input type="text" placeholder="Description" name="description" value = "{{resource.description}}">
+    <input type="text" placeholder="Description" name="description" value = "{{item.description}}">
   </div>
   <div class="field">
     <label>Keywords</label>
-    <input type="text" placeholder="Keywords" name="keywords" value = "{{resource.keywords}}">
+    <input type="text" placeholder="Keywords" name="keywords" value = "{{item.keywords}}">
   </div>
   <div class="ui error message"></div>
     <div class="field">
@@ -21,7 +21,7 @@
     <i class="dropdown icon"></i>
     <div class="default text">Select</div>
     <div class="menu">
-      {{#each resource.keywords}}
+      {{#each item.keywords}}
         <div class="item" data-value="{{@index}}">{{this}}</div>
       {{/each}}
     </div>
@@ -38,7 +38,7 @@
   </div>
 </div>
 <br>
-  <a class="ui primary button" href="{{resource.file.url}}" target="_blank">
+  <a class="ui primary button" href="{{item.file.url}}" target="_blank">
   Download Activity
 </a>
 <br>

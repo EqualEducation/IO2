@@ -26,8 +26,6 @@ Template.searchPage.onRendered(function(){
 
 Template.searchPage.helpers({
 tab: function() {
-  // console.log('tab');
-  // console.log(Template.instance().currentTab.get());
     return Template.instance().currentTab.get();
   },
   tabData: function() {
@@ -40,9 +38,7 @@ tab: function() {
       {"details.keywords": regExp}
     ]};
     var filteredData=(fileDetails.find(selector, options).fetch());
-    // console.log(filteredData);
     var tab = Template.instance().currentTab.get();
-    // console.log(tab);
     var data = {
        "all": [
        _.union(Resources.find(selector, options).fetch(),
@@ -85,8 +81,6 @@ tab: function() {
           // fileDetails.find().fetch(),
         ]
     };
-    // console.log(data[tab])
-    // console.log(data[tab][0])
     var numResults=(data[tab][0].length);
      return {contentType: tab, numResults: numResults,items: data[tab][0]};
   }
@@ -140,7 +134,7 @@ Template.searchPage.events({
       $form=$('.ui.form');
       var keywords=itemKeywords;//.join()
       Session.set('resourceDetailsID',item._id);
-      $('.ui.resourceDetail.modal')
+      $('.ui.viewItem.modal')
         .modal({
           onDeny    : function(){
           return true;
@@ -188,7 +182,7 @@ Template.searchPage.events({
       $form=$('.ui.form');
       var keywords=itemKeywords;//.join()
       Session.set('resourceDetailsID',item._id);
-      $('.ui.resourceDetail.modal')
+      $('.ui.viewItem.modal')
         .modal({
           onDeny    : function(){
           return true;

@@ -1,4 +1,4 @@
-Template.viewResource.onRendered(function () {
+Template.viewItem.onRendered(function () {
   $('.ui.dropdown')
 .dropdown({
   allowAdditions: true
@@ -20,32 +20,35 @@ Template.viewResource.onRendered(function () {
   })
 });
 
-Template.viewResource.helpers({
-  resource: function() {
+Template.viewItem.helpers({
+  item: function() {
     if(Session.get('resourceDetailsID')===undefined){
       return 0;
     }
     else{
-      //var file=fileDetails.findOne({_id:Session.get('fileDetailsID')});
-      //
-      var resource=Resources.findOne({_id:Session.get('resourceDetailsID')});
+      //change this to return any item
+      var item=Resources.findOne({_id:Session.get('resourceDetailsID')});
+      if(item===undefined){
+        item=Activities.findOne({_id:Session.get('resourceDetailsID')});
+      }
+      if(item===undefined){
+        item=Curricula.findOne({_id:Session.get('resourceDetailsID')});
+      }
+      // console.log(Session.get('resourceDetailsID'));
+      // console.log(resource);
       var file = null;
       var fileURL = null;
-      if (resource.fileIDs != undefined) {
-        file = YourFileCollection.findOne(resource.fileIDs);
-        fileURL = file.url;
-      }
-      // console.log(resource);
-      // console.log("file")
-      // console.log(details);
-      // console.log(details.url)
-      // console.log(resource);
+      // if (resource.fileIDs != undefined) {
+      //   file = YourFileCollection.findOne(resource.fileIDs);
+      //   fileURL = file.url;
+      // }
       return {
         file:file,
         URL: fileURL,
-        name: resource.details.title,
-        keywords: resource.details.keywords,
-        description:resource.details.description
+        name: item.details.title,
+        keywords: item.details.keywords,
+        description:item.details.description,
+        itemType:item.itemType
         //_id:details._id
       };
   }

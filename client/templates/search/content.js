@@ -26,7 +26,6 @@ Template.content.helpers({
   resourceLink: function() {
     //look in YourFile collection
     //var details = YourFileCollection.findOne(this.fileIDs);
-    console.log(this);
     return {
       //URL: details.url,
       name: this.details.title,
