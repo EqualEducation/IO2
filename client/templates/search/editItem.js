@@ -1,4 +1,4 @@
-Template.editResource.onRendered(function () {
+Template.editItem.onRendered(function () {
   $('.ui.dropdown')
 .dropdown({
   allowAdditions: true
@@ -20,7 +20,7 @@ Template.editResource.onRendered(function () {
   })
 });
 
-Template.editResource.helpers({
+Template.editItem.helpers({
   resource: function() {
     if(Session.get('resourceDetailsID')===undefined){
       return 0;

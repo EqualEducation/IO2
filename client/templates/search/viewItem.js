@@ -48,17 +48,67 @@ Template.viewItem.helpers({
         name: item.details.title,
         keywords: item.details.keywords,
         description:item.details.description,
-        itemType:item.itemType
+        itemType: item.itemType,
+        title: item.details.title,
+        mainTopic: item.details.mainTopic,
+        subTopic: item.details.subTopic,
+        duration:item.details.duration,
+        source:item.details.source,
+        audience:item.details.audience,
+        method:item.details.method
         //_id:details._id
       };
   }
-  },
-  uniqueKeywords: function(){
-//return all unique keywords (ignores blanks)
-return _.uniq(_.flatten(fileDetails.find({keywords:{$not:""}}, {
-    sort: {keywords: 1}, fields: {keywords: true}
-}).fetch().map(function(x) {
-    return x.keywords;
-}), true)).sort();
   }
 })
+Template.viewItem.events({
+    'click #editItem': function (event) {
+      console.log('Clicked on EDIT');
+      var item=this;
+      var itemKeywords=item.keywords;
+      var itemDescription=item.description;
+      $form=$('.ui.form');
+      var keywords=itemKeywords;//.join()
+      Session.set('resourceDetailsID',item._id);
+      $('.ui.editItem.modal')
+        .modal({
+          onDeny    : function(){
+          return true;
+          },
+          onApprove : function() {
+            var keywordsVar=$form.form('get value', 'keywords');
+            var descriptionVar=$form.form('get value', 'description');
+            var array=keywordsVar.split(',');
+            var resourceDetailsID=Session.get('resourceDetailsID');
+            Resources.update(item._id,{$set: {"keywords":array,"description":descriptionVar}});
+            return true;
+        }
+        })
+      .modal('show')
+      ;
+      $('.ui.form')
+  .form({
+    fields: {
+      name: {
+        identifier: 'keywords',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter keywords'
+          }
+        ]
+      },
+      skills: {
+        identifier: 'description',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter description'
+          }
+        ]
+      }
+    }
+  })
+;
+    }
+    });
