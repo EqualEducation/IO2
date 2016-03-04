@@ -1,0 +1,56 @@
+<template name="viewResource">
+  <div class="ui editResource modal">
+  <div class="header">
+    {{resource.name}}
+  </div>
+  <div class="content">
+  <div class="ui form">
+  <div class="field">
+    <label>Description</label>
+    <input type="text" placeholder="Description" name="description" value = "{{resource.description}}">
+  </div>
+  <div class="field">
+    <label>Keywords</label>
+    <input type="text" placeholder="Keywords" name="keywords" value = "{{resource.keywords}}">
+  </div>
+  <div class="ui error message"></div>
+    <div class="field">
+    <label>Tag (you can select multiple)</label>
+    <div class="ui fluid multiple search selection dropdown">
+    <!-- <input name="tags" type="hidden" value="design"> -->
+    <i class="dropdown icon"></i>
+    <div class="default text">Select</div>
+    <div class="menu">
+      {{#each resource.keywords}}
+        <div class="item" data-value="{{@index}}">{{this}}</div>
+      {{/each}}
+    </div>
+  </div>
+    <!-- <select multiple="" class="ui fluid search dropdown">
+      <option value="">Select</option>
+      {{#each resource.keywords}}
+      <option value="{{@index}}" selected>{{this}}</option>
+      {{/each}} -->
+<!--       {{#each uniqueKeywords}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}} -->
+    <!-- </select> -->
+  </div>
+</div>
+<br>
+  <a class="ui primary button" href="{{resource.file.url}}" target="_blank">
+  Download Activity
+</a>
+<br>
+<br>
+<br>
+<button class="ui primary button" id="deleteFile">
+  Delete Activity
+</button>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">Cancel</div>
+    <div class="ui green approve button">OK</div>
+</div>
+</div>
+</template>

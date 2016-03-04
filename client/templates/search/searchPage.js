@@ -132,28 +132,14 @@ Template.searchPage.events({
       $( ".menu a" ).not( currentTabStatus ).removeClass( "active" );
       template.currentTab.set(currentTab);
     },
-    'click #resourceName': function (event) {
-      //var fsId= this._id;
-      //var resourceDetailsID=this._id;
-      //console.log('click');
-      var resource=this;
-      //console.log(resource);
-      //var fileDetailsID=fileDetails.findOne({fileId:fsId})._id;
-      //var fileDetailsName=fileDetails.findOne({fileId:fsId}).name;
-      var resourceKeywords=resource.keywords;
-      //console.log(resourceKeywords)
-      var resourceDescription=resource.description;
-      //console.log(resourceDescription)
-      //var description=fileDetailsDescription;
+    //USER CLICKS ON ITEM IN SEARCH RESULTS:
+    'click #itemName': function (event) {
+      var item=this;
+      var itemKeywords=item.keywords;
+      var itemDescription=item.description;
       $form=$('.ui.form');
-      //$form.form('set value', 'description',description);
-      //document.getElementById("description").value = description;
-      var keywords=resourceKeywords;//.join()
-      //document.getElementById("keywords").value = keywords;
-      //$form.form('set value', 'keywords',keywords);
-      //Session.set('resourceDetailsID',resourceDetailsID);
-      Session.set('resourceDetailsID',resource._id);
-      // Session.set('fileSearch',fileSearch.getData());
+      var keywords=itemKeywords;//.join()
+      Session.set('resourceDetailsID',item._id);
       $('.ui.resourceDetail.modal')
         .modal({
           onDeny    : function(){
@@ -164,9 +150,7 @@ Template.searchPage.events({
             var descriptionVar=$form.form('get value', 'description');
             var array=keywordsVar.split(',');
             var resourceDetailsID=Session.get('resourceDetailsID');
-            Resources.update(resource._id,{$set: {"keywords":array,"description":descriptionVar}});
-            //fileDetails.update(fileDetailsID,{$set: {"keywords":array,"description":descriptionVar}});
-            //Session.set('filesToReturn',fileSearch.getData());
+            Resources.update(item._id,{$set: {"keywords":array,"description":descriptionVar}});
             return true;
         }
         })
@@ -197,7 +181,54 @@ Template.searchPage.events({
   })
 ;
     },
-
+    'click #editItem': function (event) {
+      var item=this;
+      var itemKeywords=item.keywords;
+      var itemDescription=item.description;
+      $form=$('.ui.form');
+      var keywords=itemKeywords;//.join()
+      Session.set('resourceDetailsID',item._id);
+      $('.ui.resourceDetail.modal')
+        .modal({
+          onDeny    : function(){
+          return true;
+          },
+          onApprove : function() {
+            var keywordsVar=$form.form('get value', 'keywords');
+            var descriptionVar=$form.form('get value', 'description');
+            var array=keywordsVar.split(',');
+            var resourceDetailsID=Session.get('resourceDetailsID');
+            Resources.update(item._id,{$set: {"keywords":array,"description":descriptionVar}});
+            return true;
+        }
+        })
+      .modal('show')
+      ;
+      $('.ui.form')
+  .form({
+    fields: {
+      name: {
+        identifier: 'keywords',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter keywords'
+          }
+        ]
+      },
+      skills: {
+        identifier: 'description',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter description'
+          }
+        ]
+      }
+    }
+  })
+;
+    },
 
 
      'submit .keyword-form': function(event,template){
