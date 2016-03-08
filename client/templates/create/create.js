@@ -65,11 +65,16 @@ Template.create.events({
 	'click #createResourceButton': function(event, template) {
 		$('#chooseTypeForm').form('reset');
 
-		// $('.coupled.modal')
-		//   .modal({
-		//     allowMultiple: false
-		//   })
-		// ;
+		$('.coupled.modal')
+		  .modal({
+		    allowMultiple: false
+		  })
+		;
+		// open second modal on first modal buttons
+		$('.chooseType.modal')
+		  .modal('attach events', '.resourceDetails.modal #back')
+		;
+
 		// show first now
 		$('.chooseType.modal')
 			.modal('show')
@@ -98,7 +103,6 @@ Template.create.events({
 								var methods = allFields.methods;
 								var materials = allFields.materials;
 
-
 								newResource.details = allFields;
 								newResource.fileIDs = Session.get('fileIDs');
 								Meteor.call("addResource", newResource);
@@ -112,9 +116,6 @@ Template.create.events({
 					;
 
 					// var backEvent = modalName + ' #back'
-					$('.chooseType.modal')
-						.modal('attach events', '#back')
-					;
 				 }
 			})
 		;
