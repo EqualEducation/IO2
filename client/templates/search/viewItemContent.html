@@ -1,0 +1,59 @@
+<template name="viewItemContent">
+  <div class="content">
+    <table>
+      <tr>
+        <td class ="heading">Title</td>
+        <td>{{item.title}}</td>
+        <td>  <a class="ui primary button" href="{{resource.file.url}}" target="_blank">
+        Download
+        </a></td>
+      </tr>
+      <tr>
+        <td class ="heading">Main Topic</td>
+        <td>{{item.mainTopic}}</td>
+        <td>
+          <button class="ui primary button" id="editItem">
+  Edit
+</button></td>
+      </tr>
+      <tr>
+        <td class ="heading">Sub Topic</td>
+        <td>{{item.subTopic}}</td>
+        <td><button class="ui primary button" id="deleteFile">
+  Delete
+</button></td>
+      </tr>
+      <tr>
+        <td class ="heading">Keywords</td>
+        <td>{{item.keywords}}</td>
+      </tr>
+      <tr>
+      <td class ="heading">Description</td>
+        <td>{{item.description}}</td>
+      </tr>
+      <tr>
+      <td class ="heading">Duration</td>
+        <td>{{item.duration}}</td>
+      </tr>
+      <tr>
+      <td class ="heading">Method</td>
+        <td>{{item.method}}</td>
+      </tr>
+      <tr>
+      <td class ="heading">Audience</td>
+        <td>{{item.audience}}</td>
+      </tr>
+      <tr>
+      <td class ="heading">Source</td>
+        <td>{{item.source}}</td>
+      </tr>
+      <tr>
+      <td colspan="2" ><center><b>Guide & Resource Download</b></center></td>
+      </tr>
+      <tr>
+      <td colspan="2" ><center><u>{{item.title}} Guide</u></center></td>
+      </tr>
+
+    </table>
+</div>
+</template>
