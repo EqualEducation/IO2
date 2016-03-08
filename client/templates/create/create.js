@@ -83,7 +83,7 @@ Template.create.events({
 			;
 },
 'click #createActivityButton': function(event, template) {
-	$('.createActivity.modal')
+	$('.createActivityModal.modal')
 			.modal('show')
 			.modal({
 				 onApprove : function() {
