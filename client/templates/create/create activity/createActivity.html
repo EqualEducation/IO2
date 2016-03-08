@@ -6,7 +6,9 @@
 		<form id="activityDetailsForm" class="ui form">
 			{{> content_activity}}
 		</form>
+		{{> uploadGuide}}
 		{{> uploadFile}}
+
 	</div>
 	<div class="actions">
 		<div id="back" class="ui black deny button">
@@ -31,4 +33,15 @@
 	{{> methodField}}
   {{> connectBooks}}
   {{> connectFilms}}
+</template>
+
+
+<template name="uploadGuide">
+	 <h1>Upload Activity Guide</h1>
+    <br/>
+      {{> dropzone}}
+    <br/>
+  	<input class="uploadGuide" type="file">
+    <br/>
+    <br>
 </template>

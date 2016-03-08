@@ -34,6 +34,7 @@ Template.createResource.onRendered(function() {
 
           newResource.details = allFields;
           newResource.fileIDs = Session.get('fileIDs');
+          Session.set('fileIDs', null);
           Meteor.call("addResource", newResource);
           form.form('clear')
         //  $('.ui.form').submit();

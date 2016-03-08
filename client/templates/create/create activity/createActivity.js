@@ -17,6 +17,9 @@ Template.createActivity.onRendered(function() {
                 // console.log(allFields.keywords);
                 newActivity.details = allFields;
                 newActivity.fileIDs = Session.get('fileIDs');
+                newActivity.guideID = Session.get('guideID');
+                Session.set('fileIDs', null);
+                Session.set('guideID', null);
                 Meteor.call("addActivity", newActivity);
                 form.form('clear')
               //  $('.ui.form').submit();
@@ -25,4 +28,11 @@ Template.createActivity.onRendered(function() {
              }
             })
           ;
+})
+
+
+Template.uploadGuide.events({
+	'change .uploadGuide': function (event, template) {
+      uploadFileWithVariableName('guideID');
+	},
 })

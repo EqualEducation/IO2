@@ -1,4 +1,4 @@
-Template.createCurriculum.onRenderd(function() {
+Template.createCurriculum.onRendered(function() {
   $('.createCurriculum.modal')
   .modal({
      onApprove : function() {
@@ -16,6 +16,8 @@ Template.createCurriculum.onRenderd(function() {
             newCurriculum.details = allFields;
             newCurriculum.fileIDs = Session.get('fileIDs');
             Meteor.call("addCurriculum", newCurriculum);
+            Session.set('fileIDs', null);
+            // Session.set('guideID', null);
             form.form('clear')
           //  $('.ui.form').submit();
            //Return false as to not close modal dialog
