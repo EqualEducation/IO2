@@ -1,4 +1,4 @@
-Tempalte.createCurriculum.onRenderd(function() {
+Template.createCurriculum.onRenderd(function() {
   $('.createCurriculum.modal')
   .modal({
      onApprove : function() {
