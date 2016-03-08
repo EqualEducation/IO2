@@ -5,7 +5,7 @@ Template.viewItemContent.events({
       var itemDescription=item.description;
       $form=$('.ui.form');
       var keywords=itemKeywords;//.join()
-      Session.set('resourceDetailsID',item._id);
+      //Session.set('resourceDetailsID',item._id);
       $('.ui.editItem.modal')
         .modal({
           onDeny    : function(){

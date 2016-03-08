@@ -26,26 +26,39 @@ Template.editItem.helpers({
       return 0;
     }
     else{
-      //var file=fileDetails.findOne({_id:Session.get('fileDetailsID')});
-      //
-      var resource=Resources.findOne({_id:Session.get('resourceDetailsID')});
+      //console.log('edit session id')
+      //co/nsole.log(Session.get('resourceDetailsID'));
+      var item=Resources.findOne({_id:Session.get('resourceDetailsID')});
+      if(item===undefined){
+        item=Activities.findOne({_id:Session.get('resourceDetailsID')});
+      }
+      if(item===undefined){
+        item=Curricula.findOne({_id:Session.get('resourceDetailsID')});
+      }
+      // console.log(Session.get('resourceDetailsID'));
+      // console.log(resource);
       var file = null;
       var fileURL = null;
-      if (resource.fileIDs != undefined) {
-        file = YourFileCollection.findOne(resource.fileIDs);
-        fileURL = file.url;
-      }
-      // console.log(resource);
-      // console.log("file")
-      // console.log(details);
-      // console.log(details.url)
-      // console.log(resource);
+      console.log(item)
+      console.log(item.itemType);
+      // if (resource.fileIDs != undefined) {
+      //   file = YourFileCollection.findOne(resource.fileIDs);
+      //   fileURL = file.url;
+      // }
       return {
         file:file,
         URL: fileURL,
-        name: resource.details.title,
-        keywords: resource.details.keywords,
-        description:resource.details.description
+        name: item.details.title,
+        keywords: item.details.keywords,
+        description:item.details.description,
+        itemType: item.itemType,
+        title: item.details.title,
+        mainTopic: item.details.mainTopic,
+        subTopic: item.details.subTopic,
+        duration:item.details.duration,
+        source:item.details.source,
+        audience:item.details.audience,
+        method:item.details.method
         //_id:details._id
       };
   }

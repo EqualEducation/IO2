@@ -27,6 +27,7 @@ Template.viewItem.helpers({
     }
     else{
       //change this to return any item
+      //console.log(Session.get('resourceDetailsID'));
       var item=Resources.findOne({_id:Session.get('resourceDetailsID')});
       if(item===undefined){
         item=Activities.findOne({_id:Session.get('resourceDetailsID')});
