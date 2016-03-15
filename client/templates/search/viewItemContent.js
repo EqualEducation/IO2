@@ -1,5 +1,7 @@
 Template.viewItemContent.events({
     'click #editItem': function (event) {
+      console.log('sessionID');
+      console.log(Session.get('resourceDetailsID'));
       var item=this;
       var itemKeywords=item.keywords;
       var itemDescription=item.description;
