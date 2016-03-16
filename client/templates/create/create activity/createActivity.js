@@ -1,33 +1,25 @@
-
 Template.createActivity.onRendered(function() {
-  $('.createActivityModal.modal')
+  $('.createActivity.modal')
       .modal({
-         onApprove : function() {
+        onApprove : function() {
                var form = $('#activityDetailsForm');
-                var topic =	form.form('get field', 'topic').val();
-                var allFields = form.form('get values');
-                console.log('SAVING');
-                console.log(allFields);
+               var topic =	form.form('get field', 'topic').val();
+               var allFields = form.form('get values')
+               console.log('SAVING');
+               console.log(allFields)
 
-                var newActivity = new Object();
-                // var keywords = allFields.keywords;
-                // var array=keywords.split(',');
-                // allFields.keywords = array;
+               var newCurriculum = new Object();
 
-                // console.log(allFields.keywords);
-                newActivity.details = allFields;
-                newActivity.fileIDs = Session.get('fileIDs');
-                newActivity.guideID = Session.get('guideID');
-                Session.set('fileIDs', null);
-                Session.set('guideID', null);
-                Meteor.call("addActivity", newActivity);
-                form.form('clear')
-              //  $('.ui.form').submit();
-               //Return false as to not close modal dialog
-               return true;
-             }
-            })
-          ;
+               console.log(allFields.keywords);
+               newCurriculum.details = allFields;
+               newCurriculum.fileIDs = Session.get('fileIDs');
+               Meteor.call("addActivity", newCurriculum);
+               Session.set('fileIDs', null);
+               form.form('clear')
+              return true;
+            }
+           })
+         ;
 })
 
 

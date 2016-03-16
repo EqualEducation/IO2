@@ -10,7 +10,7 @@ Template.create.events({
 	;
 },
 'click #createActivityButton': function(event, template) {
-	$('.createActivityModal.modal')
+	$('.createActivity.modal')
 			.modal('show')
 			;
 },
