@@ -4,7 +4,7 @@
     <select multiple="" class="connectResources ui search dropdown" name="books">
       <option value="">Select</option>
       {{#each allResourcesForType "book"}}
-        <option value={{_id}}>{{details.title}})</option>
+        <option value={{_id}}>{{details.title}} - {{details.author}} ({{details.year}})</option>
       {{/each}}
     </select>
   </div>
@@ -16,7 +16,7 @@
     <select multiple="" class="connectResources ui search dropdown" name="films">
       <option value="">Select</option>
       {{#each allResourcesForType "film"}}
-        <option value={{_id}}>{{details.title}})</option>
+        <option value={{_id}}>{{details.title}} ({{details.year}})</option>
       {{/each}}
     </select>
   </div>
