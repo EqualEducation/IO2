@@ -10,16 +10,18 @@
 
 
   {{#each this.items}}
-    {{#with resourceLink}}
+    <!-- {{#with resourceLink}} -->
     <h4 class="name">
          <!-- {{name}} -->
 
           <!-- <a href="{{details.url}}" target="_blank">{{name}}</a> -->
-          <a id="itemName">{{itemType}}: {{name}}</a>
+          {{#with pathName this.itemType}}
+            <a href="{{pathFor route=this data=.. id=../_id}}" id={{../_id}}>{{../itemType}}: {{../details.title}}</a>
+          {{/with}}
         </h4>
-        {{{description}}}
+        {{{this.details.description}}}
       <!-- <li class="list-group-item"><strong>{{name}}</strong> {{description}}</li> -->
-    {{/with}}
+    <!-- {{/with}} -->
   {{/each}}
 <!--   <h3>ALL RESOURCES</h3>
   {{#each allResources}}

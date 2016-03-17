@@ -1,12 +1,22 @@
 <template name="viewItem">
-  <div class="ui viewItem modal">
-  <div class="header">
-    {{item.itemType}}
-  </div>
-  {{> viewItemContent item=item}}
-  <div class="actions">
-    <div class="ui black deny button">Cancel</div>
-    <div class="ui green approve button">OK</div>
-</div>
-</div>
+	<div class="ui equal width aligned padded grid fluid">
+		<div class="row">
+			<div class="column">
+				<h1 class="ui header">{{this.itemType}}</h1>
+			</div>
+		</div>
+	</div>
+	<div class="ui center aligned one column grid">
+	  <div class="row">
+	    <div class="column">
+        {{> viewItemContent item=this.details}}
+	    </div>
+	  </div>
+		<div class="row">
+	    <div class="column">
+        <div class="ui black deny button">Cancel</div>
+        <div class="ui green approve button">OK</div>
+	    </div>
+	  </div>
+	</div>
 </template>
