@@ -2,31 +2,13 @@
   <h3 class="page-header" style="text-transform: capitalize;">{{this.contentType}}
 <span style="float:right;">Results: {{this.numResults}}</span>
   </h3>
- <!--  <ul class="list-group">
-    {{#each this.items}}
-      <li class="list-group-item"><strong>{{name}}</strong> {{description}}</li>
-    {{/each}}
-  </ul> -->
-
-
   {{#each this.items}}
-    <!-- {{#with resourceLink}} -->
     <h4 class="name">
-         <!-- {{name}} -->
-
-          <!-- <a href="{{details.url}}" target="_blank">{{name}}</a> -->
           {{#with pathName this.itemType}}
             <a href="{{pathFor route=this data=.. id=../_id}}" id={{../_id}}>{{../itemType}}: {{../details.title}}</a>
           {{/with}}
-        </h4>
+    </h4>
         {{{this.details.description}}}
-      <!-- <li class="list-group-item"><strong>{{name}}</strong> {{description}}</li> -->
-    <!-- {{/with}} -->
   {{/each}}
-<!--   <h3>ALL RESOURCES</h3>
-  {{#each allResources}}
-    <h4><a>{{this.details.title}}</a></h4>
-    <p>{{this.details.description}}</p>
-  {{/each}} -->
 
 </template>

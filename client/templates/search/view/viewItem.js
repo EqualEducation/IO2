@@ -43,6 +43,8 @@ Template.viewItem.helpers({
       //   file = YourFileCollection.findOne(resource.fileIDs);
       //   fileURL = file.url;
       // }
+      console.log("URL")
+      console.log(fileURL)
       return {
         file:file,
         URL: fileURL,
