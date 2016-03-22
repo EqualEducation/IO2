@@ -1,28 +1,20 @@
 <template name="create_activity">
-	{{> header_activity}}
-	<div class="content">
-		<form id="activityDetailsForm" class="ui form">
-			{{> content_activity}}
-		</form>
-		{{> uploadGuide}}
-		{{> uploadFile}}
-
-	</div>
-	<div class="actions">
-		<div id="back" class="ui black deny button">
-			Back
+	<div class="ui equal width aligned padded grid fluid">
+		<div class="row">
+			<div class="column">
+				<h1 class="ui header">New Activity</h1>
+			</div>
 		</div>
-		<div id="save" class="ui positive right labeled icon button">
-			Save
-		<i class="right arrow icon"></i>
+		<div class="row">
+			<div class="column">
+				<form id="activityDetailsForm" class="ui form">
+					{{> content_activity}}
+				</form>
+				{{> uploadGuide}}
+				{{> uploadFile}}
+			</div>
 		</div>
 	</div>
-</template>
-
-<template name="header_activity">
-  <div class="header">
-    New Activity
-  </div>
 </template>
 
 <template name="content_activity">
