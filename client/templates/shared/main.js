@@ -17,3 +17,15 @@ Template.registerHelper("print", function (data) {
   console.log("data: ");
   console.log(data);
 });
+
+Template.registerHelper("curriculumEnum", function () {
+  return ItemTypeEnum.CURRICULUM
+});
+
+Template.registerHelper("activityEnum", function () {
+  return ItemTypeEnum.ACTIVITY
+});
+
+Template.registerHelper("resourceEnum", function () {
+  return ItemTypeEnum.RESOURCE
+});
