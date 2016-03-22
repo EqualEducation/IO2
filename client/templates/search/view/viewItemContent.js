@@ -1,6 +1,6 @@
 Template.viewItemContent.events({
     'click #deleteFile': function (event) {
-      console.log(this);
+      //console.log(this);
       itemID=(this.item._id)
       itemType=(this.item.itemType)
       $('.ui.basic.test.modal')

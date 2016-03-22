@@ -44,4 +44,16 @@ Meteor.methods({
     }
     Tasks.remove(resourceId);
   },
+  deleteActivity: function (activityId) {
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    Tasks.remove(activityId);
+  },
+  deleteCurriculum: function (curriculumId) {
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    Tasks.remove(curriculumId);
+  }
 });
