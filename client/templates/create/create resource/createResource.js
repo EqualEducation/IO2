@@ -35,7 +35,7 @@ Template.createResource.onRendered(function() {
           newResource.details = allFields;
           newResource.fileIDs = Session.get('fileIDs');
           Session.set('fileIDs', null);
-          Meteor.call("addResource", newResource);
+          Meteor.call("addItem", ItemTypeEnum.RESOURCE, newResource);
           form.form('clear')
         //  $('.ui.form').submit();
          //Return false as to not close modal dialog

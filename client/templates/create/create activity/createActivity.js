@@ -8,12 +8,12 @@ Template.createActivity.onRendered(function() {
                console.log('SAVING');
                console.log(allFields)
 
-               var newCurriculum = new Object();
+               var newActivity = new Object();
 
                console.log(allFields.keywords);
-               newCurriculum.details = allFields;
-               newCurriculum.fileIDs = Session.get('fileIDs');
-               Meteor.call("addActivity", newCurriculum);
+               newActivity.details = allFields;
+               newActivity.fileIDs = Session.get('fileIDs');
+               Meteor.call("addItem", ItemTypeEnum.ACTIVITY, newActivity);
                Session.set('fileIDs', null);
                form.form('clear')
               return true;

@@ -13,7 +13,7 @@ Template.createCurriculum.onRendered(function() {
                 console.log(allFields.keywords);
                 newCurriculum.details = allFields;
                 newCurriculum.fileIDs = Session.get('fileIDs');
-                Meteor.call("addCurriculum", newCurriculum);
+                Meteor.call("addItem", ItemTypeEnum.CURRICULUM, newCurriculum);
                 Session.set('fileIDs', null);
                 form.form('clear')
                return true;
