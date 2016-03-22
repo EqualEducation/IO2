@@ -12,18 +12,18 @@ Template.viewItemContent.events({
           onApprove : function() {
                   if(itemType==="Resource")
                   {
-                    Meteor.call("deleteResource", itemId);
+                    Meteor.call("deleteResource", itemID);
                     console.log('resourceDeleted');
                   }
                   else if (itemType==="Activity")
                   {
-                    Meteor.call("deleteActivity", itemId);
+                    Meteor.call("deleteActivity", itemID);
                     console.log('activityDeleted');
                   }
                   else if (itemType==="Curriculum")
                   {
                     //Curricula.remove({_id:itemID});
-                    Meteor.call("deleteCurriculum", itemId);
+                    Meteor.call("deleteCurriculum", itemID);
                     console.log('curriculumDeleted');
                   }
                   window.location = "/search";
