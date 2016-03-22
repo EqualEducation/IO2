@@ -2,7 +2,11 @@
 	<div class="ui equal width aligned padded grid fluid">
 		<div class="row">
 			<div class="column">
-				<h1 class="ui header">New Activity</h1>
+				<div class="ui huge breadcrumb">
+				  <a href="/create" class="section">Create</a>
+				  <i class="right chevron icon divider"></i>
+				  <div class="active section">Activity</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -14,7 +18,16 @@
 				{{> uploadFile}}
 			</div>
 		</div>
+	<div class="row">
+		<div id="back" class="ui black deny button">
+			Cancel
+		</div>
+		<div id="save" class="ui positive right labeled icon button">
+			Save
+		<i class="right arrow icon"></i>
+		</div>
 	</div>
+</div>
 </template>
 
 <template name="content_activity">
