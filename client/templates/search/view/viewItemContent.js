@@ -3,24 +3,39 @@ Template.viewItemContent.events({
       console.log(this);
       itemID=(this.item._id)
       itemType=(this.item.itemType)
-      if(itemType==="Resource")
-      {
-        Resources.remove({_id:itemID});
-        console.log('resourceDeleted');
-      }
-      else if (itemType==="Activity")
-      {
-        Activities.remove({_id:itemID});
-        console.log('activityDeleted');
-      }
-      else if (itemType==="Curriculum")
-      {
-        Curricula.remove({_id:itemID});
-        console.log('curriculumDeleted');
-      }
-      window.location = "/search";
-      fileSearch.cleanHistory();
-      fileSearch.search("");
+      $('.ui.basic.test.modal')
+        .modal({
+
+          onDeny    : function(){
+            return true;
+          },
+          onApprove : function() {
+                  if(itemType==="Resource")
+                  {
+                    Resources.remove({_id:itemID});
+                    console.log('resourceDeleted');
+                  }
+                  else if (itemType==="Activity")
+                  {
+                    Activities.remove({_id:itemID});
+                    console.log('activityDeleted');
+                  }
+                  else if (itemType==="Curriculum")
+                  {
+                    Curricula.remove({_id:itemID});
+                    console.log('curriculumDeleted');
+                  }
+                  window.location = "/search";
+          }
+        })
+        .modal('show')
+      ;
+
+
+
+
+      // fileSearch.cleanHistory();
+      // fileSearch.search("");
 //       console.log('sessionID');
 //       console.log(Session.get('resourceDetailsID'));
 //       var item=this;
