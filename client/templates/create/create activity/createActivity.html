@@ -1,18 +1,26 @@
-<template name="createActivity">
-<div class="ui createActivity modal">
-	<i class="close icon"></i>
-	{{> header_activity}}
-	<div class="content">
-		<form id="activityDetailsForm" class="ui form">
-			{{> content_activity}}
-		</form>
-		{{> uploadGuide}}
-		{{> uploadFile}}
-
-	</div>
-	<div class="actions">
+<template name="create_activity">
+	<div class="ui equal width aligned padded grid fluid">
+		<div class="row">
+			<div class="column">
+				<div class="ui huge breadcrumb">
+				  <a href="/create" class="section">Create</a>
+				  <i class="right chevron icon divider"></i>
+				  <div class="active section">Activity</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="column">
+				<form id="activityDetailsForm" class="ui form">
+					{{> content_activity}}
+				</form>
+				{{> uploadGuide}}
+				{{> uploadFile}}
+			</div>
+		</div>
+	<div class="row">
 		<div id="back" class="ui black deny button">
-			Back
+			Cancel
 		</div>
 		<div id="save" class="ui positive right labeled icon button">
 			Save
@@ -20,12 +28,6 @@
 		</div>
 	</div>
 </div>
-</template>
-
-<template name="header_activity">
-  <div class="header">
-    New Activity
-  </div>
 </template>
 
 <template name="content_activity">

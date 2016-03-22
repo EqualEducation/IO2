@@ -1,5 +1,85 @@
-<template name="createResource">
-  <div class="ui chooseType coupled modal">
+<template name="create_resource">
+  <div class="ui equal width aligned padded grid fluid">
+    <div class="row">
+      <div class="column">
+        <div class="ui huge breadcrumb">
+          <a href="/create" class="section">Create</a>
+          <i class="right chevron icon divider"></i>
+          <div class="active section">Resource</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <label>What type of resource would you like to upload?</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <a href="\create\resource\shortreading">Short Reading</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <a href="\create\resource\book">Book</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <a href="\create\resource\film">Film</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <a href="\create\resource\icebreaker">Icebreaker</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <a href="\create\resource\other">Other</a>
+      </div>
+    </div>
+</div>
+</template>
+
+<template name="create_resource_type">
+  <div class="ui equal width aligned padded grid fluid">
+    <div class="row">
+      <div class="column">
+        <div class="ui huge breadcrumb">
+          <a href="/create" class="section">Create</a>
+          <i class="right chevron icon divider"></i>
+          <a href="/create/resource" class="section">Resource</a>
+          <i class="right chevron icon divider"></i>
+          <div class="active section">{{this.title}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        {{> Template.dynamic template=header}}
+    		<form id="resourceDetailsForm" class="ui form">
+          {{> commonFields}}
+    			{{> Template.dynamic template=content}}
+    		</form>
+    		{{> uploadFile}}
+    	</div>
+    </div>
+  <div class="right floated row">
+    <div class="right floated column">
+      <div id="back" class="ui deny button">
+        Cancel
+      </div>
+      <div id="save" class="ui positive right labeled icon button">
+        Save
+      <i class="right arrow icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<!-- <template name="create_resource">
     <i class="close icon"></i>
     <div class="header">
       New Resource
@@ -50,12 +130,9 @@
       <i class="right arrow icon"></i>
       </div>
     </div>
-</div>
-<div class="ui resourceDetails coupled modal">
 	<i class="close icon"></i>
 	{{> Template.dynamic template=header}}
 	<div class="content">
-		<!-- <div class="content ui form"> -->
 		<form id="resourceDetailsForm" class="ui form">
       {{> commonFields}}
 			{{> Template.dynamic template=content}}
@@ -71,6 +148,4 @@
 		<i class="right arrow icon"></i>
 		</div>
 	</div>
-</div>
-
-</template>
+</template> -->

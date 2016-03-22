@@ -9,7 +9,7 @@
 	<div class="ui center aligned one column grid">
 	  <div class="row">
 	    <div class="column">
-				<button class="massive ui button" id="createCurriculumButton">
+				<a href="/create/curriculum" class="massive ui button" id="createCurriculumButton">
 					<h2 class="ui header">
 					  <i class="large icons">
 					    <i class="calendar icon"></i>
@@ -17,12 +17,12 @@
 					  </i>
 							Create Curriculum
 						</h2>
-				</button>
+				</a>
 	    </div>
 	  </div>
 		<div class="row">
 	    <div class="column">
-				<button class="massive ui button" id="createActivityButton">
+				<a href="/create/activity" class="massive ui button" id="createActivityButton">
 					<h2 class="ui header">
 					  <i class="large icons">
 					    <i class="paint brush icon"></i>
@@ -30,12 +30,12 @@
 					  </i>
 							Create Activity
 						</h2>
-				</button>
+				</a>
 	    </div>
 	  </div>
 		<div class="row">
 			<div class="column">
-				<button class="massive ui button" id="createResourceButton">
+				<a href="/create/resource" class="massive ui button" id="createResourceButton">
 					<h2 class="ui header">
 						<i class="large icons">
 							<i class="film icon"></i>
@@ -43,12 +43,9 @@
 						</i>
 							Create Resource
 						</h2>
-				</button>
+				</a>
 			</div>
 		</div>
 	</div>
 
-	{{> createResource}}
-	{{> createActivity}}
-	{{> createCurriculum}}
 </template>
