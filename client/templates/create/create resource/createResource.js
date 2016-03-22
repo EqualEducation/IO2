@@ -74,12 +74,10 @@ Template.create_resource_type.events({
 })
 Template.create_resource_type.helpers({
   content: function() {
-    console.log("CONTENT " + this.type)
 		var ret = 'content_' + this.type
 		return ret ;
   },
 	header: function() {
-    console.log(this.type)
 		var ret = 'header_' + this.type
 		return ret ;
 	},
