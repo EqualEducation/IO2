@@ -4,9 +4,11 @@
       <tr>
         <td class ="heading">Title</td>
         <td>{{item.details.title}}</td>
-        <td>  <a class="ui primary button" href="{{item.details.url}}" target="_blank">
+        {{#with file item._id}}
+        <td>  <a class="ui primary button" id="downloadFile" href="{{this.url}}" target="_blank">
         Download
         </a></td>
+        {{/with}}
       </tr>
       <tr>
         <td class ="heading">Main Topic</td>
