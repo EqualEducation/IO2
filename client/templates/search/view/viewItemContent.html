@@ -4,7 +4,7 @@
       <tr>
         <td class ="heading">Title</td>
         <td>{{item.details.title}}</td>
-        {{#with file item._id}}
+        {{#with file item.fileIDs}}
         <td>  <a class="ui primary button" id="downloadFile" href="{{this.url}}" target="_blank">
         Download
         </a></td>
