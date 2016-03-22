@@ -10,22 +10,7 @@ Template.viewItemContent.events({
             return true;
           },
           onApprove : function() {
-                  if(itemType===ItemTypeEnum.RESOURCE)
-                  {
-                    Meteor.call("deleteResource", itemID);
-                    console.log('resourceDeleted');
-                  }
-                  else if (itemType===ItemTypeEnum.ACTIVITY)
-                  {
-                    Meteor.call("deleteActivity", itemID);
-                    console.log('activityDeleted');
-                  }
-                  else if (itemType===ItemTypeEnum.CURRICULUM)
-                  {
-                    //Curricula.remove({_id:itemID});
-                    Meteor.call("deleteCurriculum", itemID);
-                    console.log('curriculumDeleted');
-                  }
+                  Meteor.call("deleteItem",itemType,itemID)
                   window.location = "/search";
           }
         })

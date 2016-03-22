@@ -35,22 +35,21 @@ Meteor.methods({
   // optionsUpsert: function(collection, data){
   //    Customers.upsert( id, doc );
   // },
-  deleteResource: function (resourceId) {
-    if (! Meteor.userId()) {
+  deleteItem: function (itemType,ItemId){
+  if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
-    Resources.remove(resourceId);
-  },
-  deleteActivity: function (activityId) {
-    if (! Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
+  if (itemType == ItemTypeEnum.RESOURCE) {
+      console.log("DELETING RESOURCE");
+      newItemId = Resources.remove(ItemId);
+    } else if (itemType == ItemTypeEnum.ACTIVITY) {
+      console.log("DELETING ACTIVITY");
+      newItemId = Activities.remove(ItemId);
+    } else if (itemType == ItemTypeEnum.CURRICULUM) {
+      console.log("DELETING CURRICULUM");
+      newItemId = Curricula.remove(ItemId)
+    } else {
+      throw new Meteor.Error("Item type not recognized");
     }
-    Activities.remove(activityId);
-  },
-  deleteCurriculum: function (curriculumId) {
-    if (! Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
-    }
-    Curricula.remove(curriculumId);
   }
 });
