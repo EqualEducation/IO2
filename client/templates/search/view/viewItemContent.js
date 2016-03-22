@@ -10,17 +10,17 @@ Template.viewItemContent.events({
             return true;
           },
           onApprove : function() {
-                  if(itemType==="Resource")
+                  if(itemType===ItemTypeEnum.RESOURCE)
                   {
                     Meteor.call("deleteResource", itemID);
                     console.log('resourceDeleted');
                   }
-                  else if (itemType==="Activity")
+                  else if (itemType===ItemTypeEnum.ACTIVITY)
                   {
                     Meteor.call("deleteActivity", itemID);
                     console.log('activityDeleted');
                   }
-                  else if (itemType==="Curriculum")
+                  else if (itemType===ItemTypeEnum.CURRICULUM)
                   {
                     //Curricula.remove({_id:itemID});
                     Meteor.call("deleteCurriculum", itemID);
