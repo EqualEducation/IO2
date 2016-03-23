@@ -1,0 +1,17 @@
+<template name="content_activity">
+	{{> commonFields this.details}}
+	{{> methodField this}}
+  {{> connectBooks this}}
+  {{> connectFilms this}}
+</template>
+
+
+<template name="uploadGuide">
+	 <h1>Upload Activity Guide</h1>
+    <br/>
+      {{> dropzone}}
+    <br/>
+  	<input class="uploadGuide" type="file">
+    <br/>
+    <br>
+</template>

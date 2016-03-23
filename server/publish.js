@@ -1,15 +1,29 @@
+Meteor.publish("resources-searchpage-data", function () {
+    console.log("publishing resources-searchpage-data");
+   return Resources.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
+  });
 
-Meteor.publish("resources", function () {
+Meteor.publish("activities-searchpage-data", function () {
+      console.log("publishing activities-searchpage-data");
+     return Activities.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
+});
+
+Meteor.publish("curricula-searchpage-data", function () {
+      console.log("publishing curricula-searchpage-data");
+     return Curricula.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
+});
+
+Meteor.publish("all-resources", function () {
     console.log("publishing resources");
    return Resources.find();
   });
 
-Meteor.publish("activities", function () {
+Meteor.publish("all-activities", function () {
     console.log("publishing activities");
    return Activities.find();
   });
 
-Meteor.publish("curricula", function () {
+Meteor.publish("all-curricula", function () {
     console.log("publishing activities");
    return Curricula.find();
   });

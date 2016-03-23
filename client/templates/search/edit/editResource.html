@@ -1,0 +1,30 @@
+
+<template name="edit_resource_type">
+  <div class="ui equal width aligned padded grid fluid">
+    <div class="row">
+      <div class="column">
+        <h1>Edit {{this.type}}: {{this.details.title}}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+    		<form id="resourceDetailsForm" class="ui form">
+          {{> commonFields this.details}}
+    			{{> Template.dynamic template=content data=this}}
+    		</form>
+    		{{> uploadFile}}
+    	</div>
+    </div>
+  <div class="right floated row">
+    <div class="right floated column">
+      <div id="back" class="ui deny button">
+        Cancel
+      </div>
+      <div id="save" class="ui positive right labeled icon button">
+        Save
+      <i class="right arrow icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+</template>

@@ -1,18 +1,14 @@
-<template name="create_curriculum">
+<template name="editCurriculum">
 	<div class="ui equal width aligned padded grid fluid">
 		<div class="row">
 			<div class="column">
-				<div class="ui huge breadcrumb">
-				  <a href="/create" class="section">Create</a>
-				  <i class="right chevron icon divider"></i>
-				  <div class="active section">Curriculum</div>
-				</div>
+        <h1>Edit Curriculum: {{this.details.title}}</h1>
 			</div>
 		</div>
 		<div class="row">
 			<div class="column">
 				<form id="curriculumDetailsForm" class="ui form">
-					{{> content_curriculum}}
+					{{> content_curriculum this}}
 				</form>
 				{{> uploadFile}}
 			</div>
@@ -29,16 +25,4 @@
 			</div>
 		</div>
 	</div>
-</template>
-
-<!-- <template name="header_curriculum">
-  <div class="header">
-    New Curriculum
-  </div>
-</template> -->
-
-<template name="content_curriculum">
-		{{> commonFields this.details}}
-    {{> connectBooks}}
-    {{> connectFilms}}
 </template>

@@ -51,9 +51,6 @@ Template.create_resource_type.events({
     var form = $('#resourceDetailsForm');
      var topic =	form.form('get field', 'topic').val();
      var allFields = form.form('get values')
-     console.log('SAVING');
-     console.log(allFields);
-
      var newResource = new Object();
 
      newResource.type = this.type
@@ -67,8 +64,7 @@ Template.create_resource_type.events({
      Session.set('fileIDs', null);
      Meteor.call("addItem", ItemTypeEnum.RESOURCE, newResource);
      form.form('clear')
-   //  $('.ui.form').submit();
-    //Return false as to not close modal dialog
+
     return true;
   }
 })

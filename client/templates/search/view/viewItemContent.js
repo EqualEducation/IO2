@@ -1,12 +1,30 @@
 Template.viewItemContent.helpers({
   file: function(itemID) {
-    //var linkedFile=YourFileCollection.find(itemID).fetch();
-    console.log(itemID)
+
     var linkedFile=YourFileCollection.findOne(itemID);
+    //linkedFile=YourFileCollection.findOne();
     console.log("FILE")
     console.log(linkedFile)
     return linkedFile;
     //return itemType.toLowerCase() + ".view";
+  },
+  editURL: function(item) {
+    var url;
+    switch (item.itemType) {
+      case ItemTypeEnum.ACTIVITY:
+        url = '\\activity\\edit\\' + item._id;
+        break;
+      case ItemTypeEnum.RESOURCE:
+        url = '\\resource\\edit\\' + item._id;
+        break;
+      case ItemTypeEnum.CURRICULUM:
+        url = '\\curriculum\\edit\\' + item._id;
+        break;
+      default:
+        break;
+    }
+
+    return url;
   }
 })
 
