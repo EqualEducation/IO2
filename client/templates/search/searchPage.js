@@ -37,7 +37,6 @@ tab: function() {
       {"details.description": regExp},
       {"details.keywords": regExp}
     ]};
-    var filteredData=(fileDetails.find(selector, options).fetch());
     var tab = Template.instance().currentTab.get();
     var data = {
        "all": [
