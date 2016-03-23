@@ -1,17 +1,17 @@
-// Template.create_activity.rendered({
-// 	$('#activityDetailsForm')
-//   .form({
-//     fields: {
-//       name     : 'empty',
-//       gender   : 'empty',
-//       username : 'empty',
-//       password : ['minLength[6]', 'empty'],
-//       skills   : ['minCount[2]', 'empty'],
-//       terms    : 'checked'
-//     }
-//   })
-// ;
-// })
+Template.create_activity.rendered({
+	$('#activityDetailsForm')
+  .form({
+    fields: {
+      title     : 'empty',
+      mainTopic   : 'empty',
+      subTopic : 'empty',
+      description : ['minLength[6]', 'empty'],
+      keywords   : ['minCount[1]', 'empty'],
+      audience    : 'checked'
+    }
+  })
+;
+})
 
 Template.create_activity.events({
 	'click #save' : function() {
