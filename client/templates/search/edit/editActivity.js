@@ -1,6 +1,9 @@
 Template.editActivity.onRendered( function() {
 	$('#activityDetailsForm')
   .form({
+    onSuccess : function(event){
+
+    },
     fields: {
       title     : 'empty',
       mainTopic   : 'empty',
