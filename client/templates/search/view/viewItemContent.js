@@ -1,7 +1,8 @@
 Template.viewItemContent.helpers({
   file: function(itemID) {
-    var linkedFile=YourFileCollection.find(itemID).fetch();
-    //linkedFile=YourFileCollection.findOne();
+    //var linkedFile=YourFileCollection.find(itemID).fetch();
+    console.log(itemID)
+    var linkedFile=YourFileCollection.findOne(itemID);
     console.log("FILE")
     console.log(linkedFile)
     return linkedFile;
