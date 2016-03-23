@@ -32,6 +32,15 @@ Meteor.methods({
 
     return newItemId;
   },
+  addFile: function(yourFile) {
+    console.log('adding file');
+    // Make sure the user is logged in before inserting a task
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+       var fileObj= YourFileCollection.insert(yourFile)
+      return fileObj;
+  },
   // optionsUpsert: function(collection, data){
   //    Customers.upsert( id, doc );
   // },
