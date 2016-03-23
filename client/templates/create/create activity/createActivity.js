@@ -1,4 +1,4 @@
-Template.create_activity.rendered({
+Template.create_activity.onRendered( function() {
 	$('#activityDetailsForm')
   .form({
     fields: {
