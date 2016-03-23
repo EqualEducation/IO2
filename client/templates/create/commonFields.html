@@ -1,7 +1,7 @@
 <template name="commonFields">
   <div class="field">
     <label>Title</label>
-    <input type="text" name="title">
+    <input type="text" name="title" value={{this.title}}>
   </div>
   <div class="field">
     <label>Main Topic</label>
@@ -32,7 +32,7 @@
   </div>
   <div class="field">
     <label>Description</label>
-    <textarea rows="2" name="description"></textarea>
+    <textarea rows="2" name="description" value={{this.description}}></textarea>
   </div>
   <div class="field">
     <label>Audience</label>

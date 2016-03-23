@@ -1,18 +1,18 @@
-<template name="create_activity">
-	<div class="ui equal width aligned padded grid fluid">
+<template name="editActivity">
+  <div class="ui equal width aligned padded grid fluid">
 		<div class="row">
 			<div class="column">
 				<div class="ui huge breadcrumb">
-				  <a href="/create" class="section">Create</a>
+				  <a href="/create" class="section">Edit</a>
 				  <i class="right chevron icon divider"></i>
-				  <div class="active section">Activity</div>
+				  <div class="active section">Activity: {{this.details.title}}</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="column">
 				<form id="activityDetailsForm" class="ui form">
-					{{> content_activity}}
+					{{> content_activity this}}
 				</form>
 				{{> uploadGuide}}
 				{{> uploadFile}}
@@ -23,7 +23,7 @@
 			Cancel
 		</div>
 		<div id="save" class="ui positive right labeled icon button">
-			Save
+			Update
 		<i class="right arrow icon"></i>
 		</div>
 	</div>

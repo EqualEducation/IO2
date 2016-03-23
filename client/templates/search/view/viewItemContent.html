@@ -14,9 +14,10 @@
         <td class ="heading">Main Topic</td>
         <td>{{item.details.mainTopic}}</td>
         <td>
-          <a class="ui primary button" href="/create">
-  Edit
-</a></td>
+          {{#with editURL item}}
+            <a class="ui primary button" href="{{this}}">Edit</a>
+          {{/with}}
+        </td>
       </tr>
       <tr>
         <td class ="heading">Sub Topic</td>
