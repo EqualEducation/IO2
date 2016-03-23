@@ -5,7 +5,8 @@
   {{#each this.items}}
     <h4 class="name">
           {{#with pathName this.itemType}}
-            <a href="{{pathFor route=this data=.. id=../_id}}" id={{../_id}}>{{../itemType}}: {{../details.title}}</a>
+          {{this}}
+            <a href="{{pathFor route=this _id=../_id}}" id={{../_id}}>{{../itemType}}: {{../details.title}}</a>
           {{/with}}
     </h4>
         {{{this.details.description}}}

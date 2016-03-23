@@ -1,18 +1,32 @@
-
-Meteor.publish("resources", function () {
-    console.log("publishing resources");
-   return Resources.find();
+Meteor.publish("resources-searchpage-data", function () {
+    console.log("publishing resources-searchpage-data");
+   return Resources.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
   });
 
-Meteor.publish("activities", function () {
-    console.log("publishing activities");
-   return Activities.find();
-  });
+Meteor.publish("activities-searchpage-data", function () {
+      console.log("publishing activities-searchpage-data");
+     return Activities.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
+});
 
-Meteor.publish("curricula", function () {
-    console.log("publishing activities");
-   return Curricula.find();
-  });
+Meteor.publish("curricula-searchpage-data", function () {
+      console.log("publishing curricula-searchpage-data");
+     return Curricula.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
+});
+//
+// Meteor.publish("resources", function () {
+//     console.log("publishing resources");
+//    return Resources.find();
+//   });
+//
+// Meteor.publish("activities", function () {
+//     console.log("publishing activities");
+//    return Activities.find();
+//   });
+//
+// Meteor.publish("curricula", function () {
+//     console.log("publishing activities");
+//    return Curricula.find();
+//   });
 
 Meteor.publish("fileUploads", function () {
     console.log("publishing fileUploads");
