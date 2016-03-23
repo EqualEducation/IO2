@@ -4,28 +4,28 @@ uploadFileWithVariableName = function(sessionVariableName){
 		console.log("each file...");
 		var yourFile = new FS.File(file);
 
-		Meteor.call("addFile",yourFile, function(fileObjId) {
-			console.log('CALL BACK ON ADD FILE: ' + fileObjId);
-			Session.set(sessionVariableName, fileObjId)
-		});
-		// 		YourFileCollection.insert(yourFile, function (err, fileObj) {
-		// 	console.log("callback for the insert, err: ", err);
-		// 	if (!err) {
-		// 		console.log("inserted without error",fileObj)
-		// 		var name = yourFile.original.name;
-		// 		var index=name.indexOf(".");
-		// 		var nameTrunc=name.substring(0,index);
-		// 		Session.set(sessionVariableName, fileObj._id)
-		// 		fileDetails.insert({name:nameTrunc,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
-		// 		// fileSearch.cleanHistory();
-		// 		// fileSearch.search("");
-		// 		// Session.set('filesToReturn',fileSearch.getData());
-		// 	}
-		// 	else {
-		// 		console.log("there was an error", err);
-		// 	}
-
+		// Meteor.call("addFile",yourFile, function(fileObjId) {
+		// 	console.log('CALL BACK ON ADD FILE: ' + fileObjId);
+		// 	Session.set(sessionVariableName, fileObjId)
 		// });
+				YourFileCollection.insert(yourFile, function (err, fileObj) {
+			console.log("callback for the insert, err: ", err);
+			if (!err) {
+				console.log("inserted without error",fileObj)
+				var name = yourFile.original.name;
+				var index=name.indexOf(".");
+				var nameTrunc=name.substring(0,index);
+				Session.set(sessionVariableName, fileObj._id)
+				//fileDetails.insert({name:nameTrunc,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
+				// fileSearch.cleanHistory();
+				// fileSearch.search("");
+				// Session.set('filesToReturn',fileSearch.getData());
+			}
+			else {
+				console.log("there was an error", err);
+			}
+
+		});
 		//
 	});
 };
