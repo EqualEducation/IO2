@@ -3,7 +3,11 @@ uploadFileWithVariableName = function(sessionVariableName){
 	FS.Utility.eachFile(event, function (file) {
 		console.log("each file...");
 		var yourFile = new FS.File(file);
-		var fileObj=Meteor.call("addFile",yourFile);
+
+		Meteor.call("addFile",yourFile, function(fileObjId) {
+			console.log('CALL BACK ON ADD FILE: ' + fileObjId);
+			Session.set(sessionVariableName, fileObjId)
+		});
 		// 		YourFileCollection.insert(yourFile, function (err, fileObj) {
 		// 	console.log("callback for the insert, err: ", err);
 		// 	if (!err) {
@@ -22,7 +26,6 @@ uploadFileWithVariableName = function(sessionVariableName){
 		// 	}
 
 		// });
-		Session.set(sessionVariableName, fileObj._id)
 		//
 	});
 };

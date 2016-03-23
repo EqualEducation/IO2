@@ -33,10 +33,10 @@ Meteor.publish("fileUploads", function () {
     return YourFileCollection.find();
   });
 
-Meteor.publish("fileMeta", function () {
-    console.log("publishing fileMeta");
-   return fileDetails.find();
-  });
+// Meteor.publish("fileMeta", function () {
+//     console.log("publishing fileMeta");
+//    return fileDetails.find();
+//   });
 
 
 //DROP DOWN DATA

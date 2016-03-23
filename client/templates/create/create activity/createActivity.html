@@ -13,19 +13,16 @@
 			<div class="column">
 				<form id="activityDetailsForm" class="ui form">
 					{{> content_activity}}
+					{{> uploadGuide}}
+					{{> uploadFile}}
+					<div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
+					<div id="back" class="ui black deny button">
+						Cancel
+					</div>
 				</form>
-				{{> uploadGuide}}
-				{{> uploadFile}}
+
 			</div>
 		</div>
-	<div class="row">
-		<div id="back" class="ui black deny button">
-			Cancel
-		</div>
-		<div id="save" class="ui positive right labeled icon button">
-			Save
-		<i class="right arrow icon"></i>
-		</div>
-	</div>
+
 </div>
 </template>

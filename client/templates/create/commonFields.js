@@ -16,12 +16,12 @@ Template.commonFields.onRendered(function() {
     })
   ;
 
-  console.log('MAIN TOPIC: ' + this.data.mainTopic)
-  $('#mainTopic').dropdown('set selected', this.data.mainTopic);
-  $('#subTopic').dropdown('set selected', this.data.subTopic);
-  $('#keywords').dropdown('set selected', this.data.keywords);
-  $('#audience').dropdown('set selected', this.data.audience);
-  $('#audience').dropdown('set selected', this.data.audience);
+  // console.log('MAIN TOPIC: ' + this.data.mainTopic)
+  // $('#mainTopic').dropdown('set selected', this.data.mainTopic);
+  // $('#subTopic').dropdown('set selected', this.data.subTopic);
+  // $('#keywords').dropdown('set selected', this.data.keywords);
+  // $('#audience').dropdown('set selected', this.data.audience);
+  // $('#audience').dropdown('set selected', this.data.audience);
 
 })
 

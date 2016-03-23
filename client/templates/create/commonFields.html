@@ -1,11 +1,11 @@
 <template name="commonFields">
   <div class="field">
     <label>Title</label>
-    <input type="text" name="title" value={{this.title}}>
+    <input type="text" name="title">
   </div>
   <div class="field">
     <label>Main Topic</label>
-    <select id="mainTopic" name="mainTopic" class="commonFields noAdditions ui fluid search dropdown">
+    <select name="mainTopic" class="commonFields noAdditions ui fluid search dropdown">
       <option value="">Search...</option>
       {{#each topics}}
         <option value="{{this}}">{{this}}</option>
@@ -14,7 +14,7 @@
 </div>
 <div class="field">
   <label>Sub Topic</label>
-  <select id="subTopic" name="subTopic" class="commonFields allowAdditions ui fluid search dropdown">
+  <select name="subTopic" class="commonFields allowAdditions ui fluid search dropdown">
     <option value="">Search...</option>
     {{#each subTopics}}
       <option value="{{this}}">{{this}}</option>
@@ -23,7 +23,7 @@
 </div>
 <div class="field">
   <label>Keywords</label>
-  <select id="keywords" name="keywords" multiple="" class="commonFields allowAdditions ui dropdown search multiple">
+  <select name="keywords" multiple="" class="commonFields allowAdditions ui dropdown search multiple">
     <option value="">Search...</option>
     {{#each keywords}}
       <option value="{{this}}">{{this}}</option>
@@ -32,11 +32,11 @@
   </div>
   <div class="field">
     <label>Description</label>
-    <textarea rows="2" name="description" value={{this.description}}></textarea>
+    <textarea rows="2" name="description"></textarea>
   </div>
   <div class="field">
     <label>Audience</label>
-    <select id="audience" name="audience" multiple="" class="commonFields noAdditions ui fluid search dropdown multiple">
+    <select name="audience" multiple="" class="commonFields noAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
       {{#each audiences}}
         <option value="{{this}}">{{this}}</option>
@@ -45,7 +45,7 @@
   </div>
   <div class="field">
     <label>Source</label>
-    <textarea rows="2" name="source" value="{{this.source}}"></textarea>
+    <textarea rows="2" name="source"></textarea>
   </div>
 </template>
 

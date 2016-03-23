@@ -34,12 +34,31 @@ Meteor.methods({
   },
   addFile: function(yourFile) {
     console.log('adding file');
+    console.log(yourFile);
     // Make sure the user is logged in before inserting a task
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
-       var fileObj= YourFileCollection.insert(yourFile)
-      return fileObj;
+    // 		YourFileCollection.insert(yourFile, function (err, fileObj) {
+    // 	console.log("callback for the insert, err: ", err);
+    // 	if (!err) {
+    // 		console.log("inserted without error",fileObj)
+    // 		var name = yourFile.original.name;
+    // 		var index=name.indexOf(".");
+    // 		var nameTrunc=name.substring(0,index);
+    // 		Session.set(sessionVariableName, fileObj._id)
+    // 		fileDetails.insert({name:nameTrunc,fileId:fileObj._id,keywords:[],type:yourFile.original.type,description:null});
+    // 		// fileSearch.cleanHistory();
+    // 		// fileSearch.search("");
+    // 		// Session.set('filesToReturn',fileSearch.getData());
+    // 	}
+      YourFileCollection.insert(yourFile, function(err, fileObj) {
+        if (err) {
+          throw new Meteor.Error(err);
+        } else {
+          return fileObj._id;
+        }
+       })
   },
   // optionsUpsert: function(collection, data){
   //    Customers.upsert( id, doc );
