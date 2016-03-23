@@ -2,6 +2,7 @@ Template.commonFields.onCreated(function() {
   var items = Options.findOne();
   this.options = new ReactiveVar(items);
 
+
 })
 
 Template.commonFields.onRendered(function() {
@@ -14,6 +15,14 @@ Template.commonFields.onRendered(function() {
       allowAdditions: true
     })
   ;
+
+  console.log('MAIN TOPIC: ' + this.data.mainTopic)
+  $('#mainTopic').dropdown('set selected', this.data.mainTopic);
+  $('#subTopic').dropdown('set selected', this.data.subTopic);
+  $('#keywords').dropdown('set selected', this.data.keywords);
+  $('#audience').dropdown('set selected', this.data.audience);
+  $('#audience').dropdown('set selected', this.data.audience);
+
 })
 
 Template.methodField.onCreated(function() {
