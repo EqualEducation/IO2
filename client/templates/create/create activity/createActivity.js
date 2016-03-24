@@ -1,21 +1,26 @@
 Template.create_activity.onRendered( function() {
 	$('#activityDetailsForm')
   .form({
-		onSuccess : function(event){
+		onFailure(formErrors, fields)	{
+			event.preventDefault();
+			console.log(formErrors);
+			return false;
+		},
+		onSuccess : function(event, fields){
 			event.preventDefault();
 			var form = $('#activityDetailsForm');
 			var topic =	form.form('get field', 'topic').val();
-			var allFields = form.form('get values')
 			var newActivity = new Object();
 
-			newActivity.details = allFields;
+			newActivity.details = fields;
 			newActivity.fileIDs = Session.get('fileIDs');
 			newActivity.guideID = Session.get('guideID');
 			Meteor.call("addItem", ItemTypeEnum.ACTIVITY, newActivity);
 			Session.set('fileIDs', null);
 			form.form('clear')
-			return true;
-
+			console.log('Success');
+			Router.go('create');
+			return false;
     },
 		on: 'submit',
     fields: {

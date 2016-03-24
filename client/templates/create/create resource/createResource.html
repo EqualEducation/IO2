@@ -61,20 +61,11 @@
     		<form id="resourceDetailsForm" class="ui form">
           {{> commonFields}}
     			{{> Template.dynamic template=content}}
+          {{> uploadFile}}
+          <div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
+  				<div id="back" class="ui black deny button">Cancel</div>
     		</form>
-    		{{> uploadFile}}
     	</div>
     </div>
-  <div class="right floated row">
-    <div class="right floated column">
-      <div id="back" class="ui deny button">
-        Cancel
-      </div>
-      <div id="save" class="ui positive right labeled icon button">
-        Save
-      <i class="right arrow icon"></i>
-      </div>
-    </div>
-  </div>
 </div>
 </template>
