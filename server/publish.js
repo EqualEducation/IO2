@@ -1,6 +1,7 @@
 Meteor.publish("resources-searchpage-data", function () {
     console.log("publishing resources-searchpage-data");
-   return Resources.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
+   return Resources.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1, 'type' : 1}});
+   //return Resources.find();
   });
 
 Meteor.publish("activities-searchpage-data", function () {

@@ -65,19 +65,19 @@ tab: function() {
           // fileDetails.find().fetch(),
         ],
         "film": [
-        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+        Resources.find({$and: [{type:"film"},selector]},options).fetch(),
           // fileDetails.find().fetch(),
         ],
         "shortreading": [
-        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+        Resources.find({$and: [{type:"shortreading"},selector]},options).fetch(),
           // fileDetails.find().fetch(),
         ],
         "icebreaker": [
-        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+        Resources.find({$and: [{type:"icebreaker"},selector]},options).fetch(),
           // fileDetails.find().fetch(),
         ],
         "other": [
-        Resources.find({$and: [{type:"resource"},selector]},options).fetch(),
+        Resources.find({$and: [{type:"other"},selector]},options).fetch(),
           // fileDetails.find().fetch(),
         ]
     };
