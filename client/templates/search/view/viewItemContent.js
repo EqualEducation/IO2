@@ -8,6 +8,15 @@ Template.viewItemContent.helpers({
     return linkedFile;
     //return itemType.toLowerCase() + ".view";
   },
+  guideFile: function(itemID) {
+
+    var linkedFile=YourFileCollection.findOne(itemID);
+    //linkedFile=YourFileCollection.findOne();
+    console.log("FILE")
+    console.log(linkedFile)
+    return linkedFile;
+    //return itemType.toLowerCase() + ".view";
+  },
   editURL: function(item) {
     var url;
     switch (item.itemType) {

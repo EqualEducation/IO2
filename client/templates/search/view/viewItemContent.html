@@ -53,9 +53,13 @@
       <tr>
       <td colspan="2" ><center><b>Guide & Resource Download</b></center></td>
       </tr>
+      {{#with file item.guideID}}
       <tr>
-      <td colspan="2" ><center><u>{{item.title}} Guide</u></center></td>
+        <td colspan="2"> <center> <a class="ui primary button" id="downloadGuide" href="{{this.url}}" target="_blank">
+        Download Guide
+        </a></center></td>
       </tr>
+      {{/with}}
 
     </table>
 </div>
