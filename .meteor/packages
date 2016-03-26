@@ -42,3 +42,6 @@ semantic:ui-menu
 reactive-var
 meteortoys:allthings
 iron:router
+jspdf:core
+new3rs:html2canvas
+babrahams:html2docx

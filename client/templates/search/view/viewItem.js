@@ -4,63 +4,31 @@ Template.viewItem.onRendered(function () {
   allowAdditions: true
 })
 ;
-
-
-  // $("#deleteFile").click(function(){
-  //   //var fsId= Session.get('fileDetailsID');
-  //     var fileDetailsId=Session.get('fileDetailsID');
-  //     var file=fileDetails.findOne({_id:Session.get('fileDetailsID')});
-  //     YourFileCollection.remove({_id: file.fileId});
-  //     fileDetails.remove({_id:fileDetailsId});
-  //     Session.set('fileSearch',fileSearch.getData());
-  //     fileSearch.cleanHistory();
-  //     fileSearch.search("");
-  //     //MAKE THE MODAL CLOSE!
-  //     $('.ui.editResource.modal').modal("hide");
-  // })
 });
+// Template.viewItem.events({
+//   'click #downloadPDF2': function (event) {
+//     var doc = new jsPDF();
 
-// Template.viewItem.helpers({
-//   item: function() {
-//     if(Session.get('resourceDetailsID')===undefined){
-//       return 0;
-//     }
-//     else{
-//       //change this to return any item
-//       //console.log(Session.get('resourceDetailsID'));
-//       var item=Resources.findOne({_id:Session.get('resourceDetailsID')});
-//       if(item===undefined){
-//         item=Activities.findOne({_id:Session.get('resourceDetailsID')});
-//       }
-//       if(item===undefined){
-//         item=Curricula.findOne({_id:Session.get('resourceDetailsID')});
-//       }
-//       // console.log(Session.get('resourceDetailsID'));
-//       // console.log(resource);
-//       var file = null;
-//       var fileURL = null;
-//       // if (resource.fileIDs != undefined) {
-//       //   file = YourFileCollection.findOne(resource.fileIDs);
-//       //   fileURL = file.url;
-//       // }
-//       console.log("URL")
-//       console.log(fileURL)
-//       return {
-//         file:file,
-//         URL: fileURL,
-//         name: item.details.title,
-//         keywords: item.details.keywords,
-//         description:item.details.description,
-//         itemType: item.itemType,
-//         title: item.details.title,
-//         mainTopic: item.details.mainTopic,
-//         subTopic: item.details.subTopic,
-//         duration:item.details.duration,
-//         source:item.details.source,
-//         audience:item.details.audience,
-//         method:item.details.method
-//         //_id:details._id
-//       };
+// // We'll make our own renderer to skip this editor
+// var specialElementHandlers = {
+//   '#editor': function(element, renderer){
+//     return true;
 //   }
+// };
+
+// // All units are in the set measurement for the document
+// // This can be changed to "pt" (points), "mm" (Default), "cm", "in"
+// doc.fromHTML($('body').get(0), 15, 15, {
+//   'width': 170,
+//   'elementHandlers': specialElementHandlers
+// });
+// var pdf = new jsPDF('p','pt','a4');
+
+// pdf.addHTML(document.body,function() {
+//   var string = pdf.output('datauristring');
+//   $('.preview-pane').attr('src', string);
+// });
+// pdf.save('Test.pdf');
 //   }
-// })
+// });
+
