@@ -6,6 +6,7 @@ Template.create_curriculum.onRendered( function() {
 			return false;
 		},
 		onSuccess : function(event, fields){
+			event.preventDefault();
       var form = $('#curriculumDetailsForm');
       var topic =	form.form('get field', 'topic').val();
       console.log('SAVING');
@@ -14,10 +15,18 @@ Template.create_curriculum.onRendered( function() {
 
       newCurriculum.details = fields;
       newCurriculum.fileIDs = Session.get('fileIDs');
-      Meteor.call("addItem", ItemTypeEnum.CURRICULUM, newCurriculum);
-      Session.set('fileIDs', null);
-      form.form('clear')
-     	return true;
+      Meteor.call("addItem", ItemTypeEnum.CURRICULUM, newCurriculum, function(error, result){
+        if(error){
+          console.log(error);
+        }  else {
+					console.log('Success');
+					console.log(result)
+				}
+
+				Session.set('fileIDs', null);
+				Router.go('/curriculum/' + result.insertedId);
+				return false;
+    });
     },
 		on: 'submit',
     fields: {

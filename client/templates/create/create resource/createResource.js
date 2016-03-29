@@ -69,8 +69,18 @@ Template.create_resource_type.onRendered( function() {
        newResource.details = allFields;
        newResource.fileIDs = Session.get('fileIDs');
        Session.set('fileIDs', null);
-       Meteor.call("addItem", ItemTypeEnum.RESOURCE, newResource);
-       form.form('clear')
+       Meteor.call("addItem", ItemTypeEnum.RESOURCE, newResource, function(error, result){
+         if(error){
+             console.log(error);
+         }  else {
+ 					console.log('Success');
+ 					console.log(result)
+ 				}
+
+ 				Session.set('fileIDs', null);
+ 				Router.go('/resource/' + result.insertedId);
+ 				return false;
+     });
     },
 		on: 'submit',
     fields: {
