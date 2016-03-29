@@ -62,7 +62,24 @@
         </a></center></td>
       </tr>
       {{/with}}
-
+      {{#with resource item.details.books}}
+        {{#with file this.fileIDs}}
+        <tr>
+          <td colspan="2"> <center> <a class="ui primary button" id="downloadGuide" href="{{this.url}}" target="_blank">
+          Download Book
+          </a></center></td>
+        </tr>
+        {{/with}}
+      {{/with}}
+      {{#with resource item.details.films}}
+        {{#with file this.fileIDs}}
+        <tr>
+          <td colspan="2"> <center> <a class="ui primary button" id="downloadGuide" href="{{this.url}}" target="_blank">
+          Download Film
+          </a></center></td>
+        </tr>
+        {{/with}}
+      {{/with}}
     </table>
 </div>
 </template>

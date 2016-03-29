@@ -9,6 +9,16 @@ Template.viewItemContent.helpers({
 
     //return itemType.toLowerCase() + ".view";
   },
+  resource: function(resourceID) {
+
+    var resource=Resources.findOne(resourceID[0]);
+    //linkedFile=YourFileCollection.findOne();
+    console.log("RESOURCE")
+    console.log(resource)
+    return resource;
+
+    //return itemType.toLowerCase() + ".view";
+  },
   editURL: function(item) {
     var url;
     switch (item.itemType) {
