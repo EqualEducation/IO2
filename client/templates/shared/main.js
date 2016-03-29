@@ -13,6 +13,13 @@
 // });
 
 
+Tracker.autorun(function () {
+  var current = Router.current();
+  Tracker.afterFlush(function () {
+    $(window).scrollTop(0);
+  });
+});
+
 Template.registerHelper("print", function (data) {
   console.log("data: ");
   console.log(data);

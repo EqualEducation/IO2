@@ -2,12 +2,10 @@ Template.create_curriculum.onRendered( function() {
 	$('#curriculumDetailsForm')
   .form({
 		onFailure(formErrors, fields)	{
-			event.preventDefault();
 			console.log(formErrors);
 			return false;
 		},
 		onSuccess : function(event, fields){
-			event.preventDefault();
       var form = $('#curriculumDetailsForm');
       var topic =	form.form('get field', 'topic').val();
       console.log('SAVING');
@@ -19,7 +17,7 @@ Template.create_curriculum.onRendered( function() {
       Meteor.call("addItem", ItemTypeEnum.CURRICULUM, newCurriculum);
       Session.set('fileIDs', null);
       form.form('clear')
-     return true;
+     	return true;
     },
 		on: 'submit',
     fields: {
@@ -32,14 +30,3 @@ Template.create_curriculum.onRendered( function() {
     }
   })
 })
-
-// Template.create_activity.events({
-// 	'click #save' : function() {
-//
-// 	}
-// })
-
-
-Template.content_curriculum.onRendered(function () {
-
-});

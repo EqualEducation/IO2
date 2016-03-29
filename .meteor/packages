@@ -6,7 +6,6 @@
 
 cfs:filesystem
 cfs:standard-packages
-standard-minifiers
 meteor-base
 mobile-experience
 mongo
@@ -43,3 +42,5 @@ reactive-var
 meteortoys:allthings
 iron:router
 babrahams:html2docx
+standard-minifier-css
+standard-minifier-js
