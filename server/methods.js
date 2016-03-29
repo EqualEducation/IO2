@@ -14,24 +14,24 @@ Meteor.methods({
     item.owner = Meteor.userId();
     item.username = Meteor.user().username;
     var id = item._id;
-    var newItemId;
+    var result;
     if (itemType == ItemTypeEnum.RESOURCE) {
       console.log("ADDING RESOURCE");
       item.itemType='Resource';
-      newItemId = Resources.upsert(id, item);
+      result = Resources.upsert(id, item);
     } else if (itemType == ItemTypeEnum.ACTIVITY) {
       console.log("ADDING ACTIVITY");
       item.itemType='Activity';
-      newItemId = Activities.upsert(id, item);
+      result = Activities.upsert(id, item);
     } else if (itemType == ItemTypeEnum.CURRICULUM) {
       console.log("ADDING CURRICULUM");
       item.itemType='Curriculum';
-      newItemId = Curricula.upsert(id, item)
+      result = Curricula.upsert(id, item)
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
 
-    return newItemId;
+    return result;
   },
   addFile: function(yourFile) {
     console.log('adding file');
