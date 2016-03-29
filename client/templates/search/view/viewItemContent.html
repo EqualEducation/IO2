@@ -14,9 +14,11 @@
         <td class ="heading">Main Topic</td>
         <td>{{item.details.mainTopic}}</td>
         <td>
+          {{#if currentUser}}
           {{#with editURL item}}
             <a class="ui primary button" href="{{this}}">Edit</a>
           {{/with}}
+          {{/if}}
         </td>
       </tr>
       <tr>
