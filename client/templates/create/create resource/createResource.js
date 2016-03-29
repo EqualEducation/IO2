@@ -45,29 +45,46 @@
 //     ;
 // })
 
+Template.create_resource_type.onRendered( function() {
+	$('#resourceDetailsForm')
+  .form({
+		onFailure(formErrors, fields)	{
+			event.preventDefault();
+			console.log(formErrors);
+			return false;
+		},
+		onSuccess : function(event, fields){
+			event.preventDefault();
+      var form = $('#resourceDetailsForm');
+       var topic =	form.form('get field', 'topic').val();
+       var allFields = form.form('get values')
+       var newResource = new Object();
 
-Template.create_resource_type.events({
-  'click #save' : function(event, template) {
-    var form = $('#resourceDetailsForm');
-     var topic =	form.form('get field', 'topic').val();
-     var allFields = form.form('get values')
-     var newResource = new Object();
+       newResource.type = this.type
+       var subTopic = allFields.subTopic;
+       var keywords = allFields.keywords;
+       var methods = allFields.methods;
+       var materials = allFields.materials;
 
-     newResource.type = this.type
-     var subTopic = allFields.subTopic;
-     var keywords = allFields.keywords;
-     var methods = allFields.methods;
-     var materials = allFields.materials;
-
-     newResource.details = allFields;
-     newResource.fileIDs = Session.get('fileIDs');
-     Session.set('fileIDs', null);
-     Meteor.call("addItem", ItemTypeEnum.RESOURCE, newResource);
-     form.form('clear')
-
-    return true;
-  }
+       newResource.details = allFields;
+       newResource.fileIDs = Session.get('fileIDs');
+       Session.set('fileIDs', null);
+       Meteor.call("addItem", ItemTypeEnum.RESOURCE, newResource);
+       form.form('clear')
+    },
+		on: 'submit',
+    fields: {
+      title     : 'empty',
+      mainTopic   : 'empty',
+      subTopic : 'empty',
+      description : ['minLength[1]', 'empty'],
+      keywords   : ['minCount[1]', 'empty'],
+      audience    : 'empty'
+    }
+  })
 })
+
+
 Template.create_resource_type.helpers({
   content: function() {
 		var ret = 'content_' + this.type
