@@ -3,8 +3,14 @@
   <div class="ui equal width aligned padded grid fluid">
     <div class="row">
       <div class="column">
-        <h1>Edit {{this.type}}: {{this.details.title}}</h1>
-      </div>
+				<div class="ui huge breadcrumb">
+					<a href="/search" class="section">Search</a>
+				  <i class="right chevron icon divider"></i>
+					<a href="/resource/{{this._id}}" class="section">{{this.type}}: {{this.details.title}}</a>
+					<i class="right chevron icon divider"></i>
+					<div class="active section">Edit</div>
+				</div>
+			</div>
     </div>
     <div class="row">
       <div class="column">
@@ -13,7 +19,7 @@
     			{{> Template.dynamic template=content data=this}}
           {{> uploadFile}}
           <div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
-					<div id="back" class="ui black deny button">Cancel</div>
+          <a href="/resource/{{this._id}}" class="ui black deny button">Cancel</a>
     		</form>
     	</div>
     </div>

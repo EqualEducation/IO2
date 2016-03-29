@@ -2,7 +2,13 @@
 	<div class="ui equal width aligned padded grid fluid">
 		<div class="row">
 			<div class="column">
-        <h1>Edit Curriculum: {{this.details.title}}</h1>
+				<div class="ui huge breadcrumb">
+					<a href="/search" class="section">Search</a>
+				  <i class="right chevron icon divider"></i>
+					<a href="/curriculum/{{this._id}}" class="section">Curriculum: {{this.details.title}}</a>
+					<i class="right chevron icon divider"></i>
+					<div class="active section">Edit</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -11,7 +17,7 @@
 					{{> content_curriculum this}}
 					{{> uploadFile}}
 					<div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
-					<div id="back" class="ui black deny button">Cancel</div>
+					<a href="/curriculum/{{this._id}}" class="ui black deny button">Cancel</a>
 				</form>
 			</div>
 		</div>
