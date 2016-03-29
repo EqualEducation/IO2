@@ -21,19 +21,16 @@ Template.editActivity.onRendered( function() {
 		onSuccess : function(event, fields){
 			event.preventDefault();
       console.log('edit activity');
-      console.log(this);
-			// var form = $('#activityDetailsForm');
-			// var topic =	form.form('get field', 'topic').val();
-			// var newActivity = new Object();
-      //
-			// newActivity.details = fields;
-			// newActivity.fileIDs = Session.get('fileIDs');
-			// newActivity.guideID = Session.get('guideID');
-			// Meteor.call("updateItem", ItemTypeEnum.ACTIVITY, newActivity);
-			// Session.set('fileIDs', null);
-			// form.form('clear')
-			// console.log('Success');
-			// Router.go('create');
+			var form = $('#activityDetailsForm');
+			var identifier = Router.current().data()._id
+			var existingActivity = Activities.findOne(identifier);
+
+			existingActivity.details = fields;
+			existingActivity.fileIDs = Session.get('fileIDs');
+			existingActivity.guideID = Session.get('guideID');
+			Meteor.call("addItem", ItemTypeEnum.ACTIVITY, existingActivity);
+			Session.set('fileIDs', null);
+			console.log('Success');
 			return false;
     },
 		on: 'submit',

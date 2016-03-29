@@ -10,6 +10,25 @@ Template.editCurriculum.onRendered( function() {
       audience    : 'empty'
     }
   })
+	.form({
+		onFailure(formErrors, fields)	{
+			event.preventDefault();
+			console.log(formErrors);
+			return false;
+		},
+		onSuccess : function(event, fields){
+			var form = $('#curriculumDetailsForm');
+			var topic =	form.form('get field', 'topic').val();
+			var identifier = Router.current().data()._id
+			var existingCurriculum = Curricula.findOne(identifier);
+
+			existingCurriculum.details = fields;
+			existingCurriculum.fileIDs = Session.get('fileIDs');
+			Meteor.call("addItem", ItemTypeEnum.CURRICULUM, existingCurriculum);
+			Session.set('fileIDs', null);
+			return true;
+    },
+	})
 	.form('set values', {
     title     : this.data.details.title,
 		description     : this.data.details.description,

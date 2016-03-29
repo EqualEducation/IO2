@@ -1,5 +1,6 @@
 Meteor.methods({
   addItem: function(itemType, item) {
+    console.log("ADDING ITEM!");
     // Make sure the user is logged in before inserting a task
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -12,20 +13,20 @@ Meteor.methods({
     item.createdAt = new Date();
     item.owner = Meteor.userId();
     item.username = Meteor.user().username;
-
+    var id = item._id;
     var newItemId;
     if (itemType == ItemTypeEnum.RESOURCE) {
       console.log("ADDING RESOURCE");
       item.itemType='Resource';
-      newItemId = Resources.insert(item);
+      newItemId = Resources.upsert(id, item);
     } else if (itemType == ItemTypeEnum.ACTIVITY) {
       console.log("ADDING ACTIVITY");
       item.itemType='Activity';
-      newItemId = Activities.insert(item);
+      newItemId = Activities.upsert(id, item);
     } else if (itemType == ItemTypeEnum.CURRICULUM) {
       console.log("ADDING CURRICULUM");
       item.itemType='Curriculum';
-      newItemId = Curricula.insert(item)
+      newItemId = Curricula.upsert(id, item)
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
