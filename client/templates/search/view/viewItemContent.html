@@ -65,10 +65,10 @@
 
 {{#each item.details.books}}
       {{#with resource this}}
-        {{#with file this.fileIDs}}
+        {{#with file this.fileIDs this.details.title}}
         <tr>
           <td colspan="2"> <center> <a class="ui primary button" id="downloadGuide" href="{{this.url}}" target="_blank">
-          Download Book
+          Download Book: {{this.itemname}}
           </a></center></td>
         </tr>
         {{/with}}
@@ -77,10 +77,10 @@
 
 {{#each item.details.films}}
       {{#with resource this}}
-        {{#with file this.fileIDs}}
+        {{#with file this.fileIDs this.details.title}}
         <tr>
           <td colspan="2"> <center> <a class="ui primary button" id="downloadGuide" href="{{this.url}}" target="_blank">
-          Download Film
+          Download Film: {{this.itemname}}
           </a></center></td>
         </tr>
         {{/with}}
