@@ -6,46 +6,34 @@
 			</div>
 		</div>
 	</div>
-	<div class="ui center aligned one column grid">
-	  <div class="row">
-	    <div class="column">
-				<a href="/create/curriculum" class="massive ui button" id="createCurriculumButton">
-					<h2 class="ui header">
-					  <i class="large icons">
-					    <i class="calendar icon"></i>
-					    <i class="inverted corner add icon"></i>
-					  </i>
-							Create Curriculum
-						</h2>
-				</a>
+	<div class="feature alternate ui stripe vertical segment">
+		<div class="ui three column center aligned divided relaxed stackable grid container">
+	    <div class="row">
+	      <div class="column">
+	        <h2 class="ui icon header">
+						<i class="paint brush icon"></i>
+						{{totalNumberOfItems "Activity"}}
+	        </h2>
+	        <p></p>
+					<a href="/create/activity" class="ui primary large button">Add New Activity</a>
+	      </div>
+	      <div class="column">
+	        <h2 class="ui icon header">
+						<i class="film icon"></i>
+						{{totalNumberOfItems "Resource"}}
+	        </h2>
+	        <p></p>
+					<a href="/create/resource" class="ui primary large button">Add New Resource</a>
+	      </div>
+	      <div class="column">
+	        <h2 class="ui icon header">
+						<i class="calendar icon"></i>
+						{{totalNumberOfItems "Curriculum"}}
+	        </h2>
+	        <p></p>
+	        <a href="/create/curriculum" class="ui primary large button">Add New Curriculum</a>
+	      </div>
 	    </div>
 	  </div>
-		<div class="row">
-	    <div class="column">
-				<a href="/create/activity" class="massive ui button" id="createActivityButton">
-					<h2 class="ui header">
-					  <i class="large icons">
-					    <i class="paint brush icon"></i>
-					    <i class="inverted corner add icon"></i>
-					  </i>
-							Create Activity
-						</h2>
-				</a>
-	    </div>
-	  </div>
-		<div class="row">
-			<div class="column">
-				<a href="/create/resource" class="massive ui button" id="createResourceButton">
-					<h2 class="ui header">
-						<i class="large icons">
-							<i class="film icon"></i>
-							<i class="inverted corner add icon"></i>
-						</i>
-							Create Resource
-						</h2>
-				</a>
-			</div>
-		</div>
 	</div>
-
 </template>

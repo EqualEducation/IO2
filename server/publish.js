@@ -46,3 +46,19 @@ Meteor.publish("options", function () {
    return Options.find();
 
 });
+
+//COUNTS
+Meteor.publish("resources-createpage-count", function () {
+    console.log("publishing resources-createpage-count");
+    return Resources.find({},{fields: {'_id' : 1}});
+  });
+
+Meteor.publish("activities-createpage-count", function () {
+  console.log("publishing activities-createpage-count");
+  return Activities.find({},{fields: {'_id' : 1}});
+});
+
+Meteor.publish("curricula-createpage-count", function () {
+  console.log("publishing curricula-createpage-count");
+  return Curricula.find({},{fields: {'_id' : 1}});
+});
