@@ -23,6 +23,14 @@ Template.content.helpers({
     };
 
   },
+      itemTypeIsResource: function(itemType) {
+    //look in YourFile collection
+    if(itemType=="Resource")
+      return true;
+    else
+      return false;
+
+  },
   // resourceLink: function() {
   //   //look in YourFile collection
   //   //var details = YourFileCollection.findOne(this.fileIDs);
