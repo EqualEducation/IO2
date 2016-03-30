@@ -13,6 +13,34 @@ Template.viewItemContent.helpers({
 
     //return itemType.toLowerCase() + ".view";
   },
+  isActivity: function(itemType) {
+    if(itemType=="Activity")
+      return true;
+    else
+      return false;
+
+  },
+    isBook: function(itemType) {
+    if(itemType=="book")
+      return true;
+    else
+      return false;
+
+  },
+  isVideo: function(itemType) {
+    if(itemType=="film")
+      return true;
+    else
+      return false;
+
+  },
+  isIcebreaker: function(itemType) {
+    if(itemType=="icebreaker")
+      return true;
+    else
+      return false;
+
+  },
   resource: function(resourceID) {
 
     var resource=Resources.findOne(resourceID);

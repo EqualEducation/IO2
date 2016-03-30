@@ -37,14 +37,6 @@
         <td>{{item.details.description}}</td>
       </tr>
       <tr>
-      <td class ="heading">Duration</td>
-        <td>{{item.details.duration}}</td>
-      </tr>
-      <tr>
-      <td class ="heading">Method</td>
-        <td>{{item.details.method}}</td>
-      </tr>
-      <tr>
       <td class ="heading">Audience</td>
         <td>{{item.details.audience}}</td>
       </tr>
@@ -52,6 +44,64 @@
       <td class ="heading">Source</td>
         <td>{{item.details.source}}</td>
       </tr>
+
+      {{#if isVideo item.type}}
+      <tr>
+      <td class ="heading">Director</td>
+        <td>{{item.details.director}}</td>
+      </tr>
+            <tr>
+      <td class ="heading">Year</td>
+        <td>{{item.details.year}}</td>
+      </tr>
+            <tr>
+      <td class ="heading">Duration</td>
+        <td>{{item.details.duration}}</td>
+      </tr>
+      <tr>
+      <td class ="heading">Film Type</td>
+        <td>{{item.details.filmType}}</td>
+      </tr>
+      <tr>
+      <td class ="heading">Storage Location Online</td>
+        <td>{{item.details.storageLocationOnline}}</td>
+      </tr>
+      <tr>
+      <td class ="heading">Storage Location Offline</td>
+        <td>{{item.details.storageLocationOffline}}</td>
+      </tr>
+        {{/if}}
+
+        {{#if isActivity item.itemType}}
+      <tr>
+      <td class ="heading">Method</td>
+        <td>{{item.details.method}}</td>
+      </tr>
+        {{/if}}
+
+        {{#if isBook item.type}}
+      <tr>
+      <td class ="heading">Author</td>
+        <td>{{item.details.author}}</td>
+      </tr>
+            <tr>
+      <td class ="heading">Year</td>
+        <td>{{item.details.year}}</td>
+      </tr>
+            <tr>
+      <td class ="heading">Length</td>
+        <td>{{item.details.length}}</td>
+      </tr>
+        {{/if}}
+
+        {{#if isIcebreaker item.type}}
+      <tr>
+      <td class ="heading">Materials Needed</td>
+        <td>{{item.details.materialsNeeded}}</td>
+      </tr>
+        {{/if}}
+
+
       <tr>
       <td colspan="2" ><center><b>Guide & Resource Download</b></center></td>
       </tr>
