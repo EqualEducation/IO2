@@ -36,12 +36,6 @@ Template.edit_resource_type.onRendered( function() {
        var identifier = Router.current().data()._id
  			 var existingResource = Resources.findOne(identifier);
 
-       existingResource.type = this.type
-       var subTopic = allFields.subTopic;
-       var keywords = allFields.keywords;
-       var methods = allFields.methods;
-       var materials = allFields.materials;
-
        existingResource.details = allFields;
        existingResource.fileIDs = Session.get('fileIDs');
        Session.set('fileIDs', null);

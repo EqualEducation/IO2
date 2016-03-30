@@ -8,17 +8,12 @@ Template.create_resource_type.onRendered( function() {
 		},
 		onSuccess : function(event, fields){
 			event.preventDefault();
-      var form = $('#resourceDetailsForm');
+      	var form = $('#resourceDetailsForm');
        var topic =	form.form('get field', 'topic').val();
        var allFields = form.form('get values')
        var newResource = new Object();
-
-       newResource.type = this.type
-       var subTopic = allFields.subTopic;
-       var keywords = allFields.keywords;
-       var methods = allFields.methods;
-       var materials = allFields.materials;
-
+			 var type = Router.current().data().type;
+       newResource.type = type
        newResource.details = allFields;
        newResource.fileIDs = Session.get('fileIDs');
        Session.set('fileIDs', null);

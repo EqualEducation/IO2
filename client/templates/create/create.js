@@ -16,7 +16,7 @@ Template.registerHelper('totalNumberOfItems', function(itemType) {
 		case ItemTypeEnum.RESOURCE:
 			numberOfItems = Resources.find().count()
 			singleItemType = "Resource";
-			multipleResourceTypes = "Resources";
+			multipleItemTypes = "Resources";
 			break;
 		case ItemTypeEnum.CURRICULUM:
 			numberOfItems = Curricula.find().count()
