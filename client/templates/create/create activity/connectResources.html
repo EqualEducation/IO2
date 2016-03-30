@@ -10,12 +10,12 @@
   </div>
 </template>
 
-<template name="connectFilms">
+<template name="connectvideos">
   <div class="field">
-    <label>Films (you can select multiple)</label>
-    <select multiple="" class="connectResources ui search dropdown" name="films">
+    <label>videos (you can select multiple)</label>
+    <select multiple="" class="connectResources ui search dropdown" name="videos">
       <option value="">Select</option>
-      {{#each allResourcesForType "film"}}
+      {{#each allResourcesForType "video"}}
         <option value={{_id}}>{{details.title}} ({{details.year}})</option>
       {{/each}}
     </select>

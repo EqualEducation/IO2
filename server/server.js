@@ -1,6 +1,6 @@
 Meteor.startup(function () {
 
-  var optionTypes = ["audiences", "filmTypes", "keywords", "mainTopics", "materials", "methods", "subTopics"];
+  var optionTypes = ["audiences", "videoTypes", "keywords", "mainTopics", "materials", "methods", "subTopics"];
   var doc = undefined;
 
   optionTypes.forEach(function (type) {
@@ -36,9 +36,9 @@ Meteor.startup(function () {
   //     Audiences.insert(doc);
   //   });
   // }
-  // if (FilmTypes.find().count() === 0) {
-  //   JSON.parse(Assets.getText("filmTypes.json")).items.forEach(function (doc) {
-  //     FilmTypes.insert(doc);
+  // if (videoTypes.find().count() === 0) {
+  //   JSON.parse(Assets.getText("videoTypes.json")).items.forEach(function (doc) {
+  //     videoTypes.insert(doc);
   //   });
   // }
   // if (Materials.find().count() === 0) {

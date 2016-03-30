@@ -86,8 +86,8 @@ tab: function() {
         Resources.find({$and: [{type:"book"},selector]},options).fetch(),
           // fileDetails.find().fetch(),
         ],
-        "film": [
-        Resources.find({$and: [{type:"film"},selector]},options).fetch(),
+        "video": [
+        Resources.find({$and: [{type:"video"},selector]},options).fetch(),
           // fileDetails.find().fetch(),
         ],
         "shortreading": [

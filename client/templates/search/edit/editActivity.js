@@ -10,7 +10,7 @@ Template.editActivity.onRendered( function() {
     source    : this.data.details.source,
     method    : this.data.method,
     books    : this.data.books,
-    films    : this.data.films
+    videos    : this.data.videos
   })
   .form({
 		onFailure(formErrors, fields)	{

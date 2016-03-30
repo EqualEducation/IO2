@@ -1,10 +1,10 @@
-<template name="header_film">
+<template name="header_video">
   <div class="header">
-    New Film
+    New video
   </div>
 </template>
 
-<template name="content_film">
+<template name="content_video">
   <div class="field">
     <label>Director</label>
     <input type="text" name="director">
@@ -15,10 +15,10 @@
   </div>
   {{> durationField}}
   <div class="field">
-    <label>Film Type</label>
-    <select name="filmType" multiple="" class="film ui fluid search dropdown multiple">
+    <label>video Type</label>
+    <select name="videoType" multiple="" class="video ui fluid search dropdown multiple">
       <option value="">Search...</option>
-      {{#each filmTypes}}
+      {{#each videoTypes}}
         <option value="{{@index}}">{{this}}</option>
       {{/each}}
     </select>

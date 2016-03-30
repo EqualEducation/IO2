@@ -28,7 +28,7 @@ Template.viewItemContent.helpers({
 
   },
   isVideo: function(itemType) {
-    if(itemType=="film")
+    if(itemType=="video")
       return true;
     else
       return false;

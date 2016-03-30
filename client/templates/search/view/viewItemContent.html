@@ -59,8 +59,8 @@
         <td>{{item.details.duration}}</td>
       </tr>
       <tr>
-      <td class ="heading">Film Type</td>
-        <td>{{item.details.filmType}}</td>
+      <td class ="heading">video Type</td>
+        <td>{{item.details.videoType}}</td>
       </tr>
       <tr>
       <td class ="heading">Storage Location Online</td>
@@ -125,12 +125,12 @@
       {{/with}}
 {{/each}}
 
-{{#each item.details.films}}
+{{#each item.details.videos}}
       {{#with resource this}}
         {{#with file this.fileIDs this.details.title}}
         <tr>
           <td colspan="2"> <center> <a class="ui primary button" id="downloadGuide" href="{{this.url}}" target="_blank">
-          Download Film: {{this.itemname}}
+          Download video: {{this.itemname}}
           </a></center></td>
         </tr>
         {{/with}}
