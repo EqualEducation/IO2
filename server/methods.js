@@ -12,7 +12,7 @@ Meteor.methods({
 
     item.createdAt = new Date();
     item.owner = Meteor.userId();
-    item.username = Meteor.user().username;
+    item.user_email = Meteor.user().emails[0];
     var id = item._id;
     var result;
     if (itemType == ItemTypeEnum.RESOURCE) {
