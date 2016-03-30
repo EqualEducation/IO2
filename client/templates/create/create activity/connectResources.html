@@ -1,27 +1,3 @@
-<template name="connectBooks">
-  <div class="field">
-    <label>Books (you can select multiple)</label>
-    <select multiple="" class="connectResources ui search dropdown" name="books">
-      <option value="">Select</option>
-      {{#each allResourcesForType "book"}}
-        <option value={{_id}}>{{details.title}} - {{details.author}} ({{details.year}})</option>
-      {{/each}}
-    </select>
-  </div>
-</template>
-
-<template name="connectVideos">
-  <div class="field">
-    <label>Films (you can select multiple)</label>
-    <select multiple="" class="connectResources ui search dropdown" name="films">
-      <option value="">Select</option>
-      {{#each allResourcesForType "film"}}
-        <option value={{_id}}>{{details.title}} ({{details.year}})</option>
-      {{/each}}
-    </select>
-  </div>
-</template>
-
 <template name="connectResources">
   <div class="field">
     <label>Resources (you can select multiple)</label>

@@ -8,11 +8,6 @@ Template.registerHelper("allResourcesForType", function (type) {
   return resources;
 });
 
-Template.connectBooks.onRendered(function() {
-  $('.connectResources.ui.dropdown')
-    .dropdown();
-})
-
 Template.connectResources.onRendered(function() {
   $('.ui.fluid.multiple.search')
     .dropdown();
