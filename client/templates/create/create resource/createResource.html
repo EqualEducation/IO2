@@ -16,27 +16,29 @@
     </div>
     <div class="row">
       <div class="column">
-        <a href="\create\resource\shortreading">Short Reading</a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column">
-        <a href="\create\resource\book">Book</a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column">
-        <a href="\create\resource\film">Film</a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column">
-        <a href="\create\resource\icebreaker">Icebreaker</a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column">
-        <a href="\create\resource\other">Other</a>
+        <!-- <a href="\create\resource\shortreading">Short Reading</a> -->
+        <div class="ui fluid vertical menu">
+          <a href="\create\resource\shortreading" class="item">
+            <div class="ui teal label">{{totalNumberOfResourceType 'shortreading'}}</div>
+            Short Reading
+          </a>
+          <a href="\create\resource\book" class="item">
+            <div class="ui label">{{totalNumberOfResourceType 'book'}}</div>
+            Book
+          </a>
+          <a href="\create\resource\film" class="item">
+            <div class="ui label">{{totalNumberOfResourceType 'film'}}</div>
+            Video
+          </a>
+          <a href="\create\resource\icebreaker" class="item">
+            <div class="ui label">{{totalNumberOfResourceType 'icebreaker'}}</div>
+            Icebreaker
+          </a>
+          <a href="\create\resource\other" class="item">
+            <div class="ui label">{{totalNumberOfResourceType 'other'}}</div>
+            Other
+          </a>
+        </div>
       </div>
     </div>
 </div>

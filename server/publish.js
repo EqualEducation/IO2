@@ -50,7 +50,7 @@ Meteor.publish("options", function () {
 //COUNTS
 Meteor.publish("resources-createpage-count", function () {
     console.log("publishing resources-createpage-count");
-    return Resources.find({},{fields: {'_id' : 1}});
+    return Resources.find({},{fields: {'_id' : 1, 'type' : 1}});
   });
 
 Meteor.publish("activities-createpage-count", function () {

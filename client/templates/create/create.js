@@ -3,53 +3,31 @@ Template.create.onRendered(function(){
 	$('.content.ui.form').form();
 })
 
-Template.registerHelper('totalNumberOfItems', function(resourceType) {
+Template.registerHelper('totalNumberOfItems', function(itemType) {
 	var numberOfItems = 0;
-	var singleResourceType;
-	var multipleResourceTypes;
-	switch (resourceType) {
+	var singleItemType;
+	var multipleItemTypes;
+	switch (itemType) {
 		case ItemTypeEnum.ACTIVITY:
 			numberOfItems = Activities.find().count()
-			singleResourceType = "Activity";
-			multipleResourceTypes = "Activities";
+			singleItemType = "Activity";
+			multipleItemTypes = "Activities";
 			break;
 		case ItemTypeEnum.RESOURCE:
 			numberOfItems = Resources.find().count()
-			singleResourceType = "Resource";
+			singleItemType = "Resource";
 			multipleResourceTypes = "Resources";
 			break;
 		case ItemTypeEnum.CURRICULUM:
 			numberOfItems = Curricula.find().count()
-			singleResourceType = "Curriculum";
-			multipleResourceTypes = "Curricula";
+			singleItemType = "Curriculum";
+			multipleItemTypes = "Curricula";
 			break;
 		default:
 			break;
 	}
-
-
-
 	if (numberOfItems == 1) {
-		return "1 " + singleResourceType;
+		return "1 " + singleItemType;
 	}
-
-	return numberOfItems + " " + multipleResourceTypes;
-
+	return numberOfItems + " " + multipleItemTypes;
 });
-// Template.create.events({
-// 'click #createCurriculumButton': function(event, template) {
-// 	$('.createCurriculum.modal')
-// 	.modal('show')
-// 	;
-// },
-// 'click #createActivityButton': function(event, template) {
-// 	$('.createActivity.modal')
-// 			.modal('show')
-// 			;
-// },
-// 	'click #createResourceButton': function(event, template) {
-// 		$('#chooseTypeForm').form('reset');
-// 		$('.chooseType.modal')
-// 			.modal('show');
-// 	},
-// })
