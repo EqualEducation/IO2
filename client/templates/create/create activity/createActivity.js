@@ -15,7 +15,6 @@ Template.create_activity.onRendered( function() {
 			var newActivity = new Object();
 
 			newActivity.details = fields;
-			newActivity.fileIDs = Session.get('fileIDs');
 			newActivity.guideID = Session.get('guideID');
 			Meteor.call("addItem", ItemTypeEnum.ACTIVITY, newActivity, function(error, result){
         if(error){
