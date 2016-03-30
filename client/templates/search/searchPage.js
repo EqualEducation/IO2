@@ -63,8 +63,8 @@ tab: function() {
     var tab = Template.instance().currentTab.get();
     var data = {
        "all": [
-       _.union(Resources.find(selector, options).fetch(),
-       Activities.find(selector, options).fetch(),
+       _.union(Activities.find(selector, options).fetch(),
+        Resources.find(selector, options).fetch(),
        Curricula.find(selector, options).fetch()),
           // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
         ],
