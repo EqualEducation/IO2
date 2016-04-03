@@ -24,12 +24,8 @@ Template.viewItemContent.helpers({
 
   },
   associatedActivities: function(resourceID){
-    console.log('resourceID');
-    console.log(resourceID);
-    var activityBooks=Activities.find({"details.books":resourceID}).fetch();
-    console.log(activityBooks);
-    var activityVideos=Activities.find({"details.videos":resourceID}).fetch();
-    return activityBooks;
+    var activities=Activities.find({$or:[{"details.books":resourceID},{"details.videos":resourceID},{"details.shortreading":resourceID},{"details.icebreakers":resourceID},{"details.others":resourceID}]}).fetch();
+    return activities;
   },
   isResource: function(itemType) {
     //look in YourFile collection
