@@ -23,6 +23,14 @@ Template.viewItemContent.helpers({
       return false;
 
   },
+  isResource: function(itemType) {
+    //look in YourFile collection
+    if(itemType=="Resource")
+      return true;
+    else
+      return false;
+
+  },
     isBook: function(itemType) {
     if(itemType=="book")
       return true;
