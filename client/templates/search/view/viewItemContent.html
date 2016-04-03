@@ -103,16 +103,13 @@
       <!-- Activity Download Section -->
       {{#if isResource item.itemType}}
       <tr>
-        <td colspan="2" ><center><b>Resource Download</b></center></td>
-      </tr>
-      <tr>
-        <td colspan="2"> <center>
+        <td class ="heading">Download Resource</td>
+        <td>
           {{#with file item.fileIDs item.details.title}}
-          <a class="ui primary button" id="downloadGuide" href="{{this.url}}" target="_blank">
-            Download {{this.itemname}}
-          </a>
+                  <a class="ui icon" href="{{this.url}}" target="_blank">
+          <i class="cloud download icon"></i>
+        </a>
           {{/with}}
-        </center>
       </td>
     </tr>
     <tr>
