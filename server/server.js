@@ -1,5 +1,6 @@
 Meteor.startup(function () {
-
+  var archiver = require('archiver');
+  var archive = archiver.create('zip', {}); // or archiver('zip', {});
   var optionTypes = ["audiences", "videoTypes", "keywords", "mainTopics", "materials", "methods", "subTopics"];
   var doc = undefined;
 

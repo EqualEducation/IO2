@@ -13,6 +13,9 @@ Template.viewItemContent.helpers({
 
     //return itemType.toLowerCase() + ".view";
   },
+  pathName: function(itemType) {
+    return itemType.toLowerCase() + ".view";
+  },
   isActivity: function(itemType) {
     if(itemType=="Activity")
       return true;

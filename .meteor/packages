@@ -44,3 +44,4 @@ iron:router
 babrahams:html2docx
 standard-minifier-css
 standard-minifier-js
+classcraft:archiver

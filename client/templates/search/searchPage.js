@@ -20,6 +20,7 @@ function buildRegExp(searchText) {
 
 Template.searchPage.onCreated( function() {
   this.currentTab = new ReactiveVar( "all" );
+//
 });
 
 Template.searchPage.onRendered(function(){
