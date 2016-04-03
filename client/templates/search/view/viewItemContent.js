@@ -23,6 +23,14 @@ Template.viewItemContent.helpers({
       return false;
 
   },
+  associatedActivities: function(resourceID){
+    console.log('resourceID');
+    console.log(resourceID);
+    var activityBooks=Activities.find({"details.books":resourceID}).fetch();
+    console.log(activityBooks);
+    var activityVideos=Activities.find({"details.videos":resourceID}).fetch();
+    return activityBooks;
+  },
   isResource: function(itemType) {
     //look in YourFile collection
     if(itemType=="Resource")
