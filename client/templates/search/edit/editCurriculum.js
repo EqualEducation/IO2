@@ -24,9 +24,18 @@ Template.editCurriculum.onRendered( function() {
 
 			existingCurriculum.details = fields;
 			existingCurriculum.fileIDs = Session.get('fileIDs');
-			Meteor.call("addItem", ItemTypeEnum.CURRICULUM, existingCurriculum);
-			Session.set('fileIDs', null);
-			return true;
+			Meteor.call("addItem", ItemTypeEnum.CURRICULUM, existingCurriculum, function(error, result){
+				 if(error){
+						 console.log(error);
+				 }  else {
+					console.log('Success');
+					console.log(result)
+				}
+
+				Session.set('fileIDs', null);
+				Router.go('/curriculum/' + existingCurriculum._id);
+				return false;
+				});
     },
 	})
 	.form('set values', {
