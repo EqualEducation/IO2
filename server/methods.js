@@ -30,7 +30,8 @@ Meteor.methods({
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
-
+    console.log(item);
+    console.log(result);
     return result;
   },
   addFile: function(yourFile) {

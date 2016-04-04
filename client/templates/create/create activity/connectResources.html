@@ -1,33 +1,34 @@
 <template name="connectResources">
   <div class="field">
     <label>Resources (you can select multiple)</label>
-    <div class="ui fluid multiple search selection dropdown">
+    <!-- <select name="method" multiple="" class="commonFields allowAdditions ui fluid search dropdown multiple"> -->
+    <div id="resources" class="ui fluid multiple search selection dropdown">
       <div class="default text">Resources</div>
       <i class="dropdown icon"></i>
       <div class="menu">
         <div class="header" style="color: teal">Short Readings</div>
         {{#each allResourcesForType "shortreading"}}
-          <div class="item">{{details.title}}</div>
+        <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
         <div class="header" style="color: teal">Books</div>
         {{#each allResourcesForType "book"}}
-          <div class="item">{{details.title}}</div>
+          <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
         <div class="header" style="color: teal">Video</div>
         {{#each allResourcesForType "video"}}
-          <div class="item">{{details.title}}</div>
+        <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
         <div class="header" style="color: teal">Icebreaker</div>
         {{#each allResourcesForType "icebreaker"}}
-          <div class="item">{{details.title}}</div>
+        <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
         <div class="header" style="color: teal">Other</div>
         {{#each allResourcesForType "other"}}
-          <div class="item">{{details.title}}</div>
+        <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
       </div>

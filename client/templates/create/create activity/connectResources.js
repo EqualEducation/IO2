@@ -1,3 +1,8 @@
+Template.connectResources.onRendered(function() {
+  $('.ui.fluid.multiple.search')
+    .dropdown();
+})
+
 Template.registerHelper("allResourcesForType", function (type) {
   if (type != undefined) {
     var resources = Resources.find({'type': type});
@@ -7,8 +12,3 @@ Template.registerHelper("allResourcesForType", function (type) {
   var resources = Resources.find({});
   return resources;
 });
-
-Template.connectResources.onRendered(function() {
-  $('.ui.fluid.multiple.search')
-    .dropdown();
-})

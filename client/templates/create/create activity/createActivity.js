@@ -11,9 +11,14 @@ Template.create_activity.onRendered( function() {
 		onSuccess : function(event, fields){
 			event.preventDefault();
 			var form = $('#activityDetailsForm');
-			var topic =	form.form('get field', 'topic').val();
+
 			var newActivity = new Object();
 
+			var resources =	$('#resources .ui.label.transition.visible');
+			var resourceIds = $.map(resources, function(element) {
+				return $(element).attr('data-value');
+			});
+			newActivity.resourceIds = resourceIds;
 			newActivity.details = fields;
 			newActivity.guideID = Session.get('guideID');
 			Meteor.call("addItem", ItemTypeEnum.ACTIVITY, newActivity, function(error, result){

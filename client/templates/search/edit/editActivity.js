@@ -25,6 +25,11 @@ Template.editActivity.onRendered( function() {
 			var identifier = Router.current().data()._id
 			var existingActivity = Activities.findOne(identifier);
 
+			var resources =	$('#resources .ui.label.transition.visible');
+			var resourceIds = $.map(resources, function(element) {
+				return $(element).attr('data-value');
+			});
+			existingActivity.resourceIds = resourceIds;
 			existingActivity.details = fields;
 			existingActivity.fileIDs = Session.get('fileIDs');
 			existingActivity.guideID = Session.get('guideID');
