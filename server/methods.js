@@ -22,12 +22,13 @@ Meteor.methods({
     } else if (itemType == ItemTypeEnum.ACTIVITY) {
       console.log("ADDING ACTIVITY");
       item.itemType='Activity';
-      //TODO: Add ActivityId to resource
       result = Activities.upsert(id, item);
+      //TODO: Add result._id to each resource in item.resourceIds
     } else if (itemType == ItemTypeEnum.CURRICULUM) {
       console.log("ADDING CURRICULUM");
       item.itemType='Curriculum';
       result = Curricula.upsert(id, item)
+      //TODO: Add result._id to each activity in item.activityIds
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
