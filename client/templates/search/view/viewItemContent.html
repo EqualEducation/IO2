@@ -119,7 +119,7 @@
     {{#each this}}
     <tr>
       {{#with pathName "Activity"}}
-      <td colspan="2" ><center>        <a id="downloadGuide" href="{{pathFor route=this _id=../_id}}">
+      <td colspan="2" ><center>        <a id="downloadGuide" href="{{pathFor route=this _id=../_id}}"  target="_blank">
         {{../details.title}}
       </a></center></td>{{/with}}
     </tr>
@@ -139,13 +139,13 @@
     </tr>
     {{/with}}
 
-    {{#each item.details.books}}
+    {{#each item.resourceIds}}
     {{#with resource this}}
     <tr>
       <td colspan="2"> <center>
         {{#with pathName this.itemType}}
-        <a id="downloadGuide" href="{{pathFor route=this _id=../_id}}">
-          Book: {{../details.title}}
+        <a id="downloadGuide" href="{{pathFor route=this _id=../_id}}" target="_blank">
+          {{../type}}: {{../details.title}}
         </a>
         {{/with}}
         {{#with file this.fileIDs this.details.title}}
@@ -159,25 +159,6 @@
   {{/with}}
   {{/each}}
 
-  {{#each item.details.videos}}
-  {{#with resource this}}
-  <tr>
-    <td colspan="2"> <center>
-      {{#with pathName this.itemType}}
-      <a id="downloadGuide" href="{{pathFor route=this _id=../_id}}">
-        Video: {{../details.title}}
-      </a>
-      {{/with}}
-      {{#with file this.fileIDs this.details.title}}
-      <a class="ui icon" href="{{this.url}}" target="_blank">
-        <i class="cloud download icon"></i>
-      </a>
-      {{/with}}
-    </center>
-  </td>
-</tr>
-{{/with}}
-{{/each}}
 {{/if}}
 </table>
 </div>

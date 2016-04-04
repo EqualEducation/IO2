@@ -24,7 +24,7 @@ Template.viewItemContent.helpers({
 
   },
   associatedActivities: function(resourceID){
-    var activities=Activities.find({$or:[{"details.books":resourceID},{"details.videos":resourceID},{"details.shortreading":resourceID},{"details.icebreakers":resourceID},{"details.others":resourceID}]}).fetch();
+    var activities=Activities.find({"resourceIds":resourceID}).fetch();
     return activities;
   },
   isResource: function(itemType) {
@@ -57,7 +57,6 @@ Template.viewItemContent.helpers({
 
   },
   resource: function(resourceID) {
-
     var resource=Resources.findOne(resourceID);
     //linkedFile=YourFileCollection.findOne();
     console.log("RESOURCE")
