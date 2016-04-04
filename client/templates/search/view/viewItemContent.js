@@ -23,9 +23,20 @@ Template.viewItemContent.helpers({
       return false;
 
   },
+    isCurriculum: function(itemType) {
+    if(itemType=="Curriculum")
+      return true;
+    else
+      return false;
+
+  },
   associatedActivities: function(resourceID){
     var activities=Activities.find({"resourceIds":resourceID}).fetch();
     return activities;
+  },
+    associatedCurricula: function(activityID){
+    var curricula=Curricula.find({"activityIds":activityID}).fetch();
+    return curricula;
   },
   isResource: function(itemType) {
     //look in YourFile collection
@@ -62,6 +73,15 @@ Template.viewItemContent.helpers({
     console.log("RESOURCE")
     console.log(resource)
     return resource;
+
+    //return itemType.toLowerCase() + ".view";
+  },
+    activity: function(activityID) {
+    var activity=Activities.findOne(activityID);
+    //linkedFile=YourFileCollection.findOne();
+    console.log("ACTIVITY")
+    console.log(activity)
+    return activity;
 
     //return itemType.toLowerCase() + ".view";
   },

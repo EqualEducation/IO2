@@ -100,7 +100,7 @@
         <td>{{item.details.materialsNeeded}}</td>
       </tr>
       {{/if}}
-      <!-- Activity Download Section -->
+      <!-- Resource Download Section -->
       {{#if isResource item.itemType}}
       <tr>
         <td class ="heading">Download Resource</td>
@@ -158,8 +158,45 @@
   </tr>
   {{/with}}
   {{/each}}
+  <tr>
+      <td colspan="2" ><center><b>Associated Curricula</b></center></td>
+    </tr>
+    {{#with associatedCurricula item._id}}
+    {{#each this}}
+    <tr>
+      {{#with pathName "Curriculum"}}
+      <td colspan="2" ><center>        <a id="downloadGuide" href="{{pathFor route=this _id=../_id}}"  target="_blank">
+        {{../details.title}}
+      </a></center></td>{{/with}}
+    </tr>
+    {{/each}}
+    {{/with}}
+{{/if}}
+
+    <!-- Curriculum Download Section -->
+    {{#if isCurriculum item.itemType}}
+    <tr>
+      <td colspan="2" ><center><b>Linked Activities</b></center></td>
+    </tr>
+
+    {{#each item.activityIds}}
+    {{#with activity this}}
+    <tr>
+      <td colspan="2"> <center>
+        {{#with pathName this.itemType}}
+        <a id="downloadGuide" href="{{pathFor route=this _id=../_id}}" target="_blank">
+          {{../details.title}}
+        </a>
+        {{/with}}
+      </center>
+    </td>
+  </tr>
+  {{/with}}
+  {{/each}}
 
 {{/if}}
+
+
 </table>
 </div>
 </template>
