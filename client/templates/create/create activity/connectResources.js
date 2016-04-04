@@ -8,7 +8,20 @@ Template.registerHelper("allResourcesForType", function (type) {
     var resources = Resources.find({'type': type});
     return resources;
   }
-
   var resources = Resources.find({});
   return resources;
 });
+
+
+Template.connectResources.helpers({
+  'selectedResources' : function() {
+    var resourceIds = this.resourceIds;
+    var resources = [];
+    resourceIds.forEach(function(resourceId) {
+      var resource = Resources.findOne(resourceId);
+      resources.push(resource);
+    })
+
+    return resources;
+  }
+})

@@ -33,10 +33,18 @@ Template.editActivity.onRendered( function() {
 			existingActivity.details = fields;
 			existingActivity.fileIDs = Session.get('fileIDs');
 			existingActivity.guideID = Session.get('guideID');
-			Meteor.call("addItem", ItemTypeEnum.ACTIVITY, existingActivity);
-			Session.set('fileIDs', null);
-			console.log('Success');
-			return false;
+			Meteor.call("addItem", ItemTypeEnum.ACTIVITY, existingActivity, function(error, result){
+        if(error){
+            console.log(error);
+        }  else {
+					console.log('Success');
+					console.log(result)
+				}
+
+				Session.set('fileIDs', null);
+				Router.go('/activity/' + existingActivity._id);
+				return false;
+			  });
     },
 		on: 'submit',
     fields: {

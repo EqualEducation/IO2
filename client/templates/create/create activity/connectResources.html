@@ -3,6 +3,9 @@
     <label>Resources (you can select multiple)</label>
     <!-- <select name="method" multiple="" class="commonFields allowAdditions ui fluid search dropdown multiple"> -->
     <div id="resources" class="ui fluid multiple search selection dropdown">
+      {{#each selectedResources}}
+        <a class="ui label transition visible" data-value="{{_id}}" style="display: inline-block !important;">{{details.title}}<i class="delete icon"></i></a>
+      {{/each}}
       <div class="default text">Resources</div>
       <i class="dropdown icon"></i>
       <div class="menu">
