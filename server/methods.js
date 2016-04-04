@@ -22,6 +22,7 @@ Meteor.methods({
     } else if (itemType == ItemTypeEnum.ACTIVITY) {
       console.log("ADDING ACTIVITY");
       item.itemType='Activity';
+      //TODO: Add ActivityId to resource
       result = Activities.upsert(id, item);
     } else if (itemType == ItemTypeEnum.CURRICULUM) {
       console.log("ADDING CURRICULUM");
