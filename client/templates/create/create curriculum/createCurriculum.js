@@ -12,7 +12,11 @@ Template.create_curriculum.onRendered( function() {
       console.log('SAVING');
 
       var newCurriculum = new Object();
-
+      var activities = $('#activities .ui.label.transition.visible');
+      var activityIds = $.map(activities, function(element) {
+        return $(element).attr('data-value');
+      });
+      newCurriculum.activityIds = activityIds;
       newCurriculum.details = fields;
       newCurriculum.fileIDs = Session.get('fileIDs');
       Meteor.call("addItem", ItemTypeEnum.CURRICULUM, newCurriculum, function(error, result){

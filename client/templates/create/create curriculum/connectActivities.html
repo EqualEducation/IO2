@@ -1,0 +1,23 @@
+<template name="connectActivities">
+  <div class="field">
+    <label>Activities (you can select multiple)</label>
+    <!-- <select name="method" multiple="" class="commonFields allowAdditions ui fluid search dropdown multiple"> -->
+    <div id="activities" class="ui fluid multiple search selection dropdown">
+      {{#each selectedActivities}}
+        <a class="ui label transition visible" data-value="{{_id}}" style="display: inline-block !important;">{{details.title}}<i class="delete icon"></i></a>
+      {{/each}}
+      <div class="default text">Activities</div>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="header" style="color: teal">Activities</div>
+        {{#each allActivities}}
+        <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
+        {{/each}}
+        <div class="divider"></div>
+      </div>
+  </div>
+  <div>
+    <a target="_blank" href="/create/activity" class="button primary">Add new activity</a>
+  </div>
+</div>
+</template>
