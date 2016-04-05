@@ -80,9 +80,9 @@ Template.viewItem.helpers({
 
 Template.viewItem.events({
     'click #deleteFile': function (event) {
-      //console.log(this);
-      itemID=(this.item._id)
-      itemType=(this.item.itemType)
+      console.log("DELETE");
+      itemID=(this._id)
+      itemType=(this.itemType)
       $('.ui.basic.test.modal')
         .modal({
 

@@ -8,8 +8,10 @@ table {
   padding-right: 12px;
 }
 tr {
-    border-bottom: 20px solid;
     border-color: transparent;
+}
+td {
+  padding-bottom: 18px !important;
 }
 
 .meta {
