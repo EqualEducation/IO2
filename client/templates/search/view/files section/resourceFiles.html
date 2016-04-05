@@ -1,0 +1,24 @@
+<template name="resourceFiles">
+  <h4 class="ui horizontal divider header">
+    <i class="file text icon"></i>
+    Activities
+  </h4>
+  <table class="ui definition table">
+    <tbody>
+      {{#each item.activityIds}}
+      {{#with activity this}}
+      <tr>
+        <td colspan="2"> <center>
+          {{#with pathName this.itemType}}
+          <a id="downloadGuide" href="{{pathFor route=this _id=../_id}}" target="_blank">
+            {{../details.title}}
+          </a>
+          {{/with}}
+        </center>
+      </td>
+    </tr>
+    {{/with}}
+    {{/each}}
+    </tbody>
+  </table>
+</template>

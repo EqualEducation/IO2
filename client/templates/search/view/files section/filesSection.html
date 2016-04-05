@@ -1,0 +1,11 @@
+<template name="filesSection">
+  {{#if isEqual item.itemType activityEnum}}
+    {{> activityFiles item=item}}
+  {{/if}}
+  {{#if isEqual item.itemType resourceEnum}}
+    {{> resourceFiles item=item}}
+  {{/if}}
+  {{#if isEqual item.itemType curriculumEnum}}
+    {{> curriculumFiles item=item}}
+  {{/if}}
+</template>

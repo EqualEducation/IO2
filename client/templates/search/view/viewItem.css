@@ -1,5 +1,4 @@
 table {
-  font-size: 120%;
   margin: 0 auto;
 }
 
@@ -11,4 +10,11 @@ table {
 tr {
     border-bottom: 20px solid;
     border-color: transparent;
+}
+
+.meta {
+    margin: 0.5em 0em 0.5em;
+    font-size: 1em;
+    line-height: 1em;
+    color: rgba(0, 0, 0, 0.6);
 }

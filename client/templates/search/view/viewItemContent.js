@@ -1,133 +1,16 @@
-Template.viewItemContent.helpers({
-  file: function(itemID,itemTitle) {
-
-    var linkedFile=YourFileCollection.findOne(itemID);
-    //linkedFile=YourFileCollection.findOne();
-    console.log("FILE")
-    console.log(linkedFile);
-    if (linkedFile != undefined)
-    {
-      linkedFile.itemname=itemTitle;
-    }
-    return linkedFile;
-
-    //return itemType.toLowerCase() + ".view";
-  },
-  pathName: function(itemType) {
-    return itemType.toLowerCase() + ".view";
-  },
-  isActivity: function(itemType) {
-    if(itemType=="Activity")
-      return true;
-    else
-      return false;
-
-  },
-    isCurriculum: function(itemType) {
-    if(itemType=="Curriculum")
-      return true;
-    else
-      return false;
-
-  },
-  associatedActivities: function(resourceID){
-    var activities=Activities.find({"resourceIds":resourceID}).fetch();
-    return activities;
-  },
-    associatedCurricula: function(activityID){
-    var curricula=Curricula.find({"activityIds":activityID}).fetch();
-    return curricula;
-  },
-  isResource: function(itemType) {
-    //look in YourFile collection
-    if(itemType=="Resource")
-      return true;
-    else
-      return false;
-
-  },
-    isBook: function(itemType) {
-    if(itemType=="book")
-      return true;
-    else
-      return false;
-
-  },
-  isVideo: function(itemType) {
-    if(itemType=="video")
-      return true;
-    else
-      return false;
-
-  },
-  isIcebreaker: function(itemType) {
-    if(itemType=="icebreaker")
-      return true;
-    else
-      return false;
-
-  },
-  resource: function(resourceID) {
-    var resource=Resources.findOne(resourceID);
-    //linkedFile=YourFileCollection.findOne();
-    console.log("RESOURCE")
-    console.log(resource)
-    return resource;
-
-    //return itemType.toLowerCase() + ".view";
-  },
-    activity: function(activityID) {
-    var activity=Activities.findOne(activityID);
-    //linkedFile=YourFileCollection.findOne();
-    console.log("ACTIVITY")
-    console.log(activity)
-    return activity;
-
-    //return itemType.toLowerCase() + ".view";
-  },
-  editURL: function(item) {
-    var url;
-    switch (item.itemType) {
-      case ItemTypeEnum.ACTIVITY:
-        url = '\\activity\\edit\\' + item._id;
-        break;
-      case ItemTypeEnum.RESOURCE:
-        url = '\\resource\\edit\\' + item._id;
-        break;
-      case ItemTypeEnum.CURRICULUM:
-        url = '\\curriculum\\edit\\' + item._id;
-        break;
-      default:
-        break;
-    }
-
-    return url;
+Template.registerHelper('file',function(itemID,itemTitle) {
+  var linkedFile=YourFileCollection.findOne(itemID);
+  //linkedFile=YourFileCollection.findOne();
+  console.log("FILE")
+  console.log(linkedFile);
+  if (linkedFile != undefined)
+  {
+    linkedFile.itemname=itemTitle;
   }
+  return linkedFile;
+  //return itemType.toLowerCase() + ".view";
 })
 
-
-Template.viewItemContent.events({
-    'click #deleteFile': function (event) {
-      //console.log(this);
-      itemID=(this.item._id)
-      itemType=(this.item.itemType)
-      $('.ui.basic.test.modal')
-        .modal({
-
-          onDeny    : function(){
-            return true;
-          },
-          onApprove : function() {
-                  Meteor.call("deleteItem",itemType,itemID)
-                  window.location = "/search";
-          }
-        })
-        .modal('show')
-      ;
-    }
-    // },
-    // 'click #downloadFile': function (event) {
-    //   console.log("DOWNLOAD");
-    //   console.log(this);
-    // }
-    });
+Template.registerHelper('pathName', function(itemType) {
+  return itemType.toLowerCase() + ".view";
+});

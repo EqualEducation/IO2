@@ -1,34 +1,36 @@
 <template name="viewItem">
-	<div class="ui equal width aligned padded grid fluid">
+	<div class="ui padded grid">
 		<div class="row">
 			<div class="column">
 				<div class="ui huge breadcrumb">
 					<a href="/search" class="section">Search</a>
 					<i class="right chevron icon divider"></i>
-					<div class="active section">{{this.itemType}}: {{this.details.title}}</div>
+					<div class="active section">{{this.itemType}}</div>
 				</div>
 			</div>
+		</div>
+		<div class="center aligned row">
 			<div class="column">
-				<h1 class="ui header">{{this.itemType}}</h1>
+				<h1 class="ui header">{{this.details.title}}</h1>
+				<div class="meta">
+          <p>Created by <a>{{this.user_email.address}}</a> on {{convertDate this.createdAt}}</p>
+        </div>
 			</div>
 		</div>
-	</div>
-	<div class="ui left aligned one column grid" id="wholeScreen">
 	  <div class="row">
 	    <div class="column">
         {{> viewItemContent item=this}}
 	    </div>
 	  </div>
-    <div class="row">
-      <div class="center aligned column">
-        <!-- <a class="ui primary button" id="downloadPDF">Download PDF</a> -->
-        {{> html2docx selector="#wholeScreen" linkClass="ui primary button" filename=this.details.title }}
-      </div>
-    </div>
 		<div class="row">
-	    <div class="center aligned column">
 	    	<a class="ui primary button" href="/search">Back</a>
-	    </div>
+				{{> html2docx selector="#wholeScreen" linkClass="ui primary button" filename=this.details.title }}
+				{{#if currentUser}}
+					{{#with editURL this}}
+						<a class="ui primary button" href="{{this}}">Edit</a>
+						<a class="ui primary button" id="deleteFile">Delete</a>
+					{{/with}}
+				{{/if}}
 	  </div>
 	</div>
 	<div class="ui basic test modal">
