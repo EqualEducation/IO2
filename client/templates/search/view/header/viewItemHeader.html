@@ -27,6 +27,13 @@
         <h1>{{item.details.title}}</h1>
         <div class="meta">
           <p>Created by <a>{{item.user_email.address}}</a> in {{convertDate item.createdAt}}</p>
+          {{#if isEqual item.itemType activityEnum}}
+            {{> linkedCurricula item=item}}
+          {{/if}}
+          {{#if isEqual item.itemType resourceEnum}}
+            {{> linkedActivities item=item}}
+          {{/if}}
+
         </div>
       </div>
     </div>

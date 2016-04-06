@@ -1,11 +1,3 @@
-Template.viewItem.onRendered(function () {
-  $('.ui.dropdown')
-.dropdown({
-  allowAdditions: true
-})
-;
-});
-
 Template.registerHelper('listView', function(listItems) {
   var count=listItems.length;
   var returnList = "";

@@ -1,0 +1,19 @@
+<template name="linkedActivities">
+  {{#with associatedActivities item._id}}
+    {{#if hasLinkedActivities this}}
+    <div class="ui dropdown linked">
+      <div class="text">{{numberOfLinkedActivities this}}</div>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+          {{#each this}}
+            {{#with pathName this.itemType}}
+              <div class="item"><a id="downloadGuide" href="{{pathFor route=this _id=../_id}}" target="_blank">
+                {{../details.title}}
+              </a></div>
+            {{/with}}
+          {{/each}}
+      </div>
+    </div>
+    {{/if}}
+  {{/with}}
+</template>
