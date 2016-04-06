@@ -1,15 +1,24 @@
 <template name="viewItemContent">
-    <h4 class="ui horizontal divider header">
-    <i class="tag icon"></i>
-    DESCRIPTION
-  </h4>
-  <div class="center aligned row">
-    <div class="column">
-      {{item.details.description}}
+  <div class="ui stackable padded grid" style="background-color:#f5f5f5; border-top: 1px solid rgba(34, 36, 38, 0.15);">
+    <div class="row">
+      <div class="column">
+        <h3>Description</h3>
+      </div>
     </div>
-  </div>
-  {{> detailsSection item=item}}
-  {{> filesSection item=item}}
+    <div class="row">
+      <div class="column">
+        {{item.details.description}}
+      </div>
+    </div>
+    <div class="ui divider"></div>
+    <div class="row">
+      {{> detailsSection item=item}}
+    </div>
+    <div class="ui divider"></div>
+    <div class="row">
+      {{> filesSection item=item}}
+    </div>
+</div>
 
   <!-- <div class="ui segment">
     <h2 class="ui right floated header">Files</h2>

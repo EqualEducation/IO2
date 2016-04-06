@@ -1,0 +1,34 @@
+<template name="viewItemHeader">
+  <div class="ui stackable padded grid">
+    <div class="row">
+      <div class="column">
+        <div class="ui huge breadcrumb">
+          <a href="/search" class="section">Search</a>
+          <i class="right chevron icon divider"></i>
+          <div class="active section">{{item.itemType}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="two wide column">
+        <h1 class="ui header">
+          {{#if isEqual item.itemType curriculumEnum}}
+            <i class="circular archive icon"></i>
+          {{/if}}
+          {{#if isEqual item.itemType activityEnum}}
+            <i class="circular puzzle icon"></i>
+          {{/if}}
+          {{#if isEqual item.itemType resourceEnum}}
+            <i class="circular folder open outline icon"></i>
+          {{/if}}
+        </h1>
+      </div>
+      <div class="fourteen wide column">
+        <h1>{{item.details.title}}</h1>
+        <div class="meta">
+          <p>Created by <a>{{item.user_email.address}}</a> in {{convertDate item.createdAt}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,46 +1,47 @@
 <template name="detailsSection">
-  <h4 class="ui horizontal divider header">
-    <i class="bar chart icon"></i>
-    DETAILS
-  </h4>
-  <table>
-    <tbody>
-      <tr>
-        <td class="heading">Main Topic</td>
-        <td>{{item.details.mainTopic}}</td>
-      </tr>
-      <tr>
-        <td class="heading">Sub Topic</td>
-        <td>{{item.details.subTopic}}</td>
-      </tr>
-      <tr>
-        <td class="heading">Keywords</td>
-        <td>{{item.details.keywords}}</td>
-      </tr>
-      <tr>
-        <td class="heading">Audience</td>
-        <td>{{item.details.audience}}</td>
-      </tr>
-      <tr>
-        <td class="heading">Source</td>
-        <td>{{item.details.source}}</td>
-      </tr>
+    <div class="three wide column">
+      <p class="text-muted">Details</p>
+    </div>
+    <div class="thirteen wide column">
+      <table>
+        <tbody>
+          <tr>
+            <td class="heading">Main Topic:</td>
+            <td class="detail">{{item.details.mainTopic}}</td>
+          </tr>
+          <tr>
+            <td class="heading">Sub Topic:</td>
+            <td class="detail">{{item.details.subTopic}}</td>
+          </tr>
+          <tr>
+            <td class="heading">Keywords:</td>
+            <td class="detail">{{item.details.keywords}}</td>
+          </tr>
+          <tr>
+            <td class="heading">Audience:</td>
+            <td class="detail">{{item.details.audience}}</td>
+          </tr>
+          <tr>
+            <td class="heading">Source:</td>
+            <td class="detail">{{item.details.source}}</td>
+          </tr>
 
-      {{#if isEqual item.type "video"}}
-        {{> viewVideoDetails item}}
-      {{/if}}
+          {{#if isEqual item.type "video"}}
+            {{> viewVideoDetails item=item}}
+          {{/if}}
 
-      {{#if isEqual item.itemType activityEnum}}
-        {{> viewActivityDetails item}}
-      {{/if}}
+          {{#if isEqual item.itemType activityEnum}}
+            {{> viewActivityDetails item=item}}
+          {{/if}}
 
-      {{#if isEqual item.type "book"}}
-        {{> viewBookDetails item}}
-      {{/if}}
+          {{#if isEqual item.type "book"}}
+            {{> viewBookDetails item=item}}
+          {{/if}}
 
-      {{#if isEqual item.type "icebreaker"}}
-        {{> viewIcebreakerDetails item}}
-      {{/if}}
-    </tbody>
-  </table>
+          {{#if isEqual item.type "icebreaker"}}
+            {{> viewIcebreakerDetails item=item}}
+          {{/if}}
+        </tbody>
+      </table>
+    </div>
 </template>
