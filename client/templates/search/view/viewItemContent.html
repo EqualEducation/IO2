@@ -1,5 +1,5 @@
 <template name="viewItemContent">
-  <div class="ui stackable padded grid" style="background-color:#f5f5f5; border-top: 1px solid rgba(34, 36, 38, 0.15);">
+  <div class="ui stackable padded grid" style="background-color:#f5f5f5; border-top: 1px solid rgba(34, 36, 38, 0.15); border-bottom: 1px solid rgba(34, 36, 38, 0.15);">
     <div class="row">
       <div class="column">
         <h3>Description</h3>
@@ -11,13 +11,9 @@
       </div>
     </div>
     <div class="ui divider"></div>
-    <div class="row">
       {{> detailsSection item=item}}
-    </div>
     <div class="ui divider"></div>
-    <div class="row">
       {{> filesSection item=item}}
-    </div>
 </div>
 
   <!-- <div class="ui segment">

@@ -6,6 +6,22 @@ Template.viewItem.onRendered(function () {
 ;
 });
 
+Template.registerHelper('listView', function(listItems) {
+  var count=listItems.length;
+  var returnList = "";
+  listItems.forEach(function(item) {
+    if (count > 1) {
+      returnList = returnList + item + ", ";
+    } else {
+      returnList = returnList + item;
+    }
+    count--;
+  })
+
+  return returnList;
+})
+
+
 Template.registerHelper('convertDate', function(createdAtDate) {
   var d = new Date(createdAtDate);
   var year = d.getFullYear();

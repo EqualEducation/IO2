@@ -1,4 +1,5 @@
 <template name="detailsSection">
+  <div class="row">
     <div class="three wide column">
       <p class="text-muted">Details</p>
     </div>
@@ -15,11 +16,11 @@
           </tr>
           <tr>
             <td class="heading">Keywords:</td>
-            <td class="detail">{{item.details.keywords}}</td>
+            <td class="detail">{{listView item.details.keywords}}</td>
           </tr>
           <tr>
             <td class="heading">Audience:</td>
-            <td class="detail">{{item.details.audience}}</td>
+            <td class="detail">{{listView item.details.audience}}</td>
           </tr>
           <tr>
             <td class="heading">Source:</td>
@@ -44,4 +45,5 @@
         </tbody>
       </table>
     </div>
+  </div>
 </template>

@@ -1,11 +1,25 @@
 <template name="filesSection">
-    {{#if isEqual item.itemType activityEnum}}
+  <div class="row">
+    <div class="three wide column">
+      <div class="text-muted">Files</div>
+    </div>
+    <div class="thirteen wide column">
+      {{#if exists item.fileIDs}}
+        {{#with file item.fileIDs item.details.title}}
+            {{this.original.name}}
+            <a class="ui basic blue button" href="{{this.url}}" target="_blank" style="margin-left: 10px;">
+              View<i class="cloud arrow right icon"></i>
+            </a>
+        {{/with}}
+      {{else}}
+        <p>No files available</p>
+      {{/if}}
+    </div>
+  </div>
+  {{#if isEqual item.itemType activityEnum}}
+    <div class="ui divider"></div>
+      <div class="row">
       {{> activityFiles item=item}}
-    {{/if}}
-    {{#if isEqual item.itemType resourceEnum}}
-      {{> resourceFiles item=item}}
-    {{/if}}
-    {{#if isEqual item.itemType curriculumEnum}}
-      {{> curriculumFiles item=item}}
-    {{/if}}
+    </div>
+  {{/if}}
 </template>

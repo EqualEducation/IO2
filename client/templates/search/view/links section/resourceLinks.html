@@ -1,0 +1,25 @@
+<template name="resourceLinks">
+  <div class="three wide column">
+    <p class="text-muted">Linked Activities</p>
+  </div>
+  <div class="thirteen wide column">
+  <table class="ui definition table">
+    <tbody>
+      {{#each item.activityIds}}
+      {{#with activity this}}
+      <tr>
+        <td colspan="2"> <center>
+          {{#with pathName this.itemType}}
+          <a id="downloadGuide" href="{{pathFor route=this _id=../_id}}" target="_blank">
+            {{../details.title}}
+          </a>
+          {{/with}}
+        </center>
+      </td>
+    </tr>
+    {{/with}}
+    {{/each}}
+    </tbody>
+  </table>
+</div>
+</template>
