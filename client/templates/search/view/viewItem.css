@@ -1,6 +1,12 @@
 /*table {
   margin: 0 auto;
 }*/
+i.circular.icon.primary {
+    /*box-shadow: 0em 0em 0em 0.1em #FCBC10 inset;*/
+    color: #FCBC10;
+    /*background-color: gray*/
+
+}
 
 .text-muted {
   color: #82888a;

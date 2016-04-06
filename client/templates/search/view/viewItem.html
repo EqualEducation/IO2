@@ -1,20 +1,20 @@
 <template name="viewItem">
-	<div class="ui container">
+	<div class="ui container" id="wholeScreen">
 		{{> viewItemHeader item=this}}
     {{> viewItemContent item=this}}
-			<div class="ui stackable padded grid">
+		<div class="ui stackable padded grid">
 			<div class="row">
 				<div class="column">
-		    	<a class="ui primary button" href="/search">Back</a>
+						<a class="ui basic button" href="/search">Back</a>
 					{{> html2docx selector="#wholeScreen" linkClass="ui primary button" filename=this.details.title }}
-					{{#if currentUser}}
+				{{#if currentUser}}
 						{{#with editURL this}}
 							<a class="ui primary button" href="{{this}}">Edit</a>
 						{{/with}}
-						<a class="ui primary button" id="deleteFile">Delete</a>
-					{{/if}}
+							<a class="ui primary button" id="deleteFile">Delete</a>
+				{{/if}}
 				</div>
-		  </div>
+			</div>
 		</div>
 
 
