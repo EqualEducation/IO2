@@ -14,8 +14,12 @@
       {{> detailsSection item=item}}
     <div class="ui divider"></div>
       {{> filesSection item=item}}
-      <div class="ui divider"></div>
+
+      {{#if isEqual item.itemType resourceEnum}}
+      {{else}}
+        <div class="ui divider"></div>
         {{> itemsSection item=item}}
+      {{/if}}
 </div>
 
   <!-- <div class="ui segment">
