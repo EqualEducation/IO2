@@ -1,0 +1,31 @@
+<template name="curriculumItems">
+  <div class="row">
+    <div class="three wide column">
+      <div class="text-muted">Activities</div>
+    </div>
+    <div class="thirteen wide column">
+      {{#if exists item.activityIds}}
+      <table>
+        <tbody>
+        {{#each item.activityIds}}
+          <tr>
+            {{#with activity this}}
+              <td class="heading">{{this.details.title}}</td>
+                {{#with pathName this.itemType}}
+                <td>
+                  <a class="ui tiny basic blue button" href="{{pathFor route=this _id=../_id}}" target="_blank" style="margin-left: 10px;">
+                  View<i class="cloud arrow right icon"></i>
+                  </a>
+                </td>
+                {{/with}}
+            {{/with}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+      {{else}}
+        <p>This curriculum contains no activities.</p>
+      {{/if}}
+    </div>
+  </div>
+</template>

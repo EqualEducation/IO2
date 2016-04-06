@@ -1,0 +1,10 @@
+<template name="itemsSection">
+  {{#if isEqual item.itemType activityEnum}}
+    {{> activityItems item=item}}
+  {{/if}}
+  {{#if isEqual item.itemType resourceEnum}}
+  {{/if}}
+  {{#if isEqual item.itemType curriculumEnum}}
+    {{> curriculumItems item=item}}
+  {{/if}}
+</template>

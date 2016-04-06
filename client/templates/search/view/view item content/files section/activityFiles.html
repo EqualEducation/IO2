@@ -1,0 +1,21 @@
+<template name="activityFiles">
+  {{> activityGuide item=item}}
+</template>
+
+<template name="activityGuide">
+  <div class="three wide column">
+    <div class="text-muted">Activity Guide</div>
+  </div>
+  <div class="thirteen wide column">
+    {{#if exists item.guideID}}
+        {{#with file item.guideID}}
+          {{this.original.name}}
+          <a class="ui tiny basic blue button" href="{{this.url}}" target="_blank" style="margin-left: 10px;">
+            View<i class="cloud arrow right icon"></i>
+          </a>
+        {{/with}}
+    {{else}}
+      <p>Guide not available</p>
+    {{/if}}
+  </div>
+</template>
