@@ -1,4 +1,4 @@
-Template.curriculumFiles.helpers({
+Template.curriculumActivities.helpers({
   activity: function(activityID) {
   var activity=Activities.findOne(activityID);
   //linkedFile=YourFileCollection.findOne();

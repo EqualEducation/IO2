@@ -17,11 +17,17 @@ Template.editCurriculum.onRendered( function() {
 			return false;
 		},
 		onSuccess : function(event, fields){
+			event.preventDefault();
 			var form = $('#curriculumDetailsForm');
 			var topic =	form.form('get field', 'topic').val();
 			var identifier = Router.current().data()._id
 			var existingCurriculum = Curricula.findOne(identifier);
 
+			var activities = $('#activities .ui.label.transition.visible');
+			var activityIds = $.map(activities, function(element) {
+				return $(element).attr('data-value');
+			});
+			existingCurriculum.activityIds = activityIds;
 			existingCurriculum.details = fields;
 			existingCurriculum.fileIDs = Session.get('fileIDs');
 			Meteor.call("addItem", ItemTypeEnum.CURRICULUM, existingCurriculum, function(error, result){
@@ -35,7 +41,7 @@ Template.editCurriculum.onRendered( function() {
 				Session.set('fileIDs', null);
 				Router.go('/curriculum/' + existingCurriculum._id);
 				return false;
-				});
+			});
     },
 	})
 	.form('set values', {

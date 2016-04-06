@@ -1,6 +1,7 @@
 Meteor.methods({
   addItem: function(itemType, item) {
     console.log("ADDING ITEM!");
+    console.log(item);
     // Make sure the user is logged in before inserting a task
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");

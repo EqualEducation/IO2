@@ -1,11 +1,12 @@
 <template name="linksSection">
   {{#if isEqual item.itemType activityEnum}}
-    {{> activityFiles item=item}}
+    {{> linkedCurricula item=item}}
+    {{> acivityResources item=item}}
   {{/if}}
   {{#if isEqual item.itemType resourceEnum}}
-    {{> resourceFiles item=item}}
+    {{> linkedActivities item=item}}
   {{/if}}
   {{#if isEqual item.itemType curriculumEnum}}
-    {{> curriculumFiles item=item}}
+    {{> curriculumActivities item=item}}
   {{/if}}
 </template>

@@ -20,7 +20,7 @@ tr {
     border-color: transparent;
 }
 td {
-  padding-bottom: 20px;
+  padding-bottom: 20px !important;
 }
 
 .meta {

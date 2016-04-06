@@ -8,10 +8,3 @@ Template.activityResources.helpers({
     //return itemType.toLowerCase() + ".view";
   }
 });
-
-Template.associatedCurricula.helpers({
-  associatedCurricula: function(activityID){
-    var curricula=Curricula.find({"activityIds":activityID}).fetch();
-    return curricula;
-  }
-})
