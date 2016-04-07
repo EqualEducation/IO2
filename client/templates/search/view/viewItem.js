@@ -97,22 +97,18 @@ Template.viewItem.events({
       if (itemType=='Activity')
       {
         console.log('activity');
-        for (var i=0;i<this.curriculumIds.length;i++)
-        {
-          id=(this.curriculumIds[i]);
-          var curriculum=(Curricula.findOne(id));
-          var activityIds=activity.resourceIds;
-          console.log(activityIds);
-          //pull from set!
-  //         db.collection.update(
-  // {name: 'object1'},
-  // {$pull: { tags: 'dah'}});
-        }
+        // Meteor.call("pullActivity", this.curriculumIds, itemID,function(error, result){
+          // if(error){
+          //     console.log(error);
+          // }  else {
+          //   console.log('Success');
+          //   console.log(result);
+          // }
       }
       if (itemType=='Resource')
       {
         console.log('resource');
-          // Meteor.call("pullResource", this.activityIds, function(error, result){
+          // Meteor.call("pullResource", this.activityIds, itemID,function(error, result){
           // if(error){
           //     console.log(error);
           // }  else {

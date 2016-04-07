@@ -76,10 +76,16 @@ Meteor.methods({
         }
        })
   },
-  pullResource: function (activityIds){
+  pullActivity: function (curriculumIds,activityId){
+    for (var i=0;i<curriculumIds.length;i++)
+            {
+              Curricula.update({_id:curriculumIds[i]},{$pull:{'activityIds':activityId}});
+            }
+  },
+  pullResource: function (activityIds,resourceId){
     for (var i=0;i<activityIds.length;i++)
             {
-              Activities.update({_id:activityIds[i]},{$pull:{'resourceIds':activityIds[i]}});
+              Activities.update({_id:activityIds[i]},{$pull:{'resourceIds':resourceId}});
             }
   },
   // optionsUpsert: function(collection, data){
