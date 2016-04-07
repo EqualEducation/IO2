@@ -26,9 +26,7 @@ Meteor.methods({
       item.itemType='Activity';
       result = Activities.upsert(id, item);
       // Add result._id to each resource in item.resourceIds
-      var linkedResources=item.resourceIds;
-      console.log("RESULT");
-      console.log(result);
+      var linkedResources=item.resourceIds
       for (var i=0;i<linkedResources.length;i++)
         Resources.update( {_id: linkedResources[i]}, { $addToSet: { 'activityIds':result.insertedId} } );
 
@@ -36,7 +34,10 @@ Meteor.methods({
       console.log("ADDING CURRICULUM");
       item.itemType='Curriculum';
       result = Curricula.upsert(id, item)
-      //TODO: Add result._id to each activity in item.activityIds
+      //Add result._id to each activity in item.activityIds
+      var linkedActivities=item.activityIds;
+      for (var i=0;i<linkedActivities.length;i++)
+        Activities.update( {_id: linkedActivities[i]}, { $addToSet: { 'curriculumIds':result.insertedId} } );
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
