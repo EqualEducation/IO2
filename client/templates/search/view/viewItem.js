@@ -89,7 +89,7 @@ Template.viewItem.helpers({
 Template.viewItem.events({
     'click #deleteFile': function (event) {
       console.log("DELETE");
-      itemID=(this._id)
+      itemID=(this._id);
       itemType=(this.itemType)
 
       console.log(this);
@@ -97,10 +97,28 @@ Template.viewItem.events({
       if (itemType=='Activity')
       {
         console.log('activity');
+        for (var i=0;i<this.curriculumIds.length;i++)
+        {
+          id=(this.curriculumIds[i]);
+          var curriculum=(Curricula.findOne(id));
+          var activityIds=activity.resourceIds;
+          console.log(activityIds);
+          //pull from set!
+  //         db.collection.update(
+  // {name: 'object1'},
+  // {$pull: { tags: 'dah'}});
+        }
       }
       if (itemType=='Resource')
       {
         console.log('resource');
+          // Meteor.call("pullResource", this.activityIds, function(error, result){
+          // if(error){
+          //     console.log(error);
+          // }  else {
+          //   console.log('Success');
+          //   console.log(result);
+          // }
       }
       $('.ui.basic.test.modal')
         .modal({

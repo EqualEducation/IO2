@@ -76,6 +76,12 @@ Meteor.methods({
         }
        })
   },
+  pullResource: function (activityIds){
+    for (var i=0;i<activityIds.length;i++)
+            {
+              Activities.update({_id:activityIds[i]},{$pull:{'resourceIds':activityIds[i]}});
+            }
+  },
   // optionsUpsert: function(collection, data){
   //    Customers.upsert( id, doc );
   // },
