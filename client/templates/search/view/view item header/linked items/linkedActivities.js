@@ -6,26 +6,26 @@ Template.linkedActivities.onRendered(function() {
 })
 
 Template.linkedActivities.helpers({
-  associatedActivities: function(resourceID){
-    var activities=Activities.find({"resourceIds":resourceID}).fetch();
-    return activities;
+  associatedActivity: function(activityIds){
+    var activity=Activities.findOne(activityIds);
+    return activity;
   },
-  hasLinkedActivities: function(activities) {
-    if (activities != undefined) {
-      return activities.length > 0;
+  hasLinkedActivities: function(activityIds) {
+    if (activityIds != undefined) {
+      return activityIds.length > 0;
     }
 
     return false;
   },
-  numberOfLinkedActivities: function(activities) {
-    if (activities == undefined) {
+  numberOfLinkedActivities: function(activityIds) {
+    if (activityIds == undefined) {
       return 'Something went wrong';
     }
 
-    if (activities.length > 1) {
-      return activities.length + " activities use this resource"
+    if (activityIds.length > 1) {
+      return activityIds.length + " activities use this resource"
     } else {
-      return activities.length + " activity uses this resource"
+      return activityIds.length + " activity uses this resource"
     }
   }
 })
