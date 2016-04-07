@@ -91,6 +91,17 @@ Template.viewItem.events({
       console.log("DELETE");
       itemID=(this._id)
       itemType=(this.itemType)
+
+      console.log(this);
+      //if deleting a resource - delete resource IDs from associated activities!
+      if (itemType=='Activity')
+      {
+        console.log('activity');
+      }
+      if (itemType=='Resource')
+      {
+        console.log('resource');
+      }
       $('.ui.basic.test.modal')
         .modal({
 

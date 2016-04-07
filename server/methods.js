@@ -14,6 +14,7 @@ Meteor.methods({
     item.createdAt = new Date();
     item.owner = Meteor.userId();
     item.user_email = Meteor.user().emails[0];
+    item.activityIds=[];
     var id = item._id;
     var result;
     if (itemType == ItemTypeEnum.RESOURCE) {
@@ -24,7 +25,10 @@ Meteor.methods({
       console.log("ADDING ACTIVITY");
       item.itemType='Activity';
       result = Activities.upsert(id, item);
-      //TODO: Add result._id to each resource in item.resourceIds
+      // Add result._id to each resource in item.resourceIds
+      var linkedResources=item.resourceIds;
+      Resources.update( {_id: { $in: linkedResources} }, { $addToSet: { 'activityIds':item._id} } );
+
     } else if (itemType == ItemTypeEnum.CURRICULUM) {
       console.log("ADDING CURRICULUM");
       item.itemType='Curriculum';
@@ -33,8 +37,8 @@ Meteor.methods({
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
-    console.log(item);
-    console.log(result);
+    // console.log(item);
+    // console.log(result);
     return result;
   },
   addFile: function(yourFile) {

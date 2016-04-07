@@ -29,7 +29,7 @@ Template.create_activity.onRendered( function() {
 					console.log(result)
 				}
 
-				Session.set('fileIDs', null);
+        Session.set('fileIDs', null);
 				Router.go('/activity/' + result.insertedId);
 				return false;
     });
