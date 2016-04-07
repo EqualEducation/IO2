@@ -27,7 +27,10 @@ Meteor.methods({
       result = Activities.upsert(id, item);
       // Add result._id to each resource in item.resourceIds
       var linkedResources=item.resourceIds;
-      Resources.update( {_id: { $in: linkedResources} }, { $addToSet: { 'activityIds':item._id} } );
+      console.log("RESULT");
+      console.log(result);
+      for (var i=0;i<linkedResources.length;i++)
+        Resources.update( {_id: linkedResources[i]}, { $addToSet: { 'activityIds':result.insertedId} } );
 
     } else if (itemType == ItemTypeEnum.CURRICULUM) {
       console.log("ADDING CURRICULUM");
