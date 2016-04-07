@@ -14,7 +14,6 @@ Meteor.methods({
     item.createdAt = new Date();
     item.owner = Meteor.userId();
     item.user_email = Meteor.user().emails[0];
-    item.activityIds=[];
     var id = item._id;
     var result;
     if (itemType == ItemTypeEnum.RESOURCE) {
@@ -33,7 +32,11 @@ Meteor.methods({
     } else if (itemType == ItemTypeEnum.CURRICULUM) {
       console.log("ADDING CURRICULUM");
       item.itemType='Curriculum';
-      result = Curricula.upsert(id, item)
+      result = Curricula.upsert(id, item);
+      console.log(result);
+      console.log(item);
+      console.log('linked activity ids:');
+      console.log(item.activityIds);
       //Add result._id to each activity in item.activityIds
       var linkedActivities=item.activityIds;
       for (var i=0;i<linkedActivities.length;i++)
