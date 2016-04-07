@@ -6,26 +6,26 @@ Template.linkedCurricula.onRendered(function() {
 })
 
 Template.linkedCurricula.helpers({
-  associatedCurricula: function(activityID){
-    var curricula=Curricula.find({"activityIds":activityID}).fetch();
-    return curricula;
+  associatedCurriculum: function(curriculumId){
+    var curriculum=Curricula.findOne(curriculumId);
+    return curriculum;
   },
-  hasLinkedCurricula: function(curricula) {
-    if (curricula != undefined) {
-      return curricula.length > 0;
+  hasLinkedCurricula: function(curriculumIds) {
+    if (curriculumIds != undefined) {
+      return curriculumIds.length > 0;
     }
 
     return false;
   },
-  numberOfLinkedCurricula: function(curricula) {
-    if (curricula == undefined) {
+  numberOfLinkedCurricula: function(curriculumIds) {
+    if (curriculumIds == undefined) {
       return 'Something went wrong';
     }
 
-    if (curricula.length > 1) {
-      return curricula.length + " curricula use this activity"
+    if (curriculumIds.length > 1) {
+      return curriculumIds.length + " curricula use this activity"
     } else {
-      return curricula.length + " curriculum uses this activity"
+      return curriculumIds.length + " curriculum uses this activity"
     }
   }
 })

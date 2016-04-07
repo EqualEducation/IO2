@@ -1,20 +1,20 @@
 <template name="linkedCurricula">
-  {{#with associatedCurricula item._id}}
-    {{#if hasLinkedCurricula this}}
+    {{#if hasLinkedCurricula item.curriculumIds}}
     <div class="ui dropdown linked">
-      <div class="text">{{numberOfLinkedCurricula this}}</div>
+      <div class="text">{{numberOfLinkedCurricula item.curriculumIds}}</div>
       <i class="dropdown icon"></i>
       <div class="menu">
-          {{#each this}}
+          {{#each item.curriculumIds}}
+          {{#with associatedCurriculum this}}
             {{#with pathName "Curriculum"}}
               <div class="item">
                 <a id="downloadGuide" href="{{pathFor route=this _id=../_id}}"  target="_blank">
               {{../details.title}}</a>
               </div>
             {{/with}}
+            {{/with}}
           {{/each}}
       </div>
     </div>
     {{/if}}
-  {{/with}}
 </template>
