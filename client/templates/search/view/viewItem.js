@@ -93,6 +93,7 @@ Template.viewItem.events({
       itemType=(this.itemType);
       activityIds=this.activityIds;
       curriculumIds=this.curriculumIds;
+      linkedFiles=this.fileIDs;
       console.log(this);
       console.log(this.curriculumIds);
       $('.ui.basic.test.modal')
@@ -102,12 +103,20 @@ Template.viewItem.events({
             return true;
           },
           onApprove : function() {
-            //PROBLEM: "this" doesn't exist here
                   console.log('DELETING ITEM');
+                  //REMOVE associated references
                   if (itemType=='Resource')
                   {
                     console.log('resource');
                     Meteor.call("pullResource", activityIds, itemID,function(error, result){
+                      if(error){
+                          console.log(error);
+                      }  else {
+                        console.log('Success');
+                        console.log(result);
+                      }
+                    });
+                    Meteor.call("deleteFile",linkedFiles,function(error, result){
                       if(error){
                           console.log(error);
                       }  else {
@@ -127,6 +136,9 @@ Template.viewItem.events({
                         console.log(result);
                       }});
                   }
+                  //TO DO: delete associated files
+
+                  //delete the curriculum/activity/resource
                   Meteor.call("deleteItem",itemType,itemID,function(error, result){
                       if(error){
                           console.log(error);
@@ -141,9 +153,4 @@ Template.viewItem.events({
         .modal('show')
       ;
     }
-    // },
-    // 'click #downloadFile': function (event) {
-    //   console.log("DOWNLOAD");
-    //   console.log(this);
-    // }
     });
