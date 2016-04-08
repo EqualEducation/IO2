@@ -91,31 +91,8 @@ Template.viewItem.events({
       console.log("DELETE");
       itemID=(this._id);
       itemType=(this.itemType)
-
       console.log(this);
-      //if deleting a resource - delete resource IDs from associated activities!
-      if (itemType=='Activity')
-      {
-        console.log('activity');
-        // Meteor.call("pullActivity", this.curriculumIds, itemID,function(error, result){
-          // if(error){
-          //     console.log(error);
-          // }  else {
-          //   console.log('Success');
-          //   console.log(result);
-          // }
-      }
-      if (itemType=='Resource')
-      {
-        console.log('resource');
-          // Meteor.call("pullResource", this.activityIds, itemID,function(error, result){
-          // if(error){
-          //     console.log(error);
-          // }  else {
-          //   console.log('Success');
-          //   console.log(result);
-          // }
-      }
+      console.log(this.curriculumIds);
       $('.ui.basic.test.modal')
         .modal({
 
@@ -123,7 +100,31 @@ Template.viewItem.events({
             return true;
           },
           onApprove : function() {
-                  Meteor.call("deleteItem",itemType,itemID)
+            //PROBLEM: "this" doesn't exist here
+                  if (itemType=='Resource')
+                  {
+                    console.log('resource');
+                    Meteor.call("pullResource", this.activityIds, itemID,function(error, result){
+                      if(error){
+                          console.log(error);
+                      }  else {
+                        console.log('Success');
+                        console.log(result);
+                      }
+                    });
+                  }
+                  if (itemType=='Activity')
+                  {
+                    console.log('activity');
+                    Meteor.call("pullActivity", this.curriculumIds, itemID,function(error, result){
+                      if(error){
+                          console.log(error);
+                      }  else {
+                        console.log('Success');
+                        console.log(result);
+                      }});
+                  }
+                  Meteor.call("deleteItem",itemType,itemID);
                   window.location = "/search";
           }
         })
