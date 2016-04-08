@@ -90,7 +90,9 @@ Template.viewItem.events({
     'click #deleteFile': function (event) {
       console.log("DELETE");
       itemID=(this._id);
-      itemType=(this.itemType)
+      itemType=(this.itemType);
+      activityIds=this.activityIds;
+      curriculumIds=this.curriculumIds;
       console.log(this);
       console.log(this.curriculumIds);
       $('.ui.basic.test.modal')
@@ -104,7 +106,7 @@ Template.viewItem.events({
                   if (itemType=='Resource')
                   {
                     console.log('resource');
-                    Meteor.call("pullResource", this.activityIds, itemID,function(error, result){
+                    Meteor.call("pullResource", activityIds, itemID,function(error, result){
                       if(error){
                           console.log(error);
                       }  else {
@@ -116,7 +118,7 @@ Template.viewItem.events({
                   if (itemType=='Activity')
                   {
                     console.log('activity');
-                    Meteor.call("pullActivity", this.curriculumIds, itemID,function(error, result){
+                    Meteor.call("pullActivity", curriculumIds, itemID,function(error, result){
                       if(error){
                           console.log(error);
                       }  else {
