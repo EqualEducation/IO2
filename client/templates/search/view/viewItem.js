@@ -93,6 +93,7 @@ Template.viewItem.events({
       itemType=(this.itemType);
       activityIds=this.activityIds;
       curriculumIds=this.curriculumIds;
+      linkedGuide=this.guideID;
       linkedFiles=this.fileIDs;
       console.log(this);
       console.log(this.curriculumIds);
@@ -135,6 +136,14 @@ Template.viewItem.events({
                         console.log('Success');
                         console.log(result);
                       }});
+                      Meteor.call("deleteFile",linkedGuide,function(error, result){
+                      if(error){
+                          console.log(error);
+                      }  else {
+                        console.log('Success');
+                        console.log(result);
+                      }
+                    });
                   }
                   //TO DO: delete associated files
 
