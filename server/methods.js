@@ -24,23 +24,25 @@ Meteor.methods({
       console.log("ADDING ACTIVITY");
       item.itemType='Activity';
       result = Activities.upsert(id, item);
+      if (result.insertedId != null && result.insertedId != undefined) { id = result.insertedId }
       // Add result._id to each resource in item.resourceIds
-      var linkedResources=item.resourceIds
+      var linkedResources=item.resourceIds;
       for (var i=0;i<linkedResources.length;i++)
-        Resources.update( {_id: linkedResources[i]}, { $addToSet: { 'activityIds':result.insertedId} } );
+        Resources.update( {_id: linkedResources[i]}, { $addToSet: { 'activityIds':id} } );
 
     } else if (itemType == ItemTypeEnum.CURRICULUM) {
       console.log("ADDING CURRICULUM");
       item.itemType='Curriculum';
       result = Curricula.upsert(id, item);
       console.log(result);
+      if (result.insertedId != null && result.insertedId != undefined) { id = result.insertedId }
       console.log(item);
       console.log('linked activity ids:');
       console.log(item.activityIds);
       //Add result._id to each activity in item.activityIds
       var linkedActivities=item.activityIds;
       for (var i=0;i<linkedActivities.length;i++)
-        Activities.update( {_id: linkedActivities[i]}, { $addToSet: { 'curriculumIds':result.insertedId} } );
+        Activities.update( {_id: linkedActivities[i]}, { $addToSet: { 'curriculumIds':id} } );
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
@@ -92,6 +94,7 @@ Meteor.methods({
   //    Customers.upsert( id, doc );
   // },
   deleteItem: function (itemType,ItemId){
+    console.log('deleting!');
   if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }

@@ -103,6 +103,7 @@ Template.viewItem.events({
           },
           onApprove : function() {
             //PROBLEM: "this" doesn't exist here
+                  console.log('DELETING ITEM');
                   if (itemType=='Resource')
                   {
                     console.log('resource');
@@ -126,7 +127,14 @@ Template.viewItem.events({
                         console.log(result);
                       }});
                   }
-                  Meteor.call("deleteItem",itemType,itemID);
+                  Meteor.call("deleteItem",itemType,itemID,function(error, result){
+                      if(error){
+                          console.log(error);
+                      }  else {
+                        console.log('Success');
+                        console.log(result);
+                      }
+                    });
                   window.location = "/search";
           }
         })
