@@ -145,8 +145,6 @@ Template.viewItem.events({
                       }
                     });
                   }
-                  //TO DO: delete associated files
-
                   //delete the curriculum/activity/resource
                   Meteor.call("deleteItem",itemType,itemID,function(error, result){
                       if(error){

@@ -1,10 +1,13 @@
 Template.landingPage.events({
-    'click #searchButton': function (event) {
-      var searchText=$('#search-box').val();
-      var encodedText=encode(searchText)
-      var URL=('\\search\\'+encodedText);
-      window.location = URL;
-    }
+    'submit .landingSearch':function(event) {
+    // Prevent default browser form submit
+    console.log('pressed Submit');
+    event.preventDefault();
+    var searchText=$('#search-box').val();
+    var encodedText=encode(searchText)
+    var URL=('\\search\\'+encodedText);
+    window.location = URL;
+  }
     });
 
 
