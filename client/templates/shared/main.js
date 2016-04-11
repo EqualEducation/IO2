@@ -44,3 +44,27 @@ Template.registerHelper('isEqual', function(obj1, obj2) {
 Template.registerHelper('exists', function(obj) {
   return obj != undefined && obj != null;
 })
+
+Template.registerHelper('resourceDisplayName', function(resourceType) {
+  var resourceDisplayName;
+  switch (resourceType) {
+      case "book":
+        resourceDisplayName = "Book"
+        break;
+      case "video":
+        resourceDisplayName = "Video"
+        break;
+      case "icebreaker":
+        resourceDisplayName = "Ice Breaker"
+        break;
+      case "other":
+        resourceDisplayName = "Other"
+        break;
+      case "shortreading":
+        resourceDisplayName = "Short Reading"
+        break;
+      default:
+        resourceDisplayName = "Other"
+    }
+    return resourceDisplayName;
+  })

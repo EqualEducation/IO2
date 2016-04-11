@@ -23,7 +23,7 @@ Template.content.helpers({
     };
 
   },
-      itemTypeIsResource: function(itemType) {
+  itemTypeIsResource: function(itemType) {
     //look in YourFile collection
     if(itemType=="Resource")
       return true;

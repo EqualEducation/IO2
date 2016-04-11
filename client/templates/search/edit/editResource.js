@@ -38,7 +38,8 @@ Template.edit_resource_type.onRendered( function() {
 
        existingResource.details = allFields;
        existingResource.fileIDs = Session.get('fileIDs');
-       Session.set('fileIDs', null);
+       console.log("editing file IDs");
+       console.log(existingResource.fileIDs);
        Meteor.call("addItem", ItemTypeEnum.RESOURCE, existingResource, function(error, result){
           if(error){
               console.log(error);

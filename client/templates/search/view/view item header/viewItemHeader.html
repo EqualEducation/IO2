@@ -5,7 +5,7 @@
         <div class="ui huge breadcrumb">
           <a href="/search" class="section">Search</a>
           <i class="right chevron icon divider"></i>
-          <div class="active section">{{item.itemType}}</div>
+          <div class="active section">{{item.itemType}} ({{resourceDisplayName item.type}})</div>
         </div>
       </div>
     </div>
@@ -13,13 +13,14 @@
       <div class="two wide column">
         <h1 class="ui header">
           {{#if isEqual item.itemType curriculumEnum}}
-            <i class="circular archive icon primary"></i>
+            <i class="circular archive icon"></i>
           {{/if}}
           {{#if isEqual item.itemType activityEnum}}
-            <i class="circular puzzle icon primary"></i>
+            <i class="circular puzzle icon"></i>
           {{/if}}
           {{#if isEqual item.itemType resourceEnum}}
-            <i class="circular folder open outline icon primary"></i>
+            <!-- <i class="circular folder open outline icon primary"></i> -->
+            <i class="circular {{resourceIcon item.type}} icon"></i>
           {{/if}}
         </h1>
       </div>

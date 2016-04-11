@@ -16,7 +16,8 @@ Template.create_resource_type.onRendered( function() {
        newResource.type = type
        newResource.details = allFields;
        newResource.fileIDs = Session.get('fileIDs');
-       Session.set('fileIDs', null);
+			 console.log("inserting file IDs");
+			 console.log(newResource.fileIDs);
        Meteor.call("addItem", ItemTypeEnum.RESOURCE, newResource, function(error, result){
          if(error){
              console.log(error);
