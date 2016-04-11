@@ -7,16 +7,16 @@
     <label>Main Topic</label>
     <select name="mainTopic" class="commonFields noAdditions ui fluid search dropdown">
       <option value="">Search...</option>
-      {{#each topics}}
+      {{#each getOptions "mainTopics"}}
         <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
 </div>
 <div class="field">
   <label>Sub Topic</label>
-  <select name="subTopic" class="commonFields allowAdditions ui fluid search dropdown">
+  <select name="subTopic" class="commonFields noAdditions ui fluid search dropdown">
     <option value="">Search...</option>
-    {{#each subTopics}}
+    {{#each getOptions "subTopics"}}
       <option value="{{this}}">{{this}}</option>
     {{/each}}
   </select>
@@ -25,7 +25,7 @@
   <label>Keywords</label>
   <select name="keywords" multiple="" class="commonFields allowAdditions ui dropdown search multiple">
     <option value="">Search...</option>
-    {{#each keywords}}
+    {{#each getOptions "keywords"}}
       <option value="{{this}}">{{this}}</option>
     {{/each}}
   </select>
@@ -38,15 +38,20 @@
     <label>Audience</label>
     <select name="audience" multiple="" class="commonFields noAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
-      {{#each audiences}}
+      {{#each getOptions "audiences"}}
         <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
   </div>
   <div class="field">
     <label>Source</label>
-    <textarea rows="2" name="source"></textarea>
-  </div>
+    <select name="source" multiple="" class="commonFields allowAdditions ui dropdown search">
+      <option value="">Search...</option>
+      {{#each getOptions "source"}}
+        <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+    </div>
 </template>
 
 <template name="durationField">
@@ -68,7 +73,7 @@
     <label>Method</label>
     <select name="method" multiple="" class="commonFields allowAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
-      {{#each methods}}
+      {{#each getOptions "methods"}}
         <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
@@ -80,7 +85,7 @@
     <label>Materials Needed</label>
     <select name="materialsNeeded" multiple="" class="commonFields allowAdditions ui fluid search dropdown multiple">
       <option value="">Search...</option>
-      {{#each materialsNeeded}}
+      {{#each getOptions "materialsNeeded"}}
         <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>

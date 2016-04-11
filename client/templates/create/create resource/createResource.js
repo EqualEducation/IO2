@@ -20,7 +20,7 @@ Template.create_resource_type.onRendered( function() {
 			 console.log(newResource.fileIDs);
        Meteor.call("addItem", ItemTypeEnum.RESOURCE, newResource, function(error, result){
          if(error){
-             console.log(error);
+             alert(error);
          }  else {
  					console.log('Success');
  					console.log(result)

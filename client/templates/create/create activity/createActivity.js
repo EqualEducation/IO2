@@ -23,7 +23,7 @@ Template.create_activity.onRendered( function() {
 			newActivity.guideID = Session.get('guideID');
 			Meteor.call("addItem", ItemTypeEnum.ACTIVITY, newActivity, function(error, result){
         if(error){
-            console.log(error);
+					alert(error);
         }  else {
 					console.log('Success');
 					console.log(result)

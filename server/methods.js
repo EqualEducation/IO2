@@ -1,14 +1,18 @@
-function updateKeywords(itemKeywords) {
+function updateOptions(optionType, itemOptions) {
   var doc = Options.findOne();
-  var existingKeywords = doc["keywords"];
-  console.log(existingKeywords);
-  itemKeywords.forEach(function(itemKeyword) {
-    if (existingKeywords.indexOf(itemKeyword) == -1) {
-      existingKeywords.push(itemKeyword);
-    }
-  });
+  var existingOptions = doc[optionType];
+  console.log(existingOptions);
+  if (existingOptions != undefined) {
+    itemOptions.forEach(function(option) {
+      if (existingOptions.indexOf(option) == -1) {
+        existingOptions.push(option);
+      }
+    });
+  } else {
+    existingOptions = itemOptions;
+  }
 
-  doc["keywords"] = existingKeywords;
+  doc[optionType] = existingOptions;
   Options.upsert(doc._id, doc)
 }
 
@@ -26,7 +30,9 @@ Meteor.methods({
       throw new Meteor.Error("Item type is required");
     }
 
-    updateKeywords(item.details.keywords)
+    updateOptions("keywords", item.details.keywords)
+    updateOptions("source", item.details.source)
+
     item.createdAt = new Date();
     item.owner = Meteor.userId();
     item.user_email = Meteor.user().emails[0];

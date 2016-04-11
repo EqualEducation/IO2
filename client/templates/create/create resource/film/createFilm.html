@@ -15,10 +15,10 @@
   </div>
   {{> durationField}}
   <div class="field">
-    <label>video Type</label>
+    <label>Video Type</label>
     <select name="videoType" multiple="" class="video ui fluid search dropdown multiple">
       <option value="">Search...</option>
-      {{#each videoTypes}}
+      {{#each getOptions "videoTypes"}}
         <option value="{{@index}}">{{this}}</option>
       {{/each}}
     </select>

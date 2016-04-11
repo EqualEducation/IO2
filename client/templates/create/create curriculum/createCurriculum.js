@@ -21,7 +21,7 @@ Template.create_curriculum.onRendered( function() {
       newCurriculum.fileIDs = Session.get('fileIDs');
       Meteor.call("addItem", ItemTypeEnum.CURRICULUM, newCurriculum, function(error, result){
         if(error){
-          console.log(error);
+					alert(error);
         }  else {
 					console.log('Success');
 					console.log(result)

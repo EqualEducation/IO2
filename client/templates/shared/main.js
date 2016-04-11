@@ -89,3 +89,21 @@ Template.registerHelper('contentDisplayName', function(contentType) {
     }
     return contentDisplayName;
   })
+
+Template.registerHelper('getOptions', function(optionType) {
+	var optionsInstance = this.options;
+	var options;
+	if (optionsInstance == undefined) {
+    console.log('resettings options');
+		var items = Options.findOne();
+		this.options = new ReactiveVar(items);
+		options = this.options.get();
+	} else {
+    console.log('existing options');
+		options = optionsInstance.get();
+	}
+  console.log(options)
+	console.log('Get options for type: '  + optionType)
+	console.log(options[optionType])
+  return options[optionType];
+})
