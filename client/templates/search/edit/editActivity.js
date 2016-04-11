@@ -41,6 +41,7 @@ Template.editActivity.onRendered( function() {
 					console.log(result)
 				}
 
+				Session.set('guideID', null);
 				Session.set('fileIDs', null);
 				Router.go('/activity/' + existingActivity._id);
 				return false;
