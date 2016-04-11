@@ -1,7 +1,22 @@
+function updateKeywords(itemKeywords) {
+  var doc = Options.findOne();
+  var existingKeywords = doc["keywords"];
+  console.log(existingKeywords);
+  itemKeywords.forEach(function(itemKeyword) {
+    if (existingKeywords.indexOf(itemKeyword) == -1) {
+      existingKeywords.push(itemKeyword);
+    }
+  });
+
+  doc["keywords"] = existingKeywords;
+  Options.upsert(doc._id, doc)
+}
+
 Meteor.methods({
   addItem: function(itemType, item) {
     console.log("ADDING ITEM!");
     console.log(item);
+
     // Make sure the user is logged in before inserting a task
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -11,6 +26,7 @@ Meteor.methods({
       throw new Meteor.Error("Item type is required");
     }
 
+    updateKeywords(item.details.keywords)
     item.createdAt = new Date();
     item.owner = Meteor.userId();
     item.user_email = Meteor.user().emails[0];
@@ -46,8 +62,6 @@ Meteor.methods({
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
-    // console.log(item);
-    // console.log(result);
     return result;
   },
   addFile: function(yourFile) {
