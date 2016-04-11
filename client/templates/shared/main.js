@@ -68,3 +68,39 @@ Template.registerHelper('resourceDisplayName', function(resourceType) {
     }
     return resourceDisplayName;
   })
+
+Template.registerHelper('contentDisplayName', function(contentType) {
+  var contentDisplayName;
+  switch (contentType) {
+      case "book":
+        contentDisplayName = "Books"
+        break;
+      case "video":
+        contentDisplayName = "Videos"
+        break;
+      case "icebreaker":
+        contentDisplayName = "Icebreakers"
+        break;
+      case "other":
+        contentDisplayName = "Other"
+        break;
+      case "shortreading":
+        contentDisplayName = "Short Readings"
+        break;
+      case "activities":
+        contentDisplayName = "Activities"
+        break;
+      case "resources":
+        contentDisplayName = "Resources"
+        break;
+      case "curricula":
+        contentDisplayName = "Curricula"
+        break;
+      case "allResources":
+        contentDisplayName = "All Resources"
+        break;
+      default:
+        contentDisplayName = "All"
+    }
+    return contentDisplayName;
+  })
