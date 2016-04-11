@@ -1,5 +1,5 @@
 <template name="content">
-  <h3 class="page-header" style="text-transform: capitalize;">{{this.contentType}}
+  <h3 class="page-header" style="text-transform: capitalize;">{{contentDisplayName this.contentType}}
 <span style="float:right;">Results: {{this.numResults}}</span>
   </h3>
   {{#each this.items}}
