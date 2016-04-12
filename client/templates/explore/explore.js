@@ -23,5 +23,16 @@ Template.explore.helpers({
   subTopics: function(mainTopic){
   return {subTopics:_.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic')),
   mainTopic:mainTopic};
+  },
+  pathName: function(itemType) {
+    return itemType.toLowerCase() + ".view";
+  },
+  itemTypeIsResource: function(itemType) {
+    //look in YourFile collection
+    if(itemType=="Resource")
+      return true;
+    else
+      return false;
+
   }
 })

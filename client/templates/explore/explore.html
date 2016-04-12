@@ -12,7 +12,9 @@
   <a>{{subTopics}}</a>
   {{/each}} -->
         {{#each allActivitiesForTopic this}}
-        <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
+        {{#with pathName this.itemType}}
+        <a href="{{pathFor route=this _id=../_id}}" target="_blank" id={{../_id}}>{{../itemType}}{{#if itemTypeIsResource ../itemType}} ({{resourceDisplayName ../type}}){{/if}}: {{../details.title}}</a>
+        {{/with}}
         {{/each}}
         <div class="divider"></div>
       </div>
