@@ -137,6 +137,7 @@ reload@1.1.7
 retry@1.0.6
 routepolicy@1.0.9
 semantic:ui@2.1.8
+semantic:ui-accordion@2.1.8
 semantic:ui-data@2.1.8
 semantic:ui-dropdown@2.1.7
 semantic:ui-form@2.1.7

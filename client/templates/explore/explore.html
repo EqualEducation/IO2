@@ -1,2 +1,24 @@
 <template name="explore">
+  <a>ACTIVITIES BY TOPIC</a>
+  <div class="ui styled accordion">
+  {{#each mainTopics}}
+  <div class="title">
+    <i class="dropdown icon"></i>
+  {{this}} ({{#with numActivities this}}{{this}}{{/with}})
+</div>
+<div class="content">
+ <!--  {{#each subTopics.subTopics this}}
+  <a>{{mainTopic}}</a>
+  <a>{{subTopics}}</a>
+  {{/each}} -->
+        {{#each allActivitiesForTopic this}}
+        {{#with pathName this.itemType}}
+        <a href="{{pathFor route=this _id=../_id}}" target="_blank" id={{../_id}}>{{../itemType}}{{#if itemTypeIsResource ../itemType}} ({{resourceDisplayName ../type}}){{/if}}: {{../details.title}}</a>
+        {{/with}}
+        {{/each}}
+        <div class="divider"></div>
+      </div>
+  {{/each}}
+</div>
+<!-- {{> Template.dynamic template="content" data=tabData}} -->
 </template>
