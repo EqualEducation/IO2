@@ -2,7 +2,7 @@ function updateOptions(optionType, itemOptions) {
   var doc = Options.findOne();
   var existingOptions = doc[optionType];
   console.log(existingOptions);
-  if (existingOptions != undefined) {
+  if (existingOptions != undefined && itemOptions != undefined) {
     itemOptions.forEach(function(option) {
       if (existingOptions.indexOf(option) == -1) {
         existingOptions.push(option);
