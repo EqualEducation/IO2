@@ -1,3 +1,6 @@
+Template.explore.rendered= function() {
+  $('.ui.accordion').accordion()
+ };
 Template.registerHelper("allActivitiesForTopic", function (topic) {
   if (topic != undefined) {
     var activities = Activities.find({'details.mainTopic': topic});
