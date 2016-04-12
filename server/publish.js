@@ -10,6 +10,12 @@ Meteor.publish("activities-searchpage-data", function () {
      return Activities.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
 });
 
+Meteor.publish("activities-explore-data", function () {
+      console.log("publishing activities-explore-data");
+
+     return Activities.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1,'details.mainTopic':1,'details.subTopic':1}});
+});
+
 Meteor.publish("curricula-searchpage-data", function () {
       console.log("publishing curricula-searchpage-data");
      return Curricula.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});

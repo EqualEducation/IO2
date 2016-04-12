@@ -77,6 +77,7 @@ Meteor.methods({
     zip.saveAs("test.zip");
     // Generate zip stream
       var output = zip.generate();
+      console.log(output);
     return output;
   },
   addFile: function(yourFile) {

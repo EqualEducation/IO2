@@ -95,11 +95,7 @@ Template.viewItem.events({
         guideID=(this.guideID);
         // console.log(guideID);
         resourceIds=this.resourceIds;
-        // console.log(resourceIds);
         fileIDs=_.pluck(Resources.find({_id: {$in:resourceIds}}).fetch(),'fileIDs');
-        // console.log(fileIDs);
-        // fileIDs=fileIDs.push(guideID);
-        // console.log(fileIDs);
         urls=_.map(YourFileCollection.find({_id: {$in:fileIDs}}).fetch(), function(file){ return file.url(); });
         console.log(urls);
         Meteor.call("zipFiles", urls, function(error, result){
@@ -107,6 +103,7 @@ Template.viewItem.events({
              alert(error);
          }  else {
           console.log('Success');
+          console.log(result);
           location.href="data:application/zip;base64,"+result;
         }})
 

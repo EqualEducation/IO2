@@ -1,2 +1,12 @@
 <template name="explore">
+  <a>ACTIVITIES BY TOPIC</a>
+  {{#each mainTopics}}
+
+  <div class="header" style="color: teal">{{this}}</div>
+        {{#each allActivitiesForTopic this}}
+        <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
+        {{/each}}
+        <div class="divider"></div>
+  {{/each}}
+<!-- {{> Template.dynamic template="content" data=tabData}} -->
 </template>
