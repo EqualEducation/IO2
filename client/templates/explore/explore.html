@@ -4,7 +4,7 @@
   {{#each mainTopics}}
   <div class="title">
     <i class="dropdown icon"></i>
-  {{this}}
+  {{this}} ({{#with numActivities this}}{{this}}{{/with}})
 </div>
 <div class="content">
  <!--  {{#each subTopics.subTopics this}}

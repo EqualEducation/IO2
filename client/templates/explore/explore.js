@@ -17,6 +17,12 @@ Template.explore.helpers({
     var numResults=(data.length);
      return {contentType: "all", numResults: numResults,items: data};
   },
+  numActivities: function(mainTopic){
+    console.log(mainTopic);
+    numActivities=Activities.find({'details.mainTopic':mainTopic}).fetch().length;
+    console.log(numActivities);
+    return numActivities;
+  },
   mainTopics: function(){
   return _.unique(_.pluck(_.pluck(Activities.find().fetch(),'details'),'mainTopic'));
   },
