@@ -1,3 +1,6 @@
+
+
+
 Template.registerHelper('listView', function(listItems) {
   var count=listItems.length;
   var returnList = "";
@@ -100,14 +103,25 @@ Template.viewItem.events({
         // console.log(fileIDs);
         // fileIDs=fileIDs.push(guideID);
         // console.log(fileIDs);
-        urls=_.map(YourFileCollection.find({_id: {$in:fileIDs}}).fetch(), function(file){ return file.url(); });
-        console.log(urls);
-        Meteor.call("zipFiles", urls, function(error, result){
+        files = YourFileCollection.find({_id: {$in:fileIDs}}).fetch()
+
+        // files =_.map(YourFileCollection.find({_id: {$in:fileIDs}}).fetch(), function(file){
+        //   var obj = new Object()
+        //   obj.url = file.url();
+        //   obj.name = file.original.name;
+        //   obj.type = file.original.type;
+        //   obj._id = file._id;
+        //   return obj
+        //    });
+        console.log(files);
+
+        Meteor.call("zipFiles", files, function(error, result){
          if(error){
              alert(error);
          }  else {
           console.log('Success');
-          location.href="data:application/zip;base64,"+result;
+          console.log(result);
+          location.href=result;
         }})
 
       }

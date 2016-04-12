@@ -36,15 +36,33 @@ Template.connectActivities.helpers({
 
     return slots;
   },
+  'isLastSlot' : function(index) {
+    var n = Session.get('numberOfSlots');
+    return index==n;
+  }
 })
 
 Template.connectActivities.events({
   'click .addNewSlot' : function(event, template) {
     var numSlots = Session.get('numberOfSlots');
-
     Session.set('numberOfSlots', numSlots + 1);
+  },
+  'click .removeSlot' : function(event, template) {
+    var numSlots = Session.get('numberOfSlots');
+    Session.set('numberOfSlots', numSlots - 1);
+  },
+  'click .removeAll' : function(event, template) {
+    Session.set('numberOfSlots', 0);
   }
 })
+
+Template.slot.helpers({
+  'isLastSlot' : function(index) {
+    var n = Session.get('numberOfSlots');
+    return index==n;
+  }
+})
+
 //
 // Handlebars.registerHelper('times', function(n, block) {
 //     var accum = '';

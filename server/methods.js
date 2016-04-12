@@ -1,3 +1,36 @@
+// take a cfs file and return a base64 string
+var getBase64Data = function(file, zip, callback) {
+  // callback has the form function (err, res) {}
+  var readStream = file.createReadStream();
+  var buffer = [];
+  readStream.on('data', function(chunk) {
+    buffer.push(chunk);
+  });
+  readStream.on('error', function(err) {
+    console.log('error')
+    callback(err, null);
+  });
+  readStream.on('end', function() {
+    console.log('finished reading')
+    console.log('zipping')
+    var data = buffer.concat()[0].toString('base64');
+    zip.file(file.original.name, data, {base64: true});
+
+    var date = new Date();
+    var path = process.env["PWD"] + "/public/";
+    var downloadURL = 'test.zip'
+    zip.saveAs(path + downloadURL, function(error, result) {
+      if (error) {
+        callback(err, null);
+      } else {
+        var downloadURL = 'test' + '.zip'
+        callback(null, '/'+downloadURL);
+        // callback(null, buffer.concat()[0].toString('base64'), downloadURL);
+      }
+    });
+  });
+};
+
 function updateOptions(optionType, itemOptions) {
   var doc = Options.findOne();
   var existingOptions = doc[optionType];
@@ -70,14 +103,22 @@ Meteor.methods({
     }
     return result;
   },
-  zipFiles:function(urls){
-    console.log('zipping!');
+  zipFiles:function(files){
+    console.log(files)
     var zip=new JSZip();
-    zip.file(urls, 'Hello World');
-    zip.saveAs("test.zip");
-    // Generate zip stream
-      var output = zip.generate();
-    return output;
+    var getBase64DataSync = Meteor.wrapAsync(getBase64Data);
+
+    // files.forEach(function(f) {
+      // wrap it to make it sync
+
+      // get the base64 string
+      // http://stackoverflow.com/questions/30991797/how-can-i-get-a-buffer-for-a-file-image-from-collectionfs
+      var f = YourFileCollection.findOne(files[0]._id);
+      console.log(f.original.name)
+      // var file = new FS.File(f);
+      var downloadURL = getBase64DataSync(f, zip);
+      return downloadURL;
+
   },
   addFile: function(yourFile) {
     console.log('adding file');

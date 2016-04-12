@@ -1,20 +1,57 @@
 <template name="connectActivities">
-  {{#each numberOfSlots}}
-    {{> slot index=this}}
-  {{/each}}
+  <h4 class="ui dividing header">Activity Slots</h4>
+  <p>You can set the order activities should be run by selecting an activity in the appropriate slot.</p>
+  <table class="ui compact celled definition table">
+  <thead class="full-width">
+    <tr>
+      <th></th>
+      <th>Activity Title</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each numberOfSlots}}
+      {{> slot index=this}}
+    {{/each}}
+  </tbody>
+  <tfoot class="full-width">
+    <tr>
+      <th></th>
+      <th colspan="4">
+        <div class="ui right floated small primary labeled icon button addNewSlot">
+          <i class="plus icon"></i> Add Slot
+        </div>
+        <div class="ui small button removeAll">
+          Remove all
+        </div>
+      </th>
+    </tr>
+  </tfoot>
+</table>
+
+
   <div>
-    <a class="ui button primary addNewSlot">Add new slot</a>
+    <a target="_blank" href="/create/activity" class="button primary">Create new activity</a>
   </div>
 </template>
 
 <template name="slot">
-  <div class="field">
-    <label>Slot {{index}} - Activity</label>
-    <select name="slot_{{index}}" multiple="" class="noAdditions ui fluid search dropdown">
-      <option value="">Search...</option>
-      {{#each allActivities}}
-        <option value="{{_id}}">{{details.title}}</option>
-      {{/each}}
-    </select>
-  </div>
+  <tr>
+    <td>Slot {{index}}</td>
+    <td>
+      <select name="slot_{{index}}" class="slot noAdditions ui fluid search dropdown">
+        <option value="">Search...</option>
+        {{#each allActivities}}
+          <option value="{{_id}}">{{details.title}}</option>
+        {{/each}}
+      </select>
+    </td>
+    <td>
+      {{#if isLastSlot index}}
+      <div class="ui tiny basic labeled icon button removeSlot">
+        <i class="remove icon"></i> Remove Slot
+      </div>
+      {{/if}}
+    </td>
+  </tr>
 </template>

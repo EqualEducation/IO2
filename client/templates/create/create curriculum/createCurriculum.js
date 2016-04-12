@@ -16,6 +16,14 @@ Template.create_curriculum.onRendered( function() {
       var activityIds = $.map(activities, function(element) {
         return $(element).attr('data-value');
       });
+
+
+		 	var slots = $(".slot");
+		  var slotIds = $.map(slots, function(element) {
+        return $(element).attr('data-value');
+      });
+			console.log(slotIds);
+
       newCurriculum.activityIds = activityIds;
       newCurriculum.details = fields;
       newCurriculum.fileIDs = Session.get('fileIDs');
