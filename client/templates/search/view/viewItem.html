@@ -7,6 +7,7 @@
 				<div class="column">
 						<a class="ui basic button" href="/search">Back</a>
 					{{> html2docx selector="#wholeScreen" linkClass="ui primary button" filename=this.details.title }}
+            <a class="ui primary button" id="downloadAll">Download All</a>
 				{{#if currentUser}}
 						{{#with editURL this}}
 							<a class="ui primary button" href="{{this}}">Edit</a>

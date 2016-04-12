@@ -87,6 +87,31 @@ Template.viewItem.helpers({
 
 
 Template.viewItem.events({
+    'click #downloadAll': function (event) {
+      console.log('download All');
+      //if activity
+      if(this.itemType=='Activity')
+      {
+        guideID=(this.guideID);
+        // console.log(guideID);
+        resourceIds=this.resourceIds;
+        // console.log(resourceIds);
+        fileIDs=_.pluck(Resources.find({_id: {$in:resourceIds}}).fetch(),'fileIDs');
+        // console.log(fileIDs);
+        // fileIDs=fileIDs.push(guideID);
+        // console.log(fileIDs);
+        urls=_.map(YourFileCollection.find({_id: {$in:fileIDs}}).fetch(), function(file){ return file.url(); });
+        console.log(urls);
+        Meteor.call("zipFiles", urls, function(error, result){
+         if(error){
+             alert(error);
+         }  else {
+          console.log('Success');
+          location.href="data:application/zip;base64,"+result;
+        }})
+
+      }
+    },
     'click #deleteFile': function (event) {
       console.log("DELETE");
       itemID=(this._id);

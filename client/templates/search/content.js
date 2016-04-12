@@ -58,3 +58,7 @@ Template.content.helpers({
     return fileSearch.getStatus().loading;
   }
 })
+
+
+//download
+//YourFileCollection.findOne("vT9HZ5qc5k3iQ5T8M").url()

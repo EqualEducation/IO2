@@ -70,6 +70,15 @@ Meteor.methods({
     }
     return result;
   },
+  zipFiles:function(urls){
+    console.log('zipping!');
+    var zip=new JSZip();
+    zip.file(urls, 'Hello World');
+    zip.saveAs("test.zip");
+    // Generate zip stream
+      var output = zip.generate();
+    return output;
+  },
   addFile: function(yourFile) {
     console.log('adding file');
     console.log(yourFile);
