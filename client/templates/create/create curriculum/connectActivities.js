@@ -1,6 +1,11 @@
 Template.connectActivities.onRendered(function() {
-  $('.ui.fluid.multiple.search')
-    .dropdown();
+  Session.set('numberOfSlots', 2);
+
+})
+
+Template.slot.onRendered(function() {
+  $('.noAdditions.ui.dropdown')
+    .dropdown()
 })
 
 Template.registerHelper("allActivities", function () {
@@ -17,7 +22,33 @@ Template.connectActivities.helpers({
       var activity = Activities.findOne(activityId);
       activities.push(activity);
     })
-
     return activities;
+  },
+  'numberOfSlots' : function() {
+    var n = Session.get('numberOfSlots');
+    console.log('number of slots: ' + n)
+    var slots = [];
+    for(var i = 1; i <= n; ++i) {
+      console.log('add slot: ' + i)
+      slots.push(i);
+    }
+    console.log(slots)
+
+    return slots;
+  },
+})
+
+Template.connectActivities.events({
+  'click .addNewSlot' : function(event, template) {
+    var numSlots = Session.get('numberOfSlots');
+
+    Session.set('numberOfSlots', numSlots + 1);
   }
 })
+//
+// Handlebars.registerHelper('times', function(n, block) {
+//     var accum = '';
+//     for(var i = 0; i < n; ++i)
+//         accum += block.fn(i);
+//     return accum;
+// });
