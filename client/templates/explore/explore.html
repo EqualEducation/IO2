@@ -1,12 +1,22 @@
 <template name="explore">
   <a>ACTIVITIES BY TOPIC</a>
+  <div class="ui styled accordion">
   {{#each mainTopics}}
-
-  <div class="header" style="color: teal">{{this}}</div>
+  <div class="title">
+    <i class="dropdown icon"></i>
+  {{this}}
+</div>
+<div class="content">
+ <!--  {{#each subTopics.subTopics this}}
+  <a>{{mainTopic}}</a>
+  <a>{{subTopics}}</a>
+  {{/each}} -->
         {{#each allActivitiesForTopic this}}
         <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
+      </div>
   {{/each}}
+</div>
 <!-- {{> Template.dynamic template="content" data=tabData}} -->
 </template>

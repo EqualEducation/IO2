@@ -46,3 +46,4 @@ standard-minifier-css
 standard-minifier-js
 classcraft:archiver
 udondan:jszip
+semantic:ui-accordion

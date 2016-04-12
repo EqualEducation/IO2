@@ -15,7 +15,10 @@ Template.explore.helpers({
      return {contentType: "all", numResults: numResults,items: data};
   },
   mainTopics: function(){
-  return _.unique(_.pluck(_.pluck(Activities.find().fetch(),'details'),'mainTopic'))
+  return _.unique(_.pluck(_.pluck(Activities.find().fetch(),'details'),'mainTopic'));
+  },
+  subTopics: function(mainTopic){
+  return {subTopics:_.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic')),
+  mainTopic:mainTopic};
   }
-
 })
