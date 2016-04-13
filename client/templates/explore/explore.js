@@ -1,5 +1,5 @@
 Template.explore.rendered= function() {
-  $('.ui.accordion').accordion()
+  $('.ui.accordion').accordion({ exclusive: false });
  };
 Template.registerHelper("allActivitiesForTopics", function (subTopic,mainTopic) {
   if (subTopic != undefined) {
