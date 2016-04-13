@@ -1,9 +1,9 @@
 Template.explore.rendered= function() {
-  $('.ui.accordion').accordion()
+  $('.ui.accordion').accordion({ exclusive: false });
  };
-Template.registerHelper("allActivitiesForTopic", function (topic) {
-  if (topic != undefined) {
-    var activities = Activities.find({'details.mainTopic': topic});
+Template.registerHelper("allActivitiesForTopics", function (subTopic,mainTopic) {
+  if (subTopic != undefined) {
+    var activities = Activities.find({'details.subTopic': subTopic,'details.mainTopic':mainTopic});
     return activities;
   }
   var activities = Activities.find({});
@@ -18,17 +18,24 @@ Template.explore.helpers({
      return {contentType: "all", numResults: numResults,items: data};
   },
   numActivities: function(mainTopic){
-    console.log(mainTopic);
+    // console.log(mainTopic);
     numActivities=Activities.find({'details.mainTopic':mainTopic}).fetch().length;
-    console.log(numActivities);
+    // console.log(numActivities);
+    return numActivities;
+  },
+  numActivitiesWithSubtopic: function(subTopic,mainTopic){
+    // console.log(mainTopic);
+    numActivities=Activities.find({'details.mainTopic':mainTopic,'details.subTopic':subTopic}).fetch().length;
+    // console.log(numActivities);
     return numActivities;
   },
   mainTopics: function(){
   return _.unique(_.pluck(_.pluck(Activities.find().fetch(),'details'),'mainTopic'));
   },
   subTopics: function(mainTopic){
-  return {subTopics:_.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic')),
-  mainTopic:mainTopic};
+    console.log(mainTopic);
+    console.log(_.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic')));
+  return _.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic'))
   },
   pathName: function(itemType) {
     return itemType.toLowerCase() + ".view";
