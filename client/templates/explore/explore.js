@@ -3,7 +3,7 @@ Template.explore.rendered= function() {
  };
 Template.registerHelper("allActivitiesForTopics", function (subTopic,mainTopic) {
   if (subTopic != undefined) {
-    var activities = Activities.find({'details.subTopic': subTopic,'details.mainTopic':mainTopic});
+    var activities = Activities.find({'details.subTopic': subTopic,'details.mainTopic':mainTopic},{sort: {"details.title": 1}});
     return activities;
   }
   var activities = Activities.find({});
