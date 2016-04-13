@@ -30,12 +30,12 @@ Template.explore.helpers({
     return numActivities;
   },
   mainTopics: function(){
-  return _.unique(_.pluck(_.pluck(Activities.find().fetch(),'details'),'mainTopic'));
+  return _.unique(_.pluck(_.pluck(Activities.find().fetch(),'details'),'mainTopic')).sort();
   },
   subTopics: function(mainTopic){
-    console.log(mainTopic);
-    console.log(_.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic')));
-  return _.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic'))
+    // console.log(mainTopic);
+    // console.log(_.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic')));
+  return _.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic')).sort()
   },
   pathName: function(itemType) {
     return itemType.toLowerCase() + ".view";
