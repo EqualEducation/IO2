@@ -11,7 +11,7 @@
         {{#each subTopics this}}
         <div class="title">
           <i class="dropdown icon"></i>
-          {{this}}
+          {{this}} ({{#with numActivitiesWithSubtopic this ..}}{{this}}{{/with}})
         </div>
         <div class="content">
           {{#each allActivitiesForTopics this ..}}
@@ -26,5 +26,4 @@
     </div>
     {{/each}}
   </div>
-  <!-- {{> Template.dynamic template="content" data=tabData}} -->
 </template>

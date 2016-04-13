@@ -23,6 +23,12 @@ Template.explore.helpers({
     // console.log(numActivities);
     return numActivities;
   },
+  numActivitiesWithSubtopic: function(subTopic,mainTopic){
+    // console.log(mainTopic);
+    numActivities=Activities.find({'details.mainTopic':mainTopic,'details.subTopic':subTopic}).fetch().length;
+    // console.log(numActivities);
+    return numActivities;
+  },
   mainTopics: function(){
   return _.unique(_.pluck(_.pluck(Activities.find().fetch(),'details'),'mainTopic'));
   },
