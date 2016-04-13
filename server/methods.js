@@ -1,5 +1,5 @@
 // take a cfs file and return a base64 string
-var getBase64Data = function(file, zip, callback) {
+var getBase64Data = function(file, callback) {
   // callback has the form function (err, res) {}
   var readStream = file.createReadStream();
   var buffer = [];
@@ -7,29 +7,33 @@ var getBase64Data = function(file, zip, callback) {
     buffer.push(chunk);
   });
   readStream.on('error', function(err) {
-    console.log('error')
+    console.log(err)
     callback(err, null);
   });
   readStream.on('end', function() {
     console.log('finished reading')
-    console.log('zipping')
     var data = buffer.concat()[0].toString('base64');
-    zip.file(file.original.name, data, {base64: true});
-
-    var date = new Date();
-    var path = process.env["PWD"] + "/public/";
-    var downloadURL = 'test.zip'
-    zip.saveAs(path + downloadURL, function(error, result) {
-      if (error) {
-        callback(err, null);
-      } else {
-        var downloadURL = 'test' + '.zip'
-        callback(null, '/'+downloadURL);
-        // callback(null, buffer.concat()[0].toString('base64'), downloadURL);
-      }
-    });
+    callback(null, data);
   });
 };
+
+var createZip = function(filename, zip, data, callback) {
+  console.log('zipping')
+
+  zip.file(filename, data, {base64: true});
+  zip.file('textfile.txt', 'Hello World');
+
+  var date = Date.parse(new Date());
+  var path = process.env["PWD"] + "/public/zips/";
+  zip.saveAs(path + date + '.zip', function(error, result) {
+    if (error) {
+      callback(error, null);
+    } else {
+      var downloadURL = date + '.zip'
+      callback(null, '/' + downloadURL);
+    }
+  });
+}
 
 function updateOptions(optionType, itemOptions) {
   var doc = Options.findOne();
@@ -50,6 +54,33 @@ function updateOptions(optionType, itemOptions) {
 }
 
 Meteor.methods({
+  zipFiles:function(files){
+
+    //1. Create the zip object
+    var zip = new JSZip();
+
+    //2. setup synchronous versions of asynchronous methods. These synchronous methods will wait for their async versions to finish before moving on
+    //Meteor.wrapAsync() wraps a function that takes a callback function as its final parameter.
+    //e.g. Meteor.wrapSync(methodWithCallback)
+    //call back will be in the form: function(error, result){}
+    //http://docs.meteor.com/#/full/meteor_wrapasync
+    var getBase64DataSync = Meteor.wrapAsync(getBase64Data);
+    var createZipSync = Meteor.wrapAsync(createZip);
+
+    //3. Get the file object
+    // http://stackoverflow.com/questions/30991797/how-can-i-get-a-buffer-for-a-file-image-from-collectionfs
+    var file = YourFileCollection.findOne(files[0]._id);
+
+    //4. Convert file object into binary data
+    //TODO: will need to be different for different MIME types
+    var data = getBase64DataSync(file);
+
+    //5. Add the binary data to the zip object and create a final zip at a location
+    var locationOfZip = createZipSync(file.original.name, zip, data);
+
+    //6. Return the file location of the zip (/public/zips/dateInMilliSecondsSince1970.zip)
+    return locationOfZip;
+  },
   addItem: function(itemType, item) {
     console.log("ADDING ITEM!");
     console.log(item);
@@ -102,23 +133,6 @@ Meteor.methods({
       throw new Meteor.Error("Item type not recognized");
     }
     return result;
-  },
-  zipFiles:function(files){
-    console.log(files)
-    var zip=new JSZip();
-    var getBase64DataSync = Meteor.wrapAsync(getBase64Data);
-
-    // files.forEach(function(f) {
-      // wrap it to make it sync
-
-      // get the base64 string
-      // http://stackoverflow.com/questions/30991797/how-can-i-get-a-buffer-for-a-file-image-from-collectionfs
-      var f = YourFileCollection.findOne(files[0]._id);
-      console.log(f.original.name)
-      // var file = new FS.File(f);
-      var downloadURL = getBase64DataSync(f, zip);
-      return downloadURL;
-
   },
   addFile: function(yourFile) {
     console.log('adding file');
