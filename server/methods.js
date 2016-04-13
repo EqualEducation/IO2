@@ -17,12 +17,8 @@ var getBase64Data = function(file, callback) {
   });
 };
 
-var createZip = function(filename, zip, data, callback) {
-  console.log('zipping')
-
-  zip.file(filename, data, {base64: true});
-  zip.file('textfile.txt', 'Hello World');
-
+var createZip = function(zip, callback) {
+  console.log('creating zip');
   var date = Date.parse(new Date());
   var path = process.env["PWD"] + "/public/zips/";
   zip.saveAs(path + date + '.zip', function(error, result) {
@@ -30,7 +26,7 @@ var createZip = function(filename, zip, data, callback) {
       callback(error, null);
     } else {
       var downloadURL = date + '.zip'
-      callback(null, '/' + downloadURL);
+      callback(null, '/zips/' + downloadURL);
     }
   });
 }
@@ -54,7 +50,7 @@ function updateOptions(optionType, itemOptions) {
 }
 
 Meteor.methods({
-  zipFiles:function(files){
+  zipFiles:function(fileIDs){
 
     //1. Create the zip object
     var zip = new JSZip();
@@ -67,16 +63,30 @@ Meteor.methods({
     var getBase64DataSync = Meteor.wrapAsync(getBase64Data);
     var createZipSync = Meteor.wrapAsync(createZip);
 
-    //3. Get the file object
-    // http://stackoverflow.com/questions/30991797/how-can-i-get-a-buffer-for-a-file-image-from-collectionfs
-    var file = YourFileCollection.findOne(files[0]._id);
+    // //3. Get the file object
+    // // http://stackoverflow.com/questions/30991797/how-can-i-get-a-buffer-for-a-file-image-from-collectionfs
+    // var file = YourFileCollection.findOne(files[0]._id);
+    var files = YourFileCollection.find({_id: {$in:fileIDs}}).fetch()
+    files.forEach(function(file) {
+        console.log(file)
 
-    //4. Convert file object into binary data
-    //TODO: will need to be different for different MIME types
-    var data = getBase64DataSync(file);
+      //4. Convert file object into binary data
+      //TODO: will need to be different for different MIME types
+      var data = getBase64DataSync(file);
 
-    //5. Add the binary data to the zip object and create a final zip at a location
-    var locationOfZip = createZipSync(file.original.name, zip, data);
+      //5. Add the binary data to the zip object and create a final zip at a location
+      //Can add multiple blobs of data to the zip.
+      zip.file(file.original.name, data, {base64: true});
+      // zip.file('textfile.txt', 'Hello World');
+    })
+
+
+
+
+
+
+    //6. Create the final zip object;
+    var locationOfZip = createZipSync(zip);
 
     //6. Return the file location of the zip (/public/zips/dateInMilliSecondsSince1970.zip)
     return locationOfZip;

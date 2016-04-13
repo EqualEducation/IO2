@@ -1,4 +1,9 @@
-
+// Template.registerHelper.onRendered(function(){
+//   $('.basic.test.modal')
+//     .modal('setting', 'closable', false)
+//     .modal('show')
+//   ;
+// })
 
 
 Template.registerHelper('listView', function(listItems) {
@@ -91,6 +96,7 @@ Template.viewItem.helpers({
 
 Template.viewItem.events({
     'click #downloadAll': function (event) {
+      event.preventDefault()
       console.log('download All');
       //if activity
       if(this.itemType=='Activity')
@@ -100,30 +106,16 @@ Template.viewItem.events({
         resourceIds=this.resourceIds;
         // console.log(resourceIds);
         fileIDs=_.pluck(Resources.find({_id: {$in:resourceIds}}).fetch(),'fileIDs');
-        // console.log(fileIDs);
-        // fileIDs=fileIDs.push(guideID);
-        // console.log(fileIDs);
-        files = YourFileCollection.find({_id: {$in:fileIDs}}).fetch()
 
-        // files =_.map(YourFileCollection.find({_id: {$in:fileIDs}}).fetch(), function(file){
-        //   var obj = new Object()
-        //   obj.url = file.url();
-        //   obj.name = file.original.name;
-        //   obj.type = file.original.type;
-        //   obj._id = file._id;
-        //   return obj
-        //    });
-        console.log(files);
-
-        Meteor.call("zipFiles", files, function(error, result){
-         if(error){
-             alert(error);
-         }  else {
-          console.log('Success');
-          console.log(result);
-          location.href=result;
-        }})
-
+        Meteor.call("zipFiles", fileIDs, function(error, result){
+           if(error){
+               alert(error);
+           }  else {
+            console.log('Success');
+            console.log(result);
+            location.href=result;
+          }
+        })
       }
     },
     'click #deleteFile': function (event) {
