@@ -1,5 +1,5 @@
 <template name="explore">
-  <a>ACTIVITIES BY TOPIC</a>
+  <a>ACTIVITIES BY MAIN TOPIC</a>
   <div class="ui styled fluid accordion">
     {{#each mainTopics}}
     <div class="title">
@@ -7,6 +7,7 @@
       {{this}} ({{#with numActivities this}}{{this}}{{/with}})
     </div>
     <div class="content">
+      <a>{{this}} activities by sub-topic</a>
       <div class="ui styled fluid accordion">
         {{#each subTopics this}}
         <div class="title">
