@@ -7,17 +7,15 @@
   {{this}} ({{#with numActivities this}}{{this}}{{/with}})
 </div>
 <div class="content">
- <!--  {{#each subTopics.subTopics this}}
-  <a>{{mainTopic}}</a>
-  <a>{{subTopics}}</a>
-  {{/each}} -->
-        {{#each allActivitiesForTopic this}}
+  {{#each subTopics this}}
+  <div class="header" style="color: teal">{{this}}</div>
+        {{#each allActivitiesForTopics this ..}}
         {{#with pathName this.itemType}}
         <a href="{{pathFor route=this _id=../_id}}" target="_blank" id={{../_id}}>{{../details.title}}</a>
         <br>
         {{/with}}
         {{/each}}
-
+{{/each}}
       </div>
   {{/each}}
 </div>
