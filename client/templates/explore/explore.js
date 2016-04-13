@@ -3,7 +3,7 @@ Template.explore.rendered= function() {
  };
 Template.registerHelper("allActivitiesForTopics", function (subTopic,mainTopic) {
   if (subTopic != undefined) {
-    var activities = Activities.find({'details.subTopic': subTopic,'details.mainTopic':mainTopic});
+    var activities = Activities.find({'details.subTopic': subTopic,'details.mainTopic':mainTopic},{sort: {"details.title": 1}});
     return activities;
   }
   var activities = Activities.find({});
@@ -30,12 +30,12 @@ Template.explore.helpers({
     return numActivities;
   },
   mainTopics: function(){
-  return _.unique(_.pluck(_.pluck(Activities.find().fetch(),'details'),'mainTopic'));
+  return _.unique(_.pluck(_.pluck(Activities.find().fetch(),'details'),'mainTopic')).sort();
   },
   subTopics: function(mainTopic){
-    console.log(mainTopic);
-    console.log(_.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic')));
-  return _.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic'))
+    // console.log(mainTopic);
+    // console.log(_.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic')));
+  return _.unique(_.pluck(_.pluck(Activities.find({'details.mainTopic':mainTopic}).fetch(),'details'),'subTopic')).sort()
   },
   pathName: function(itemType) {
     return itemType.toLowerCase() + ".view";
