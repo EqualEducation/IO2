@@ -3,6 +3,15 @@ Template.edit_resource_type.helpers({
 		var ret = 'content_' + this.type
 		return ret ;
   },
+  noAssociatedFiles: function(){
+    console.log('file:');
+    console.log(this);
+    var fileIDs=(this.fileIDs);
+    if (fileIDs==undefined)
+      return true;
+    else
+      return false;
+  },
 	header: function() {
 		var ret = 'header_' + this.type
 		return ret ;
@@ -70,3 +79,4 @@ Template.edit_resource_type.onRendered( function() {
   })
 ;
 })
+

@@ -17,7 +17,10 @@
     		<form id="resourceDetailsForm" class="ui form">
           {{> commonFields this.details}}
     			{{> Template.dynamic template=content data=this}}
+          <!-- if there is no associated resource, add option to upload a new file -->
+          {{#if noAssociatedFiles}}
           {{> uploadFile}}
+          {{/if}}
           <div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
           <a href="/resource/{{this._id}}" class="ui black deny button">Cancel</a>
     		</form>
