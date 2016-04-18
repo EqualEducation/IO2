@@ -120,12 +120,7 @@ Template.viewItem.events({
             $('.ui.basic.downloadZip.modal')
               .modal('hide')
             ;
-
-            // window.open(result, '_blank');
-            // event.preventDefault();
-            window.open("www.google.com", '_blank');
-            // window.open(Router.url(path, params, someQueryt))
-            // location.href=result;
+            
           }
         })
       }

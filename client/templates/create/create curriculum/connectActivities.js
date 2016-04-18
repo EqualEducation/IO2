@@ -26,19 +26,17 @@ Template.connectActivities.helpers({
   },
   'numberOfSlots' : function() {
     var n = Session.get('numberOfSlots');
-    console.log('number of slots: ' + n)
     var slots = [];
     for(var i = 1; i <= n; ++i) {
-      console.log('add slot: ' + i)
       slots.push(i);
     }
-    console.log(slots)
-
     return slots;
   },
-  'isLastSlot' : function(index) {
+  'isDisabled': function() {
     var n = Session.get('numberOfSlots');
-    return index==n;
+    if (n <= 2) {
+      return 'disabled';
+    }
   }
 })
 
@@ -49,7 +47,11 @@ Template.connectActivities.events({
   },
   'click .removeSlot' : function(event, template) {
     var numSlots = Session.get('numberOfSlots');
-    Session.set('numberOfSlots', numSlots - 1);
+    if (numSlots > 2) {
+      Session.set('numberOfSlots', numSlots - 1);
+    } else {
+      alert('Could not remove slot. A curriculum needs to have at least two activity slots.');
+    }
   },
   'click .removeAll' : function(event, template) {
     Session.set('numberOfSlots', 0);
@@ -60,13 +62,5 @@ Template.slot.helpers({
   'isLastSlot' : function(index) {
     var n = Session.get('numberOfSlots');
     return index==n;
-  }
+  },
 })
-
-//
-// Handlebars.registerHelper('times', function(n, block) {
-//     var accum = '';
-//     for(var i = 0; i < n; ++i)
-//         accum += block.fn(i);
-//     return accum;
-// });

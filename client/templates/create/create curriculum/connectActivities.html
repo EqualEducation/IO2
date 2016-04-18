@@ -1,12 +1,12 @@
 <template name="connectActivities">
   <h4 class="ui dividing header">Activity Slots</h4>
   <p>You can set the order activities should be run by selecting an activity in the appropriate slot.</p>
+  <p>A curriculum needs a minimum of 2 activities.</p>
   <table class="ui compact celled definition table">
   <thead class="full-width">
     <tr>
       <th></th>
       <th>Activity Title</th>
-      <th>Remove</th>
     </tr>
   </thead>
   <tbody>
@@ -18,11 +18,11 @@
     <tr>
       <th></th>
       <th colspan="4">
-        <div class="ui right floated small primary labeled icon button addNewSlot">
+        <div class="ui small primary labeled icon button addNewSlot">
           <i class="plus icon"></i> Add Slot
         </div>
-        <div class="ui small button removeAll">
-          Remove all
+        <div class="ui {{isDisabled}} small primary labeled icon button removeSlot">
+          <i class="remove icon"></i> Remove Last Slot
         </div>
       </th>
     </tr>
@@ -45,13 +45,6 @@
           <option value="{{_id}}">{{details.title}}</option>
         {{/each}}
       </select>
-    </td>
-    <td>
-      {{#if isLastSlot index}}
-      <div class="ui tiny basic labeled icon button removeSlot">
-        <i class="remove icon"></i> Remove Slot
-      </div>
-      {{/if}}
     </td>
   </tr>
 </template>

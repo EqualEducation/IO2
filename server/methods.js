@@ -80,15 +80,10 @@ Meteor.methods({
       // zip.file('textfile.txt', 'Hello World');
     })
 
-
-
-
-
-
     //6. Create the final zip object;
     var locationOfZip = createZipSync(zip);
 
-    //6. Return the file location of the zip (/public/zips/dateInMilliSecondsSince1970.zip)
+    //7. Return the file location of the zip (/public/zips/dateInMilliSecondsSince1970.zip)
     return locationOfZip;
   },
   addItem: function(itemType, item) {
