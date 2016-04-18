@@ -33,12 +33,73 @@ Template.create_resource_type.onRendered( function() {
     },
 		on: 'submit',
     fields: {
-      title     : 'empty',
-      mainTopic   : 'empty',
-      subTopic : 'empty',
-      description : ['minLength[1]', 'empty'],
-      keywords   : ['minCount[1]', 'empty'],
-      audience    : 'empty'
+      title     : {
+			 identifier  : 'title',
+			 rules: [
+				 {
+					 type   : 'empty',
+					 prompt : 'Title is required'
+				 }
+			 ]
+		 },
+      mainTopic   : {
+			 identifier  : 'mainTopic',
+			 rules: [
+				 {
+					 type   : 'empty',
+					 prompt : 'Main topic is required'
+				 }
+			 ]
+		 },
+      subTopic : {
+			 identifier  : 'subTopic',
+			 rules: [
+				 {
+					 type   : 'empty',
+					 prompt : 'Sub topic is required'
+				 }
+			 ]
+		 },
+			description: {
+        identifier: 'description',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter a description'
+          },
+          {
+            type   : 'minLength[1]',
+            prompt : 'Your description must be at least {ruleValue} characters'
+          }
+        ]
+      },
+			keywords: {
+			 identifier  : 'keywords',
+			 rules: [
+				 {
+					 type   : 'minCount[1]',
+					 prompt : 'At least {ruleValue} keyword is required'
+				 },
+			 ]
+		 },
+      audience   : {
+			 identifier  : 'audience',
+			 rules: [
+				 {
+					 type   : 'empty',
+					 prompt : 'Audience is required'
+				 }
+			 ]
+		 },
+			materialsNeeded: {
+			 identifier  : 'materialsNeeded',
+			 rules: [
+				 {
+					 type   : 'checked',
+					 prompt : 'You must choose if materials are needed'
+				 }
+			 ]
+		 }
     }
   })
 })

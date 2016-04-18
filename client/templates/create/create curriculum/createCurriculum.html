@@ -9,30 +9,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="column">
-				<form id="curriculumDetailsForm" class="ui form">
-					{{> content_curriculum}}
-					{{> uploadFile}}
-					<div class="ui error message">
-				    <div class="header">Failed</div>
-				    <p>Your curriculum is missing some information. Please check.</p>
-				  </div>
-					<div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
-					<a href="/create" class="ui black deny button">Cancel</a>
-				</form>
-			</div>
-		</div>
+		{{> upsert_curriculum}}
 	</div>
-</template>
-
-<!-- <template name="header_curriculum">
-  <div class="header">
-    New Curriculum
-  </div>
-</template> -->
-
-<template name="content_curriculum">
-		{{> commonFields this.details}}
-    {{> connectActivities this}}
 </template>

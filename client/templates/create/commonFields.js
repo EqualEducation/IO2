@@ -24,13 +24,7 @@ Template.methodField.onRendered(function() {
 })
 
 Template.materialsField.onRendered(function() {
-  $('.commonFields.noAdditions.ui.dropdown')
-    .dropdown()
-  ;
-
-  $('.commonFields.allowAdditions.ui.dropdown')
-    .dropdown({
-      allowAdditions: true
-    })
+  $('.ui.radio.checkbox')
+    .checkbox()
   ;
 })

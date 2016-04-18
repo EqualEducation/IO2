@@ -11,15 +11,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="column">
-				<form id="curriculumDetailsForm" class="ui form">
-					{{> content_curriculum this}}
-					{{> uploadFile}}
-					<div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
-					<a href="/curriculum/{{this._id}}" class="ui black deny button">Cancel</a>
-				</form>
-			</div>
-		</div>
+		{{> upsert_curriculum this}}
 	</div>
 </template>

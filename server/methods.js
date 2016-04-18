@@ -80,21 +80,14 @@ Meteor.methods({
       // zip.file('textfile.txt', 'Hello World');
     })
 
-
-
-
-
-
     //6. Create the final zip object;
     var locationOfZip = createZipSync(zip);
 
-    //6. Return the file location of the zip (/public/zips/dateInMilliSecondsSince1970.zip)
+    //7. Return the file location of the zip (/public/zips/dateInMilliSecondsSince1970.zip)
     return locationOfZip;
   },
   addItem: function(itemType, item) {
-    console.log("ADDING ITEM!");
     console.log(item);
-
     // Make sure the user is logged in before inserting a task
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -111,6 +104,7 @@ Meteor.methods({
     item.owner = Meteor.userId();
     item.user_email = Meteor.user().emails[0];
     var id = item._id;
+    console.log('Upserting item with ID: ' + id)
     var result;
     if (itemType == ItemTypeEnum.RESOURCE) {
       console.log("ADDING RESOURCE");
@@ -134,11 +128,10 @@ Meteor.methods({
       if (result.insertedId != null && result.insertedId != undefined) { id = result.insertedId }
       console.log(item);
       console.log('linked activity ids:');
-      console.log(item.activityIds);
       //Add result._id to each activity in item.activityIds
-      var linkedActivities=item.activityIds;
+      var linkedActivities=item.activitySlots;
       for (var i=0;i<linkedActivities.length;i++)
-        Activities.update( {_id: linkedActivities[i]}, { $addToSet: { 'curriculumIds':id} } );
+        Activities.update( {_id: linkedActivities[i].activityId}, { $addToSet: { 'curriculumIds':id} } );
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
