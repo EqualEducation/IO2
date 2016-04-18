@@ -21,7 +21,9 @@
           {{#if noAssociatedFiles}}
           {{> uploadFile}}
           {{else}}
-          Existing File (get filename here): {{this.fileIDs}}
+          {{#with getFileNames this.fileIDs}}
+          Existing File: {{this.original.name}}
+          {{/with}}
           <br>
           <br>
           Upload new file:

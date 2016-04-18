@@ -3,6 +3,9 @@ Template.edit_resource_type.helpers({
 		var ret = 'content_' + this.type
 		return ret ;
   },
+  getFileNames: function(fileIDs){
+    return YourFileCollection.findOne(fileIDs);
+  },
   noAssociatedFiles: function(){
     console.log('file:');
     console.log(this);
