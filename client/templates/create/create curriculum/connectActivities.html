@@ -1,6 +1,6 @@
 <template name="connectActivities">
-  <h4 class="ui dividing header">Activity Slots</h4>
-  <p>You can set the order activities should be run by selecting an activity in the appropriate slot.</p>
+  <h4 class="ui dividing header">Activity Order</h4>
+  <p>You can set the order activities should be run by selecting them in the appropriate order.</p>
   <p>A curriculum needs a minimum of 2 activities.</p>
   <table class="ui compact celled definition table">
   <thead class="full-width">
@@ -20,17 +20,15 @@
       <th></th>
       <th colspan="4">
         <div class="ui small primary labeled icon button addNewSlot">
-          <i class="plus icon"></i> Add Slot
+          <i class="plus icon"></i> Add Activity
         </div>
         <div class="ui {{isDisabled}} small primary labeled icon button removeSlot">
-          <i class="remove icon"></i> Remove Last Slot
+          <i class="remove icon"></i> Remove Last Activity
         </div>
       </th>
     </tr>
   </tfoot>
 </table>
-
-
   <div>
     <a target="_blank" href="/create/activity" class="button primary">Create new activity</a>
   </div>
@@ -38,7 +36,7 @@
 
 <template name="slot">
   <tr>
-    <td>Slot {{index}}</td>
+    <td>Activity {{index}}</td>
     <td>
       <select id="slot_{{index}}" class="slot noAdditions ui fluid search dropdown">
         <option value="">Search...</option>

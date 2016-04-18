@@ -4,13 +4,14 @@
       <div class="text-muted">Activities</div>
     </div>
     <div class="thirteen wide column">
-      {{#if exists item.activityIds}}
+      {{#if exists item.activitySlots}}
       <table>
         <tbody>
-        {{#each item.activityIds}}
+        {{#each item.activitySlots}}
           <tr>
-            {{#with activity this}}
-              <td class="heading">{{this.details.title}}</td>
+            {{#with activity this.activityId}}
+              <td class="heading">Activity {{@index}}:</td>
+              <td class="detail">{{this.details.title}}</td>
                 {{#with pathName this.itemType}}
                 <td>
                   <a href="{{pathFor route=this _id=../_id}}" target="_blank" style="margin-left: 10px;">

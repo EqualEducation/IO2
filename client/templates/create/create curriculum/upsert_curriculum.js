@@ -10,7 +10,14 @@ Template.upsert_curriculum.onRendered( function() {
 		onSuccess : function(event, fields){
 			event.preventDefault();
       var form = $('#curriculumDetailsForm');
-      var newCurriculum = new Object();
+
+			var identifier = Router.current().params._id
+			var curriculum = new Object();
+
+			if (identifier != undefined) {
+				curriculum = Curricula.findOne(identifier);
+			}
+
 
 			var slots = $(".slot");
 		  var activitySlots = $.map(slots, function(element) {
@@ -20,11 +27,11 @@ Template.upsert_curriculum.onRendered( function() {
         return activitySlot;
       });
 
-			newCurriculum.activitySlots = activitySlots;
-      newCurriculum.details = fields;
-      newCurriculum.fileIDs = Session.get('fileIDs');
-			console.log('SAVING');
-      Meteor.call("addItem", ItemTypeEnum.CURRICULUM, newCurriculum, function(error, result){
+			curriculum.activitySlots = activitySlots;
+      curriculum.details = fields;
+      curriculum.fileIDs = Session.get('fileIDs');
+			console.log('SAVING: ' + curriculum._id);
+      Meteor.call("addItem", ItemTypeEnum.CURRICULUM, curriculum, function(error, result){
         if(error){
 					alert(error);
         }  else {
@@ -33,7 +40,10 @@ Template.upsert_curriculum.onRendered( function() {
 				}
 
 				Session.set('fileIDs', null);
-				Router.go('/curriculum/' + result.insertedId);
+				if (result.insertedId != undefined) {
+					identifier = result.insertedId;
+				}
+				Router.go('/curriculum/' + identifier);
 				return false;
     });
     },
