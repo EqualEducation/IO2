@@ -1,6 +1,18 @@
 Template.connectActivities.onRendered(function() {
-  Session.set('numberOfSlots', 2);
-
+  console.log('setting numberOfSlots');
+  if (this.data.slots != undefined && this.data.slots.length >= 2) {
+    Session.set('numberOfSlots', this.data.slots.length);
+    this.data.slots.forEach(function(slot) {
+      var slotName = slot.name;
+      var slotActivityId = slot.activityId;
+      console.log(slotName);
+      console.log(slotActivityId);
+      $('#' + slotName).dropdown('set selected', slotActivityId);
+    })
+  }
+  else {
+    Session.set('numberOfSlots', 2);
+  }
 })
 
 Template.slot.onRendered(function() {
@@ -24,7 +36,7 @@ Template.connectActivities.helpers({
     })
     return activities;
   },
-  'numberOfSlots' : function() {
+  'numberOfSlots' : function(existingSlots) {
     var n = Session.get('numberOfSlots');
     var slots = [];
     for(var i = 1; i <= n; ++i) {

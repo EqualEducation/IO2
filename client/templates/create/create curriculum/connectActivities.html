@@ -10,6 +10,7 @@
     </tr>
   </thead>
   <tbody>
+
     {{#each numberOfSlots}}
       {{> slot index=this}}
     {{/each}}
@@ -39,7 +40,7 @@
   <tr>
     <td>Slot {{index}}</td>
     <td>
-      <select name="slot_{{index}}" class="slot noAdditions ui fluid search dropdown">
+      <select id="slot_{{index}}" class="slot noAdditions ui fluid search dropdown">
         <option value="">Search...</option>
         {{#each allActivities}}
           <option value="{{_id}}">{{details.title}}</option>
