@@ -3,11 +3,9 @@ Template.connectActivities.onRendered(function() {
   if (this.data.slots != undefined && this.data.slots.length >= 2) {
     Session.set('numberOfSlots', this.data.slots.length);
     this.data.slots.forEach(function(slot) {
-      var slotName = slot.name;
+      var slotIdentifier = slot.identifier;
       var slotActivityId = slot.activityId;
-      console.log(slotName);
-      console.log(slotActivityId);
-      $('#' + slotName).dropdown('set selected', slotActivityId);
+      $('#' + slotIdentifier).dropdown('set selected', slotActivityId);
     })
   }
   else {

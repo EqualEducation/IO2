@@ -1,7 +1,7 @@
 <template name="curriculumItems">
   <div class="row">
     <div class="three wide column">
-      <div class="text-muted">Activities</div>
+      <div class="text-muted">Activity Order</div>
     </div>
     <div class="thirteen wide column">
       {{#if exists item.activitySlots}}
@@ -10,7 +10,7 @@
         {{#each item.activitySlots}}
           <tr>
             {{#with activity this.activityId}}
-              <td class="heading">Activity {{@index}}:</td>
+              <td class="heading">Activity {{../index}}:</td>
               <td class="detail">{{this.details.title}}</td>
                 {{#with pathName this.itemType}}
                 <td>

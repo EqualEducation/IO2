@@ -20,10 +20,13 @@ Template.upsert_curriculum.onRendered( function() {
 
 
 			var slots = $(".slot");
+			var count = 1;
 		  var activitySlots = $.map(slots, function(element) {
 				var activitySlot = new Object();
-				activitySlot.name = $(element)[0].firstChild.id
+				activitySlot.index = count;
+				activitySlot.identifier = $(element)[0].firstChild.id
 				activitySlot.activityId =	$(element).dropdown('get value');
+				count++;
         return activitySlot;
       });
 
