@@ -20,11 +20,45 @@
           <!-- if there is no associated resource, add option to upload a new file -->
           {{#if noAssociatedFiles}}
           {{> uploadFile}}
+          {{else}}
+          <!-- Existing File (get filename here): {{this.fileIDs}} -->
+          <br>
+          <br>
+          <a class="ui primary button" id="deleteFile">Change File</a>
+          <a class="ui primary button" id="removeFile">Remove File</a>
+          <br>
+          <br>
           {{/if}}
           <div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
           <a href="/resource/{{this._id}}" class="ui black deny button">Cancel</a>
     		</form>
     	</div>
+    </div>
+  </div>
+
+  <div class="ui basic change modal">
+    <div class="header">
+      Remove File
+    </div>
+    <div class="image content">
+      <div class="image">
+        <i class="trash icon"></i>
+      </div>
+      <div class="description">
+        <p>Are you sure you want to remove this file?</p>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="two fluid ui inverted buttons">
+        <div class="ui red basic inverted button deny">
+          <i class="remove icon"></i>
+          No
+        </div>
+        <div class="ui green basic inverted button approve">
+          <i class="checkmark icon"></i>
+          Yes
+        </div>
+      </div>
     </div>
   </div>
 </template>

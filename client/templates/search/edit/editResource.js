@@ -79,4 +79,20 @@ Template.edit_resource_type.onRendered( function() {
   })
 ;
 })
+Template.edit_resource_type.events({
+  'click #removeFile': function (event) {
+    console.log('remove file!');
+    $('.ui.basic.change.modal')
+        .modal({
 
+          onDeny    : function(){
+            return true;
+          },
+          onApprove: function(){
+            Session.set('fileIDs',null);
+            return true;
+          }
+        })
+        .modal('show')
+  }      
+})

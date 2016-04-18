@@ -129,10 +129,6 @@ Template.viewItem.events({
         })
       }
     },
-    'click #editButton': function (event) {
-      console.log('EDIT');
-      console.log(this);
-    },
     'click #deleteFile': function (event) {
       console.log("DELETE");
       itemID=(this._id);
