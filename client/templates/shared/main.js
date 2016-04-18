@@ -107,3 +107,13 @@ Template.registerHelper('getOptions', function(optionType) {
 	console.log(options[optionType])
   return options[optionType];
 })
+
+Template.registerHelper('isChecked', function(value) {
+    if (value == "on") {
+      return "Yes";
+    } else if (value == false) {
+      return "No";
+    } else {
+      return "Unknown";
+    }
+})
