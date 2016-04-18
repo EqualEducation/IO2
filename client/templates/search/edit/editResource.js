@@ -94,5 +94,9 @@ Template.edit_resource_type.events({
           }
         })
         .modal('show')
-  }      
+  },
+'change .uploadFile': function (event, template) {
+      console.log('upload file');
+      uploadFileWithVariableName('fileIDs');
+  }     
 })
