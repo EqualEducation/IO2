@@ -107,13 +107,25 @@ Template.viewItem.events({
         // console.log(resourceIds);
         fileIDs=_.pluck(Resources.find({_id: {$in:resourceIds}}).fetch(),'fileIDs');
 
+        $('.ui.basic.downloadZip.modal')
+          .modal('show')
+        ;
+
         Meteor.call("zipFiles", fileIDs, function(error, result){
            if(error){
                alert(error);
            }  else {
             console.log('Success');
             console.log(result);
-            location.href=result;
+            $('.ui.basic.downloadZip.modal')
+              .modal('hide')
+            ;
+
+            // window.open(result, '_blank');
+            // event.preventDefault();
+            window.open("www.google.com", '_blank');
+            // window.open(Router.url(path, params, someQueryt))
+            // location.href=result;
           }
         })
       }

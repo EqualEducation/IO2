@@ -21,12 +21,12 @@ var createZip = function(zip, callback) {
   console.log('creating zip');
   var date = Date.parse(new Date());
   var path = process.env["PWD"] + "/public/zips/";
-  zip.saveAs(path + date + '.zip', function(error, result) {
+  var fileLocation = path + date + '.zip'
+  zip.saveAs(fileLocation, function(error, result) {
     if (error) {
       callback(error, null);
     } else {
-      var downloadURL = date + '.zip'
-      callback(null, '/zips/' + downloadURL);
+      callback(null, fileLocation);
     }
   });
 }

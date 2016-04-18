@@ -20,29 +20,55 @@
 
 
 	<div class="ui basic test modal">
-  <div class="header">
-    Delete Item
-  </div>
-  <div class="image content">
-    <div class="image">
-      <i class="trash icon"></i>
-    </div>
-    <div class="description">
-      <p>Are you sure you want to delete {{this.details.title}}?</p>
-    </div>
-  </div>
-  <div class="actions">
-    <div class="two fluid ui inverted buttons">
-      <div class="ui red basic inverted button deny">
-        <i class="remove icon"></i>
-        No
-      </div>
-      <div class="ui green basic inverted button approve">
-        <i class="checkmark icon"></i>
-        Yes
-      </div>
-    </div>
-  </div>
-</div>
+	  <div class="header">
+	    Delete Item
+	  </div>
+	  <div class="image content">
+	    <div class="image">
+	      <i class="trash icon"></i>
+	    </div>
+	    <div class="description">
+	      <p>Are you sure you want to delete {{this.details.title}}?</p>
+	    </div>
+	  </div>
+	  <div class="actions">
+	    <div class="two fluid ui inverted buttons">
+	      <div class="ui red basic inverted button deny">
+	        <i class="remove icon"></i>
+	        No
+	      </div>
+	      <div class="ui green basic inverted button approve">
+	        <i class="checkmark icon"></i>
+	        Yes
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="ui basic downloadZip modal">
+		<div class="header">
+			Generating Zip File
+		</div>
+		<div class="image content">
+			<!-- <div class="ui segment">
+			  <p></p>
+			</div> -->
+
+			<div class="image">
+				<i class="download icon"></i>
+				<div class="ui active loader"></div>
+			</div>
+			<div class="description">
+				<p>Please wait...</p>
+			</div>
+		</div>
+		<div class="actions">
+			<div class="two fluid ui inverted buttons">
+				<div class="ui red basic inverted button deny">
+					<i class="remove icon"></i>
+					Cancel
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 </template>
