@@ -13,25 +13,27 @@ Template.commonFields.onRendered(function() {
     .checkbox()
   ;
 
-  Session.set('mainTopic', null);
+  Session.set('mainTopic', this.data.mainTopic);
 
 })
 
 Template.commonFields.events({
   'change #mainTopic': function(event,template){
-    Session.set('mainTopic', event.target.value);
+    var mainTopic = Session.get('mainTopic');
+    if (mainTopic != event.target.value) {
+      Session.set('mainTopic', event.target.value);
+      $("#subTopic").dropdown('refresh');
+    }
   }
 });
 
 Template.commonFields.helpers({
-  'mainTopicExists' : function() {
+  'shouldHide' : function() {
     var mainTopic = Session.get('mainTopic')
-    console.log('MAIN TOPIC');
-    console.log(mainTopic)
     if (mainTopic != undefined && mainTopic != "") {
-      return true;
+      return;
     } else {
-      return false;
+      return 'hidden';
     }
   }
 })

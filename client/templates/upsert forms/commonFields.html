@@ -12,17 +12,15 @@
       {{/each}}
     </select>
 </div>
-{{#if mainTopicExists}}
   <div class="field">
     <label>Sub Topic</label>
-    <select name="subTopic" class="commonFields noAdditions ui fluid search dropdown">
+    <select name="subTopic" id="subTopic" class="commonFields noAdditions ui fluid search dropdown">
       <option value="">Search...</option>
       {{#each getSubOptions "mainTopic"}}
         <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
   </div>
-{{/if}}
 <div class="field">
   <label>Keywords</label>
   <select name="keywords" multiple="" class="commonFields allowAdditions ui dropdown search multiple">
