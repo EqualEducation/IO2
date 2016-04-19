@@ -66,5 +66,6 @@ Template.upsert_curriculum.onRendered( function() {
     audience : this.data.details.audience,
     source    : this.data.details.source,
     method    : this.data.method,
+		link  : this.data.link
   })
 })

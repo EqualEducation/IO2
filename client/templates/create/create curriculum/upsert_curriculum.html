@@ -1,21 +1,17 @@
 <template name="upsert_curriculum">
-	<div class="row">
-		<div class="column">
-			<form id="curriculumDetailsForm" class="ui form">
-				{{> content_curriculum curriculum=this}}
-				{{> uploadFile}}
-				<div class="ui error message">
-					<div class="header">Failed</div>
-					<p>Your curriculum is missing some information. Please check.</p>
-				</div>
-				<div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
-				<a href="/create" class="ui black deny button">Cancel</a>
-			</form>
+	<form id="curriculumDetailsForm" class="ui form">
+		{{> content_curriculum curriculum=this}}
+		<div class="ui error message">
+			<div class="header">Failed</div>
+			<p>Your activity is missing some information. Please check.</p>
 		</div>
-	</div>
+		<div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
+		<a href="/create" class="ui black deny button">Cancel</a>
+	</form>
 </template>
 
 <template name="content_curriculum">
 		{{> commonFields curriculum.details}}
     {{> connectActivities slots=curriculum.activitySlots}}
+		{{> uploadFile}}
 </template>

@@ -1,0 +1,33 @@
+<template name="upsert_resource_type">
+  <form id="resourceDetailsForm" class="ui form">
+    {{> content_resource_type this}}
+    <div class="ui error message">
+			<div class="header">Failed</div>
+			<p>Your activity is missing some information. Please check.</p>
+		</div>
+    <div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
+    <a href="/resource/{{this._id}}" class="ui black deny button">Cancel</a>
+  </form>
+</template>
+
+<template name="content_resource_type">
+  {{> commonFields this.details}}
+  {{> Template.dynamic template=content data=this}}
+  <!-- if there is no associated resource, add option to upload a new file -->
+  {{#if noAssociatedFiles}}
+    {{> uploadFile}}
+  {{else}}
+    {{#with getFileNames this.fileIDs}}
+      Existing File: {{this.original.name}}
+    {{/with}}
+    <br>
+    <br>
+    Upload new file:
+    <input class=uploadFile type="file" />
+    <br>
+    <br>
+    <a class="ui primary button" id="removeFile">Remove File</a>
+    <br>
+    <br>
+  {{/if}}
+</template>
