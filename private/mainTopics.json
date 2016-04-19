@@ -1,15 +1,37 @@
 {
   "items" :[
-    {"name": "Social Issues", "subItems": ["General", "Abortion", "Death Penalty", "Feminism", "HIV/AIDs", "Human Rights", "Identity", "Morality", "Privilege", "Rape", "Sexuality", "Social Media", "Socio-Economic", "Xenophobia"]},
-    {"name": "Equal Education", "subItems": ["General", "EE Campaigns", "EE History", "EE Structures", "EE Values & Principles", "Introduction to EE", "Member Feedback"]},
-    {"name": "Activism", "subItems": ["General", "Leadership", "Media", "Tactics (Campaigning & Community Organising)", "Tactics (General)", "Tactics (Social Audits)", "Youth Activism"]},
-    {"name": "Personal Development", "subItems": ["General", "Critical Thinking", "Leadership Development", "Personal Identity", "Post-Matric", "Self-Education"]},
-    {"name": "Training", "subItems": ["General", "Activity Development", "Activity Running", "Group Discussion", "Popular Education Values"]},
-    {"name": "Youth Issues", "subItems": ["General", "Cultural", "Family", "Health", "Social"]}
-    {"name": "Education", "subItems": ["General", "Education Inequality", "School Structures", "Teaching & Learning", "Violence & Abuse in Schools"]},
-    {"name": "Political Institutions", "subItems": ["General", "Citizenship", "Government", "Law", "Voting"]},
-    {"name": "History", "subItems": ["General", "Apartheid & Anti-Apartheid Struggle", "Colonialism", "Democratic Transition"]},
-    {"name": "Community Development", "subItems": ["General", "Communication", "Fun & Bonding", "Group Dynamics"]},
-    {"name": "Political Economy", "subItems": ["General", "Corruption", "Inequality", "Labour Unions & Labor Rights"]},
+    {"name": "Social Issues",
+      "subItems": ["General", "Abortion", "Death Penalty", "Feminism", "HIV/AIDs", "Human Rights", "Identity", "Morality", "Privilege", "Rape", "Sexuality", "Social Media", "Socio-Economic", "Xenophobia"]
+    },
+    {"name": "Equal Education",
+      "subItems": ["General", "EE Campaigns", "EE History", "EE Structures", "EE Values & Principles", "Introduction to EE", "Member Feedback"]
+    },
+    {"name": "Activism",
+      "subItems": ["General", "Leadership", "Media", "Tactics (Campaigning & Community Organising)", "Tactics (General)", "Tactics (Social Audits)", "Youth Activism"]
+    },
+    {"name": "Personal Development",
+      "subItems": ["General", "Critical Thinking", "Leadership Development", "Personal Identity", "Post-Matric", "Self-Education"]
+    },
+    {"name": "Training",
+      "subItems": ["General", "Activity Development", "Activity Running", "Group Discussion", "Popular Education Values"]
+    },
+    {"name": "Youth Issues",
+      "subItems": ["General", "Cultural", "Family", "Health", "Social"]
+    },
+    {"name": "Education",
+      "subItems": ["General", "Education Inequality", "School Structures", "Teaching & Learning", "Violence & Abuse in Schools"]
+    },
+    {"name": "Political Institutions",
+      "subItems": ["General", "Citizenship", "Government", "Law", "Voting"]
+    },
+    {"name": "History",
+      "subItems": ["General", "Apartheid & Anti-Apartheid Struggle", "Colonialism", "Democratic Transition"]
+    },
+    {"name": "Community Development",
+      "subItems": ["General", "Communication", "Fun & Bonding", "Group Dynamics"]
+    },
+    {"name": "Political Economy",
+      "subItems": ["General", "Corruption", "Inequality", "Labour Unions & Labor Rights"]
+    }
   ]
 }
