@@ -67,8 +67,8 @@ Template.upsert_activity.onRendered( function() {
 	})
 })
 
-Template.uploadGuide.events({
-	'change .uploadGuide': function (event, template) {
-      uploadFileWithVariableName('guideID');
-	},
-})
+// Template.uploadGuide.events({
+// 	'change .uploadGuide': function (event, template) {
+//       uploadFileWithVariableName('guideID');
+// 	},
+// })

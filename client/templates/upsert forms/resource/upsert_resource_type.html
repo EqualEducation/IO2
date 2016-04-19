@@ -13,21 +13,7 @@
 <template name="content_resource_type">
   {{> commonFields this.details}}
   {{> Template.dynamic template=content data=this}}
+  {{> uploadFile fileIDs = this.fileIDs fileType = 'file'}}
   <!-- if there is no associated resource, add option to upload a new file -->
-  {{#if noAssociatedFiles}}
-    {{> uploadFile}}
-  {{else}}
-    {{#with getFileNames this.fileIDs}}
-      Existing File: {{this.original.name}}
-    {{/with}}
-    <br>
-    <br>
-    Upload new file:
-    <input class=uploadFile type="file" />
-    <br>
-    <br>
-    <a class="ui primary button" id="removeFile">Remove File</a>
-    <br>
-    <br>
-  {{/if}}
+
 </template>

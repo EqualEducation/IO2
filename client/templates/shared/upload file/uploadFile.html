@@ -1,9 +1,28 @@
 <template name="uploadFile">
-	 <h1>Upload Files Below</h1>
-    <br/>
-      {{> dropzone}}
-    <br/>
-  	<input class="uploadFile" type="file">
-    <br/>
-    <br>
+	{{#if noAssociatedFiles this.fileIDs}}
+	{{#if isEqual this.fileType 'guide'}}
+		<h1>Upload Guide</h1>
+		{{else}}
+		<h1>Upload Files</h1>
+	{{/if}}
+		 <br/>
+			 {{> dropzone}}
+		 <br/>
+		 <input class="uploadFile" type="file">
+		 <br/>
+		 <br>
+	{{else}}
+		{{#with getFileNames this.fileIDs}}
+			Existing File: {{this.original.name}}
+		{{/with}}
+		<br>
+		<br>
+		Upload new file:
+		<input class=uploadFile type="file" />
+		<br>
+		<br>
+		<a class="ui primary button" id="removeFile">Remove File</a>
+		<br>
+		<br>
+	{{/if}}
 </template>

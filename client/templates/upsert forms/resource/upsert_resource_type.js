@@ -3,18 +3,6 @@ Template.content_resource_type.helpers({
 		var ret = 'content_' + this.type
 		return ret ;
   },
-  getFileNames: function(fileIDs){
-    return YourFileCollection.findOne(fileIDs);
-  },
-  noAssociatedFiles: function(){
-    console.log('file:');
-    console.log(this);
-    var fileIDs=(this.fileIDs);
-    if (fileIDs==undefined)
-      return true;
-    else
-      return false;
-  },
 	header: function() {
 		var ret = 'header_' + this.type
 		return ret ;
