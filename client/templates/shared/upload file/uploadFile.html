@@ -1,5 +1,5 @@
 <template name="uploadFile">
-	{{#if noAssociatedFiles this.fileIDs}}
+	{{#if noAssociatedFiles this.fileIDs this.fileType}}
 	{{#if isEqual this.fileType 'guide'}}
 		<h1>Upload Guide</h1>
 		{{else}}
@@ -13,11 +13,11 @@
 		 <br>
 	{{else}}
 		{{#with getFileNames this.fileType}}
-			Existing File: {{this.original.name}}
+			Existing {{../fileType}}: {{this.original.name}}
 		{{/with}}
 		<br>
 		<br>
-		Upload new file:
+		Upload new {{fileType}}:
 		<input class=uploadFile type="file" />
 		<br>
 		<br>

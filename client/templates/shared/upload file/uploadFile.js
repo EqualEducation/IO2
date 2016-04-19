@@ -34,12 +34,19 @@ Template.uploadFile.helpers({
 		}
 		return YourFileCollection.findOne(fileIDs);
   },
-  noAssociatedFiles: function(fileIDs){
-    if (fileIDs==undefined) {
+  noAssociatedFiles: function(fileIDs,fileType){
+  	console.log('guideID:');
+  	console.log(fileIDs);
+    if (fileIDs==undefined	) {
 			return true;
 		}
     else {
+    		if(fileType=='guide')
+    		{Session.set('guideID',fileIDs);}
+    		else
+    		{
 			Session.set('fileIDs',fileIDs);
+			}
 			return false;
 		}
   },
