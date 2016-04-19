@@ -1,11 +1,12 @@
 {
   "items":
   [
-    {
-      "name": "Comedy"
-    },
-    {
-      "name": "Drama"
-    }
+    {"name": "Full Length Documentary"},
+    {"name": "Documentary Short"},
+    {"name": "Video Clip"},
+    {"name": "Amazwi Wethu"},
+    {"name": "Full Length Feature Film"},
+    {"name": "Series Episode"},
+    {"name": "Short Feature Film"}
   ]
 }
