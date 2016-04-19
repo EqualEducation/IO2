@@ -41,6 +41,8 @@ Template.upsert_resource_type.onRendered( function() {
          resource = Resources.findOne(identifier);
        }
 
+       var type = Router.current().params.resource_type;
+       resource.type = type
        resource.details = allFields;
        resource.fileIDs = Session.get('fileIDs');
        console.log("editing file IDs");
