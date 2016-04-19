@@ -8,7 +8,10 @@ Template.commonFields.onRendered(function() {
       allowAdditions: true
     })
   ;
-
+  
+  $('.ui.radio.checkbox')
+    .checkbox()
+  ;
 })
 
 Template.methodField.onRendered(function() {

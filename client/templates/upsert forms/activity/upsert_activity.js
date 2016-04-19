@@ -49,7 +49,7 @@ Template.upsert_activity.onRendered( function() {
       subTopic : 'empty',
       description : ['minLength[6]', 'empty'],
       keywords   : ['minCount[1]', 'empty'],
-      audience    : 'empty'
+      complexity    : 'empty'
     }
   })
 	.form('set values', {
@@ -58,7 +58,7 @@ Template.upsert_activity.onRendered( function() {
 		mainTopic   : this.data.details.mainTopic,
 		subTopic   : this.data.details.subTopic,
 		keywords : this.data.details.keywords,
-		audience : this.data.details.audience,
+		complexity : this.data.details.complexity,
 		source    : this.data.details.source,
 		method    : this.data.method,
 		books    : this.data.books,
