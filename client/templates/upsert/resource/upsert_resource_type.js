@@ -70,7 +70,7 @@ Template.upsert_resource_type.onRendered( function() {
       keywords   : ['minCount[1]', 'empty'],
       audience    : 'empty'
     }
-    })
+  })
 	.form('set values', {
     title     : this.data.details.title,
 		description     : this.data.details.description,
