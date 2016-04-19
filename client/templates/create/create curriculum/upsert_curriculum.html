@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="column">
 			<form id="curriculumDetailsForm" class="ui form">
-				{{> content_curriculum item=this}}
+				{{> content_curriculum curriculum=this}}
 				{{> uploadFile}}
 				<div class="ui error message">
 					<div class="header">Failed</div>
@@ -16,6 +16,6 @@
 </template>
 
 <template name="content_curriculum">
-		{{> commonFields item.details}}
-    {{> connectActivities slots=item.activitySlots}}
+		{{> commonFields curriculum.details}}
+    {{> connectActivities slots=curriculum.activitySlots}}
 </template>

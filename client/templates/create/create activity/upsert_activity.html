@@ -1,0 +1,33 @@
+<template name="upsert_activity">
+  <form id="activityDetailsForm" class="ui form">
+    {{> content_activity activity=this}}
+    <div class="field">
+      <label>Duration (minutes)</label>
+      <input type="number" name="duration">
+    </div>
+    {{> uploadGuide}}
+    <div class="ui error message">
+      <div class="header">Failed</div>
+      <p>Your activity is missing some information. Please check.</p>
+    </div>
+    <div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
+    <a href="/create" class="ui black deny button">Cancel</a>
+  </form>
+</template>
+
+<template name="content_activity">
+	{{> commonFields activity.details}}
+	{{> methodField activity}}
+	{{> connectResources activity}}
+</template>
+
+
+<template name="uploadGuide">
+	 <h1>Upload Activity Guide</h1>
+    <br/>
+      {{> dropzone}}
+    <br/>
+  	<input class="uploadGuide" type="file">
+    <br/>
+    <br>
+</template>

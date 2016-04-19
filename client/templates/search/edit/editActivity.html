@@ -13,12 +13,7 @@
 		</div>
 		<div class="row">
 			<div class="column">
-				<form id="activityDetailsForm" class="ui form">
-					{{> content_activity this}}
-          {{> uploadGuide}}
-          <div id="save" class="ui blue submit right labeled icon button">Save<i class="right arrow icon"></i></div>
-          <a href="/activity/{{this._id}}" class="ui black deny button">Cancel</a>
-				</form>
+				{{> upsert_activity this}}
 			</div>
 		</div>
 </div>

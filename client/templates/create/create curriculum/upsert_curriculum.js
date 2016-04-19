@@ -1,6 +1,5 @@
 Template.upsert_curriculum.onRendered( function() {
-	console.log('upsert curriculum');
-	console.log(this)
+
 	$('#curriculumDetailsForm')
   .form({
 		onFailure(formErrors, fields)	{
@@ -13,11 +12,9 @@ Template.upsert_curriculum.onRendered( function() {
 
 			var identifier = Router.current().params._id
 			var curriculum = new Object();
-
 			if (identifier != undefined) {
 				curriculum = Curricula.findOne(identifier);
 			}
-
 
 			var slots = $(".slot");
 			var count = 1;
