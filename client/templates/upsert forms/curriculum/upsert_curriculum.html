@@ -13,5 +13,5 @@
 <template name="content_curriculum">
 		{{> commonFields curriculum.details}}
     {{> connectActivities slots=curriculum.activitySlots}}
-		{{> uploadFile fileIDs = this.fileIDs fileType = 'file'}}
+		{{> uploadFile fileIDs = curriculum.fileIDs fileType = 'file'}}
 </template>
