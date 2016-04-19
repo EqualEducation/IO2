@@ -72,13 +72,11 @@ Template.registerHelper('convertDate', function(createdAtDate) {
 // });
 
 Template.viewItem.helpers({
-
   editURL: function(item) {
     var url;
     console.log('EDITURL');
     fileIDs=(this.fileIDs);
     console.log(this.fileIDs);
-    Session.set('fileIDs',fileIDs);
     switch (item.itemType) {
       case ItemTypeEnum.ACTIVITY:
         url = '\\activity\\edit\\' + item._id;
@@ -124,7 +122,7 @@ Template.viewItem.events({
             $('.ui.basic.downloadZip.modal')
               .modal('hide')
             ;
-            
+
           }
         })
       }
