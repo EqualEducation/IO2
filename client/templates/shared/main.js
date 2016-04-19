@@ -98,6 +98,7 @@ Template.registerHelper('getOptions', function(optionType) {
 		var items = Options.findOne();
 		this.options = new ReactiveVar(items);
 		options = this.options.get();
+
 	} else {
     console.log('existing options');
 		options = optionsInstance.get();
@@ -106,6 +107,20 @@ Template.registerHelper('getOptions', function(optionType) {
 	console.log('Get options for type: '  + optionType)
 	console.log(options[optionType])
   return options[optionType];
+})
+
+Template.registerHelper('getSubOptions', function(superOption) {
+  var superOptionType = Session.get(superOption)
+	var optionsInstance = this.options;
+	var options;
+	if (optionsInstance == undefined) {
+		var items = Options.findOne();
+		this.options = new ReactiveVar(items);
+		options = this.options.get();
+	} else {
+		options = optionsInstance.get();
+	}
+  return options[superOptionType];
 })
 
 Template.registerHelper('isChecked', function(value) {

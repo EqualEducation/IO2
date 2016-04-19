@@ -1,9 +1,11 @@
 {
   "items":
   [
-    "Discussion",
-	   "Skit",
-    "Game",
-    "Dance"
+    {
+      "name": "Comedy"
+    },
+    {
+      "name": "Drama"
+    }
   ]
 }

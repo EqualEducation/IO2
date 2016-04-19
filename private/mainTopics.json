@@ -1,9 +1,19 @@
 {
-  "items":
-  [
-    "Black Consciousness",
-    "Education",
-    "Politics",
-    "Socialism"
+  "items" :[
+    {
+        "name": "Back Consciousness",
+        "subItems": [
+          "Black Consciousness 1",
+          "Black Consciousness 2",
+          "Black Consciousness 3"
+        ]
+      },
+      {
+        "name": "Education",
+        "subItems": [
+          "Education1",
+          "Education2"
+        ]
+      }
   ]
 }
