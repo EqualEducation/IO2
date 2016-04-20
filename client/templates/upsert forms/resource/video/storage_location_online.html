@@ -1,0 +1,48 @@
+<template name="storage_location_online">
+  <h4 class="ui dividing header">Storage Location Online<i class="cloud icon"></i></h4>
+      <p>You can add a link to the video if it is online.</p>
+      <p>If the video has multiple parts, you can add multiple links.</p>
+      <table class="ui compact celled definition table">
+      <thead class="full-width">
+        <tr>
+          <th>Video Name</th>
+          <th>Online Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each numberOfItems}}
+          {{> video_location_online index=this}}
+        {{/each}}
+      </tbody>
+      <tfoot class="full-width">
+        <tr>
+          <th></th>
+          <th colspan="4">
+            <div class="ui small primary labeled icon button addItem">
+              <i class="plus icon"></i> Add Location
+            </div>
+            <div class="{{isDisabled}} ui small primary labeled icon button removeItem">
+              <i class="remove icon"></i> Remove Last Video URL
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+</template>
+
+<template name="video_location_online">
+  <tr>
+    <div class="grouped fields" name="online">
+      <td>
+        <div class="field">
+          <input name="online_video_names[]" type="text" placeholder="e.g. Part 1">
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <input name="online_video_locations[]" type="url" placeholder="e.g. www.youtube.com">
+        </div>
+      </td>
+    </div>
+  </tr>
+</template>
