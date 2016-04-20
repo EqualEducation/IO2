@@ -53,12 +53,51 @@ Template.upsert_resource_type.onRendered( function() {
     },
     on: 'submit',
     fields: {
-      title     : 'empty',
-      mainTopic   : 'empty',
-      subTopic : 'empty',
-      description : ['minLength[6]', 'empty'],
-      keywords   : ['minCount[1]', 'empty'],
-      complexity    : 'empty'
+      title: {
+        identifier: 'title',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter a title'
+          }
+        ]
+      },
+			mainTopic: {
+        identifier: 'mainTopic',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please select a main topic'
+          }
+        ]
+      },
+			subTopic: {
+        identifier: 'subTopic',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please select a sub topic'
+          }
+        ]
+      },
+			description: {
+        identifier: 'description',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter a description'
+          }
+        ]
+      },
+			keywords: {
+        identifier: 'keywords',
+        rules: [
+          {
+            type   : 'minCount[1]',
+            prompt : 'Keywords must have at least {ruleValue} choices'
+          }
+        ]
+      }
     }
   })
 	.form('set values', {
