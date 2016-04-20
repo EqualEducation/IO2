@@ -10,6 +10,9 @@
     {"name": "Simulation"},
     {"name": "Museum"},
     {"name": "Debate"},
-    {"name": "Information Station"}
+    {"name": "Worksheet"},
+    {"name": "Arts & Crafts"},
+    {"name": "Information Station"},
+    {"name": "Other"}
   ]
 }
