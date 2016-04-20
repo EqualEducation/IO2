@@ -32,7 +32,9 @@
     },
     {"name": "Political Economy",
       "subItems": ["General", "Corruption", "Inequality", "Labour Unions & Labor Rights"]
+    },
+    {"name": "Icebreaker",
+      "subItems": ["Name Games", "Active Games", "Balloon Games", "Jedi Mind Games", "Pair Games", "Team Building Games", "Trust Games"]
     }
-    
   ]
 }
