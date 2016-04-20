@@ -97,6 +97,26 @@ Template.upsert_resource_type.onRendered( function() {
             prompt : 'Keywords must have at least {ruleValue} choices'
           }
         ]
+      },
+      link : {
+        identifier: 'link',
+        optional: true,
+        rules: [
+          {
+            type   : 'url',
+            prompt : 'Please enter a valid link URL'
+          }
+        ]
+      },
+      storageLocationOnline : {
+        identifier: 'storageLocationOnline',
+        optional: true,
+        rules: [
+          {
+            type   : 'url',
+            prompt : 'Please enter a valid URL'
+          }
+        ]
       }
     }
   })

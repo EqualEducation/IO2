@@ -97,7 +97,17 @@ Template.upsert_activity.onRendered( function() {
             prompt : 'Please select a complexity level'
           }
         ]
-      }
+      },
+			link : {
+				identifier: 'link',
+				optional: true,
+				rules: [
+					{
+						type   : 'url',
+						prompt : 'Please enter a valid URL'
+					}
+				]
+			}
     }
   })
 	.form('set values', {
