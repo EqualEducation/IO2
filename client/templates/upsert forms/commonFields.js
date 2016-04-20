@@ -28,6 +28,12 @@ Template.commonFields.events({
 });
 
 Template.commonFields.helpers({
+  'hideIfVideo' : function() {
+    var resourceType = Router.current().params.resource_type;
+    if (resourceType == 'video') {
+      return 'hidden'
+    }
+  },
   'shouldHide' : function() {
     var mainTopic = Session.get('mainTopic')
     if (mainTopic != undefined && mainTopic != "") {
