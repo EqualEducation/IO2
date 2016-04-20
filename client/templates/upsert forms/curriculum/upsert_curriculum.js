@@ -65,7 +65,7 @@ Template.upsert_curriculum.onRendered( function() {
     keywords : this.data.details.keywords,
 		complexity : this.data.details.complexity,
     source    : this.data.details.source,
-    method    : this.data.method,
-		link  : this.data.link
+		link  : this.data.details.link,
+		method    : this.data.details.method
   })
 })

@@ -60,10 +60,11 @@ Template.upsert_activity.onRendered( function() {
 		keywords : this.data.details.keywords,
 		complexity : this.data.details.complexity,
 		source    : this.data.details.source,
-		method    : this.data.method,
+		link  : this.data.details.link,
+		method    : this.data.details.method,
+		duration    : this.data.details.duration,
 		books    : this.data.books,
-		videos    : this.data.videos,
-		link  : this.data.link
+		videos    : this.data.videos
 	})
 })
 
