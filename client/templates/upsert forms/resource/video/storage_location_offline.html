@@ -10,13 +10,15 @@
       </thead>
       <tbody>
         {{#each numberOfItems}}
-          {{> video_location_offline index=this}}
+          {{#with videoAtIndex @index}}
+            {{> video_location_offline video=this}}
+          {{/with}}
         {{/each}}
       </tbody>
       <tfoot class="full-width">
         <tr>
           <th></th>
-          <th colspan="4">
+          <th>
             <div class="ui small primary labeled icon button addItem">
               <i class="plus icon"></i> Add Location
             </div>
@@ -31,17 +33,17 @@
 
 <template name="video_location_offline">
   <tr>
-    <div class="grouped fields" name="offline">
+    <!-- <div class="grouped fields" name="offline"> -->
       <td>
         <div class="field">
-          <input name="offline_video_names[]" type="text" placeholder="e.g. Part 1">
+          <input name="offline_video_names[]" type="text" placeholder="e.g. Part 1" value="{{video.name}}">
         </div>
       </td>
       <td>
         <div class="field">
-          <input name="offline_video_locations[]" type="url" placeholder="e.g. Amazwi Wethu hard drive">
+          <input name="offline_video_locations[]" type="url" placeholder="e.g. Amazwi Wethu hard drive" value={{video.location}}>
         </div>
       </td>
-    </div>
+    <!-- </div> -->
   </tr>
 </template>
