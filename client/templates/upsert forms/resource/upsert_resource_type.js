@@ -139,6 +139,7 @@ Template.upsert_resource_type.onRendered( function() {
 		videos    : this.data.videos,
     author  : this.data.author,
     year  : this.data.year,
+    materialsNeeded : this.data.details.materialsNeeded,
     online_video_names : this.data.online_video_names,
     online_video_locations: this.data.online_video_locations,
     offline_video_names: this.data.offline_video_names,

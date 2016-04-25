@@ -12,6 +12,27 @@
 
 <template name="content_activity">
 	{{> commonFields activity.details}}
+  <div class="grouped fields">
+    <label>Complexity</label>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="complexity" value="Easy">
+        <label>Easy</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="complexity" value="Medium">
+        <label>Medium</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="complexity" value="Hard">
+        <label>Hard</label>
+      </div>
+    </div>
+  </div>
 	{{> methodField activity}}
   <div class="field">
     <label>Duration (minutes)</label>
