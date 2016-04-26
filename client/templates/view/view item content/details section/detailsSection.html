@@ -20,10 +20,6 @@
             <td class="detail">{{listView item.details.keywords}}</td>
           </tr>
           <tr>
-            <td class="heading">Complexity:</td>
-            <td class="detail">{{item.details.complexity}}</td>
-          </tr>
-          <tr>
             <td class="heading">Source:</td>
             <td class="detail">{{item.details.source}}</td>
           </tr>
@@ -47,4 +43,30 @@
       </table>
     </div>
   </div>
+  {{#if isEqual item.type "video"}}
+  <div class="row">
+    <div class="three wide column">
+      <p class="text-muted">Online Videos</p>
+    </div>
+    <div class="thirteen wide column">
+      <table>
+        <tbody>
+            {{> viewOnlineVideoLocations videos=item.online_videos}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="three wide column">
+      <p class="text-muted">Offline Videos</p>
+    </div>
+    <div class="thirteen wide column">
+      <table>
+        <tbody>
+            {{> viewOfflineVideoLocations videos=item.offline_videos}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {{/if}}
 </template>

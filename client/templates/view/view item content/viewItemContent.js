@@ -3,6 +3,8 @@ Template.registerHelper('file',function(itemID,itemTitle) {
   //linkedFile=YourFileCollection.findOne();
   console.log("FILE")
   console.log(linkedFile);
+  console.log(linkedFile.url());
+
   if (linkedFile != undefined)
   {
     linkedFile.itemname=itemTitle;

@@ -169,12 +169,13 @@ Template.upsert_resource_type.onRendered( function() {
     keywords : this.data.details.keywords,
     complexity : this.data.details.complexity,
     source    : this.data.details.source,
+    length  : this.data.details.length,
     link  : this.data.details.link,
+    year  : this.data.details.year,
 		method    : this.data.details.method,
+    author  : this.data.details.author,
 		books    : this.data.books,
 		videos    : this.data.videos,
-    author  : this.data.author,
-    year  : this.data.year,
     materialsNeeded : this.data.details.materialsNeeded
   })
 ;

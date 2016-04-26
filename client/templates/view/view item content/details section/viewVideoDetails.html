@@ -9,14 +9,24 @@
   </tr>
   <tr>
     <td class="heading">Video Type:</td>
-    <td class="detail">{{item.details.videoType}}</td>
+    <td class="detail">{{listView item.details.videoType}}</td>
   </tr>
-  <tr>
-    <td class="heading">Storage Location Online:</td>
-    <td class="detail"><a href="{{item.details.storageLocationOnline}}" target="_blank">{{item.details.storageLocationOnline}}</a></td>
-  </tr>
-  <tr>
-    <td class="heading">Storage Location Offline:</td>
-    <td class="detail">{{item.details.storageLocationOffline}}</td>
-  </tr>
+</template>
+
+<template name="viewOfflineVideoLocations">
+  {{#each videos}}
+    <tr>
+      <td class="heading">{{this.name}}:</td>
+      <td class="detail">{{this.location}}</td>
+    </tr>
+  {{/each}}
+</template>
+
+<template name="viewOnlineVideoLocations">
+  {{#each videos}}
+    <tr>
+      <td class="heading">{{this.name}}</td>
+      <td class="detail"><a href={{this.location}}>View<i class="cloud arrow right icon"></i></a></td>
+    </tr>
+  {{/each}}
 </template>

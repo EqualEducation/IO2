@@ -74,9 +74,7 @@ Template.registerHelper('convertDate', function(createdAtDate) {
 Template.viewItem.helpers({
   editURL: function(item) {
     var url;
-    console.log('EDITURL');
     fileIDs=(this.fileIDs);
-    console.log(this.fileIDs);
     switch (item.itemType) {
       case ItemTypeEnum.ACTIVITY:
         url = '\\edit\\activity\\' + item._id;
