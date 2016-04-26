@@ -1,70 +1,4 @@
-var validationRules = {
-  title: {
-    identifier: 'title',
-    rules: [
-      {
-        type   : 'empty',
-        prompt : 'Please enter a title'
-      }
-    ]
-  },
-  mainTopic: {
-    identifier: 'mainTopic',
-    rules: [
-      {
-        type   : 'empty',
-        prompt : 'Please select a main topic'
-      }
-    ]
-  },
-  subTopic: {
-    identifier: 'subTopic',
-    rules: [
-      {
-        type   : 'empty',
-        prompt : 'Please select a sub topic'
-      }
-    ]
-  },
-  description: {
-    identifier: 'description',
-    rules: [
-      {
-        type   : 'empty',
-        prompt : 'Please enter a description'
-      }
-    ]
-  },
-  keywords: {
-    identifier: 'keywords',
-    rules: [
-      {
-        type   : 'minCount[1]',
-        prompt : 'Keywords must have at least {ruleValue} choices'
-      }
-    ]
-  },
-  link : {
-    identifier: 'link',
-    optional: true,
-    rules: [
-      {
-        type   : 'url',
-        prompt : 'Please enter a valid link URL'
-      }
-    ]
-  },
-  storageLocationOnline : {
-    identifier: 'storageLocationOnline',
-    optional: true,
-    rules: [
-      {
-        type   : 'url',
-        prompt : 'Please enter a valid URL'
-      }
-    ]
-  }
-}
+
 
 Template.content_resource_type.helpers({
   content: function() {
@@ -88,29 +22,65 @@ Template.upsert_resource_type.onRendered( function() {
 		onSuccess : function(event, fields){
       event.preventDefault();
       var form = $('#resourceDetailsForm');
-       var topic =	form.form('get field', 'topic').val();
-       var allFields = form.form('get values')
-       var offline = form.form('get values', ['offline_video_names', 'offline_video_locations'])
-
-       console.log(offline);
-
        var identifier = Router.current().params._id
        var resource = new Object();
        if (identifier != undefined) {
          resource = Resources.findOne(identifier);
        }
 
+
+      //  var offline_video_locations = $(".offline_video_locations").map(function() {
+      //    return $(this)[0].value;
+      //  }).get();
+       //
+      //  var offline_video_names = $(".offline_video_names").map(function() {
+      //    return $(this)[0].value;
+      //  }).get();
+       //
+      //  var online_video_locations = $(".online_video_locations").map(function() {
+      //    return $(this)[0].value;
+      //  }).get();
+       //
+      //  var online_video_locations = $(".online_video_locations").map(function() {
+      //    return $(this)[0].value;
+      //  }).get();
+
+       var offline_videos = [];
+       var count = 0;
+       $(".offline_video_locations").each(function() {
+         var video = new Object();
+         video.location = $(this)[0].value;
+         video.name = $(".offline_video_names")[count].value
+
+         offline_videos.push(video);
+         count++;
+       })
+
+       var online_videos = [];
+       count = 0;
+       $(".online_video_locations").each(function() {
+         var video = new Object();
+         video.location = $(this)[0].value;
+         video.name = $(".online_video_names")[count].value
+
+         online_videos.push(video);
+         count++;
+       })
+
        var type = Router.current().params.resource_type;
        resource.type = type
-       resource.details = allFields;
+       resource.details = fields;
        resource.fileIDs = Session.get('fileIDs');
-       console.log("editing file IDs");
-       console.log(resource.fileIDs);
+       resource.offline_videos = offline_videos;
+       resource.online_videos = online_videos;
+
+       console.log("SAVING RESOURCE:");
+       console.log(resource);
        Meteor.call("addItem", ItemTypeEnum.RESOURCE, resource, function(error, result){
           if(error){
               console.log(error);
           }  else {
-           console.log('Success');
+           console.log('Success! Result:');
            console.log(result)
          }
 
@@ -123,7 +93,73 @@ Template.upsert_resource_type.onRendered( function() {
          });
     },
     on: 'submit',
-    fields: validationRules
+    fields: {
+      title: {
+        identifier: 'title',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter a title'
+          }
+        ]
+      },
+      mainTopic: {
+        identifier: 'mainTopic',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please select a main topic'
+          }
+        ]
+      },
+      subTopic: {
+        identifier: 'subTopic',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please select a sub topic'
+          }
+        ]
+      },
+      description: {
+        identifier: 'description',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter a description'
+          }
+        ]
+      },
+      keywords: {
+        identifier: 'keywords',
+        rules: [
+          {
+            type   : 'minCount[1]',
+            prompt : 'Keywords must have at least {ruleValue} choices'
+          }
+        ]
+      },
+      link : {
+        identifier: 'link',
+        optional: true,
+        rules: [
+          {
+            type   : 'url',
+            prompt : 'Please enter a valid link URL'
+          }
+        ]
+      },
+      storageLocationOnline : {
+        identifier: 'storageLocationOnline',
+        optional: true,
+        rules: [
+          {
+            type   : 'url',
+            prompt : 'Please enter a valid URL'
+          }
+        ]
+      }
+    }
   })
 	.form('set values', {
     title     : this.data.details.title,
@@ -139,11 +175,7 @@ Template.upsert_resource_type.onRendered( function() {
 		videos    : this.data.videos,
     author  : this.data.author,
     year  : this.data.year,
-    materialsNeeded : this.data.details.materialsNeeded,
-    // online_video_names : this.data.online_video_names,
-    // online_video_locations: this.data.online_video_locations,
-    // offline_video_names: this.data.offline_video_names,
-    // offline_video_locations: this.data.offline_video_locations
+    materialsNeeded : this.data.details.materialsNeeded
   })
 ;
 })

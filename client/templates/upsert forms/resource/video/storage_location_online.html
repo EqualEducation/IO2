@@ -11,7 +11,9 @@
       </thead>
       <tbody>
         {{#each numberOfItems}}
-          {{> video_location_online index=this}}
+          {{#with videoAtIndex @index}}
+            {{> video_location_online video=this}}
+          {{/with}}
         {{/each}}
       </tbody>
       <tfoot class="full-width">
@@ -32,17 +34,11 @@
 
 <template name="video_location_online">
   <tr>
-    <div class="grouped fields" name="online">
       <td>
-        <div class="field">
-          <input name="online_video_names[]" type="text" placeholder="e.g. Part 1">
-        </div>
+          <input class="online_video_names" type="text" placeholder="e.g. Part 1" value="{{video.name}}">
       </td>
       <td>
-        <div class="field">
-          <input name="online_video_locations[]" type="url" placeholder="e.g. www.youtube.com">
-        </div>
+          <input class="online_video_locations" type="url" placeholder="e.g. www.youtube.com" value="{{video.location}}">
       </td>
-    </div>
   </tr>
 </template>
