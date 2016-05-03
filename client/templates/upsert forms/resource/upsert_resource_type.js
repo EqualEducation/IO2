@@ -176,6 +176,8 @@ Template.upsert_resource_type.onRendered( function() {
     year  : this.data.details.year,
 		method    : this.data.details.method,
     author  : this.data.details.author,
+    videoType : this.data.details.videoType,
+    duration  : this.data.details.duration,
 		books    : this.data.books,
 		videos    : this.data.videos,
     materialsNeeded : this.data.details.materialsNeeded
