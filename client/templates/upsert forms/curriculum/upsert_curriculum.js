@@ -27,6 +27,9 @@ Template.upsert_curriculum.onRendered( function() {
         return activitySlot;
       });
 
+			if (activitySlots.length < 2) {
+				alert('requires more slots');
+			}
 			curriculum.activitySlots = activitySlots;
       curriculum.details = fields;
       curriculum.fileIDs = Session.get('fileIDs');

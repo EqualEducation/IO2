@@ -26,7 +26,13 @@
 
           {{#if isEqual item.type "video"}}
             {{> viewVideoDetails item=item}}
+          {{else}}
+            <tr>
+              <td class="heading">Link:</td>
+              <td class="detail"><a href="\\{{item.details.link}}">{{item.details.link}}</a></td>
+            </tr>
           {{/if}}
+
 
           {{#if isEqual item.itemType activityEnum}}
             {{> viewActivityDetails item=item}}
