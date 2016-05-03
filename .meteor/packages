@@ -47,3 +47,5 @@ standard-minifier-js
 classcraft:archiver
 udondan:jszip
 semantic:ui-accordion
+lepozepo:s3
+cfs:ui

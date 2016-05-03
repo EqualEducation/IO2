@@ -1,6 +1,6 @@
 Template.registerHelper('file',function(itemID,itemTitle) {
-  var linkedFile=YourFileCollection.findOne(itemID);
-  //linkedFile=YourFileCollection.findOne();
+  var linkedFile=Files.findOne(itemID);
+  //linkedFile=Files.findOne();
   console.log("FILE")
   console.log(linkedFile);
   console.log(linkedFile.url());

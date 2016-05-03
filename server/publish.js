@@ -38,7 +38,7 @@ Meteor.publish("all-curricula", function () {
 
 Meteor.publish("fileUploads", function () {
     console.log("publishing fileUploads");
-    return YourFileCollection.find();
+    return Files.find();
   });
 
 // Meteor.publish("fileMeta", function () {

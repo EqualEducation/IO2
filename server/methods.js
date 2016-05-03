@@ -65,8 +65,8 @@ Meteor.methods({
 
     // //3. Get the file object
     // // http://stackoverflow.com/questions/30991797/how-can-i-get-a-buffer-for-a-file-image-from-collectionfs
-    // var file = YourFileCollection.findOne(files[0]._id);
-    var files = YourFileCollection.find({_id: {$in:fileIDs}}).fetch()
+    // var file = Files.findOne(files[0]._id);
+    var files = Files.find({_id: {$in:fileIDs}}).fetch()
     files.forEach(function(file) {
         console.log(file)
 
@@ -144,7 +144,7 @@ Meteor.methods({
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
-      YourFileCollection.insert(yourFile, function(err, fileObj) {
+      Files.insert(yourFile, function(err, fileObj) {
         if (err) {
           throw new Meteor.Error(err);
         } else {
@@ -174,7 +174,7 @@ Meteor.methods({
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
-      YourFileCollection.remove(yourFile, function(err, fileObj) {
+      Files.remove(yourFile, function(err, fileObj) {
         if (err) {
           throw new Meteor.Error(err);
         } else {

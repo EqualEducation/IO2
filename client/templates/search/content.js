@@ -10,7 +10,7 @@
 Template.content.helpers({
     testLink: function() {
     //look in YourFile collection
-    var details = YourFileCollection.findOne(this.fileId);
+    var details = Files.findOne(this.fileId);
     return {
       URL: details.url,
       name: this.name,
@@ -33,7 +33,7 @@ Template.content.helpers({
   },
   // resourceLink: function() {
   //   //look in YourFile collection
-  //   //var details = YourFileCollection.findOne(this.fileIDs);
+  //   //var details = Files.findOne(this.fileIDs);
   //   return {
   //     //URL: details.url,
   //     name: this.details.title,
@@ -61,4 +61,4 @@ Template.content.helpers({
 
 
 //download
-//YourFileCollection.findOne("vT9HZ5qc5k3iQ5T8M").url()
+//Files.findOne("vT9HZ5qc5k3iQ5T8M").url()

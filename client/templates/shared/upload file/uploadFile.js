@@ -32,7 +32,7 @@ Template.uploadFile.helpers({
 		} else {
 			fileIDs = Session.get('fileIDs')
 		}
-		return YourFileCollection.findOne(fileIDs);
+		return Files.findOne(fileIDs);
   },
   noAssociatedFiles: function(fileIDs,fileType){
   	console.log('guideID:');

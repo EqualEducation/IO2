@@ -8,7 +8,7 @@ uploadFileWithVariableName = function(sessionVariableName){
 		// 	console.log('CALL BACK ON ADD FILE: ' + fileObjId);
 		// 	Session.set(sessionVariableName, fileObjId)
 		// });
-				YourFileCollection.insert(yourFile, function (err, fileObj) {
+				Files.insert(yourFile, function (err, fileObj) {
 			console.log("callback for the insert, err: ", err);
 			if (!err) {
 				console.log("inserted without error",fileObj)
