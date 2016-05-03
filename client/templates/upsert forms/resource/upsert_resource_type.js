@@ -147,7 +147,7 @@ Template.upsert_resource_type.onRendered( function() {
         rules: [
           {
             type   : 'url',
-            prompt : 'Please enter a valid link URL'
+            prompt : 'Please enter a valid URL'
           }
         ]
       },
