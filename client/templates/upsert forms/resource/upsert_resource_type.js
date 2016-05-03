@@ -92,7 +92,9 @@ Template.upsert_resource_type.onRendered( function() {
          return false;
          });
     },
-    on: 'submit',
+    inline: true,
+		keyboardShortcuts : false,
+		on: 'change',
     fields: {
       title: {
         identifier: 'title',

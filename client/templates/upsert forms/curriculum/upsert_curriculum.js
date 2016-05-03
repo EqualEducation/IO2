@@ -47,7 +47,9 @@ Template.upsert_curriculum.onRendered( function() {
 				return false;
     });
     },
-		on: 'submit',
+		inline: true,
+		keyboardShortcuts : false,
+		on: 'change',
     fields: {
 			title: {
         identifier: 'title',

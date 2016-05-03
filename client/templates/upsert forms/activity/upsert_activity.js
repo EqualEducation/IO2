@@ -42,7 +42,9 @@ Template.upsert_activity.onRendered( function() {
     });
 
     },
-		on: 'submit',
+		inline: true,
+		keyboardShortcuts : false,
+		on: 'change',
     fields: {
 			title: {
         identifier: 'title',
