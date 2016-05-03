@@ -39,5 +39,7 @@
     <input type="number" name="duration">
   </div>
 	{{> connectResources activity}}
-  {{> uploadFile fileIDs = activity.guideID fileType = 'guide'}}
+  <div class="field">
+    {{> uploadFile fileIDs = activity.guideID fileType = 'guide'}}
+  </div>
 </template>

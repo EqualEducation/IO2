@@ -13,7 +13,9 @@
 <template name="content_resource_type">
   {{> commonFields this.details}}
   {{> Template.dynamic template=content data=this}}
-  {{> uploadFile fileIDs = this.fileIDs fileType = 'file'}}
+  <div class="field">
+    {{> uploadFile fileIDs = this.fileIDs fileType = 'file'}}
+  </div>
   <!-- if there is no associated resource, add option to upload a new file -->
 
 </template>

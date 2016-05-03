@@ -5,25 +5,16 @@
 		{{else}}
 		<h1>Upload Files</h1>
 	{{/if}}
-		 <br/>
-			 {{> dropzone}}
-		 <br/>
+			 <!-- {{> dropzone}} -->
 		 <input class="uploadFile" type="file">
-		 <br/>
-		 <br>
 	{{else}}
 		{{#with getFileNames this.fileType}}
 			Existing {{../fileType}}: {{this.original.name}}
 		{{/with}}
-		<br>
-		<br>
+
 		Upload new {{fileType}}:
-		<input class=uploadFile type="file" />
-		<br>
-		<br>
+		<input class="uploadFile" type="file" />
 		<a class="ui primary button" id="removeFile">Remove File</a>
-		<br>
-		<br>
 	{{/if}}
 
 	<div class="ui basic change modal">
