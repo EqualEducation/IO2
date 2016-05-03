@@ -23,32 +23,36 @@ Template.upsert_curriculum.onRendered( function() {
 				activitySlot.index = count;
 				activitySlot.identifier = $(element)[0].firstChild.id
 				activitySlot.activityId =	$(element).dropdown('get value');
+				if (activitySlot.activityId != undefined && activitySlot.activityId != "") {
+					return activitySlot;
+				}
 				count++;
-        return activitySlot;
       });
 
-			if (activitySlots.length < 2) {
-				alert('requires more slots');
-			}
-			curriculum.activitySlots = activitySlots;
-      curriculum.details = fields;
-      curriculum.fileIDs = Session.get('fileIDs');
-			console.log('SAVING: ' + curriculum._id);
-      Meteor.call("addItem", ItemTypeEnum.CURRICULUM, curriculum, function(error, result){
-        if(error){
-					alert(error);
-        }  else {
-					console.log('Success');
-					console.log(result)
-				}
 
-				Session.set('fileIDs', null);
-				if (result.insertedId != undefined) {
-					identifier = result.insertedId;
-				}
-				Router.go('/curriculum/' + identifier);
-				return false;
-    });
+			if (activitySlots.length < 2) {
+				form.form("add errors", [ 'Curriculum requires at least 2 activities' ]);
+			} else {
+				curriculum.activitySlots = activitySlots;
+				curriculum.details = fields;
+				curriculum.fileIDs = Session.get('fileIDs');
+				console.log('SAVING: ' + curriculum._id);
+				Meteor.call("addItem", ItemTypeEnum.CURRICULUM, curriculum, function(error, result){
+	        if(error){
+						alert(error);
+	        }  else {
+						console.log('Success');
+						console.log(result)
+					}
+
+					Session.set('fileIDs', null);
+					if (result.insertedId != undefined) {
+						identifier = result.insertedId;
+					}
+					Router.go('/curriculum/' + identifier);
+					return false;
+	    });
+			}
     },
 		inline: true,
 		keyboardShortcuts : false,
