@@ -180,6 +180,7 @@ Meteor.methods({
           added: new Date()
         });
       } catch( exception ) {
+        console.log('error storing url')
         return exception;
       }
     },

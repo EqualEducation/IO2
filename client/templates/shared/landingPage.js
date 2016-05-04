@@ -8,9 +8,7 @@ Template.landingPage.events({
     var URL=('\\search\\'+encodedText);
     window.location = URL;
   }
-    });
-
-
+});
 
 function encode(text) {
   var unencoded = text;

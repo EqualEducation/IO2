@@ -1,4 +1,5 @@
 let template;
+var uploader;
 
 let _getFileFromInput = ( event ) => event.target.files[0];
 
@@ -19,7 +20,7 @@ let _addUrlToDatabase = ( url ) => {
 };
 
 let _uploadFileToAmazon = ( file ) => {
-  const uploader = new Slingshot.Upload( "uploadToAmazonS3" );
+  // const uploader = new Slingshot.Upload( "uploadToAmazonS3" );
 
   uploader.send( file, ( error, url ) => {
     if ( error ) {
@@ -32,6 +33,7 @@ let _uploadFileToAmazon = ( file ) => {
 };
 
 let upload = ( options ) => {
+  uploader  = options.uploader;
   template = options.template;
   let file = _getFileFromInput( options.event );
 
