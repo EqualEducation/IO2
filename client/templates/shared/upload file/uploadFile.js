@@ -1,53 +1,50 @@
+Template.uploadFile.onRendered(function() {
+	S3.collection.remove({});
+})
+
 Template.uploadFile.events({
-	'click #removeFile': function (event) {
-		console.log('remove file!');
-		$('.ui.basic.change.modal')
-				.modal({
-					onDeny    : function(){
-						return true;
-					},
-					onApprove: function(){
-						Session.set('fileIDs',null);
-						return true;
+	"click button.upload": function(event, template){
+		event.preventDefault();
+		var files = $("input.file_bag")[0].files
+
+		S3.upload({
+				files:files,
+				path:"files"
+			},function(e,r){
+				console.log(r);
+				if (e == undefined) {
+					if (this.fileType == 'guide') {
+						uploadFileWithVariableName('guideID');
+					} else {
+						uploadFileWithVariableName('fileIDs');
 					}
-				})
-				.modal('show')
+				}
+		});
 	},
-		'change .uploadFile': function (event, template) {
-			console.log('upload file');
-			console.log(this.fileType)
-			if (this.fileType == 'guide') {
-				uploadFileWithVariableName('guideID');
-			} else {
-				uploadFileWithVariableName('fileIDs');
+	"click button.delete": function(event, template){
+		event.preventDefault();
+		var file = this;
+		S3.delete(file.relative_url,function(e,r){
+			if (e == undefined){
+				S3.collection.remove(file._id);
 			}
+			console.log(r);
+		})
 	},
+	"click button.cancel": function(event, template){
+		event.preventDefault();
+		var file = this;
+		S3.collection.remove(file._id);
+	}
 })
 
 Template.uploadFile.helpers({
-	getFileNames: function(fileType){
-		var fileIDs;
-		if (fileType == 'guide') {
-			fileIDs = Session.get('guideID')
-		} else {
-			fileIDs = Session.get('fileIDs')
-		}
-		return Files.findOne(fileIDs);
-  },
-  noAssociatedFiles: function(fileIDs,fileType){
-  	console.log('guideID:');
-  	console.log(fileIDs);
-    if (fileIDs==undefined	) {
-			return true;
-		}
-    else {
-    		if(fileType=='guide')
-    		{Session.set('guideID',fileIDs);}
-    		else
-    		{
-			Session.set('fileIDs',fileIDs);
-			}
-			return false;
-		}
-  },
+	"files": function(){
+		return S3.collection.find();
+	},
+	"initializeBarAtIndex" : function(index, progress) {
+		$('#progressBar_' + index).progress({
+  			percent: progress
+			});
+	}
 })

@@ -1,45 +1,41 @@
 <template name="uploadFile">
-	{{#if noAssociatedFiles this.fileIDs this.fileType}}
-	{{#if isEqual this.fileType 'guide'}}
-		<h1>Upload Guide</h1>
-		{{else}}
-		<h1>Upload Files</h1>
-	{{/if}}
-			 <!-- {{> dropzone}} -->
-		 <input class="uploadFile" type="file">
-	{{else}}
-		{{#with getFileNames this.fileType}}
-			Existing {{../fileType}}: {{this.original.name}}
-		{{/with}}
+	<div class="ui equal width padded grid">
+		{{#if isEqual this.fileType 'guide'}}
+			<h3>Upload Guide</h3>
+			<div class="row">
+					<input type="file" class="ui button file_bag">
+					<button class="ui button primary upload">Upload</button>
+			</div>
+			{{else}}
+			<h3>Upload Files</h3>
+			<div class="row">
+					<input type="file" class="ui button file_bag" multiple>
+					<button class="ui button primary upload">Upload</button>
+			</div>
+		{{/if}}
+		{{#each files}}
+			{{initializeBarAtIndex @index percent_uploaded}}
+				<div class="row">
+					<div class="column right align">
+						<p>{{this.file.original_name}}</p>
+					</div>
+					<div class="column">
+						<div class="ui teal progress" id="progressBar_{{@index}}">
+						  <div class="bar"></div>
+						  <div class="label">{{percent_uploaded}}% Uploaded</div>
+						</div>
+					</div>
+					{{#if isEqual percent_uploaded 100}}
+						<div class="column">
+							<button class="ui tiny button primary delete">Delete</button>
+						</div>
+						{{else}}
+						<div class="column">
+							<button class="ui tiny button primary cancel">Cancel</button>
+						</div>
+					{{/if}}
 
-		Upload new {{fileType}}:
-		<input class="uploadFile" type="file" />
-		<a class="ui primary button" id="removeFile">Remove File</a>
-	{{/if}}
-
-	<div class="ui basic change modal">
-		<div class="header">
-			Remove File
-		</div>
-		<div class="image content">
-			<div class="image">
-				<i class="trash icon"></i>
-			</div>
-			<div class="description">
-				<p>Are you sure you want to remove this file?</p>
-			</div>
-		</div>
-		<div class="actions">
-			<div class="two fluid ui inverted buttons">
-				<div class="ui red basic inverted button deny">
-					<i class="remove icon"></i>
-					No
 				</div>
-				<div class="ui green basic inverted button approve">
-					<i class="checkmark icon"></i>
-					Yes
-				</div>
-			</div>
-		</div>
+		{{/each}}
 	</div>
 </template>

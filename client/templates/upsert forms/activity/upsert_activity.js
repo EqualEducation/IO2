@@ -22,7 +22,15 @@ Template.upsert_activity.onRendered( function() {
 			});
 			activity.resourceIds = resourceIds;
 			activity.details = fields;
-			activity.guideID = Session.get('guideID');
+
+			var files = S3.collection.find().fetch();
+			var fileIds = $.map(files, function(file) {
+				return file._id;
+			});
+			console.log('GUIDE!')
+			console.log(fileIds)
+
+			activity.guideID = fileIds[0];
 			Meteor.call("addItem", ItemTypeEnum.ACTIVITY, activity, function(error, result){
         if(error){
 					alert(error);

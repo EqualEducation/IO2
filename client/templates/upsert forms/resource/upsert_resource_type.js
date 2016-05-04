@@ -70,7 +70,15 @@ Template.upsert_resource_type.onRendered( function() {
        var type = Router.current().params.resource_type;
        resource.type = type
        resource.details = fields;
-       resource.fileIDs = Session.get('fileIDs');
+
+       var files = S3.collection.find().fetch();
+       var fileIds = $.map(files, function(file) {
+         return file._id;
+       });
+       console.log('FILES!')
+       console.log(fileIds)
+
+       resource.fileIDs = fileIds;
        resource.offline_videos = offline_videos;
        resource.online_videos = online_videos;
 

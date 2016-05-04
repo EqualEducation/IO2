@@ -138,19 +138,27 @@ Meteor.methods({
     return result;
   },
   addFile: function(yourFile) {
-    console.log('adding file');
-    console.log(yourFile);
-    // Make sure the user is logged in before inserting a task
-    if (! Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
-    }
-      Files.insert(yourFile, function(err, fileObj) {
-        if (err) {
-          throw new Meteor.Error(err);
-        } else {
-          return fileObj._id;
-        }
-       })
+    var files = S3.aws;
+
+    console.log(files)
+  },
+  retrieveFile: function(fileId) {
+    // AWS.config.loadFromPath('./AwsConfig.json');
+    // var s3 = new AWS.S3();
+    // var s3 = new AWS.S3();
+    var s3 = S3.aws;
+
+    console.log(s3);
+
+    var params = {
+        Bucket: 'ietu-resources-live'
+    };
+
+    s3.listObjects(params, Meteor.bindEnvironment(function (err, data) {
+      console.log('AWS S3')
+      console.log(err)
+      console.log(data);
+    }));
   },
   pullActivity: function (curriculumIds,activityId){
     for (var i=0;i<curriculumIds.length;i++)
