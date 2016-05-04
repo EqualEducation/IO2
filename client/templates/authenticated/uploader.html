@@ -1,4 +1,47 @@
 <template name="uploader">
+  <div style="margin:20px;">
+      <input id="upload-btn" type="file" multiple="true">
+  </div>
+  {{> uploadFiles}}
+</template>
+
+<template name="progressBar">
+  <div class="ui two column centered grid">
+    <div class="row">
+      <div class="column">
+        {{name}}
+      </div>
+      <div class="column">
+        <div class="ui teal progress" id="progress_{{index}}">
+          <div class="bar">
+            <div class="progress">{{updateProgressBar index progress}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<!-- <template name="progressBar">
+  <div class="progress overallProgress" >
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+      <span>{{progress}}% Total Complete</span>
+    </div>
+  </div>
+</template> -->
+
+<template name="uploadFiles">
+    {{#each upload_images}}
+       {{> uploadFile index=@index name=this.name progress=this.progress}}
+    {{/each}}
+
+</template>
+
+<template name="uploadFile">
+    {{> progressBar index=index name=name progress=progress}}
+</template>
+<!-- <template name="uploader">
 
   <div class="upload-area">
     <form id="upload">
@@ -30,4 +73,4 @@
       </div>
     </div>
   </div>
-</template>
+</template> -->
