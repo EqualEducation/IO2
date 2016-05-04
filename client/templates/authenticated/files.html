@@ -1,0 +1,10 @@
+<template name="files">
+  <h3>FILES</h3>
+  <div class="files">
+    {{#each files}}
+      {{> file}}
+    {{else}}
+      <p class="alert alert-warning">No files uploaded yet!</p>
+    {{/each}}
+  </div>
+</template>

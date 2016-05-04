@@ -4,8 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-cfs:filesystem
-cfs:standard-packages
 meteor-base
 mobile-experience
 mongo
@@ -30,8 +28,6 @@ easysearch:autosuggest
 aslagle:reactive-table
 perak:fuzzy-search
 meteorhacks:search-source
-cfs:gridfs
-cfs:s3
 ecmascript
 semantic:ui
 flemay:less-autoprefixer
@@ -47,6 +43,4 @@ standard-minifier-js
 classcraft:archiver
 udondan:jszip
 semantic:ui-accordion
-lepozepo:s3
-cfs:ui
 edgee:slingshot

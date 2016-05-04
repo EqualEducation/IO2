@@ -1,3 +1,13 @@
+Meteor.publish( 'files', function(){
+  var data = Files.find( { "userId": this.userId } );
+
+  if ( data ) {
+    return data;
+  }
+
+  return this.ready();
+});
+
 Meteor.publish("resources-searchpage-data", function () {
     console.log("publishing resources-searchpage-data");
    return Resources.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1, 'type' : 1}});

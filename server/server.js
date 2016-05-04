@@ -24,11 +24,3 @@ Meteor.startup(function () {
   Options.upsert(doc._id, doc);
 
 });
-
-
-S3.config = {
-    key: 'AKIAI7SZFS4H7RWGB5WA',
-    secret: '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',
-    bucket: 'ietu-resources-live'
-    // region: 'eu-west-1' // Only needed if not "us-east-1" or "us-standard"
-};

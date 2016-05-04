@@ -143,9 +143,6 @@ Meteor.methods({
     console.log(files)
   },
   retrieveFile: function(fileId) {
-    // AWS.config.loadFromPath('./AwsConfig.json');
-    // var s3 = new AWS.S3();
-    // var s3 = new AWS.S3();
     var s3 = S3.aws;
 
     console.log(s3);
@@ -172,9 +169,20 @@ Meteor.methods({
               Activities.update({_id:activityIds[i]},{$pull:{'resourceIds':resourceId}});
             }
   },
-  // optionsUpsert: function(collection, data){
-  //    Customers.upsert( id, doc );
-  // },
+  storeUrlInDatabase: function( url ) {
+      check( url, String );
+      Modules.both.checkUrlValidity( url );
+
+      try {
+        Files.insert({
+          url: url,
+          userId: Meteor.userId(),
+          added: new Date()
+        });
+      } catch( exception ) {
+        return exception;
+      }
+    },
   deleteFile: function(yourFile) {
     console.log('removing file');
     console.log(yourFile);

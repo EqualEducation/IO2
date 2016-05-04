@@ -2,7 +2,7 @@
 
 #environment
 if [ ! $1 ]; then
-        echo "Example of use: bash scripts/startup.sh dev"
+        echo "Example of use: bash startup.sh dev"
         exit 1
 fi
 env=$1
@@ -12,6 +12,7 @@ if [ $env != "local" ]; then
 else
 	echo "starting up local environment"
   source config/local_env.sh
+  echo $METEOR_SETTINGS
   echo $MONGO_URL
   meteor
 fi;

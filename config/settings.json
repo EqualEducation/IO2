@@ -1,7 +1,5 @@
-
 {
-  "public" : {
-
-
-  }
+  "S3Bucket": "ietu-resources-live",
+  "AWSAccessKeyId": "AKIAI7SZFS4H7RWGB5WA",
+  "AWSSecretAccessKey": "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"
 }
