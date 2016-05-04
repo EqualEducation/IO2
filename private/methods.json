@@ -3,11 +3,10 @@
   [
     {"name": "Discussion"},
     {"name": "Reading"},
-    {"name": "Game"},
+    {"name": "Game or Simulation"},
     {"name": "Video"},
     {"name": "Skit or Role Play"},
     {"name": "Presentation"},
-    {"name": "Simulation"},
     {"name": "Museum"},
     {"name": "Debate"},
     {"name": "Worksheet"},
