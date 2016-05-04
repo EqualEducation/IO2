@@ -7,15 +7,32 @@ Template.uploader.events({
   }
 });
 
+Template.uploader.helpers({
+  'uploader':function() {
+    console.log('SDFSDFDSFSDF')
+    var upload = uploader.get();
+    // var file = upload.file
+    return upload;
+  }
+})
+
+Template.progressBar.onRendered(function() {
+  $('#example1').progress('increment')
+})
 
 Template.progressBar.helpers({
   isUploading: function () {
       return Boolean(uploader.get());
   },
+  progress: function (percent) {
+      // var upload = uploader.get();
+      // console.log(upload);
+      // if (upload) {
+      //   var progress = Math.round(upload.progress() * 100)
+      //   return progress;
+      // }
+      $('#example1').progress({percent: Math.round(percent * 100)})
 
-  progress: function () {
-      var upload = uploader.get();
-      if (upload)
-          return Math.round(upload.progress() * 100);
+      return Math.round(percent * 100);
   }
 });

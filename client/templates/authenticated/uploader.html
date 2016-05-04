@@ -4,17 +4,30 @@
     <form id="upload">
       <p class="alert alert-success text-center">
         <span>Click or Drag a File Here to Upload</span>
-        <input type="file">
+        <input type="file" class="file_bag">
       </p>
-      {{> progressBar}}
+      {{#with uploader}}
+        {{print this}}
+        {{> progressBar this}}
+      {{/with}}
     </form>
   </div>
 </template>
 
 <template name="progressBar">
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
-      <span class="sr-only">{{progress}}% Complete</span>
+  <div class="ui two column centered grid">
+    <div class="row">
+      <div class="column">
+        {{this.file.name}}
+      </div>
+      <div class="column">
+        <div class="ui teal progress" id="example1">
+          <div class="bar">
+            <div class="progress">{{progress this.progress}}</div>
+          </div>
+          <div class="label">{{progress this.progress}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
