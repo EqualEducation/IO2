@@ -137,42 +137,6 @@ Meteor.methods({
     }
     return result;
   },
-  addFile: function(yourFile) {
-    var files = S3.aws;
-
-    console.log(files)
-  },
-  cancelFile: function(fileId) {
-
-  },
-  deleteFileWithKey: function(key) {
-    var s3 = S3.aws;
-    var params = {
-        Bucket: Meteor.settings.S3Bucket,
-        Key: key
-    };
-
-    s3.getObject(params, Meteor.bindEnvironment(function (err, data) {
-      console.log('AWS S3')
-      console.log(err)
-      console.log(data);
-    }));
-  },
-  retrieveFile: function(fileId) {
-    var s3 = S3.aws;
-
-    console.log(s3);
-
-    var params = {
-        Bucket: Meteor.settings.S3Bucket
-    };
-
-    s3.listObjects(params, Meteor.bindEnvironment(function (err, data) {
-      console.log('AWS S3')
-      console.log(err)
-      console.log(data);
-    }));
-  },
   pullActivity: function (curriculumIds,activityId){
     for (var i=0;i<curriculumIds.length;i++)
             {
