@@ -1,10 +1,10 @@
 let template;
 var uploader;
 
-let _getFileFromInput = ( event ) => event.target.files[0];
+// let _getFileFromInput = ( event ) => event.target.files[0];
 
 let _setPlaceholderText = ( string = "Click or Drag a File Here to Upload" ) => {
-  template.find( ".alert span" ).innerText = string;
+  // template.find( ".alert span" ).innerText = string;
 };
 
 let _addUrlToDatabase = ( url ) => {
@@ -27,15 +27,27 @@ let _uploadFileToAmazon = ( file ) => {
       alert( error.message, "warning" );
       _setPlaceholderText();
     } else {
-      _addUrlToDatabase( url );
+      _addUrlToDatabase( url, file.originalName );
     }
   });
+};
+
+let _uniqueId = () => {
+  return Math.random().toString(36).substr(2, 16);
 };
 
 let upload = ( options ) => {
   uploader  = options.uploader;
   template = options.template;
-  let file = _getFileFromInput( options.event );
+  let file = options.file;
+  let originalFileName = file.name;
+  let uniqueId = _uniqueId();
+  let uniqueFileName = uniqueId + '_' + originalFileName;
+  file.uniqueName = uniqueFileName;
+  file.originalName = originalFileName;
+  console.log(file);
+
+  // let file = _getFileFromInput( options.event );
 
   _setPlaceholderText( `Uploading ${file.name}...` );
   _uploadFileToAmazon( file );

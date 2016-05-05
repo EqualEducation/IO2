@@ -14,11 +14,26 @@ Template.uploader.onRendered(function() {
 
   Template.progressBar.helpers({
     updateProgressBar: function (index, percent) {
-      // var percent = Session.get('upload_images')[index].progress;
       $('#progress_' + index).progress({percent: percent});
-      // return Session.get('upload_images')[index].progress;
     }
   });
+
+  Template.progressBar.events({
+    'click button.cancel' : function(event, template) {
+      event.preventDefault()
+
+      var uploader = Session.get('upload_images')[this.index].uploader;
+      var object = uploader.instructions.postData.filter(function ( obj ) {
+          if (obj.name === "key"){
+            return obj.value
+          }
+      })[0];
+      console.log(object.value);
+      Meteor.call("deleteFileWithKey", object.value, function(error, result){
+
+      })
+    }
+  })
 
 
   Template.uploader.events({
@@ -40,15 +55,15 @@ Template.uploader.onRendered(function() {
 
         var uploads = _.map(files, function (file) {
             var uploader = new Slingshot.Upload("uploadToAmazonS3");
-            // Modules.client.uploadToAmazonS3( { file: file, template: template, uploader: uploader } );
+            Modules.client.uploadToAmazonS3( { file: file, template: template, uploader: uploader } );
 
-            uploader.send(file, function (error, downloadUrl) {
-              if (error != undefined) {
-                alert(error)
-              } else {
-                console.log('uploaded file available here: '+downloadUrl);
-              }
-            });
+            // uploader.send(file, function (error, downloadUrl) {
+            //   if (error != undefined) {
+            //     alert(error)
+            //   } else {
+            //     console.log('uploaded file available here: '+downloadUrl);
+            //   }
+            // });
             return uploader;
         });
 
@@ -59,7 +74,6 @@ Template.uploader.onRendered(function() {
             //Rest our variables here
             var image_array = [];
             var progress_array = [];
-
             var overall_progress = 0;
 
             //iterate with underscore over our uploaders and push details to array
@@ -69,8 +83,8 @@ Template.uploader.onRendered(function() {
                     prog = Math.round(prog*100);
                 else
                     prog=0;
-                console.log(a_uploader);
                 var image_details = {
+                    uploader: a_uploader,
                     name: a_uploader.file.name,
                     url: a_uploader.url(true),
                     progress: prog
@@ -83,7 +97,6 @@ Template.uploader.onRendered(function() {
                 }
                 //Update the overall progress
                 overall_progress = overall_progress+prog;
-                console.log(overall_progress );
             });
 
             overall_progress = overall_progress/total_files;

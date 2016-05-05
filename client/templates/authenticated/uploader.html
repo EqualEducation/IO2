@@ -6,18 +6,22 @@
 </template>
 
 <template name="progressBar">
-  <div class="ui two column centered grid">
+  <div class="ui three column centered grid">
     <div class="row">
-      <div class="column">
+      <!-- <div class="column">
         {{name}}
-      </div>
+      </div> -->
       <div class="column">
         <div class="ui teal progress" id="progress_{{index}}">
           <div class="bar">
             <div class="progress">{{updateProgressBar index progress}}</div>
           </div>
         </div>
+        <label>{{name}}</label>
       </div>
+      <!-- <div class="column">
+        <button class="ui button cancel">Cancel</button>
+      </div> -->
     </div>
   </div>
 </template>

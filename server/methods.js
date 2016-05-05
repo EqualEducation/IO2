@@ -142,13 +142,29 @@ Meteor.methods({
 
     console.log(files)
   },
+  cancelFile: function(fileId) {
+
+  },
+  deleteFileWithKey: function(key) {
+    var s3 = S3.aws;
+    var params = {
+        Bucket: Meteor.settings.S3Bucket,
+        Key: key
+    };
+
+    s3.getObject(params, Meteor.bindEnvironment(function (err, data) {
+      console.log('AWS S3')
+      console.log(err)
+      console.log(data);
+    }));
+  },
   retrieveFile: function(fileId) {
     var s3 = S3.aws;
 
     console.log(s3);
 
     var params = {
-        Bucket: 'ietu-resources-live'
+        Bucket: Meteor.settings.S3Bucket
     };
 
     s3.listObjects(params, Meteor.bindEnvironment(function (err, data) {
@@ -169,12 +185,13 @@ Meteor.methods({
               Activities.update({_id:activityIds[i]},{$pull:{'resourceIds':resourceId}});
             }
   },
-  storeUrlInDatabase: function( url ) {
+  storeUrlInDatabase: function( url, originalName ) {
       check( url, String );
       Modules.both.checkUrlValidity( url );
 
       try {
         Files.insert({
+          originalName: originalName,
           url: url,
           userId: Meteor.userId(),
           added: new Date()
