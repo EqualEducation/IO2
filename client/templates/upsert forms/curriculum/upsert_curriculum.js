@@ -35,15 +35,8 @@ Template.upsert_curriculum.onRendered( function() {
 			} else {
 				curriculum.activitySlots = activitySlots;
 				curriculum.details = fields;
-				curriculum.fileIDs = Session.get('fileIDs');
 
-				var files = S3.collection.find().fetch();
-				var fileIds = $.map(files, function(file) {
-					return file._id;
-				});
-				console.log('FILES!')
-				console.log(fileIds)
-
+				var fileIds = Session.get('uploadedFileIds')
 				curriculum.fileIDs = fileIds;
 
 				console.log('SAVING: ' + curriculum._id);

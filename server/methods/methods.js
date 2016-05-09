@@ -149,22 +149,6 @@ Meteor.methods({
               Activities.update({_id:activityIds[i]},{$pull:{'resourceIds':resourceId}});
             }
   },
-  storeUrlInDatabase: function( url, originalName ) {
-      check( url, String );
-      Modules.both.checkUrlValidity( url );
-
-      try {
-        Files.insert({
-          originalName: originalName,
-          url: url,
-          userId: Meteor.userId(),
-          added: new Date()
-        });
-      } catch( exception ) {
-        console.log('error storing url')
-        return exception;
-      }
-    },
   deleteFile: function(yourFile) {
     console.log('removing file');
     console.log(yourFile);

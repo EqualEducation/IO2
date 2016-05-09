@@ -71,13 +71,7 @@ Template.upsert_resource_type.onRendered( function() {
        resource.type = type
        resource.details = fields;
 
-       var files = S3.collection.find().fetch();
-       var fileIds = $.map(files, function(file) {
-         return file._id;
-       });
-       console.log('FILES!')
-       console.log(fileIds)
-
+       var fileIds = Session.get('uploadedFileIds')
        resource.fileIDs = fileIds;
        resource.offline_videos = offline_videos;
        resource.online_videos = online_videos;
