@@ -33,8 +33,7 @@ Template.upsert_activity.onRendered( function() {
 					console.log(result)
 				}
 
-				Session.set('guideID', null);
-        Session.set('fileIDs', null);
+        Session.set('uploadedFileIds', null);
 
 				if (result.insertedId != undefined) {
 					identifier = result.insertedId;

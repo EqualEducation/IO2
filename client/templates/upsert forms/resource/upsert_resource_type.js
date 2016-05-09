@@ -86,7 +86,7 @@ Template.upsert_resource_type.onRendered( function() {
            console.log(result)
          }
 
-         Session.set('fileIDs', null);
+         Session.set('uploadedFileIds', null);
          if (result.insertedId != undefined) {
  					identifier = result.insertedId;
    			 }
