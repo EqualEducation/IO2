@@ -1,0 +1,21 @@
+<template name="quotation">
+  {{#with quotationObject this.activistIndex}}
+  <div class="ui container padded">
+    <div class="ui centered grid">
+      <!-- <div class="row">
+        <h2>{{../heading}}</h2>
+      </div> -->
+      <div class="row">
+        <div class="sixteen wide column">
+          <img class="ui small circular image centered" src="/images/{{imageName}}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="thirteen wide column">
+          <p><i>{{quotation}}</i> ~ {{name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/with}}
+</template>
