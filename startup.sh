@@ -14,7 +14,7 @@ else
   source config/local_env.sh
   echo $METEOR_SETTINGS
   echo $MONGO_URL
-  meteor
+  meteor --settings config/settings.json
 fi;
 
 # if [ $env != "production" ]; then
@@ -29,6 +29,7 @@ if [ $env != "dev" ]; then
 else
 	echo "dev";
   source config/dev_env.sh
+  echo $METEOR_SETTINGS
   echo $MONGO_URL
-  meteor
+  meteor --settings config/settings-development.json
 fi;

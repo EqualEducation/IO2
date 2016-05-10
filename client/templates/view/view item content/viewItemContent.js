@@ -1,3 +1,8 @@
+Template.viewItemContent.onRendered(function() {
+
+
+})
+
 Template.registerHelper('getFileDetails',function(itemID,itemTitle) {
   console.log('retreivingFileDetails for FileID: ' + itemID);
   var linkedFile = Files.findOne(itemID);

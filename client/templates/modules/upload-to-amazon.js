@@ -10,6 +10,8 @@ let _addFileDetailsToDatabase = (uploader, url, uniqueName, originalName, key) =
       var uploadedFileIds = Session.get('uploadedFileIds')
       if (uploadedFileIds == undefined) {
         uploadedFileIds = [];
+      } else if (uploadedFileIds.constructor !== Array) {
+        uploadedFileIds = [uploadedFileIds];
       }
       uploadedFileIds.push(result);
       Session.set('uploadedFileIds', uploadedFileIds)
