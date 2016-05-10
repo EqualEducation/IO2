@@ -5,7 +5,11 @@
         <div class="ui huge breadcrumb">
           <a href="/search" class="section">Search</a>
           <i class="right chevron icon divider"></i>
-          <div class="active section">{{item.itemType}} ({{resourceDisplayName item.type}})</div>
+          {{#if isEqual item.itemType resourceEnum}}
+            <div class="active section">{{item.itemType}} ({{resourceDisplayName item.type}})</div>
+          {{else}}
+            <div class="active section">{{item.itemType}}</div>
+          {{/if}}
         </div>
       </div>
     </div>
@@ -19,7 +23,6 @@
             <i class="circular puzzle icon"></i>
           {{/if}}
           {{#if isEqual item.itemType resourceEnum}}
-            <!-- <i class="circular folder open outline icon primary"></i> -->
             <i class="circular {{resourceIcon item.type}} icon"></i>
           {{/if}}
         </h1>
