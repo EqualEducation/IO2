@@ -24,7 +24,8 @@ Template.uploader.onRendered(function() {
 
   Template.uploader.events({
     'change #upload-btn': function (event, template) {
-
+      console.log(this)
+      let fileType = this.type
       //Session var for holding overall progress
       Session.set('uploadProgress', 0);
       //Session var for holding objects containing url and progress
@@ -43,7 +44,7 @@ Template.uploader.onRendered(function() {
         var count = 0;
         var uploads = _.map(files, function (file) {
             var uploader = new Slingshot.Upload("uploadToAmazonS3");
-            Modules.client.uploadToAmazonS3( { file: file, template: template, uploader: uploader, index: count} );
+            Modules.client.uploadToAmazonS3( { file: file, template: template, uploader: uploader, index: count, fileType: fileType} );
             count++;
             return uploader;
         });

@@ -1,3 +1,5 @@
+var fileType;
+
 let _addFileDetailsToDatabase = (uploader, url, uniqueName, originalName, key) => {
   // console.log("ADD FILES TO DB: " + uploader.file.originalName)
 
@@ -7,24 +9,29 @@ let _addFileDetailsToDatabase = (uploader, url, uniqueName, originalName, key) =
       Session.set('fileStatus', uploader.file.status);
       console.log(error)
     } else {
-      var uploadedFileIds = Session.get('uploadedFileIds')
-      if (uploadedFileIds == undefined) {
-        uploadedFileIds = [];
-      } else if (uploadedFileIds.constructor !== Array) {
-        uploadedFileIds = [uploadedFileIds];
+      //add file to list of uploaded ids
+      console.log(fileType);
+      if (fileType == "guide") {
+        Session.set('uploadedFileIds', [result])
+      } else {
+        var uploadedFileIds = Session.get('uploadedFileIds')
+        if (uploadedFileIds == undefined) {
+          uploadedFileIds = [];
+        } else if (uploadedFileIds.constructor !== Array) {
+          uploadedFileIds = [uploadedFileIds];
+        }
+        uploadedFileIds.push(result);
+        Session.set('uploadedFileIds', uploadedFileIds)
       }
-      uploadedFileIds.push(result);
-      Session.set('uploadedFileIds', uploadedFileIds)
 
+
+      //remove file from list of files to upload
       var filesToUpload = Session.get('upload_files');
-      console.log('initial objects count: ' + filesToUpload.length)
       filesToUpload = filesToUpload.filter(function (object) {
           return object.uploader.file.uniqueName != uniqueName;
       });
-      console.log('final objects count: ' + filesToUpload.length)
       Session.set('upload_files', filesToUpload);
       filesToUpload = Session.get('upload_files');
-      console.log('reinitialized objects count: ' + filesToUpload.length)
 
       uploader.file.status = "3_addedToDatabase"
       Session.set('fileStatus', uploader.file.status);
@@ -87,6 +94,7 @@ let _uniqueId = () => {
 };
 
 let upload = ( options ) => {
+  fileType = options.fileType;
   let uploader = options.uploader;
   let file = options.file;
 

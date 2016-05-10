@@ -1,6 +1,10 @@
 <template name="uploader">
   <div style="margin:20px;">
+    {{#if isEqual type 'guide'}}
+      <input id="upload-btn" type="file">
+    {{else}}
       <input id="upload-btn" type="file" multiple="true">
+    {{/if}}
   </div>
   {{> uploadFiles}}
 </template>
@@ -15,7 +19,6 @@
   <div class="ui one column centered grid">
     <div class="row">
       <div class="column">
-
         {{#if isEqual status '999_error'}}
         <div class="ui progress error" id="progress_{{index}}">
           <div class="bar">
