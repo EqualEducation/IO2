@@ -23,4 +23,16 @@ Meteor.startup(function () {
   console.log(doc);
   Options.upsert(doc._id, doc);
 
+  var userId;
+  if ( Meteor.users.find().count() === 0 ) {
+     userId = Accounts.createUser({
+        email: Meteor.settings.defaultUserEmail,
+        password: Meteor.settings.defaultPassword
+    });
+  } else {
+    userId = Meteor.users.findOne({'emails.address' : Meteor.settings.defaultUserEmail})._id;
+  };
+  Roles.addUsersToRoles(userId, ['editor','admin'])
+
+
 });

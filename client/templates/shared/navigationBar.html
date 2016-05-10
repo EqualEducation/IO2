@@ -7,6 +7,9 @@
       {{#if currentUser}}
       <a href="/create" class="item">Create</a>
       {{/if}}
+      {{#if isInRole 'admin'}}
+        <a href="/admin" class="item">Admin</a>
+      {{/if}}
       <a href="#" class="item right">{{> loginButtons}}</a>
     </div>
   </div>
