@@ -8,6 +8,14 @@ Template.upsert_activity.onRendered( function() {
 		},
 		onSuccess : function(event, fields){
 			event.preventDefault();
+			var files = Session.get('removedFileIds');
+			var files = Files.find({'_id': { $in: files }}, {'key': 1})
+			if (files != undefined && files.length > 0) {
+				Meteor.call('deleteFiles', files);
+				Session.set('removedFileIds', [])
+			}
+
+			console.log('save activity');
 			var form = $('#activityDetailsForm');
 
 			var identifier = Router.current().params._id
@@ -22,7 +30,9 @@ Template.upsert_activity.onRendered( function() {
 			});
 			activity.resourceIds = resourceIds;
 			activity.details = fields;
-			activity.guideID = Session.get('guideID');
+
+			var fileIds = Session.get('uploadedFileIds')
+			activity.guideID = fileIds[0];
 			Meteor.call("addItem", ItemTypeEnum.ACTIVITY, activity, function(error, result){
         if(error){
 					alert(error);
@@ -31,8 +41,7 @@ Template.upsert_activity.onRendered( function() {
 					console.log(result)
 				}
 
-				Session.set('guideID', null);
-        Session.set('fileIDs', null);
+        Session.set('uploadedFileIds', []);
 
 				if (result.insertedId != undefined) {
 					identifier = result.insertedId;
@@ -44,7 +53,7 @@ Template.upsert_activity.onRendered( function() {
     },
 		inline: true,
 		keyboardShortcuts : false,
-		on: 'change',
+		on: 'submit',
     fields: {
 			title: {
         identifier: 'title',
@@ -126,6 +135,9 @@ Template.upsert_activity.onRendered( function() {
 		books    : this.data.books,
 		videos    : this.data.videos
 	})
+
+	Session.set('uploadedFileIds', [this.data.guideID])
+
 })
 
 // Template.uploadGuide.events({

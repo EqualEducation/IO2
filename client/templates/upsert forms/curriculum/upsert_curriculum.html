@@ -14,6 +14,8 @@
 		{{> commonFields curriculum.details}}
     {{> connectActivities slots=curriculum.activitySlots}}
 		<div class="field">
-			{{> uploadFile fileIDs = curriculum.fileIDs fileType = 'file'}}
+			<h4>Upload Files</h4>
+			{{> upload}}
+			<!-- {{> uploadFile fileIDs = curriculum.fileIDs fileType = 'file'}} -->
 		</div>
 </template>

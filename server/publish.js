@@ -1,3 +1,13 @@
+Meteor.publish( 'files', function(){
+  var data = Files.find();
+
+  if ( data ) {
+    return data;
+  }
+
+  return this.ready();
+});
+
 Meteor.publish("resources-searchpage-data", function () {
     console.log("publishing resources-searchpage-data");
    return Resources.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1, 'type' : 1}});
@@ -6,7 +16,6 @@ Meteor.publish("resources-searchpage-data", function () {
 
 Meteor.publish("activities-searchpage-data", function () {
       console.log("publishing activities-searchpage-data");
-
      return Activities.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
 });
 

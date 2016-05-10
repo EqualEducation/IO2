@@ -1,4 +1,5 @@
 Template.upsert_curriculum.onRendered( function() {
+	Session.set('uploadedFileIds', this.data.fileIDs)
 
 	$('#curriculumDetailsForm')
   .form({
@@ -8,6 +9,13 @@ Template.upsert_curriculum.onRendered( function() {
 		},
 		onSuccess : function(event, fields){
 			event.preventDefault();
+			var files = Session.get('removedFileIds');
+			var files = Files.find({'_id': { $in: files }}, {'key': 1})
+			if (files != undefined && files.length > 0) {
+				Meteor.call('deleteFiles', files);
+				Session.set('removedFileIds', [])
+			}
+
       var form = $('#curriculumDetailsForm');
 
 			var identifier = Router.current().params._id
@@ -35,7 +43,10 @@ Template.upsert_curriculum.onRendered( function() {
 			} else {
 				curriculum.activitySlots = activitySlots;
 				curriculum.details = fields;
-				curriculum.fileIDs = Session.get('fileIDs');
+
+				var fileIds = Session.get('uploadedFileIds')
+				curriculum.fileIDs = fileIds;
+
 				console.log('SAVING: ' + curriculum._id);
 				Meteor.call("addItem", ItemTypeEnum.CURRICULUM, curriculum, function(error, result){
 	        if(error){
@@ -43,9 +54,10 @@ Template.upsert_curriculum.onRendered( function() {
 	        }  else {
 						console.log('Success');
 						console.log(result)
+
 					}
 
-					Session.set('fileIDs', null);
+					Session.set('uploadedFileIds', []);
 					if (result.insertedId != undefined) {
 						identifier = result.insertedId;
 					}

@@ -87,7 +87,9 @@ Meteor.methods({
     return locationOfZip;
   },
   addItem: function(itemType, item) {
+    console.log('*****')
     console.log(item);
+    console.log('*****')
     // Make sure the user is logged in before inserting a task
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -135,22 +137,11 @@ Meteor.methods({
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
+
+    console.log('------')
+    console.log(result)
+    console.log('------')
     return result;
-  },
-  addFile: function(yourFile) {
-    console.log('adding file');
-    console.log(yourFile);
-    // Make sure the user is logged in before inserting a task
-    if (! Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
-    }
-      Files.insert(yourFile, function(err, fileObj) {
-        if (err) {
-          throw new Meteor.Error(err);
-        } else {
-          return fileObj._id;
-        }
-       })
   },
   pullActivity: function (curriculumIds,activityId){
     for (var i=0;i<curriculumIds.length;i++)
@@ -164,9 +155,6 @@ Meteor.methods({
               Activities.update({_id:activityIds[i]},{$pull:{'resourceIds':resourceId}});
             }
   },
-  // optionsUpsert: function(collection, data){
-  //    Customers.upsert( id, doc );
-  // },
   deleteFile: function(yourFile) {
     console.log('removing file');
     console.log(yourFile);

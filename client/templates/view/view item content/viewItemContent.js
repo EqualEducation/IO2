@@ -1,16 +1,7 @@
-Template.registerHelper('file',function(itemID,itemTitle) {
-  var linkedFile=Files.findOne(itemID);
-  //linkedFile=Files.findOne();
-  console.log("FILE")
-  console.log(linkedFile);
-  console.log(linkedFile.url());
-
-  if (linkedFile != undefined)
-  {
-    linkedFile.itemname=itemTitle;
-  }
+Template.registerHelper('getFileDetails',function(itemID,itemTitle) {
+  console.log('retreivingFileDetails for FileID: ' + itemID);
+  var linkedFile = Files.findOne(itemID);
   return linkedFile;
-  //return itemType.toLowerCase() + ".view";
 })
 
 Template.registerHelper('pathName', function(itemType) {

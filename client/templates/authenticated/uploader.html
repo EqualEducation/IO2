@@ -1,0 +1,38 @@
+<template name="uploader">
+  <div style="margin:20px;">
+      <input id="upload-btn" type="file" multiple="true">
+  </div>
+  {{> uploadFiles}}
+</template>
+
+<template name="uploadFiles">
+    {{#each upload_files}}
+        {{> progressBar index=@index name=this.name progress=this.progress status=this.uploader.file.status}}
+    {{/each}}
+</template>
+
+<template name="progressBar">
+  <div class="ui one column centered grid">
+    <div class="row">
+      <div class="column">
+
+        {{#if isEqual status '999_error'}}
+        <div class="ui progress error" id="progress_{{index}}">
+          <div class="bar">
+            <div class="progress">{{updateProgressBar index progress}}</div>
+          </div>
+            <div class="label">Error uploading {{name}}</div>
+        </div>
+        {{else}}
+        <div class="ui teal progress" id="progress_{{index}}">
+          <div class="bar">
+            <div class="progress">{{updateProgressBar index progress}}</div>
+          </div>
+            <div class="label">Uploading {{name}}</div>
+        </div>
+        {{/if}}
+
+      </div>
+    </div>
+  </div>
+</template>
