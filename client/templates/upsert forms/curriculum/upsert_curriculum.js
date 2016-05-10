@@ -9,6 +9,13 @@ Template.upsert_curriculum.onRendered( function() {
 		},
 		onSuccess : function(event, fields){
 			event.preventDefault();
+			var files = Session.get('removedFileIds');
+			var files = Files.find({'_id': { $in: files }}, {'key': 1})
+			if (files != undefined && files.length > 0) {
+				Meteor.call('deleteFiles', files);
+				Session.set('removedFileIds', [])
+			}
+
       var form = $('#curriculumDetailsForm');
 
 			var identifier = Router.current().params._id
@@ -47,9 +54,10 @@ Template.upsert_curriculum.onRendered( function() {
 	        }  else {
 						console.log('Success');
 						console.log(result)
+
 					}
 
-					Session.set('uploadedFileIds', null);
+					Session.set('uploadedFileIds', []);
 					if (result.insertedId != undefined) {
 						identifier = result.insertedId;
 					}

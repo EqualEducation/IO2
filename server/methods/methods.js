@@ -87,7 +87,9 @@ Meteor.methods({
     return locationOfZip;
   },
   addItem: function(itemType, item) {
+    console.log('*****')
     console.log(item);
+    console.log('*****')
     // Make sure the user is logged in before inserting a task
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -135,6 +137,10 @@ Meteor.methods({
     } else {
       throw new Meteor.Error("Item type not recognized");
     }
+
+    console.log('------')
+    console.log(result)
+    console.log('------')
     return result;
   },
   pullActivity: function (curriculumIds,activityId){

@@ -58,20 +58,6 @@ Meteor.methods({
   // cancelFile: function(fileId) {
   //
   // },
-  // deleteFileWithKey: function(key) {
-  //   console.log('deleteFileWithKey')
-  //   var s3 = new AWS.S3()
-  //   var params = {
-  //       Bucket: Meteor.settings.S3Bucket,
-  //       Key: key
-  //   };
-  //
-  //   s3.getObject(params, Meteor.bindEnvironment(function (err, data) {
-  //     console.log('AWS S3 ')
-  //     console.log(err)
-  //     console.log(data);
-  //   }));
-  // },
   storeUrlInDatabase: function( url, uniqueName, originalName, key ) {
     console.log('storeURLInDatabase')
 
@@ -91,7 +77,7 @@ Meteor.methods({
         return exception;
       }
     },
-  retrieveFile: function(fileId) {
+  retrieveFile: function() {
     console.log('retrieveFile')
     var s3 = new AWS.S3()
     var params = {
@@ -102,6 +88,39 @@ Meteor.methods({
       console.log('AWS S3')
       console.log(err)
       console.log(data);
+    }));
+  },
+  deleteFiles: function(files) {
+
+    console.log("##################")
+    console.log('deleteFileWithKey')
+    console.log("##################")
+
+    var ids = files.map(function(file) {
+      return file._id;
+    })
+
+    var keys = files.map(function(file) {
+      return {Key: file.key};
+    })
+
+    var s3 = new AWS.S3()
+    var params = {
+        Bucket: Meteor.settings.S3Bucket,
+        Delete: { /* required */
+          Objects: keys,
+          Quiet: true
+        }
+    };
+
+    s3.deleteObjects(params, Meteor.bindEnvironment(function(err, data) {
+      if (err) {
+        console.log(err, err.stack); // an error occurred
+      }
+      else {
+        Files.remove({'_id': { $in: ids }})
+        console.log(data);
+      }           // successful response
     }));
   },
 })

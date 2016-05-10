@@ -6,6 +6,7 @@ Template.uploader.onRendered(function() {
   Session.set('progress_array', []);
   Session.set('fileStatus');
   Session.set('uploadedFileIds', []);
+  Session.set('removedFileIds', []);
 })
 
   Template.uploadFiles.helpers({

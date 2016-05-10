@@ -23,29 +23,21 @@ Template.upsert_resource_type.onRendered( function() {
 		},
 		onSuccess : function(event, fields){
       event.preventDefault();
+      var removedFileIds = Session.get('removedFileIds');
+      var files = Files.find({'_id': { $in: removedFileIds }}, {'key': 1}).fetch()
+      console.log('FILES TO REMOVE:')
+      console.log(files);
+      if (files != undefined && files.length > 0) {
+        Meteor.call('deleteFiles', files);
+        Session.set('removedFileIds', [])
+      }
+
       var form = $('#resourceDetailsForm');
        var identifier = Router.current().params._id
        var resource = new Object();
        if (identifier != undefined) {
          resource = Resources.findOne(identifier);
        }
-
-
-      //  var offline_video_locations = $(".offline_video_locations").map(function() {
-      //    return $(this)[0].value;
-      //  }).get();
-       //
-      //  var offline_video_names = $(".offline_video_names").map(function() {
-      //    return $(this)[0].value;
-      //  }).get();
-       //
-      //  var online_video_locations = $(".online_video_locations").map(function() {
-      //    return $(this)[0].value;
-      //  }).get();
-       //
-      //  var online_video_locations = $(".online_video_locations").map(function() {
-      //    return $(this)[0].value;
-      //  }).get();
 
        var offline_videos = [];
        var count = 0;
@@ -80,6 +72,7 @@ Template.upsert_resource_type.onRendered( function() {
 
        console.log("SAVING RESOURCE:");
        console.log(resource);
+
        Meteor.call("addItem", ItemTypeEnum.RESOURCE, resource, function(error, result){
           if(error){
               console.log(error);
@@ -88,13 +81,13 @@ Template.upsert_resource_type.onRendered( function() {
            console.log(result)
          }
 
-         Session.set('uploadedFileIds', null);
+         Session.set('uploadedFileIds', []);
          if (result.insertedId != undefined) {
  					identifier = result.insertedId;
    			 }
    			 Router.go('/resource/' + identifier);
          return false;
-         });
+      });
     },
     inline: true,
 		keyboardShortcuts : false,
