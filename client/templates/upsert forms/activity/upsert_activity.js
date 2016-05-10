@@ -1,4 +1,6 @@
 Template.upsert_activity.onRendered( function() {
+
+	Session.set('uploadedFileIds', [this.data.guideID])
 	$('#activityDetailsForm')
   .form({
 		onFailure(formErrors, fields)	{

@@ -13,6 +13,8 @@ Template.content_resource_type.helpers({
 
 
 Template.upsert_resource_type.onRendered( function() {
+  Session.set('uploadedFileIds', this.data.fileIDs)
+
 	$('#resourceDetailsForm')
   .form({
     onFailure(formErrors, fields)	{

@@ -10,18 +10,20 @@
     </div>
     <div class="thirteen wide column">
       {{#if exists item.fileIDs}}
-        {{#with file item.fileIDs item.details.title}}
-        <table>
-          <tr>
-            <td>{{this.original.name}}</td>
-            <td>
-            <a href={{this.url}} target="_blank" style="margin-left: 10px;">
-              View<i class="cloud arrow right icon"></i>
-            </a>
-            </td>
-          </tr>
-        </table>
-        {{/with}}
+        {{#each item.fileIDs}}
+          {{#with getFileDetails this}}
+          <table>
+            <tr>
+              <td>{{this.originalName}}</td>
+              <td>
+              <a href={{this.url}} target="_blank" style="margin-left: 10px;">
+                View<i class="cloud arrow right icon"></i>
+              </a>
+              </td>
+            </tr>
+          </table>
+          {{/with}}
+        {{/each}}
       {{else}}
         <p>No files available</p>
       {{/if}}

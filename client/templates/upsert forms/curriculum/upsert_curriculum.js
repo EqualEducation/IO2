@@ -1,4 +1,5 @@
 Template.upsert_curriculum.onRendered( function() {
+	Session.set('uploadedFileIds', this.data.fileIDs)
 
 	$('#curriculumDetailsForm')
   .form({
