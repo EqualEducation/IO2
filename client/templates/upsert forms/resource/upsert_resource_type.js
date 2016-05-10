@@ -23,6 +23,9 @@ Template.upsert_resource_type.onRendered( function() {
 		},
 		onSuccess : function(event, fields){
       event.preventDefault();
+      $('.page.dimmer:first')
+      .dimmer('toggle')
+      ;
       var removedFileIds = Session.get('removedFileIds');
       var files = Files.find({'_id': { $in: removedFileIds }}, {'key': 1}).fetch()
       console.log('FILES TO REMOVE:')

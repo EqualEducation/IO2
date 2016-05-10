@@ -8,6 +8,9 @@ Template.upsert_activity.onRendered( function() {
 		},
 		onSuccess : function(event, fields){
 			event.preventDefault();
+			$('.page.dimmer:first')
+			.dimmer('toggle')
+			;
 			var files = Session.get('removedFileIds');
 			var files = Files.find({'_id': { $in: files }}, {'key': 1})
 			if (files != undefined && files.length > 0) {
