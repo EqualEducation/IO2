@@ -1,6 +1,5 @@
 Template.quotation.helpers({
   quotationObject: function(activistIndex) {
-    console.log('ACTIVIST INDEX')
     var quotationObject = new Object();
     switch (activistIndex) {
       case 1:
@@ -18,8 +17,6 @@ Template.quotation.helpers({
         break;
       }
     }
-
-    console.log(quotationObject)
     return quotationObject;
   }
 })
