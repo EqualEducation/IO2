@@ -1,30 +1,43 @@
 <template name="explore">
-  <a>ACTIVITIES BY MAIN TOPIC</a>
-  <div class="ui styled fluid accordion">
-    {{#each mainTopics}}
-    <div class="title">
-      <i class="dropdown icon"></i>
-      {{this}} ({{#with numActivities this}}{{this}}{{/with}})
+  <div class="ui equal width aligned padded grid fluid">
+    <div class="row">
+      <div class="column">
+        <h1 class="ui header">Explore</h1>
+      </div>
     </div>
-    <div class="content">
-      <a>{{this}} activities by sub-topic</a>
-      <div class="accordion">
-        {{#each subTopics this}}
+    <div class="row">
+      <div class="column">
+        <h3>ACTIVITIES BY MAIN TOPIC</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ui styled fluid accordion">
+        {{#each mainTopics}}
         <div class="title">
           <i class="dropdown icon"></i>
-          {{this}} ({{#with numActivitiesWithSubtopic this ..}}{{this}}{{/with}})
+          {{this}} ({{#with numActivities this}}{{this}}{{/with}})
         </div>
         <div class="content">
-          {{#each allActivitiesForTopics this ..}}
-          {{#with pathName this.itemType}}
-          <a href="{{pathFor route=this _id=../_id}}" target="_blank" id={{../_id}}>{{../details.title}}</a>
-          <br>
-          {{/with}}
-          {{/each}}
+          <a>{{this}} activities by sub-topic</a>
+          <div class="accordion">
+            {{#each subTopics this}}
+            <div class="title">
+              <i class="dropdown icon"></i>
+              {{this}} ({{#with numActivitiesWithSubtopic this ..}}{{this}}{{/with}})
+            </div>
+            <div class="content">
+              {{#each allActivitiesForTopics this ..}}
+              {{#with pathName this.itemType}}
+              <a href="{{pathFor route=this _id=../_id}}" target="_blank" id={{../_id}}>{{../details.title}}</a>
+              <br>
+              {{/with}}
+              {{/each}}
+            </div>
+            {{/each}}
+          </div>
         </div>
         {{/each}}
       </div>
     </div>
-    {{/each}}
   </div>
 </template>
