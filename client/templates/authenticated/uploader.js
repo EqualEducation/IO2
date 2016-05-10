@@ -86,7 +86,7 @@ Template.uploader.onRendered(function() {
                 var file_details = {
                     uploader: a_uploader,
                     name: a_uploader.file.name,
-                    url: a_uploader.url(true),
+                    url: a_uploader.url(false),
                     progress: prog
                 };
                 if (status != "3_addedToDatabase") {
