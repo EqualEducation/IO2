@@ -6,11 +6,20 @@
 			<div class="row">
 				<div class="column">
 						<a class="ui basic button" href="/search">Back</a>
-					{{> html2docx selector="#wholeScreen" linkClass="ui primary button" filename=this.details.title }}
-						<a class="ui primary download button" id="downloadAll">Download Activity Pack</a>
-						<div class="ui custom popup">
-							The Activity Pack includes the guide, resources and all files attachments.
-						</div>
+						{{#if isEqual this.itemType activityEnum}}
+							<a class="ui primary download button" id="downloadActivityPack">Download Activity Pack</a>
+							<div class="ui custom popup">
+								The Activity Pack includes the guide, resources and all files attachments.
+							</div>
+						{{/if}}
+						{{#if isEqual this.itemType resourceEnum}}
+							<a class="ui primary download button" id="downloadResourceFiles">Download Resource Files</a>
+							<div class="ui custom popup">
+								This will download a .zip file containing all files in this resource.
+							</div>
+						{{/if}}
+					<!-- {{> html2docx selector="#wholeScreen" linkClass="ui primary button" filename=this.details.title }} -->
+
 					{{#if isInRole 'admin,editor'}}
 						{{#with editURL this}}
 							<a class="ui primary button" id="editButton" href="{{this}}">Edit</a>

@@ -123,6 +123,48 @@ Meteor.methods({
       }           // successful response
     }));
   },
+  createResourceZip:function(resource){
+    //1. SETUP
+    //1.1 configure AWS (if it hasn't already been configured)
+    if (Meteor.settings != undefined) {
+      AWS.config.update({
+        accessKeyId: Meteor.settings.AWSAccessKeyId,
+        secretAccessKey: Meteor.settings.AWSSecretAccessKey
+      })
+    }  else {
+      console.log("AWS settings missing")
+    }
+
+    //1.2 get sync functions ready
+    // var getBase64DataSync = Meteor.wrapAsync(getBase64Data);
+    var createZipSync = Meteor.wrapAsync(createZip);
+    var getAWSFileObjectSync = Meteor.wrapAsync(getAWSFileObject);
+
+    //1.3 Create the zip object
+    var zip = new JSZip();
+
+      var resourceName = resource.details.title;
+      var folderName = resourceName;
+
+      //2.2 iterate over files
+      var resourceFileIDs = resource.fileIDs;
+      if (resourceFileIDs.constructor !== Array ) {
+        resourceFileIDs = [resourceFileIDS];
+      }
+      var files = Files.find({_id: {$in:resourceFileIDs}});
+
+
+      files.forEach(function(file) {
+        var AWSFile =  getAWSFileObjectSync(file.key);
+        // var data = getBase64DataSync(AWSFile)
+        console.log('Created data for key: ' + file.key)
+        zip.folder(folderName).file(file.originalName, AWSFile.body, {base64: true});
+      })
+
+    var url = createZipSync('resource',zip)
+    console.log(url)
+    return url;
+  },
   createActivityZip:function(activity){
 
     //1. SETUP
@@ -146,6 +188,7 @@ Meteor.methods({
 
     //1.4 Initialize the rest of objects needed
     var resourceIDs = activity.resourceIds
+
     var resources = Resources.find({_id: {$in:resourceIDs}}).fetch()
     var activityName = activity.details.title;
     //2. iterate over reosources
@@ -154,8 +197,15 @@ Meteor.methods({
       //e.g zip.folder("nested").file("hello.txt", "Hello World\n");
       var resourceName = resource.details.title;
       var folderName = activityName + '/resources/' + resourceName
+
       //2.2 iterate over files
-      var files = Files.find({_id: {$in:resource.fileIDs}});
+      var resourceFileIDs = resource.fileIDs;
+      if (resourceFileIDS.constructor !== Array ) {
+        resourceFileIDs = [resourceFileIDS];
+      }
+      var files = Files.find({_id: {$in:resourceFileIDs}});
+
+
       files.forEach(function(file) {
         var AWSFile =  getAWSFileObjectSync(file.key);
         // var data = getBase64DataSync(AWSFile)
@@ -169,7 +219,7 @@ Meteor.methods({
     var AWSGuide = getAWSFileObjectSync(guide.key)
     zip.folder(activityName).file(guide.originalName, AWSGuide.body, {base64: true});
 
-    var url = createZipSync(zip)
+    var url = createZipSync('activity',zip)
     console.log(url)
     return url;
   }
@@ -206,14 +256,14 @@ var getAWSFileObject = function(key, callback) {
 //   });
 // };
 
-var createZip = function(zip, callback) {
+var createZip = function(itemType, zip, callback) {
   console.log('creating zip');
   var date = Date.parse(new Date());
   var content = zip.generate({
       type: 'nodebuffer'
   });
 
-  var newKey = Meteor.settings.environment + '/zips/IETU_' + date + '.zip';
+  var newKey = Meteor.settings.environment + '/zips/' + itemType + '_'+ date + '.zip';
 
   var s3 = new AWS.S3()
 

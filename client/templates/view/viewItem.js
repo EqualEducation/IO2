@@ -102,7 +102,29 @@ Template.viewItem.helpers({
 
 
 Template.viewItem.events({
-    'click #downloadAll': function (event) {
+    'click #downloadResourceFiles' : function (event) {
+      event.preventDefault()
+      //if activity
+      if(this.itemType=='Resource')
+      {
+        $('.ui.basic.downloadZip.modal')
+          .modal('show')
+        ;
+
+       Meteor.call("createResourceZip", this, function(error, result){
+           if(error){
+               alert(error);
+           }  else {
+            console.log(result);
+            window.open(result,'_blank');
+            $('.ui.basic.downloadZip.modal')
+              .modal('hide')
+            ;
+          }
+        })
+      }
+    },
+    'click #downloadActivityPack': function (event) {
       event.preventDefault()
       console.log('download All');
 
