@@ -1,36 +1,3 @@
-// take a cfs file and return a base64 string
-var getBase64Data = function(file, callback) {
-  // callback has the form function (err, res) {}
-  var readStream = file.createReadStream();
-  var buffer = [];
-  readStream.on('data', function(chunk) {
-    buffer.push(chunk);
-  });
-  readStream.on('error', function(err) {
-    console.log(err)
-    callback(err, null);
-  });
-  readStream.on('end', function() {
-    console.log('finished reading')
-    var data = buffer.concat()[0].toString('base64');
-    callback(null, data);
-  });
-};
-
-var createZip = function(zip, callback) {
-  console.log('creating zip');
-  var date = Date.parse(new Date());
-  var path = process.env["PWD"] + "/public/zips/";
-  var fileLocation = path + date + '.zip'
-  zip.saveAs(fileLocation, function(error, result) {
-    if (error) {
-      callback(error, null);
-    } else {
-      callback(null, fileLocation);
-    }
-  });
-}
-
 function updateOptions(optionType, itemOptions) {
   var doc = Options.findOne();
   var existingOptions = doc[optionType];
@@ -50,42 +17,6 @@ function updateOptions(optionType, itemOptions) {
 }
 
 Meteor.methods({
-  zipFiles:function(fileIDs){
-
-    //1. Create the zip object
-    var zip = new JSZip();
-
-    //2. setup synchronous versions of asynchronous methods. These synchronous methods will wait for their async versions to finish before moving on
-    //Meteor.wrapAsync() wraps a function that takes a callback function as its final parameter.
-    //e.g. Meteor.wrapSync(methodWithCallback)
-    //call back will be in the form: function(error, result){}
-    //http://docs.meteor.com/#/full/meteor_wrapasync
-    var getBase64DataSync = Meteor.wrapAsync(getBase64Data);
-    var createZipSync = Meteor.wrapAsync(createZip);
-
-    // //3. Get the file object
-    // // http://stackoverflow.com/questions/30991797/how-can-i-get-a-buffer-for-a-file-image-from-collectionfs
-    // var file = Files.findOne(files[0]._id);
-    var files = Files.find({_id: {$in:fileIDs}}).fetch()
-    files.forEach(function(file) {
-        console.log(file)
-
-      //4. Convert file object into binary data
-      //TODO: will need to be different for different MIME types
-      var data = getBase64DataSync(file);
-
-      //5. Add the binary data to the zip object and create a final zip at a location
-      //Can add multiple blobs of data to the zip.
-      zip.file(file.original.name, data, {base64: true});
-      // zip.file('textfile.txt', 'Hello World');
-    })
-
-    //6. Create the final zip object;
-    var locationOfZip = createZipSync(zip);
-
-    //7. Return the file location of the zip (/public/zips/dateInMilliSecondsSince1970.zip)
-    return locationOfZip;
-  },
   addItem: function(itemType, item) {
     console.log('*****')
     console.log(item);

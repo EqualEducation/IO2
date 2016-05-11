@@ -7,12 +7,15 @@
 				<div class="column">
 						<a class="ui basic button" href="/search">Back</a>
 					{{> html2docx selector="#wholeScreen" linkClass="ui primary button" filename=this.details.title }}
-            <a class="ui primary button" id="downloadAll">Download All</a>
+						<a class="ui primary download button" id="downloadAll">Download Activity Pack</a>
+						<div class="ui custom popup">
+							The Activity Pack includes the guide, resources and all files attachments.
+						</div>
 					{{#if isInRole 'admin,editor'}}
 						{{#with editURL this}}
 							<a class="ui primary button" id="editButton" href="{{this}}">Edit</a>
 						{{/with}}
-							<a class="ui primary button" id="deleteFile">Delete</a>
+							<a class="ui primary button" id="deleteButton">Delete</a>
 				{{/if}}
 				</div>
 			</div>

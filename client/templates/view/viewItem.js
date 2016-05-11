@@ -5,6 +5,13 @@
 //   ;
 // })
 
+Template.viewItem.onRendered(function() {
+  $('.download.button')
+  .popup({
+    popup : $('.custom.popup')
+  })
+;
+})
 
 Template.registerHelper('listView', function(listItems) {
   var count=listItems.length;
@@ -98,20 +105,15 @@ Template.viewItem.events({
     'click #downloadAll': function (event) {
       event.preventDefault()
       console.log('download All');
+
       //if activity
       if(this.itemType=='Activity')
       {
-        guideID=(this.guideID);
-        // console.log(guideID);
-        resourceIds=this.resourceIds;
-        // console.log(resourceIds);
-        fileIDs=_.pluck(Resources.find({_id: {$in:resourceIds}}).fetch(),'fileIDs');
-
         $('.ui.basic.downloadZip.modal')
           .modal('show')
         ;
 
-        Meteor.call("zipFiles", fileIDs, function(error, result){
+        Meteor.call("createActivityZip", this, function(error, result){
            if(error){
                alert(error);
            }  else {
@@ -125,7 +127,7 @@ Template.viewItem.events({
         })
       }
     },
-    'click #deleteFile': function (event) {
+    'click #deleteButton': function (event) {
       console.log("DELETE");
       itemID=(this._id);
       itemType=(this.itemType);
