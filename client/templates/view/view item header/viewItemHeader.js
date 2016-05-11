@@ -6,7 +6,7 @@ Template.viewItemHeader.helpers({
         icon = "book"
         break;
       case "video":
-        icon = "film"
+        icon = "camera"
         break;
       case "icebreaker":
         icon = "flag"
