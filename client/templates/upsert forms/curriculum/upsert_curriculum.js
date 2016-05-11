@@ -1,5 +1,4 @@
 Template.upsert_curriculum.onRendered( function() {
-	Session.set('uploadedFileIds', this.data.fileIDs)
 
 	$('#curriculumDetailsForm')
   .form({
@@ -9,9 +8,11 @@ Template.upsert_curriculum.onRendered( function() {
 		},
 		onSuccess : function(event, fields){
 			event.preventDefault();
-			$('.page.dimmer:first')
-			.dimmer('toggle')
-			;
+			console.log('saving curriculum')
+			// $('.page.dimmer:first')
+			// .dimmer('toggle')
+			// ;
+
 			var files = Session.get('removedFileIds');
 			var files = Files.find({'_id': { $in: files }}, {'key': 1})
 			if (files != undefined && files.length > 0) {
@@ -71,7 +72,7 @@ Template.upsert_curriculum.onRendered( function() {
     },
 		inline: true,
 		keyboardShortcuts : false,
-		on: 'change',
+		on: 'submit',
     fields: {
 			title: {
         identifier: 'title',
@@ -141,4 +142,7 @@ Template.upsert_curriculum.onRendered( function() {
 		link  : this.data.details.link,
 		method    : this.data.details.method
   })
+
+	Session.set('uploadedFileIds', this.data.fileIDs)
+
 })
