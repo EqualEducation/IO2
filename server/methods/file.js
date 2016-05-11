@@ -169,31 +169,9 @@ Meteor.methods({
     var AWSGuide = getAWSFileObjectSync(guide.key)
     zip.folder(activityName).file(guide.originalName, AWSGuide.body, {base64: true});
 
-    var locationOfZip = createZipSync(zip)
-    console.log('LOCATION OF ZIP:')
-    console.log(locationOfZip)
-
-    //1. Get files from AWS
-
-    // var files = Files.find({_id: {$in:fileIDs}}).fetch()
-    // files.forEach(function(file) {
-    //     console.log(file)
-    //
-    //   //4. Convert file object into binary data
-    //   // TODO: will need to be different for different MIME types
-    //   var data = getBase64DataSync(file);
-    //
-    //   //5. Add the binary data to the zip object and create a final zip at a location
-    //   //Can add multiple blobs of data to the zip.
-    //   zip.file(file.original.name, data, {base64: true});
-    //   // zip.file('textfile.txt', 'Hello World');
-    // })
-    //
-    // //6. Create the final zip object;
-    // var locationOfZip = createZipSync(zip);
-    //
-    // //7. Return the file location of the zip (/public/zips/dateInMilliSecondsSince1970.zip)
-    // return locationOfZip;
+    var url = createZipSync(zip)
+    console.log(url)
+    return url;
   }
 })
 
@@ -231,13 +209,29 @@ var getAWSFileObject = function(key, callback) {
 var createZip = function(zip, callback) {
   console.log('creating zip');
   var date = Date.parse(new Date());
-  var path = process.env["PWD"] + "/public/zips/";
-  var fileLocation = path + date + '.zip'
-  zip.saveAs(fileLocation, function(error, result) {
-    if (error) {
-      callback(error, null);
-    } else {
-      callback(null, fileLocation);
-    }
+  var content = zip.generate({
+      type: 'nodebuffer'
   });
+
+  var newKey = Meteor.settings.environment + '/zips/IETU_' + date + '.zip';
+
+  var s3 = new AWS.S3()
+
+  var params = {
+      Bucket: Meteor.settings.S3Bucket,
+      Key: newKey,
+      Body: content
+  };
+  s3.putObject(params, function(err, data) {
+      if (err) {
+          console.log('upload zip to s3 err',err, err.stack); // an error occurred
+
+      } else {
+          console.log(data); // successful response
+      }
+      var url = 'https://s3.amazonaws.com/' + Meteor.settings.S3Bucket + '/' + newKey;
+      callback(err, url)
+  });
+
+
 }

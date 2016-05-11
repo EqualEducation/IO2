@@ -113,16 +113,15 @@ Template.viewItem.events({
           .modal('show')
         ;
 
-        Meteor.call("createActivityZip", this, function(error, result){
+       Meteor.call("createActivityZip", this, function(error, result){
            if(error){
                alert(error);
            }  else {
-            console.log('Success');
             console.log(result);
+            window.open(result,'_blank');
             $('.ui.basic.downloadZip.modal')
               .modal('hide')
             ;
-
           }
         })
       }
