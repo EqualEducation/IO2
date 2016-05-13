@@ -2,3 +2,4 @@ config/settings.json
 config/settings-development.json
 config/settings-production.json
 public/zips
+server/scripts
