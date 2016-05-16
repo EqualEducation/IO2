@@ -200,8 +200,8 @@ Meteor.methods({
 
       //2.2 iterate over files
       var resourceFileIDs = resource.fileIDs;
-      if (resourceFileIDS.constructor !== Array ) {
-        resourceFileIDs = [resourceFileIDS];
+      if (resourceFileIDs.constructor !== Array ) {
+        resourceFileIDs = [resourceFileIDs];
       }
       var files = Files.find({_id: {$in:resourceFileIDs}});
 
@@ -282,6 +282,4 @@ var createZip = function(itemType, zip, callback) {
       var url = 'https://s3.amazonaws.com/' + Meteor.settings.S3Bucket + '/' + newKey;
       callback(err, url)
   });
-
-
 }
