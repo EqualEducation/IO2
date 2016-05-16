@@ -15,7 +15,7 @@
     </div>
   <!-- </div> -->
   <div class="ui flowing popup top right transition hidden" id="feedbackPopup">
-    <div class="ui form">
+    <form class="ui form" id="feedbackForm">
       <div class="field">
         <label>What would you like to tell us?</label>
         <textarea id="feedbackMessage"></textarea>
@@ -27,7 +27,7 @@
       <button class="circular ui icon right floated button" id="sendFeedback">
         <i class="icon send"></i>
       </button>
-    </div>
+    </form>
   </div>
   {{> footer}}
 </template>

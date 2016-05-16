@@ -17,6 +17,7 @@ Template.main.onRendered(function() {
     preserve : true,
     closable: true
   })
+
 })
 
 Template.registerHelper("print", function (data) {
@@ -144,13 +145,16 @@ Template.registerHelper('isChecked', function(value) {
 
 Template.main.events({
   'click #sendFeedback' : function(e, t) {
+    e.preventDefault()
+    $('#feedbackForm').trigger('reset');
     $('#feedback').popup('hide');
-
     let message = $("#feedbackMessage")[0].value
     let email = $("#feedbackEmail")[0].value
     if (message == undefined) {
       return;
     }
+
+    alert('Thank you for your feedback!')
     console.log('sending email');
     Meteor.call('sendEmail',
           'ietudatabase@equaleducation.org.za',
