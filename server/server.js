@@ -1,4 +1,16 @@
 Meteor.startup(function () {
+  if (Meteor.isServer) {
+    smtp = {
+       username: 'carla@equaleducation.org.za',   // eg: server@gentlenode.com
+       password: 'Eaddch978',   // eg: 3eeP1gtizk5eziohfervU
+       server:   'smtp.gmail.com',  // eg: mail.gandi.net
+       port: 465
+     }
+    var url = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
+
+    process.env.MAIL_URL = url
+  }
+
   var archiver = require('archiver');
   var archive = archiver.create('zip', {}); // or archiver('zip', {});
 
