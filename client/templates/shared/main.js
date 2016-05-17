@@ -146,11 +146,13 @@ Template.registerHelper('isChecked', function(value) {
 Template.main.events({
   'click #sendFeedback' : function(e, t) {
     e.preventDefault()
-    $('#feedbackForm').trigger('reset');
-    $('#feedback').popup('hide');
     let message = $("#feedbackMessage")[0].value
     let email = $("#feedbackEmail")[0].value
-    if (message == undefined) {
+
+    $('#feedbackForm').trigger('reset');
+    $('#feedback').popup('hide');
+
+    if (message == undefined || message == "") {
       return;
     }
 
