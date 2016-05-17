@@ -1,4 +1,7 @@
+@import (multiple) '../../css/site/globals/site.overrides.import.less';
 @import (multiple) '../../css/site/globals/site.variables.import.less';
+
+@navbarColor : #3a3a3a;
 
 body {
   background-color: #FFFFFF;
@@ -22,8 +25,17 @@ page {
   margin-right: 1.5em;
 }
 
-.ui.menu a {
+.ui.inverted.segment {
+  background: @navbarColor;
+}
+
+.ui.inverted a {
   color: @primaryColor;
+}
+
+
+.ui.inverted.menu {
+  background: @navbarColor;
 }
 
 .main.container {
