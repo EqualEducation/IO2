@@ -2,13 +2,36 @@
   <h3 class="page-header" style="text-transform: capitalize;">{{contentDisplayName this.contentType}}
 <span style="float:right;">Results: {{this.numResults}}</span>
   </h3>
-  {{#each this.items}}
-    <h4 class="name">
-          {{#with pathName this.itemType}}
-            <a href="{{pathFor route=this _id=../_id}}" id={{../_id}}>{{../itemType}}{{#if itemTypeIsResource ../itemType}} ({{resourceDisplayName ../type}}){{/if}}: {{../details.title}}</a>
-          {{/with}}
-    </h4>
-        {{{this.details.description}}}
-  {{/each}}
+  <div class="ui link items">
+    {{#each this.items}}
+      <div class="item">
+        <div class="content">
+          <div class="header">
+            {{#with pathName this.itemType}}
+              <a href="{{pathFor route=this _id=../_id}}" id={{../_id}}>
+                <div class="ui image">
+                  {{#if isEqual ../itemType curriculumEnum}}
+                    <i class="circular archive icon"></i>
+                  {{/if}}
+                  {{#if isEqual ../itemType activityEnum}}
+                    <i class="circular puzzle icon"></i>
+                  {{/if}}
+                  {{#if isEqual ../itemType resourceEnum}}
+                    <i class="circular {{resourceIcon ../type}} icon"></i>
+                  {{/if}}
+                </div>
+                {{../itemType}}{{#if itemTypeIsResource ../itemType}} ({{resourceDisplayName ../type}}){{/if}}: {{../details.title}}
+              </a>
+            {{/with}}
+          </div>
+          <div class="description">
+            <p>{{{this.details.description}}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+      </div>
+    {{/each}}
+  </div>
 
 </template>

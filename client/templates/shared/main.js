@@ -105,6 +105,30 @@ Template.registerHelper('contentDisplayName', function(contentType) {
     return contentDisplayName;
   })
 
+  Template.registerHelper('resourceIcon', function(resourceType) {
+      var icon;
+      switch (resourceType) {
+        case "book":
+          icon = "book"
+          break;
+        case "video":
+          icon = "camera"
+          break;
+        case "icebreaker":
+          icon = "flag"
+          break;
+        case "other":
+          icon = "help"
+          break;
+        case "shortreading":
+          icon = "file text outline"
+          break;
+        default:
+          icon = "folder open outline"
+      }
+      return icon;
+  })
+
 Template.registerHelper('getOptions', function(optionType) {
 	var optionsInstance = this.options;
 	var options;
