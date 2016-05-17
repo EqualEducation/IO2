@@ -157,7 +157,7 @@ Template.main.events({
     alert('Thank you for your feedback!')
     console.log('sending email');
     Meteor.call('sendEmail',
-          'ietudatabase@equaleducation.org.za',
+          'activities@equaleducation.org.za',
           'carla@equaleducation.org.za',
           "EE Activities Database Feedback",
           emailBodyHtml(message, email));
