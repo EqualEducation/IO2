@@ -1,9 +1,3 @@
-// Template.registerHelper.onRendered(function(){
-//   $('.basic.test.modal')
-//     .modal('setting', 'closable', false)
-//     .modal('show')
-//   ;
-// })
 
 Template.viewItem.onRendered(function() {
   $('.download.button')
@@ -101,6 +95,25 @@ Template.viewItem.helpers({
 })
 
 
+// Template.html2docx.helpers({
+//   dataUri : function () {
+// 	return Template.instance().dataUri.get();
+//   },
+//   filename : function () {
+// 	return this.filename || document.title || '';
+//   }
+// });
+//
+// Template.html2docx.events({
+//   'mousedown a' : function (evt, tmpl) {
+	// tmpl.dataUri.set(html2docx.generate(this.selector, this.css, this.includeStylesheets));
+//   }
+// });
+//
+// Template.html2docx.onCreated(function () {
+//   this.dataUri = new ReactiveVar('');
+// });
+
 Template.viewItem.events({
     'click #downloadResourceFiles' : function (event) {
       event.preventDefault()
@@ -124,9 +137,11 @@ Template.viewItem.events({
         })
       }
     },
-    'click #downloadActivityPack': function (event) {
+    'click #downloadActivityPack': function (event, template) {
       event.preventDefault()
       console.log('download All');
+
+      var htmlString = html2docx.generate('#detailsTable', template.css, template.stylesheets)
 
       //if activity
       if(this.itemType=='Activity')
@@ -135,7 +150,8 @@ Template.viewItem.events({
           .modal('show')
         ;
 
-       Meteor.call("createActivityZip", this, function(error, result){
+
+       Meteor.call("createActivityZip", htmlString, this, function(error, result){
            if(error){
                alert(error);
            }  else {

@@ -149,7 +149,7 @@ Meteor.methods({
       //2.2 iterate over files
       var resourceFileIDs = resource.fileIDs;
       if (resourceFileIDs.constructor !== Array ) {
-        resourceFileIDs = [resourceFileIDS];
+        resourceFileIDs = [resourceFileIDs];
       }
       var files = Files.find({_id: {$in:resourceFileIDs}});
 
@@ -165,7 +165,9 @@ Meteor.methods({
     console.log(url)
     return url;
   },
-  createActivityZip:function(activity){
+  createActivityZip:function(htmlString, activity){
+    console.log(htmlString);
+    console.log(activity);
 
     //1. SETUP
     //1.1 configure AWS (if it hasn't already been configured)
@@ -185,7 +187,7 @@ Meteor.methods({
 
     //1.3 Create the zip object
     var zip = new JSZip();
-
+    console.log(JSZip.support)
     //1.4 Initialize the rest of objects needed
     var resourceIDs = activity.resourceIds
 
@@ -219,6 +221,14 @@ Meteor.methods({
     var AWSGuide = getAWSFileObjectSync(guide.key)
     zip.folder(activityName).file(guide.originalName, AWSGuide.body, {base64: true});
 
+    //4. information document
+
+    zip.folder(activityName).file('info.docx', HTMLToData(htmlString), {base64: true});
+
+
+    // zip.generate({type:"base64"}), location.href="data:application/zip;base64," + base64;
+
+
     var url = createZipSync('activity',zip)
     console.log(url)
     return url;
@@ -237,24 +247,25 @@ var getAWSFileObject = function(key, callback) {
     callback(err, data)
   });
 }
+
 // take a cfs file and return a base64 string
-// var getBase64Data = function(file, callback) {
-//   // callback has the form function (err, res) {}
-//   var readStream = file.createReadStream();
-//   var buffer = [];
-//   readStream.on('data', function(chunk) {
-//     buffer.push(chunk);
-//   });
-//   readStream.on('error', function(err) {
-//     console.log(err)
-//     callback(err, null);
-//   });
-//   readStream.on('end', function() {
-//     console.log('finished reading')
-//     var data = buffer.concat()[0].toString('base64');
-//     callback(null, data);
-//   });
-// };
+var getBase64Data = function(file, callback) {
+  // callback has the form function (err, res) {}
+  var readStream = file.createReadStream();
+  var buffer = [];
+  readStream.on('data', function(chunk) {
+    buffer.push(chunk);
+  });
+  readStream.on('error', function(err) {
+    console.log(err)
+    callback(err, null);
+  });
+  readStream.on('end', function() {
+    console.log('finished reading')
+    var data = buffer.concat()[0].toString('base64');
+    callback(null, data);
+  });
+};
 
 var createZip = function(itemType, zip, callback) {
   console.log('creating zip');
@@ -275,11 +286,56 @@ var createZip = function(itemType, zip, callback) {
   s3.putObject(params, function(err, data) {
       if (err) {
           console.log('upload zip to s3 err',err, err.stack); // an error occurred
-
       } else {
           console.log(data); // successful response
       }
       var url = 'https://s3.amazonaws.com/' + Meteor.settings.S3Bucket + '/' + newKey;
       callback(err, url)
   });
+}
+
+
+function HTMLToData(htmlString) {
+  var byteNumbers = new Uint8Array(htmlString.length);
+  for (var i = 0; i < htmlString.length; i++) {
+    byteNumbers[i] = htmlString.charCodeAt(i);
+  }
+  return byteNumbers;
+
+}
+
+var getBase64Data = function(readStream, callback) {
+  // callback has the form function (err, res) {}
+  // var readStream = file.createReadStream();
+  var buffer = [];
+  readStream.on('data', function(chunk) {
+    buffer.push(chunk);
+  });
+  readStream.on('error', function(err) {
+    console.log(err)
+    callback(err, null);
+  });
+  readStream.on('end', function() {
+    console.log('finished reading')
+    var data = buffer.concat()[0].toString('base64');
+    callback(null, data);
+  });
+}
+
+
+
+generateStyle = function () {
+  // Concatenate all CSS rules into a big string
+  var style = '';
+  _.each(document.styleSheets, function (sheet) {
+	try {
+	  _.each(sheet.cssRules, function (rule) {
+	    style += rule.cssText;
+	  });
+	}
+	catch (err) {
+	  console.log('Some CSS not included due to cross domain security issues.');
+	}
+  });
+  return style;
 }
