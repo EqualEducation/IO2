@@ -27,6 +27,9 @@ addResourceFilesToZip = function(resource, zip, folderName) {
 
   //2.2 iterate over files
   var resourceFileIDs = resource.fileIDs;
+  if (resourceFileIDs == undefined) {
+    return;
+  }
   if (resourceFileIDs.constructor !== Array ) {
     resourceFileIDs = [resourceFileIDs];
   }
@@ -39,8 +42,15 @@ addResourceFilesToZip = function(resource, zip, folderName) {
 }
 
 addActivityFilesToZip = function(activity, zip, mainFolderName) {
+  var getAWSFileObjectSync = Meteor.wrapAsync(getAWSFileObject);
+
     //1.4 Initialize the rest of objects needed
     var resourceIDs = activity.resourceIds
+
+    if (resourceIDs == undefined) {
+      return;
+    }
+
     var resources = Resources.find({_id: {$in:resourceIDs}}).fetch()
 
     //2. iterate over reosources
@@ -48,15 +58,43 @@ addActivityFilesToZip = function(activity, zip, mainFolderName) {
       var resourceFolderName = mainFolderName + '/resources/' + resource.details.title
       addResourceFilesToZip(resource, zip, resourceFolderName);
     })
+
+
+    /////
+    var guideID = activity.guideId;
+    if (guideID == undefined) {
+      return;
+    }
+    var guide = Files.find({_id: guideID});
+      var AWSFile =  getAWSFileObjectSync(guide.key);
+      console.log('Created data for guide key: ' + guide.key)
+      zip.folder(mainFolderName).file(guide.originalName, AWSFile.body, {base64: true});
 }
 
 addCurriculumFilesToZip = function(curriculum, zip, mainFolderName) {
+  var getAWSFileObjectSync = Meteor.wrapAsync(getAWSFileObject);
       var slots = curriculum.activitySlots;
 
       slots.forEach(function(slot) {
         var activity = Activities.findOne({_id: slot.activityId})
         var activityFolderName = mainFolderName + '/activities/(' + slot.index + ')' + activity.details.title
         addActivityFilesToZip(activity, zip, activityFolderName);
+      })
+
+
+      //2.2 iterate over files
+      var fileIDs = curriculum.fileIDs;
+      if (fileIDs == undefined) {
+        return;
+      }
+      if (fileIDs.constructor !== Array ) {
+        fileIDs = [fileIDs];
+      }
+      var files = Files.find({_id: {$in:fileIDs}});
+      files.forEach(function(file) {
+        var AWSFile =  getAWSFileObjectSync(file.key);
+        console.log('Created data for key: ' + file.key)
+        zip.folder(mainFolderName).file(file.originalName, AWSFile.body, {base64: true});
       })
 }
 

@@ -9,9 +9,9 @@ Template.upsert_curriculum.onRendered( function() {
 		onSuccess : function(event, fields){
 			event.preventDefault();
 			console.log('saving curriculum')
-			// $('.page.dimmer:first')
-			// .dimmer('toggle')
-			// ;
+			$('.page.dimmer:first')
+			.dimmer('toggle')
+			;
 
 			var files = Session.get('removedFileIds');
 			var files = Files.find({'_id': { $in: files }}, {'key': 1})
@@ -35,10 +35,10 @@ Template.upsert_curriculum.onRendered( function() {
 				activitySlot.index = count;
 				activitySlot.identifier = $(element)[0].firstChild.id
 				activitySlot.activityId =	$(element).dropdown('get value');
+				count++;
 				if (activitySlot.activityId != undefined && activitySlot.activityId != "") {
 					return activitySlot;
 				}
-				count++;
       });
 
 
