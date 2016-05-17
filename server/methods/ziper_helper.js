@@ -51,9 +51,8 @@ addActivityFilesToZip = function(activity, zip, mainFolderName) {
 }
 
 addCurriculumFilesToZip = function(curriculum, zip, mainFolderName) {
-  console.log(curriculum)
       var slots = curriculum.activitySlots;
-      
+
       slots.forEach(function(slot) {
         var activity = Activities.findOne({_id: slot.activityId})
         var activityFolderName = mainFolderName + '/activities/(' + slot.index + ')' + activity.details.title
