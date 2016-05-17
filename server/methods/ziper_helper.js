@@ -37,6 +37,7 @@ addResourceFilesToZip = function(resource, zip, folderName) {
   files.forEach(function(file) {
     var AWSFile =  getAWSFileObjectSync(file.key);
     console.log('Created data for key: ' + file.key)
+    
     zip.folder(folderName).file(file.originalName, AWSFile.body, {base64: true});
   })
 }
@@ -61,14 +62,22 @@ addActivityFilesToZip = function(activity, zip, mainFolderName) {
 
 
     /////
-    var guideID = activity.guideId;
+    var guideID = activity.guideID;
+    console.log('GUIDE ID: ' + guideID)
+
     if (guideID == undefined) {
       return;
     }
-    var guide = Files.find({_id: guideID});
-      var AWSFile =  getAWSFileObjectSync(guide.key);
-      console.log('Created data for guide key: ' + guide.key)
-      zip.folder(mainFolderName).file(guide.originalName, AWSFile.body, {base64: true});
+    var guide = Files.findOne({_id: guideID});
+    console.log('GUIDE: ')
+    console.log(guide)
+
+    if (guide == undefined) {
+      return;
+    }
+    var AWSFile =  getAWSFileObjectSync(guide.key);
+    console.log('Created data for guide key: ' + guide.key)
+    zip.folder(mainFolderName).file(guide.originalName, AWSFile.body, {base64: true});
 }
 
 addCurriculumFilesToZip = function(curriculum, zip, mainFolderName) {
