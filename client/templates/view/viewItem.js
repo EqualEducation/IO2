@@ -94,64 +94,16 @@ Template.viewItem.helpers({
   }
 })
 
-
-// Template.html2docx.helpers({
-//   dataUri : function () {
-// 	return Template.instance().dataUri.get();
-//   },
-//   filename : function () {
-// 	return this.filename || document.title || '';
-//   }
-// });
-//
-// Template.html2docx.events({
-//   'mousedown a' : function (evt, tmpl) {
-	// tmpl.dataUri.set(html2docx.generate(this.selector, this.css, this.includeStylesheets));
-//   }
-// });
-//
-// Template.html2docx.onCreated(function () {
-//   this.dataUri = new ReactiveVar('');
-// });
-
 Template.viewItem.events({
-    'click #downloadResourceFiles' : function (event) {
+    'click #downloadPack' : function (event, template) {
       event.preventDefault()
-      //if activity
-      if(this.itemType=='Resource')
-      {
-        $('.ui.basic.downloadZip.modal')
-          .modal('show')
-        ;
-
-       Meteor.call("createResourceZip", this, function(error, result){
-           if(error){
-               alert(error);
-           }  else {
-            console.log(result);
-            window.open(result,'_blank');
-            $('.ui.basic.downloadZip.modal')
-              .modal('hide')
-            ;
-          }
-        })
-      }
-    },
-    'click #downloadActivityPack': function (event, template) {
-      event.preventDefault()
-      console.log('download All');
-
       var htmlString = html2docx.generate('#detailsTable', template.css, template.stylesheets)
 
-      //if activity
-      if(this.itemType=='Activity')
-      {
         $('.ui.basic.downloadZip.modal')
           .modal('show')
         ;
 
-
-       Meteor.call("createActivityZip", htmlString, this, function(error, result){
+       Meteor.call("createZipForDownload", this.itemType, this, htmlString, function(error, result){
            if(error){
                alert(error);
            }  else {
@@ -161,8 +113,7 @@ Template.viewItem.events({
               .modal('hide')
             ;
           }
-        })
-      }
+      })
     },
     'click #deleteButton': function (event) {
       console.log("DELETE");
