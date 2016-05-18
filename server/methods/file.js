@@ -124,7 +124,7 @@ Meteor.methods({
     var mainFolderName = item.details.title;
 
     //4. information document
-    zip.folder(mainFolderName).file(mainFolderName + '.docx', HTMLToData(htmlString), {base64: true});
+    zip.folder(mainFolderName).file('Details - ' + mainFolderName + '.doc', HTMLToData(htmlString), {base64: true});
 
     switch (itemType) {
       case ItemTypeEnum.RESOURCE:
