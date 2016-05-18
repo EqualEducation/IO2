@@ -24,13 +24,18 @@ Meteor.publish( 'files', function(){
 
 Meteor.publish("resources-searchpage-data", function () {
     console.log("publishing resources-searchpage-data");
-   return Resources.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1, 'type' : 1}});
+   return Resources.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1, 'details.keywords' : 1, 'type' : 1}});
    //return Resources.find();
   });
 
 Meteor.publish("activities-searchpage-data", function () {
       console.log("publishing activities-searchpage-data");
-     return Activities.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
+     return Activities.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1, 'details.keywords' : 1}});
+});
+
+Meteor.publish("curricula-searchpage-data", function () {
+      console.log("publishing curricula-searchpage-data");
+     return Curricula.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1}});
 });
 
 Meteor.publish("activities-explore-data", function () {
@@ -39,10 +44,7 @@ Meteor.publish("activities-explore-data", function () {
      return Activities.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1,'details.mainTopic':1,'details.subTopic':1}});
 });
 
-Meteor.publish("curricula-searchpage-data", function () {
-      console.log("publishing curricula-searchpage-data");
-     return Curricula.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1}});
-});
+
 
 Meteor.publish("all-resources", function () {
     console.log("publishing resources");
