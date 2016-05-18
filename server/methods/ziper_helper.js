@@ -33,12 +33,11 @@ addResourceFilesToZip = function(resource, zip, folderName) {
   if (resourceFileIDs.constructor !== Array ) {
     resourceFileIDs = [resourceFileIDs];
   }
-  var files = Files.find({_id: {$in:resourceFileIDs}});
+  var files = Files.find({_id: {$in:resourceFileIDs}}).fetch();
   files.forEach(function(file) {
     var AWSFile =  getAWSFileObjectSync(file.key);
     console.log('Created data for key: ' + file.key)
-    
-    zip.folder(folderName).file(file.originalName, AWSFile.body, {base64: true});
+    zip.folder(folderName).file(file.originalName, AWSFile.Body, {base64: true});
   })
 }
 
@@ -77,7 +76,8 @@ addActivityFilesToZip = function(activity, zip, mainFolderName) {
     }
     var AWSFile =  getAWSFileObjectSync(guide.key);
     console.log('Created data for guide key: ' + guide.key)
-    zip.folder(mainFolderName).file(guide.originalName, AWSFile.body, {base64: true});
+    console.log(AWSFile)
+    zip.folder(mainFolderName).file(guide.originalName, AWSFile.Body, {base64: true});
 }
 
 addCurriculumFilesToZip = function(curriculum, zip, mainFolderName) {
@@ -103,7 +103,7 @@ addCurriculumFilesToZip = function(curriculum, zip, mainFolderName) {
       files.forEach(function(file) {
         var AWSFile =  getAWSFileObjectSync(file.key);
         console.log('Created data for key: ' + file.key)
-        zip.folder(mainFolderName).file(file.originalName, AWSFile.body, {base64: true});
+        zip.folder(mainFolderName).file(file.originalName, AWSFile.Body, {base64: true});
       })
 }
 
