@@ -68,15 +68,12 @@ addActivityFilesToZip = function(activity, zip, mainFolderName) {
       return;
     }
     var guide = Files.findOne({_id: guideID});
-    console.log('GUIDE: ')
-    console.log(guide)
 
     if (guide == undefined) {
       return;
     }
     var AWSFile =  getAWSFileObjectSync(guide.key);
     console.log('Created data for guide key: ' + guide.key)
-    console.log(AWSFile)
     zip.folder(mainFolderName).file(guide.originalName, AWSFile.Body, {base64: true});
 }
 
