@@ -8,21 +8,6 @@
 // // initialise the search
 // fileSearch.search("");
 Template.content.helpers({
-    testLink: function() {
-    //look in YourFile collection
-    var details = Files.findOne(this.fileId);
-    return {
-      URL: details.url,
-      name: this.name,
-      type: details.original.type,
-      isUploaded: details.original.updatedAt,
-      details:details,
-      keywords: this.keywords,
-      description:this.description,
-      _id:details._id
-    };
-
-  },
   itemTypeIsResource: function(itemType) {
     //look in YourFile collection
     if(itemType=="Resource")
@@ -31,18 +16,6 @@ Template.content.helpers({
       return false;
 
   },
-  // resourceLink: function() {
-  //   //look in YourFile collection
-  //   //var details = Files.findOne(this.fileIDs);
-  //   return {
-  //     //URL: details.url,
-  //     name: this.details.title,
-  //     itemType: this.itemType,
-  //     keywords: this.details.keywords,
-  //     description:this.details.description,
-  //     _id:this._id
-  //   };
-  // },
   pathName: function(itemType) {
     return itemType.toLowerCase() + ".view";
   },

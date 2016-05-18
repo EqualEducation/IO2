@@ -28,9 +28,12 @@
             <p>{{{this.details.description}}}</p>
           </div>
           <div class="keywords">
-            {{#each this.details.keywords}}
-              <a class="ui tiny tag label">{{this}}</a>
-            {{/each}}
+            <div class="ui tag labels">
+              {{#each this.details.keywords}}
+                <a href="#" class="ui label">{{this}}</a>
+              {{/each}}
+            </div>
+
           </div>
         </div>
       </div>

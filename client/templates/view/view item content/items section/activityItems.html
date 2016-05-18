@@ -10,7 +10,13 @@
           {{#each item.resourceIds}}
           <tr>
             {{#with resource this}}
-              <td class="heading">{{this.details.title}}</td>
+              <td class="heading">
+                <div class="ui image">
+                  {{#if isEqual this.itemType resourceEnum}}
+                    <i class="circular {{resourceIcon this.type}} icon"></i>
+                  {{/if}}
+                </div>
+                {{this.details.title}}</td>
                 {{#with pathName this.itemType}}
                 <td>
                   <a href="{{pathFor route=this _id=../_id}}" target="_blank" style="margin-left: 10px;">

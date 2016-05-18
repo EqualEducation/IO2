@@ -55,7 +55,7 @@ addActivityFilesToZip = function(activity, zip, mainFolderName) {
 
     //2. iterate over reosources
     resources.forEach(function(resource) {
-      var resourceFolderName = mainFolderName + '/Resources/' + resource.details.title
+      var resourceFolderName = mainFolderName + '/Resources/' + resource.type + ' - ' + resource.details.title
       addResourceFilesToZip(resource, zip, resourceFolderName);
     })
 
