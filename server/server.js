@@ -11,6 +11,10 @@ Meteor.startup(function () {
     process.env.MAIL_URL = url
   }
 
+  Activities._ensureIndex({"details.title":"text", "details.keywords" : "text", "details.description":"text"})
+  Resources._ensureIndex({"details.title":"text", "details.keywords" : "text", "details.description":"text"})
+  Curricula._ensureIndex({"details.title":"text", "details.keywords" : "text", "details.description":"text"})
+
   var archiver = require('archiver');
   var archive = archiver.create('zip', {}); // or archiver('zip', {});
 

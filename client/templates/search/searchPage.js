@@ -3,20 +3,6 @@ function decode(text) {
   return decodeURIComponent(encoded.replace(/\+/g,  " "));
 }
 
-function buildRegExp(searchText) {
-  // this is a dumb implementation
-  //console.log('searching')
-  var parts=[""];
-  if (searchText===undefined)
-  {}
-  else
-  {
-    parts = searchText.trim().split(/[ \-]+/);
-  }
-  //define regExp with flags (case insensitive + global search)
-  return new RegExp("(" + parts.join('|') + ")", "ig");
-}
-
 
 Template.searchPage.onCreated( function() {
   this.currentTab = new ReactiveVar( "all" );
@@ -51,65 +37,45 @@ Template.searchPage.helpers({
 tab: function() {
     return Template.instance().currentTab.get();
   },
-  tabData: function() {
-    var text=Session.get('searchText');
-    var options = {sort: {"details.title": 1}, limit: 20};
-    var regExp = buildRegExp(text);
-    var selector=selector={$or: [
-      {"details.title": regExp},
-      {"details.description": regExp},
-      {"details.keywords": regExp}
-    ]};
-    // var filteredData=(fileDetails.find(selector, options).fetch());
+tabData: function() {
+  console.log( Session.get("searchText"))
+  var data = [];
+
+  Meteor.subscribe("activities-searchpage-data", Session.get("searchText"));
+  if (Session.get("searchText")) {
+    data = Activities.find({}, { sort: [["score", "desc"]] });
+  } else {
+    data = Activities.find({});
+  }
+
+  Meteor.subscribe("resources-searchpage-data", Session.get("searchText"));
+  if (Session.get("searchText")) {
+    _.union(data,Resources.find({}, { sort: [["score", "desc"]] }).fetch());
+  } else {
+    _.union(data, Resources.find({}).fetch());
+  }
+
+  Meteor.subscribe("curricula-searchpage-data", Session.get("searchText"));
+  if (Session.get("searchText")) {
+    _.union(data, Curricula.find({}, { sort: [["score", "desc"]] }).fetch());
+  } else {
+    _.union(data,Curricula.find({}).fetch());
+  }
+
+
+
+    // var searchString = Session.get('searchText');
     var tab = Template.instance().currentTab.get();
-    var data = {
-       "all": [
-       _.union(Activities.find(selector, options).fetch(),
-        Resources.find(selector, options).fetch(),
-       Curricula.find(selector, options).fetch()),
-          // { "name": "Seeking Wisdom: From Darwin to Munger", "description": "Peter Bevelin" }
-        ],
-        "activities": [
-          Activities.find(selector, options).fetch(),
-        ],
-        "curricula": [
-          Curricula.find(selector, options).fetch(),
-        ],
-        "resources": [
-        Resources.find(selector, options).fetch(),
-          // fileDetails.find().fetch(),
-        ],
-        "allResources": [
-        Resources.find(selector, options).fetch(),
-          // fileDetails.find().fetch(),
-        ],
-        "book": [
-        Resources.find({$and: [{type:"book"},selector]},options).fetch(),
-          // fileDetails.find().fetch(),
-        ],
-        "video": [
-        Resources.find({$and: [{type:"video"},selector]},options).fetch(),
-          // fileDetails.find().fetch(),
-        ],
-        "shortreading": [
-        Resources.find({$and: [{type:"shortreading"},selector]},options).fetch(),
-          // fileDetails.find().fetch(),
-        ],
-        "icebreaker": [
-        Resources.find({$and: [{type:"icebreaker"},selector]},options).fetch(),
-          // fileDetails.find().fetch(),
-        ],
-        "other": [
-        Resources.find({$and: [{type:"other"},selector]},options).fetch(),
-          // fileDetails.find().fetch(),
-        ]
-    };
-    var numResults=(data[tab][0].length);
-     return {contentType: tab, numResults: numResults,items: data[tab][0]};
+    // var data =  Modules.client.searchItems( {searchString: searchString} );
+    //
+    // console.log(data[tab])
+    var numResults = (data.count());
+    console.log(numResults)
+    //
+    return {contentType: tab, numResults: numResults, items: data};
   }
 
 })
-
 
 Template.searchPage.events({
     "keyup #search-box": _.throttle(function(e) {
@@ -119,8 +85,9 @@ Template.searchPage.events({
           text = "";
       }
       else
-    { text = $(e.target).val().trim();
-    }
+      {
+        text = $(e.target).val().trim();
+      }
 
     Session.set('searchText',text);
     // console.log(data[tab][0]);
@@ -129,11 +96,7 @@ Template.searchPage.events({
     //if nothing is returned
   //   if(fileSearch.getData()==""){
   //     //compute fuzzy search (look for closest match)
-  //     var tempCursor = fileDetails.find({}, { name: true ,description:true});
-  //     var bestName = mostSimilarString(tempCursor, "name", text, -1, false);
-  //     console.log('did you mean');
-  //     var bestDescription = mostSimilarString(tempCursor, "description", text, -1, false);
-  //     console.log(bestName+", "+bestDescription);
+
   //     fileSearch.cleanHistory();
   //     fileSearch.search(bestName+bestDescription);
   //   }
