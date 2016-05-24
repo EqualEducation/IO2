@@ -25,12 +25,14 @@ Template.content.helpers({
       return matchText;
     }
     // console.log("SEARCHING: "  + searchText);
-
       var parts = searchText.trim().split(/[ \-]+/);
+      searchText = searchText.replace(/^"(.*)"$/, '$1');
+      parts.push(searchText);
+
 
       //define regExp with flags (case insensitive + global search)
       var regEx = RegExp("(" + parts.join('|') + ")", "ig");
-      // console.log(searchText)
+      // console.log(regEx)
       // var regEx = new RegExp(searchText, "ig");
       return matchText.replace(regEx, "<mark>$&</mark>");
 

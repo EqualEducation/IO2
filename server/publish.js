@@ -86,7 +86,7 @@ Meteor.publish("curricula-searchpage-data", function (searchValue) {
       return Curricula.find({}, {limit: 20});
     }
     return Curricula.find(
-      { $text: {$search: searchValue} },
+      { s$text: {$search: searchValue} },
       {
         // `fields` is where we can add MongoDB projections. Here we're causing
         // each document published to include a property named `score`, which
@@ -101,7 +101,7 @@ Meteor.publish("curricula-searchpage-data", function (searchValue) {
           score: { $meta: "textScore" }
         }
       }, {limit: 20}
-    );
+    )
 });
 
 

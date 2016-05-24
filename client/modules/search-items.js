@@ -76,7 +76,6 @@ let search = ( options ) => {
 
     searchString = options.searchString;
     tab = options.tab;
-    console.log(tab)
     var searchResults;
 
     switch (tab) {
@@ -114,7 +113,6 @@ let search = ( options ) => {
         searchResults = _.union(_searchActivities().fetch(),_searchResources().fetch(), _searchCurricula().fetch())
     }
 
-  console.log(searchResults)
   return searchResults;
 };
 

@@ -38,13 +38,13 @@ Template.searchPage.helpers({
       return Template.instance().currentTab.get();
   },
   tabData: function(tab) {
-    console.log( Session.get("searchText"))
-    console.log(this)
+    // console.log( Session.get("searchText"))
+    // console.log(this)
     var currentTab = Template.instance().currentTab.get();
     if (currentTab == tab) {
       var data =  Modules.client.searchItems( {searchString: Session.get("searchText"), tab: currentTab} );
       var numResults = data.length;
-      console.log(numResults)
+      // console.log(numResults)
       return {contentType: currentTab, numResults: numResults, items: data};
     }
   }
@@ -62,9 +62,9 @@ Template.searchPage.events({
         text = $(e.target).val().trim();
       }
 
-    console.log('KEY UP')
+    // console.log('KEY UP')
     Session.set('searchText',text);
-}, 600),
+}, 200),
 
     'click .item': function(event,template){
       var currentTab=($( event.target ).attr("data-tab"));
