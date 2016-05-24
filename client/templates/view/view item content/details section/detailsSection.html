@@ -5,22 +5,18 @@
       <p class="text-muted">Details</p>
     </div>
     <div class="thirteen wide column">
-      <table>
+      <table class="top aligned">
         <tbody>
           <tr>
-            <td class="heading">Main Topic:</td>
+            <td class="heading top aligned">Main Topic:</td>
             <td class="detail">{{item.details.mainTopic}}</td>
           </tr>
           <tr>
-            <td class="heading">Sub Topic:</td>
+            <td class="heading top aligned">Sub Topic:</td>
             <td class="detail">{{item.details.subTopic}}</td>
           </tr>
           <tr>
-            <td class="heading">Keywords:</td>
-            <td class="detail">{{listView item.details.keywords}}</td>
-          </tr>
-          <tr>
-            <td class="heading">Source:</td>
+            <td class="heading top aligned">Source:</td>
             <td class="detail">{{item.details.source}}</td>
           </tr>
 
@@ -28,7 +24,7 @@
             {{> viewVideoDetails item=item}}
           {{else}}
             <tr>
-              <td class="heading">Link:</td>
+              <td class="heading top aligned">Link:</td>
               <td class="detail"><a href="\\{{item.details.link}}">{{item.details.link}}</a></td>
             </tr>
           {{/if}}
@@ -45,6 +41,17 @@
           {{#if isEqual item.type "icebreaker"}}
             {{> viewIcebreakerDetails item=item}}
           {{/if}}
+
+          <tr>
+            <td class="heading top aligned">Keywords:</td>
+            <td class="detail">
+              <div class="ui tag labels">
+              {{#each item.details.keywords}}
+                  <a href="#" class="ui label">{{this}}</a>
+              {{/each}}
+            </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

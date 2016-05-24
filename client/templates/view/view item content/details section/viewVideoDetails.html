@@ -1,21 +1,21 @@
 <template name="viewVideoDetails">
   <tr>
-    <td class="heading">Year:</td>
+    <td class="heading top aligned">Year:</td>
     <td class="detail">{{item.details.year}}</td>
   </tr>
   {{#if isEqual item.details.duration ""}}
   <tr>
-    <td class="heading">Duration:</td>
+    <td class="heading top aligned">Duration:</td>
     <td class="detail"></td>
   </tr>
   {{else}}
   <tr>
-    <td class="heading">Duration:</td>
+    <td class="heading top aligned">Duration:</td>
     <td class="detail">{{item.details.duration}} minutes</td>
   </tr>
   {{/if}}
   <tr>
-    <td class="heading">Video Type:</td>
+    <td class="heading top aligned">Video Type:</td>
     <td class="detail">{{listView item.details.videoType}}</td>
   </tr>
 </template>
@@ -24,7 +24,7 @@
   {{#each videos}}
     {{#unless isEqual this.location ""}}
       <tr>
-        <td class="heading">{{this.name}}:</td>
+        <td class="heading top aligned">{{this.name}}:</td>
         <td class="detail">{{this.location}}</td>
       </tr>
     {{/unless}}
@@ -35,7 +35,7 @@
   {{#each videos}}
     {{#unless isEqual this.location ""}}
     <tr>
-      <td class="heading">{{this.name}}</td>
+      <td class="heading top aligned">{{this.name}}</td>
       <td class="detail"><a href="//{{this.location}}">View<i class="cloud arrow right icon"></i></a></td>
     </tr>
     {{/unless}}
