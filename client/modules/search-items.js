@@ -81,6 +81,7 @@ let search = ( options ) => {
     switch (tab) {
       case 'all':
         searchResults = _.union(_searchActivities().fetch(),_searchResources().fetch(), _searchCurricula().fetch())
+        searchResults = _.sortBy(searchResults, 'score').reverse()
         break;
       case 'activities':
         searchResults = _searchActivities().fetch()
@@ -111,6 +112,7 @@ let search = ( options ) => {
           break;
       default:
         searchResults = _.union(_searchActivities().fetch(),_searchResources().fetch(), _searchCurricula().fetch())
+        searchResults = _.sortBy(searchResults, 'score').reverse()
     }
 
   return searchResults;

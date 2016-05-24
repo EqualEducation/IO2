@@ -27,7 +27,7 @@ Meteor.publish("resources-searchpage-data", function (searchValue) {
   //  return Resources.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1, 'details.keywords' : 1, 'type' : 1}});
    //return Resources.find();
    if (!searchValue) {
-     return Resources.find({}, {limit: 20});
+     return Resources.find({});
    }
    return Resources.find(
      { $text: {$search: searchValue} },
@@ -44,7 +44,7 @@ Meteor.publish("resources-searchpage-data", function (searchValue) {
        sort: {
          score: { $meta: "textScore" }
        }
-     }, {limit: 20}
+     }
    );
 
   });
@@ -58,7 +58,7 @@ Meteor.publish("resources-searchpage-data", function (searchValue) {
 // provided, we publish only messages that match the given search value.
 Meteor.publish("activities-searchpage-data", function (searchValue) {
   if (!searchValue) {
-    return Activities.find({}, {limit: 20});
+    return Activities.find({});
   }
   return Activities.find(
     { $text: {$search: searchValue} },
@@ -75,7 +75,7 @@ Meteor.publish("activities-searchpage-data", function (searchValue) {
       sort: {
         score: { $meta: "textScore" }
       }
-    }, {limit: 20}
+    }
   );
 });
 
@@ -83,10 +83,10 @@ Meteor.publish("curricula-searchpage-data", function (searchValue) {
     //   console.log("publishing curricula-searchpage-data");
     //  return Curricula.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1}});
     if (!searchValue) {
-      return Curricula.find({}, {limit: 20});
+      return Curricula.find({});
     }
     return Curricula.find(
-      { s$text: {$search: searchValue} },
+      { $text: {$search: searchValue} },
       {
         // `fields` is where we can add MongoDB projections. Here we're causing
         // each document published to include a property named `score`, which
@@ -100,7 +100,7 @@ Meteor.publish("curricula-searchpage-data", function (searchValue) {
         sort: {
           score: { $meta: "textScore" }
         }
-      }, {limit: 20}
+      }
     )
 });
 
