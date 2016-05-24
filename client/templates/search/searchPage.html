@@ -23,15 +23,17 @@
           </a>
         </div>
          <div class="ui active tab segment" data-tab="all">
-            <!-- {?{> Template.dynamic template="content" data=tabData}} -->
-            {{> Template.dynamic template="content" data=tabData}}
-          </div>
+           {{#with tabData 'all'}}
+             {{> Template.dynamic template="content" data=this}}
+           {{/with}}          </div>
           <div class="ui tab segment" data-tab="activities">
-            {{> Template.dynamic template="content" data=tabData}}
-          </div>
+            {{#with tabData 'activities'}}
+              {{> Template.dynamic template="content" data=this}}
+            {{/with}}          </div>
           <div class="ui tab segment" data-tab="curricula">
-            {{> Template.dynamic template="content" data=tabData}}
-          </div>
+            {{#with tabData 'curricula'}}
+              {{> Template.dynamic template="content" data=this}}
+            {{/with}}          </div>
           <div class="ui tab segment" data-tab="resources">
             <div class="ui top attached tabular menu">
               <a class="item active" data-tab="allResources">All</a>
@@ -41,7 +43,9 @@
               <a class="item" data-tab="book">Books</a>
               <a class="item" data-tab="other">Other</a>
             </div>
-            {{> Template.dynamic template="content" data=tabData}}
+            {{#with tabData 'resources'}}
+              {{> Template.dynamic template="content" data=this}}
+            {{/with}}
           </div>
       </div>
     </div>

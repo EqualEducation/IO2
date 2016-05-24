@@ -8,7 +8,6 @@
 // // initialise the search
 // fileSearch.search("");
 
-
 Template.content.helpers({
   itemTitle: function(item) {
     itemType = item.itemType;
@@ -22,19 +21,19 @@ Template.content.helpers({
   },
   transform: function(matchText) {
     var searchText = Session.get('searchText');
-    console.log("SEARCHING: "  + searchText);
+    if (searchText == "" || searchText == undefined) {
+      return matchText;
+    }
+    // console.log("SEARCHING: "  + searchText);
 
-    if (searchText != undefined && searchText != "") {
       var parts = searchText.trim().split(/[ \-]+/);
 
       //define regExp with flags (case insensitive + global search)
       var regEx = RegExp("(" + parts.join('|') + ")", "ig");
-      console.log(searchText)
+      // console.log(searchText)
       // var regEx = new RegExp(searchText, "ig");
       return matchText.replace(regEx, "<mark>$&</mark>");
-    }
 
-    return matchText;
   },
   itemTypeIsResource: function(itemType) {
     //look in YourFile collection
