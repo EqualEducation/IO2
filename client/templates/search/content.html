@@ -20,17 +20,19 @@
                     <i class="circular {{resourceIcon ../type}} icon"></i>
                   {{/if}}
                 </div>
-                {{../itemType}}{{#if itemTypeIsResource ../itemType}} ({{resourceDisplayName ../type}}){{/if}}: {{../details.title}}
+                {{#with itemTitle ..}}
+                  <span>{{{transform this}}}</span>
+                {{/with}}
               </a>
             {{/with}}
           </div>
           <div class="description">
-            <p>{{{this.details.description}}}</p>
+            <p>{{{transform this.details.description}}}</p>
           </div>
           <div class="keywords">
             <div class="ui tag labels">
               {{#each this.details.keywords}}
-                <a href="#" class="ui label">{{this}}</a>
+                <a href="#" class="ui label">{{{transform this}}}</a>
               {{/each}}
             </div>
 

@@ -62,8 +62,6 @@ tabData: function() {
     _.union(data,Curricula.find({}).fetch());
   }
 
-
-
     // var searchString = Session.get('searchText');
     var tab = Template.instance().currentTab.get();
     // var data =  Modules.client.searchItems( {searchString: searchString} );

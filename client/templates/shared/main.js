@@ -45,7 +45,7 @@ Template.registerHelper('exists', function(obj) {
   return obj != undefined && obj != null;
 })
 
-Template.registerHelper('resourceDisplayName', function(resourceType) {
+var _resourceDisplayName = function(resourceType) {
   var resourceDisplayName;
   switch (resourceType) {
       case "book":
@@ -67,6 +67,9 @@ Template.registerHelper('resourceDisplayName', function(resourceType) {
         resourceDisplayName = "Other"
     }
     return resourceDisplayName;
+}
+Template.registerHelper('resourceDisplayName', function(resourceType) {
+  return _resourceDisplayName(resourceType)
   })
 
 Template.registerHelper('contentDisplayName', function(contentType) {
