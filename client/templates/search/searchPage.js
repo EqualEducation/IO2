@@ -37,14 +37,14 @@ Template.searchPage.helpers({
   tab: function() {
       return Template.instance().currentTab.get();
   },
-  tabData: function(tab) {
+  tabData: function() {
     // console.log( Session.get("searchText"))
     // console.log(this)
     var currentTab = Template.instance().currentTab.get();
     // if (currentTab == tab) {
       var data =  Modules.client.searchItems( {searchString: Session.get("searchText"), tab: currentTab} );
       var numResults = data.length;
-      // console.log(numResults)
+      console.log(currentTab)
       return {contentType: currentTab, numResults: numResults, items: data};
     // }
   }

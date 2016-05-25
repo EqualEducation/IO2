@@ -60,10 +60,13 @@ let _searchResources = (type) => {
       data = Resources.find({'type' : type}, { sort: [["score", "desc"]] });
     } else {
       data = Resources.find({}, { sort: [["score", "desc"]] });
-
     }
   } else {
-    data = Resources.find({});
+    if (type != undefined && type != "") {
+      data = Resources.find({'type' : type});
+    } else {
+      data = Resources.find({});
+    }
   }
   return data;
 }
@@ -82,6 +85,7 @@ let search = ( options ) => {
     searchString = options.searchString;
     tab = options.tab;
     var searchResults;
+    console.log('searching items')
 
     switch (tab) {
       case 'all':
