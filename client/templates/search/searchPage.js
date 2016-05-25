@@ -44,7 +44,6 @@ Template.searchPage.helpers({
     // if (currentTab == tab) {
       var data =  Modules.client.searchItems( {searchString: Session.get("searchText"), tab: currentTab} );
       var numResults = data.length;
-      console.log(currentTab)
       return {contentType: currentTab, numResults: numResults, items: data};
     // }
   }

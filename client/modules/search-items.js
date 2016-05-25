@@ -85,7 +85,6 @@ let search = ( options ) => {
     searchString = options.searchString;
     tab = options.tab;
     var searchResults;
-    console.log('searching items')
 
     switch (tab) {
       case 'all':
