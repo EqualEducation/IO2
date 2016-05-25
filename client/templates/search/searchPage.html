@@ -3,8 +3,8 @@
     <div class="row">
             <div class="column">
         <h1 class="ui header">Search</h1>
-{{>searchBar}}
-</div>
+        {{>searchBar}}
+        </div>
     </div>
     <div class="row">
       <div class="column">
@@ -23,16 +23,17 @@
           </a>
         </div>
          <div class="ui active tab segment" data-tab="all">
-           <!-- {{#with tabData 'all'}} -->
-             {{> Template.dynamic template="content" data=tabData}}
-           <!-- {{/with}}          </div> -->
+           {{> Template.dynamic template="content" data=tabData}}
+
+          </div>
           <div class="ui tab segment" data-tab="activities">
-            <!-- {{#with tabData 'activities'}} -->
             {{> Template.dynamic template="content" data=tabData}}
-            <!-- {{/with}}          </div> -->
+
+          </div>
           <div class="ui tab segment" data-tab="curricula">
             {{> Template.dynamic template="content" data=tabData}}
-        </div>
+
+          </div>
           <div class="ui tab segment" data-tab="resources">
             <div class="ui top attached tabular menu">
               <a class="item active" data-tab="allResources">All</a>
