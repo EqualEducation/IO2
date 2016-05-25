@@ -37,7 +37,7 @@ Meteor.publish("resources-searchpage-data", function (searchValue) {
        // contains the document's search rank, a numerical value, with more
        // relevant documents having a higher score.
        fields: {
-         'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }
+         'type':1,'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }
        },
        // This indicates that we wish the publication to be sorted by the
        // `score` property specified in the projection fields above.

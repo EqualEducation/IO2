@@ -53,10 +53,15 @@ let _searchActivities = () => {
   return data;
 }
 
-let _searchResources = () => {
+let _searchResources = (type) => {
   Meteor.subscribe("resources-searchpage-data", Session.get("searchText"));
   if (searchString != undefined && searchString != "") {
-    data = Resources.find({}, { sort: [["score", "desc"]] });
+    if (type != undefined && type != "") {
+      data = Resources.find({'type' : type}, { sort: [["score", "desc"]] });
+    } else {
+      data = Resources.find({}, { sort: [["score", "desc"]] });
+
+    }
   } else {
     data = Resources.find({});
   }

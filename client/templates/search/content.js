@@ -54,8 +54,6 @@ Template.content.helpers({
   return resources;
 
 },
-
-
   isLoading: function() {
     return fileSearch.getStatus().loading;
   }
