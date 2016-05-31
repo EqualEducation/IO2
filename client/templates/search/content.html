@@ -1,4 +1,8 @@
 <template name="content">
+  {{#if isloading}}
+  {{> loadingSearchResults}}
+{{else}}
+
   <h3 class="page-header" style="text-transform: capitalize;">{{contentDisplayName this.contentType}}
 <span style="float:right;">Results: {{this.numResults}}</span>
   </h3>
@@ -21,18 +25,18 @@
                   {{/if}}
                 </div>
                 {{#with itemTitle ..}}
-                  <span>{{{transform this}}}</span>
+                  <span>{{this}}</span>
                 {{/with}}
               </a>
             {{/with}}
           </div>
           <div class="description">
-            <p>{{{transform this.details.description}}}</p>
+            <p>{{this.details.description}}</p>
           </div>
           <div class="keywords">
             <div class="ui tag labels">
               {{#each this.details.keywords}}
-                <a href="#" class="ui label">{{{transform this}}}</a>
+                <a href="#" class="ui label">{{this}}</a>
               {{/each}}
             </div>
           </div>
@@ -42,5 +46,5 @@
       </div>
     {{/each}}
   </div>
-
+  {{/if}}
 </template>

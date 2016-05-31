@@ -81,7 +81,6 @@ let _searchCurricula = () => {
   return data;
 }
 let search = ( options ) => {
-
     searchString = options.searchString;
     tab = options.tab;
     var searchResults;

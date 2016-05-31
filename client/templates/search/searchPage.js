@@ -28,43 +28,40 @@ Template.searchPage.onRendered(function(){
     var searchText=decode(searchText);
     Session.set('searchText',searchText)
     //console.log(searchText);
-    $('#search-box').val(searchText);
-    $("#search-box").keyup();
+    // $('#search-box').val(searchText);
+    // $("#search-box").keyup();
   }
 })
 
 Template.searchPage.helpers({
+  isResource: function() {
+    var tab = Template.instance().currentTab.get();
+    if (tab != "activities" && tab != "curricula" && tab != "all") {
+      return true;
+    }
+    return false;
+  },
   tab: function() {
-      return Template.instance().currentTab.get();
+    var tab = Template.instance().currentTab.get();
+    console.log('tab')
+    return tab;
   },
   tabData: function() {
+    console.log('tabdata');
     // console.log( Session.get("searchText"))
     // console.log(this)
     var currentTab = Template.instance().currentTab.get();
+    console.log(currentTab)
     // if (currentTab == tab) {
       var data =  Modules.client.searchItems( {searchString: Session.get("searchText"), tab: currentTab} );
       var numResults = data.length;
+      console.log('NUM RESULTS: ' + numResults);
       return {contentType: currentTab, numResults: numResults, items: data};
     // }
   }
 })
 
 Template.searchPage.events({
-    "keyup #search-box": _.throttle(function(e) {
-      var text="";
-      if($(e.target).val()==undefined)
-      {
-          text = "";
-      }
-      else
-      {
-        text = $(e.target).val().trim();
-      }
-
-    // console.log('KEY UP')
-    Session.set('searchText',text);
-}, 200),
-
     'click .item': function(event,template){
       var currentTab=($( event.target ).attr("data-tab"));
       var currentTabStatus=$( event.target );
