@@ -1,4 +1,5 @@
 <template name="searchPage">
+  {{print "SearchPageRendered"}}
   <div class="ui equal width aligned padded grid fluid">
     <div class="row">
             <div class="column">
@@ -22,7 +23,7 @@
             Curricula
           </a>
         </div>
-        <div class="ui active tab segment" data-tab={{tab}}>
+        <div class="ui tab active segment" data-tab={{tab}}>
           {{#if isResource}}
           <div class="ui top attached tabular menu">
             <a class="item active" data-tab="allResources">All</a>
@@ -35,29 +36,6 @@
           {{/if}}
           {{> Template.dynamic template="content" data=tabData}}
         </div>
-
-         <!-- <div class="ui active tab segment" data-tab="all">
-           {{> Template.dynamic template="content" data=tabData}}
-          </div>
-          <div class="ui tab segment" data-tab="activities">
-            {{> Template.dynamic template="content" data=tabData}}
-          </div>
-          <div class="ui tab segment" data-tab="curricula">
-            {{> Template.dynamic template="content" data=tabData}}
-
-          </div>
-          <div class="ui tab segment" data-tab="resources">
-            <div class="ui top attached tabular menu">
-              <a class="item active" data-tab="allResources">All</a>
-              <a class="item" data-tab="shortreading">Short Readings</a>
-              <a class="item" data-tab="icebreaker">Icebreakers</a>
-              <a class="item" data-tab="video">Videos</a>
-              <a class="item" data-tab="book">Books</a>
-              <a class="item" data-tab="other">Other</a>
-            </div>
-            {{> Template.dynamic template="content" data=tabData}}
-
-          </div> -->
       </div>
     </div>
 </div>
