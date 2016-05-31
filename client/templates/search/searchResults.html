@@ -1,0 +1,52 @@
+<template name="searchResults">
+  {{#if isLoading}}
+    {{> loadingSearchResults}}
+  {{else}}
+
+  {{#with data}}
+  <h3 class="page-header" style="text-transform: capitalize;">{{contentDisplayName this.contentType}}
+<span style="float:right;">Results: {{this.numResults}}</span>
+  </h3>
+  <div class="ui link items">
+    {{#each this.items}}
+      <div class="item">
+        <div class="content">
+          <div class="header">
+            {{#with pathName this.itemType}}
+              <a href="{{pathFor route=this _id=../_id}}" id={{../_id}}>
+                <div class="ui image">
+                  {{#if isEqual ../itemType curriculumEnum}}
+                    <i class="circular archive icon"></i>
+                  {{/if}}
+                  {{#if isEqual ../itemType activityEnum}}
+                    <i class="circular puzzle icon"></i>
+                  {{/if}}
+                  {{#if isEqual ../itemType resourceEnum}}
+                    <i class="circular {{resourceIcon ../type}} icon"></i>
+                  {{/if}}
+                </div>
+                {{#with itemTitle ..}}
+                  <span>{{this}}</span>
+                {{/with}}
+              </a>
+            {{/with}}
+          </div>
+          <div class="description">
+            <p>{{this.details.description}}</p>
+          </div>
+          <div class="keywords">
+            <div class="ui tag labels">
+              {{#each this.details.keywords}}
+                <a href="#" class="ui label">{{this}}</a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+      </div>
+    {{/each}}
+  </div>
+  {{/with}}
+  {{/if}}
+</template>

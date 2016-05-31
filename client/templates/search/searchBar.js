@@ -10,6 +10,7 @@ Template.searchBar.events({
         var searchBox = template.find("#searchBox");
         text = $(searchBox).val().trim();
       }
-    Session.set('searchText',text);
+
+    Session.set('searchText', text);
   }
 })

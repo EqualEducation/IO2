@@ -47,18 +47,17 @@ Template.searchPage.helpers({
     return tab;
   },
   tabData: function() {
-    console.log('tabdata');
-    // console.log( Session.get("searchText"))
-    // console.log(this)
+    Session.set('isLoading', true)
     var currentTab = Template.instance().currentTab.get();
-    console.log(currentTab)
-    // if (currentTab == tab) {
-      var data =  Modules.client.searchItems( {searchString: Session.get("searchText"), tab: currentTab} );
+    var searchTerm = Session.get("searchText");
+    Modules.both.searchItems({searchString: searchTerm, tab: currentTab}, function(err, data) {
+      console.log(data)
       var numResults = data.length;
-      console.log('NUM RESULTS: ' + numResults);
-      return {contentType: currentTab, numResults: numResults, items: data};
-    // }
+      Session.set('isLoading', false)
+      Session.set('tabData', {contentType: currentTab, numResults: numResults, items: data})
+    });
   }
+
 })
 
 Template.searchPage.events({
