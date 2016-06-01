@@ -5,7 +5,11 @@
 
   {{#with data}}
   <h3 class="page-header" style="text-transform: capitalize;">{{contentDisplayName this.contentType}}
-<span style="float:right;">Results: {{this.numResults}}</span>
+    {{#if isEqual this.numResults 0}}
+    <span style="float:right;">No results</span>
+    {{else}}
+    <span style="float:right;">Showing {{this.pageNumber}} to {{this.numResults}} of {{this.total}}</span>
+    {{/if}}
   </h3>
   <div class="ui link items">
     {{#each this.items}}

@@ -1,3 +1,36 @@
+searchItems = function(searchValue, pageSize, pageNumber, collection, fields) {
+  console.log('search items: ' + searchValue)
+  var paging = {};
+  if (pageSize != null && pageNumber != null && pageSize != undefined && pageSize != "" && pageNumber != undefined && pageNumber != "") {
+    paging = {skip: pageSize*(pageNumber-1), limit: pageSize}
+  }
+  console.log(paging)
+
+  if (!searchValue ||  searchValue == "") {
+    data = collection.find({}, paging);
+  } else {
+    data = collection.find(
+      { $text: {$search: searchValue} },
+      {
+        // `fields` is where we can add MongoDB projections. Here we're causing
+        // each document published to include a property named `score`, which
+        // contains the document's search rank, a numerical value, with more
+        // relevant documents having a higher score.
+        fields: fields,
+        // This indicates that we wish the publication to be sorted by the
+        // `score` property specified in the projection fields above.
+        sort: {
+          score: { $meta: "textScore" }
+        }
+      }, paging
+    );
+  }
+
+  console.log("COUNT: "  + data.count())
+
+  return data;
+}
+
 Meteor.publish("allUsers", function () {
   if (Roles.userIsInRole(this.userId, ['admin'])) {
 
@@ -22,121 +55,59 @@ Meteor.publish( 'files', function(){
   return this.ready();
 });
 
-Meteor.publish("resources-searchpage-data", function (searchValue) {
-    // console.log("publishing resources-searchpage-data");
-  //  return Resources.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1, 'details.keywords' : 1, 'type' : 1}});
-   //return Resources.find();
-   var data;
-   if (!searchValue ||  searchValue == "") {
-     console.log('RESOURCES without search value')
-     data = Resources.find({}, {limit: 30});
-   } else {
-     console.log('RESOURCES with search value: ' + searchValue)
-      data = Resources.find(
-       { $text: {$search: searchValue} },
-       {
-         // `fields` is where we can add MongoDB projections. Here we're causing
-         // each document published to include a property named `score`, which
-         // contains the document's search rank, a numerical value, with more
-         // relevant documents having a higher score.
-         fields: {
-           'type':1,'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }
-         },
-         // This indicates that we wish the publication to be sorted by the
-         // `score` property specified in the projection fields above.
-         sort: {
-           score: { $meta: "textScore" }
-         }
-       }, {limit: 30}
-     );
-   }
-
-   console.log(data.count())
+Meteor.publish("resources-searchpage-count", function (searchValue) {
+   var fields = {score: { $meta: "textScore" }}
+   var data = searchItems(searchValue, null, null, Resources, fields);
    if (data!=undefined && data.count() > 0 ) {
-     console.log('data')
-       return data;
+     return data;
    }
-
    return this.ready();
+});
 
-  });
 
-// Meteor.publish("activities-searchpage-data", function () {
-//       console.log("publishing activities-searchpage-data");
-//      return Activities.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1, 'details.keywords' : 1}});
-// });
-
-// If `searchValue` is not provided, we publish all known messages. If it is
-// provided, we publish only messages that match the given search value.
-Meteor.publish("activities-searchpage-data", function (searchValue) {
-  var data;
-  if (!searchValue ||  searchValue == "") {
-    console.log('ACTIVITES without search value')
-    data = Activities.find({}, {limit: 30});
-  } else {
-    console.log('ACTIVITES with search value: ' + searchValue)
-    data = Activities.find(
-      { $text: {$search: searchValue} },
-      {
-        // `fields` is where we can add MongoDB projections. Here we're causing
-        // each document published to include a property named `score`, which
-        // contains the document's search rank, a numerical value, with more
-        // relevant documents having a higher score.
-        fields: {
-          'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }
-        },
-        // This indicates that we wish the publication to be sorted by the
-        // `score` property specified in the projection fields above.
-        sort: {
-          score: { $meta: "textScore" }
-        }
-      }, {limit: 30}
-    );
-  }
-
-  console.log(data.count())
+Meteor.publish("activities-searchpage-count", function (searchValue) {
+  var fields = {score: { $meta: "textScore" }};
+  var data = searchItems(searchValue, null, null, Activities, fields);
   if (data!=undefined && data.count() > 0 ) {
-    console.log('data')
     return data;
   }
   return this.ready();
 });
 
-Meteor.publish("curricula-searchpage-data", function (searchValue) {
-  var data;
-    //   console.log("publishing curricula-searchpage-data");
-    //  return Curricula.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1}});
-    if (!searchValue || searchValue == "") {
-      console.log('CURRICULA without search value')
-      data = Curricula.find({}, {limit: 30});
-    } else {
-      console.log('CURRICULA with search value: ' + searchValue)
-      data = Curricula.find(
-        { $text: {$search: searchValue} },
-        {
-          // `fields` is where we can add MongoDB projections. Here we're causing
-          // each document published to include a property named `score`, which
-          // contains the document's search rank, a numerical value, with more
-          // relevant documents having a higher score.
-          fields: {
-            'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }
-          },
-          // This indicates that we wish the publication to be sorted by the
-          // `score` property specified in the projection fields above.
-          sort: {
-            score: { $meta: "textScore" }
-          }
-        }, {limit: 30}
-      )
-    }
+Meteor.publish("curricula-searchpage-count", function (searchValue, pageSize, pageNumber) {
+  var fields = {score: { $meta: "textScore" }}
+  var data = searchItems(searchValue, null, null, Curricula, fields);
+  if (data!=undefined && data.count() > 0 ) {
+    return data;
+  }
+  return this.ready();
+});
 
-    console.log(data.count())
-    if (data!=undefined && data.count() > 0 ) {
-        console.log('data')
-        return data;
-    }
+Meteor.publish("resources-searchpage-data", function (searchValue, pageSize, pageNumber) {
+   var fields = {'type':1,'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }}
+   var data = searchItems(searchValue, pageSize, pageNumber, Resources, fields);
+   if (data!=undefined && data.count() > 0 ) {
+     return data;
+   }
+   return this.ready();
+});
 
-    return this.ready();
+Meteor.publish("activities-searchpage-data", function (searchValue, pageSize, pageNumber) {
+  var fields = {'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }};
+  var data = searchItems(searchValue, pageSize, pageNumber, Activities, fields);
+  if (data!=undefined && data.count() > 0 ) {
+    return data;
+  }
+  return this.ready();
+});
+
+Meteor.publish("curricula-searchpage-data", function (searchValue, pageSize, pageNumber) {
+  var fields = {'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }};
+  var data = searchItems(searchValue, pageSize, pageNumber, Curricula, fields);
+  if (data!=undefined && data.count() > 0 ) {
+    return data;
+  }
+  return this.ready();
 });
 
 
@@ -168,12 +139,6 @@ Meteor.publish("fileUploads", function () {
     return Files.find();
   });
 
-// Meteor.publish("fileMeta", function () {
-//     console.log("publishing fileMeta");
-//    return fileDetails.find();
-//   });
-
-
 //DROP DOWN DATA
 Meteor.publish("options", function () {
     console.log("publishing options");
@@ -182,17 +147,17 @@ Meteor.publish("options", function () {
 });
 
 //COUNTS
-Meteor.publish("resources-createpage-count", function () {
-    console.log("publishing resources-createpage-count");
+Meteor.publish("resources-count", function () {
+    console.log("publishing resources-count");
     return Resources.find({},{fields: {'_id' : 1, 'type' : 1}});
   });
 
-Meteor.publish("activities-createpage-count", function () {
-  console.log("publishing activities-createpage-count");
+Meteor.publish("activities-count", function () {
+  console.log("publishing activities-count");
   return Activities.find({},{fields: {'_id' : 1}});
 });
 
-Meteor.publish("curricula-createpage-count", function () {
-  console.log("publishing curricula-createpage-count");
+Meteor.publish("curricula-count", function () {
+  console.log("publishing curricula-count");
   return Curricula.find({},{fields: {'_id' : 1}});
 });

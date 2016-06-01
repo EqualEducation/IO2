@@ -28,7 +28,7 @@ Template.searchBar.events({
         }
 
       Session.set('searchText', text);
-        return false;
+      return false;
     }
 }
 })

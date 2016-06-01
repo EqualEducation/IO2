@@ -43,18 +43,29 @@ Template.searchPage.helpers({
   },
   tab: function() {
     var tab = Template.instance().currentTab.get();
-    console.log('tab')
     return tab;
   },
   tabData: function() {
     Session.set('isLoading', true)
     var currentTab = Template.instance().currentTab.get();
     var searchTerm = Session.get("searchText");
-    Modules.both.searchItems({searchString: searchTerm, tab: currentTab}, function(err, data) {
-      console.log(data)
-      var numResults = data.length;
+    var pageSize = 10;
+    var pageNumber = 1;
+    Modules.both.searchItems({searchString: searchTerm, tab: currentTab, pageSize: pageSize, pageNumber: pageNumber}, function(err, data) {
+      var numResults = data.searchResults.length;
+      var totalNumResults = data.total;
+      console.log('NUM RESULTS: ' + numResults)
+      console.log('TOTAL: ' + totalNumResults)
+
       Session.set('isLoading', false)
-      Session.set('tabData', {contentType: currentTab, numResults: numResults, items: data})
+      Session.set('tabData', {
+                                contentType: currentTab,
+                                numResults: numResults,
+                                items: data.searchResults,
+                                pageSize: pageSize,
+                                pageNumber: pageNumber,
+                                total: totalNumResults
+                              })
     });
   }
 
