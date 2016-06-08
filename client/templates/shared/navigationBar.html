@@ -1,17 +1,17 @@
 <template name="navigationBar">
   <div class="ui fixed inverted menu">
     <div class="ui container">
-      <a href="/" class="header item"><img class="logo" src="/images/icon.png">Equal Education</a>
-      <a href="/about" class="item">About</a>
-      <a href="/explore" class="item">Explore</a>
-      <a href="/search" class="item">Search</a>
+      <a href="/" id="home" class="header item"><img class="logo" src="/images/icon.png">Equal Education</a>
+      <a href="/about" id="about" class="item">About</a>
+      <a href="/explore" id="explore" class="item">Explore</a>
+      <a href="/search" id="search" class="item">Search</a>
       {{#if isInRole 'admin,editor'}}
-        <a href="/create" class="item">Create</a>
+        <a href="/create" id="create" class="item">Create</a>
       {{/if}}
       {{#if isInRole 'admin'}}
-        <a href="/admin" class="item">Admin</a>
+        <a href="/admin" id="admin" class="item">Admin</a>
       {{/if}}
-      <a href="#" class="item right">{{> loginButtons}}</a>
+      <a href="#" id="login" class="item right">{{> loginButtons}}</a>
     </div>
   </div>
 </template>

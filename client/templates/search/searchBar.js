@@ -11,6 +11,10 @@ Template.searchBar.events({
         text = $(searchBox).val().trim();
       }
 
+      mixpanel.track("Search tapped", {
+          "Search term": text
+      });
+
     Session.set('searchText', text);
   },
   'keypress input': function(event, template) {
