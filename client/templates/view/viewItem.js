@@ -97,6 +97,11 @@ Template.viewItem.helpers({
 Template.viewItem.events({
     'click #downloadPack' : function (event, template) {
       event.preventDefault()
+      mixpanel.track("Download", {
+          "ID": this._id,
+          "Item Type": this.itemType,
+          "Name" : this.details.title
+      });
       var htmlString = html2docx.generate('#detailsTable', template.css, template.stylesheets)
 
         $('.ui.basic.downloadZip.modal')
