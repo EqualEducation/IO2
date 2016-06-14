@@ -51,4 +51,39 @@ Meteor.startup(function () {
   Roles.addUsersToRoles(userId, ['editor','admin'])
 
 
+  if (Version.find().count() > 0) {
+    Version.remove({});
+  }
+  Version.insert(JSON.parse(Assets.getText("version.json")));
+
+  var version = Version.findOne();
+  console.log(version);
+  if (version.version <= 1.0) {
+    var sources = [];
+    var items = Curricula.find({},{fields: {'details':1,'_id': 0}}).fetch();
+    var resources = Resources.find({},{fields: {'details':1,'_id': 0}}).fetch();
+    var activities = Activities.find({},{fields: {'details':1,'_id': 0}}).fetch();
+
+    items = items.concat(resources)
+    items = items.concat(activities)
+
+    items.forEach(function(item) {
+      sources = sources.concat(item.details.source);
+    })
+
+    var uniqueSources = [];
+    sources.forEach(function(source) {
+      if (source != null && uniqueSources.indexOf(source) == -1) {
+        uniqueSources.push(source);
+      }
+    })
+    var doc = Options.findOne();
+    if (doc == undefined){
+      doc = new Object();
+    }
+    doc.source = uniqueSources;
+    Options.upsert(doc._id, doc);
+  }
+
+
 });

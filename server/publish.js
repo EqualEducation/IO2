@@ -44,7 +44,6 @@ Meteor.publish("allUsers", function () {
   }
 });
 
-
 Meteor.publish( 'files', function(){
   var data = Files.find();
 
@@ -160,4 +159,8 @@ Meteor.publish("activities-count", function () {
 Meteor.publish("curricula-count", function () {
   console.log("publishing curricula-count");
   return Curricula.find({},{fields: {'_id' : 1}});
+});
+
+Meteor.publish('version', function () {
+  return Version.find();
 });
