@@ -11,7 +11,7 @@ Template.searchBar.events({
         text = $(searchBox).val().trim();
       }
 
-      mixpanel.track("Search tapped", {
+      analytics.track("Search tapped", {
           "Search term": text
       });
 

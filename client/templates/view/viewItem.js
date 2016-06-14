@@ -97,7 +97,7 @@ Template.viewItem.helpers({
 Template.viewItem.events({
     'click #downloadPack' : function (event, template) {
       event.preventDefault()
-      mixpanel.track("Download", {
+      analytics.track("Download", {
           "ID": this._id,
           "Item Type": this.itemType,
           "Name" : this.details.title

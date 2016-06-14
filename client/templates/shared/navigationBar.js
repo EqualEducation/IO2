@@ -4,7 +4,7 @@ Template.navigationBar.events({
     currentTabStatus.addClass( "active" );
     $( "a" ).not( currentTabStatus ).removeClass( "active" );
 
-    mixpanel.track("Navigation tapped", {
+    analytics.track("Navigation tapped", {
         "ID": currentTabStatus[0].id
     });
   },
