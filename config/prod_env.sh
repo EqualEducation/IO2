@@ -1,2 +1,2 @@
-export MONGO_URL="mongodb://heroku_h107bkgb:ifrf0fa95qbe6fm02ovn6rdjht@ds013579.mlab.com:13579/heroku_h107bkgb"
+export MONGO_URL="mongodb://heroku_t9vp9n78:dt6abcg5g3t8fq4raismk6jeva@ds011241.mlab.com:11241/heroku_t9vp9n78"
 export METEOR_SETTINGS="$(cat config/settings-production.json)"

@@ -17,12 +17,15 @@ else
   meteor --settings config/settings.json
 fi;
 
-# if [ $env != "production" ]; then
-# 	echo "";
-# else
-# 	echo "production"
-#
-# fi;
+if [ $env != "prod" ]; then
+	echo "";
+else
+	echo "prod";
+  source config/prod_env.sh
+  echo $METEOR_SETTINGS
+  echo $MONGO_URL
+  meteor --settings config/settings-production.json
+fi;
 
 if [ $env != "dev" ]; then
 	echo "";
