@@ -105,6 +105,7 @@ Template.viewItem.events({
       var htmlString = html2docx.generate('#detailsTable', template.css, template.stylesheets)
 
         $('.ui.basic.downloadZip.modal')
+          .modal('setting', 'closable', false)
           .modal('show')
         ;
 
@@ -114,10 +115,10 @@ Template.viewItem.events({
            }  else {
             console.log(result);
             window.open(result,'_blank');
-            $('.ui.basic.downloadZip.modal')
-              .modal('hide')
-            ;
           }
+          $('.ui.basic.downloadZip.modal')
+            .modal('hide')
+          ;
       })
     },
     'click #deleteButton': function (event) {
