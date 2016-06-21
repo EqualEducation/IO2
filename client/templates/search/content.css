@@ -32,3 +32,11 @@
 .package .file {
   font-weight: 400;
 }
+
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
