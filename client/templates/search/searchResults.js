@@ -14,7 +14,6 @@ Template.searchResults.helpers({
 
     console.log(selectedPageSize)
     if (dropDownPageSize == selectedPageSize) {
-      // $('.dropdown').dropdown('set value', 50);
       return "selected"
     }
   },
@@ -64,7 +63,6 @@ Template.searchResults.events({
     console.log('setting selected page size')
     console.log(event.target)
     var value = event.target.selectedOptions[0].value;
-    Session.set('selectedPageSize', parseInt(value));
-
+    Session.set('selectedPageSize', value);
   }
 })
