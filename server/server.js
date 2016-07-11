@@ -90,5 +90,4 @@ Meteor.startup(function () {
     Options.upsert(doc._id, doc);
   }
 
-
 });

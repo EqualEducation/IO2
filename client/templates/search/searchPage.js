@@ -49,14 +49,13 @@ Template.searchPage.helpers({
     Session.set('isLoading', true)
     var currentTab = Template.instance().currentTab.get();
     var searchTerm = Session.get("searchText");
-    var pageSize = 10;
+    var pageSize = Session.get('selectedPageSize');
     var pageNumber = 1;
     Modules.both.searchItems({searchString: searchTerm, tab: currentTab, pageSize: pageSize, pageNumber: pageNumber}, function(err, data) {
       var numResults = data.searchResults.length;
       var totalNumResults = data.total;
-      console.log('NUM RESULTS: ' + numResults)
-      console.log('TOTAL: ' + totalNumResults)
-
+      var numPages = Math.ceil(totalNumResults/pageSize);
+      console.log('NUM PAGES: ' + numPages)
       Session.set('isLoading', false)
       Session.set('tabData', {
                                 contentType: currentTab,
@@ -64,6 +63,7 @@ Template.searchPage.helpers({
                                 items: data.searchResults,
                                 pageSize: pageSize,
                                 pageNumber: pageNumber,
+                                numPages: numPages,
                                 total: totalNumResults
                               })
     });

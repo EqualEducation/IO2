@@ -2,9 +2,10 @@ searchItems = function(searchValue, pageSize, pageNumber, collection, fields) {
   console.log('search items: ' + searchValue)
   var paging = {};
   if (pageSize != null && pageNumber != null && pageSize != undefined && pageSize != "" && pageNumber != undefined && pageNumber != "") {
-    paging = {skip: pageSize*(pageNumber-1), limit: pageSize}
+    paging = {skip: pageSize*(pageNumber-1), limit: parseInt(pageSize) }
   }
   console.log(paging)
+  // console.log(collection)
 
   if (!searchValue ||  searchValue == "") {
     data = collection.find({}, paging);

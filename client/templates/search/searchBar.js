@@ -31,6 +31,10 @@ Template.searchBar.events({
           text = $(searchBox).val().trim();
         }
 
+        analytics.track("Search tapped", {
+            "Search term": text
+        });
+
       Session.set('searchText', text);
       return false;
     }

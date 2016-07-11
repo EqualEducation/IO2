@@ -199,6 +199,14 @@ Template.main.events({
     }
 })
 
+Handlebars.registerHelper('times', function(n, block) {
+  console.log(n);
+    var accum = '';
+    for(var i = 0; i < n; ++i)
+        accum += block.fn(i);
+    return accum;
+});
+
 function emailBodyHtml(feedback, email)  {
   var emailBody = "<p>You have received feedback. Please see below.</p><p><i>" + feedback + "</i></p>"
   if (email != undefined && email != "") {

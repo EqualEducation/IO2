@@ -1,5 +1,23 @@
+Template.searchResults.onRendered(function() {
+
+
+})
 
 Template.searchResults.helpers({
+  pageSizeIsEqualTo: function(dropDownPageSize) {
+    console.log('setting selected page size')
+    var selectedPageSize = Session.get('selectedPageSize');
+    if (selectedPageSize == undefined) {
+      Session.set('selectedPageSize', 10);
+      selectedPageSize = Session.get('selectedPageSize');
+    }
+
+    console.log(selectedPageSize)
+    if (dropDownPageSize == selectedPageSize) {
+      // $('.dropdown').dropdown('set value', 50);
+      return "selected"
+    }
+  },
   data: function() {
     return Session.get('tabData');
   },
@@ -31,6 +49,22 @@ Template.searchResults.helpers({
   //look in YourFile collection
   var resources = Resources.find().fetch();
   return resources;
+  },
+  pageArray: function(numPages){
+    var pageArray = [];
+    for (var i = 1; i <= numPages; i++) {
+      pageArray[i] = i;
+    }
+    return pageArray;
+  }
+})
 
-}
+Template.searchResults.events({
+  'change .pageSize' : function(event, template) {
+    console.log('setting selected page size')
+    console.log(event.target)
+    var value = event.target.selectedOptions[0].value;
+    Session.set('selectedPageSize', parseInt(value));
+
+  }
 })
