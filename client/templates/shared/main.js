@@ -17,7 +17,6 @@ Template.main.onRendered(function() {
     preserve : true,
     closable: true
   })
-
 })
 
 Template.registerHelper("print", function (data) {
@@ -168,7 +167,14 @@ Template.registerHelper('isChecked', function(value) {
     } else {
       return "Unknown";
     }
-})
+});
+
+Template.registerHelper('versionNumber', function() {
+  var version = Version.findOne();
+  console.log('VERSION NUMBER: ' + version.version);
+
+  return version.version;
+});
 
 Template.main.events({
   'click #sendFeedback' : function(e, t) {

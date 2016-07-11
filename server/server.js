@@ -54,11 +54,16 @@ Meteor.startup(function () {
   if (Version.find().count() > 0) {
     Version.remove({});
   }
-  Version.insert(JSON.parse(Assets.getText("version.json")));
+  var versionDoc = JSON.parse(Assets.getText("version.json"));
+  Version.insert(versionDoc);
 
   var version = Version.findOne();
+  console.log("----VERSION----");
   console.log(version);
+  console.log("----VERSION----");
+
   if (version.version <= 1.0) {
+    console.log('-----UPDATING SOURCES-----')
     var sources = [];
     var items = Curricula.find({},{fields: {'details':1,'_id': 0}}).fetch();
     var resources = Resources.find({},{fields: {'details':1,'_id': 0}}).fetch();
