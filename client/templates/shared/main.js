@@ -1,3 +1,6 @@
+Meteor.subscribe('version');
+
+
 Tracker.autorun(function () {
   var current = Router.current();
   Tracker.afterFlush(function () {
