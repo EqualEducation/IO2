@@ -1,22 +1,16 @@
 searchItems = function(searchValue, pageSize, pageNumber, collection, fields, type) {
-  console.log('search items: ' + searchValue);
-  var paging = {skip: 0, limit: 10};
+  var paging = {skip: 0, limit: 1000}
   if (pageSize !== null && pageNumber !== null && pageSize !== undefined && pageSize !== "" && pageNumber !== undefined && pageNumber !== "") {
     paging = {skip: pageSize*(pageNumber-1), limit: parseInt(pageSize) };
   }
   console.log('paging:');
   console.log(paging)
-  // console.log(collection)
-
 
   if (!searchValue ||  searchValue === "") {
-    console.log('no search value');
     var filter = {};
     if (type !== null && type !== undefined && type !== "") {
       filter.type = type;
     }
-    console.log(filter);
-
     data = collection.find(filter, paging);
   } else {
     var filter = { $text: {$search: searchValue} };
@@ -24,8 +18,6 @@ searchItems = function(searchValue, pageSize, pageNumber, collection, fields, ty
       filter.type = type;
     }
 
-    console.log('has search value');
-    console.log(filter);
     data = collection.find(
       filter,
       {
@@ -42,8 +34,6 @@ searchItems = function(searchValue, pageSize, pageNumber, collection, fields, ty
       }, paging
     );
   }
-
-  console.log("COUNT: "  + data.count())
 
   return data;
 }
