@@ -1,5 +1,5 @@
 Template.searchResults.onRendered(function() {
-
+  console.log("SEARHC RESULTS");
 });
 
 Template.searchResults.helpers({
@@ -13,7 +13,18 @@ Template.searchResults.helpers({
       return "selected";
     }
   },
+  pageNumberIsEqualTo: function(pageNumber) {
+    var selectedPageNumber = Session.get('selectedPageNumber');
+    if (selectedPageNumber === undefined) {
+      Session.set('selectedPageNumber', 1);
+      selectedPageNumber = Session.get('selectedPageNumber');
+    }
+    if (pageNumber == selectedPageNumber) {
+      return "active";
+    }
+  },
   data: function() {
+    console.log('data');
     return Session.get('tabData');
   },
   isLoading: function() {
@@ -56,7 +67,16 @@ Template.searchResults.helpers({
 
 Template.searchResults.events({
   'change .pageSize' : function(event, template) {
+    event.preventDefault();
     var value = event.target.selectedOptions[0].value;
     Session.set('selectedPageSize', value);
+    return false;
+  },
+  'click .pageNumber' : function(event, template) {
+    event.preventDefault();
+    console.log('did tap page number');
+    var value = parseInt(this)
+    Session.set('selectedPageNumber', value);
+    return false;
   }
 });

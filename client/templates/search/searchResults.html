@@ -17,7 +17,7 @@
         <option value="50" class="item" {{pageSizeIsEqualTo '50'}}>50</option>
         <option value="100" class="item" {{pageSizeIsEqualTo '100'}}>100</option>
         <option value="All" class="item"  {{pageSizeIsEqualTo 'All'}}>All</option>
-      </select> per page. Items {{this.pageNumber}} to {{this.numResults}} of {{this.total}}
+      </select> per page. Items {{this.firstVisible}} to {{this.lastVisible}} of {{this.total}}
     </span>
     {{/if}}
   </h4>
@@ -61,28 +61,12 @@
       </div>
     {{/each}}
   </div>
-  <div class="ui pagination menu">
+  <div class="ui borderless menu">
     {{#each pageArray this.numPages}}
-    <a class="item">
+    <a class="item pageNumber {{pageNumberIsEqualTo this}}">
       {{this}}
     </a>
     {{/each}}
-
-    <!-- <a class="active item">
-      1
-    </a>
-    <div class="disabled item">
-      ...
-    </div>
-    <a class="item">
-      10
-    </a>
-    <a class="item">
-      11
-    </a>
-    <a class="item">
-      12
-    </a> -->
   </div>
   {{/with}}
   {{/if}}

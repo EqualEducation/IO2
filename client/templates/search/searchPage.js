@@ -5,7 +5,11 @@ function decode(text) {
 
 
 Template.searchPage.onCreated( function() {
-  this.currentTab = new ReactiveVar( "all" );
+  console.log('SEARCH PAGE CREATED')
+  Session.set('selectedPageNumber', 1);
+  if (this.currentTab === undefined) {
+    this.currentTab = new ReactiveVar( "all" );
+  }
 //
 });
 
@@ -50,11 +54,21 @@ Template.searchPage.helpers({
     var currentTab = Template.instance().currentTab.get();
     var searchTerm = Session.get("searchText");
     var pageSize = Session.get('selectedPageSize');
-    var pageNumber = 1;
+    var pageNumber = Session.get('selectedPageNumber');
+    if (pageNumber === undefined) {
+      Session.set('selectedPageNumber', 1);
+      pageNumber = Session.get('selectedPageNumber');
+    }
+;
     Modules.both.searchItems({searchString: searchTerm, tab: currentTab, pageSize: pageSize, pageNumber: pageNumber}, function(err, data) {
       var numResults = data.searchResults.length;
       var totalNumResults = data.total;
       var numPages = Math.ceil(totalNumResults/pageSize);
+      var firstVisible = parseInt(pageSize)*(pageNumber-1) + 1;
+      var lastVisible = parseInt(pageSize)*(pageNumber-1) + parseInt(pageSize)
+      if (lastVisible > totalNumResults) {
+        lastVisible = totalNumResults;
+      }
       console.log('NUM PAGES: ' + numPages)
       Session.set('isLoading', false)
       Session.set('tabData', {
@@ -64,8 +78,10 @@ Template.searchPage.helpers({
                                 pageSize: pageSize,
                                 pageNumber: pageNumber,
                                 numPages: numPages,
-                                total: totalNumResults
-                              })
+                                total: totalNumResults,
+                                firstVisible: firstVisible,
+                                lastVisible: lastVisible
+                        })
     });
   }
 
@@ -78,6 +94,7 @@ Template.searchPage.events({
       currentTabStatus.addClass( "active" );
       $( ".menu a" ).not( currentTabStatus ).removeClass( "active" );
       template.currentTab.set(currentTab);
+      Session.set('selectedPageNumber', 1);
     },
     //USER CLICKS ON ITEM IN SEARCH RESULTS:
     'click #itemName': function (event) {
