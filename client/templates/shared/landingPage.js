@@ -14,3 +14,9 @@ function encode(text) {
   var unencoded = text;
   return encodeURIComponent(unencoded).replace(/'/g,"%27").replace(/"/g,"%22");
 }
+
+
+Template.landingPage.onRendered(function(){
+	//initialising forms
+	$('.content.ui.form').form();
+})
