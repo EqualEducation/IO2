@@ -17,24 +17,25 @@ Template.searchPage.onRendered(function(){
   $('.menu .item')
   .tab({
   });
-  var url=window.location.href;
-  var urlArray=url.split('/');
-  var searchText=urlArray[urlArray.length-1];
-  //console.log(searchText);
-  if (searchText=="search")
-  {
-    console.log('search page');
-    Session.set('searchText',"");
-  }
-  else
-  {
-    //console.log('search string:');
-    var searchText=decode(searchText);
-    Session.set('searchText',searchText)
-    //console.log(searchText);
-    // $('#search-box').val(searchText);
-    // $("#search-box").keyup();
-  }
+  // // var url=window.location.href;
+  // // var urlArray=url.split('/');
+  // // var searchText=urlArray[urlArray.length-1];
+  var searchText = Session.get('searchText');
+  // //console.log(searchText);
+  // if (searchText=="search")
+  // {
+  //   console.log('search page');
+  //   Session.set('searchText',"");
+  // }
+  // else
+  // {
+  //   //console.log('search string:');
+  //   var searchText=decode(searchText);
+  //   Session.set('searchText',searchText)
+  //   //console.log(searchText);
+    $('#searchBox').val(searchText);
+  //   // $("#search-box").keyup();
+  // }
 })
 
 Template.searchPage.helpers({

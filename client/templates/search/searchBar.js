@@ -1,5 +1,6 @@
 Template.searchBar.events({
     "click #searchButton": function(event, template) {
+      console.log('search');
       var text="";
       if(template.find("#searchBox")==undefined)
       {
