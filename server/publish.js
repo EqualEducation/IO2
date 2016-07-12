@@ -1,4 +1,4 @@
-searchItems = function(searchValue, pageSize, pageNumber, collection, fields) {
+searchItems = function(searchValue, pageSize, pageNumber, collection, fields, type) {
   console.log('search items: ' + searchValue);
   var paging = {skip: 0, limit: 10};
   if (pageSize !== null && pageNumber !== null && pageSize !== undefined && pageSize !== "" && pageNumber !== undefined && pageNumber !== "") {
@@ -8,13 +8,26 @@ searchItems = function(searchValue, pageSize, pageNumber, collection, fields) {
   console.log(paging)
   // console.log(collection)
 
+
   if (!searchValue ||  searchValue === "") {
     console.log('no search value');
-    data = collection.find({}, paging);
+    var filter = {};
+    if (type !== null && type !== undefined && type !== "") {
+      filter.type = type;
+    }
+    console.log(filter);
+
+    data = collection.find(filter, paging);
   } else {
+    var filter = { $text: {$search: searchValue} };
+    if (type !== null && type !== undefined && type !== "") {
+      filter.type = type;
+    }
+
     console.log('has search value');
+    console.log(filter);
     data = collection.find(
-      { $text: {$search: searchValue} },
+      filter,
       {
         // `fields` is where we can add MongoDB projections. Here we're causing
         // each document published to include a property named `score`, which
@@ -58,17 +71,23 @@ Meteor.publish( 'files', function(){
   return this.ready();
 });
 
-Meteor.publish("resources-searchpage-data", function (searchValue, pageSize, pageNumber) {
-  if (!searchValue ||  searchValue === "") {
-    Counts.publish(this, 'resources-searchpage-count', Resources.find(), { noReady: true });
-  } else {
-    Counts.publish(this, 'resources-searchpage-count', Resources.find({ $text: {$search: searchValue} }), { noReady: true });
+Meteor.publish("resources-searchpage-data", function (searchValue, pageSize, pageNumber, type) {
+  var filter = {};
+
+  if (searchValue && searchValue !== "") {
+    filter =  {$text: {$search: searchValue}};
   }
+
+  if (type !== null && type !== undefined && type !== "") {
+    filter.type = type;
+  }
+  console.log(filter);
+  Counts.publish(this, 'resources-searchpage-count', Resources.find(filter), { noReady: true });
 
   console.log('====COUNTING RESOURCES DATA====');
 
    var fields = {'type':1,'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }}
-   var data = searchItems(searchValue, pageSize, pageNumber, Resources, fields);
+   var data = searchItems(searchValue, pageSize, pageNumber, Resources, fields, type);
    if (data!=undefined && data.count() > 0 ) {
      return data;
    }
