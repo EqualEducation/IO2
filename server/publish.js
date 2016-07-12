@@ -58,52 +58,9 @@ Meteor.publish( 'files', function(){
   return this.ready();
 });
 
-Meteor.publish("resources-searchpage-count", function (searchValue) {
-  console.log('====COUNTING RESOURCES====');
-   var fields = {score: { $meta: "textScore" }}
-   var data = searchItems(searchValue, null, null, Resources, fields);
-   if (data!=undefined && data.count() > 0 ) {
-     return data;
-   }
-   return this.ready();
-});
-
-
-// Meteor.publish("activities-searchpage-count", function (searchValue) {
-//   console.log('====COUNTING ACTIVITIES====');
-//   Counts.publish(this, 'activities-searchpage-count', Posts.find({ $text: {$search: searchValue} }));
-//
-//   var fields = {score: { $meta: "textScore" }};
-//   var itemCount = Activities.find(
-//     { $text: {$search: searchValue} },
-//     {
-//       // `fields` is where we can add MongoDB projections. Here we're causing
-//       // each document published to include a property named `score`, which
-//       // contains the document's search rank, a numerical value, with more
-//       // relevant documents having a higher score.
-//       // This indicates that we wish the publication to be sorted by the
-//       // `score` property specified in the projection fields above.
-//     }
-//   ).count();
-//
-//   if (itemCount!=undefined && itemCount > 0 ) {
-//     return itemCount;
-//   }
-//   return this.ready();
-// });
-
-Meteor.publish("curricula-searchpage-count", function (searchValue, pageSize, pageNumber) {
-  console.log('====COUNTING CURRICULA====');
-
-  var fields = {score: { $meta: "textScore" }}
-  var data = searchItems(searchValue, null, null, Curricula, fields);
-  if (data!=undefined && data.count() > 0 ) {
-    return data;
-  }
-  return this.ready();
-});
-
 Meteor.publish("resources-searchpage-data", function (searchValue, pageSize, pageNumber) {
+  Counts.publish(this, 'resources-searchpage-count', Resources.find(), { noReady: true });
+
   console.log('====COUNTING RESOURCES DATA====');
 
    var fields = {'type':1,'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }}
@@ -129,6 +86,8 @@ Meteor.publish("activities-searchpage-data", function (searchValue, pageSize, pa
 });
 
 Meteor.publish("curricula-searchpage-data", function (searchValue, pageSize, pageNumber) {
+  Counts.publish(this, 'curricula-searchpage-count', Curricula.find(), { noReady: true });
+
   console.log('====COUNTING CURRICULA DATA====');
 
   var fields = {'itemType' : 1, 'details.title' : 1, 'details.description' : 1,  'details.keywords' : 1, score: { $meta: "textScore" }};
