@@ -59,7 +59,11 @@ Meteor.publish( 'files', function(){
 });
 
 Meteor.publish("resources-searchpage-data", function (searchValue, pageSize, pageNumber) {
-  Counts.publish(this, 'resources-searchpage-count', Resources.find(), { noReady: true });
+  if (!searchValue ||  searchValue === "") {
+    Counts.publish(this, 'resources-searchpage-count', Resources.find(), { noReady: true });
+  } else {
+    Counts.publish(this, 'resources-searchpage-count', Resources.find({ $text: {$search: searchValue} }), { noReady: true });
+  }
 
   console.log('====COUNTING RESOURCES DATA====');
 
@@ -72,8 +76,11 @@ Meteor.publish("resources-searchpage-data", function (searchValue, pageSize, pag
 });
 
 Meteor.publish("activities-searchpage-data", function (searchValue, pageSize, pageNumber) {
-  Counts.publish(this, 'activities-searchpage-count', Activities.find(), { noReady: true });
-
+  if (!searchValue ||  searchValue === "") {
+    Counts.publish(this, 'activities-searchpage-count', Activities.find(), { noReady: true });
+  } else {
+    Counts.publish(this, 'activities-searchpage-count', Activities.find({ $text: {$search: searchValue} }), { noReady: true });
+  }
   console.log('====COUNTING ACTIVITIES DATA====');
 
   console.log("pageSize: " + pageSize +", pageNumber: " + pageNumber);
@@ -86,7 +93,11 @@ Meteor.publish("activities-searchpage-data", function (searchValue, pageSize, pa
 });
 
 Meteor.publish("curricula-searchpage-data", function (searchValue, pageSize, pageNumber) {
-  Counts.publish(this, 'curricula-searchpage-count', Curricula.find(), { noReady: true });
+  if (!searchValue ||  searchValue === "") {
+    Counts.publish(this, 'curricula-searchpage-count', Curricula.find(), { noReady: true });
+  } else {
+    Counts.publish(this, 'curricula-searchpage-count', Curricula.find({ $text: {$search: searchValue} }), { noReady: true });
+  }
 
   console.log('====COUNTING CURRICULA DATA====');
 
