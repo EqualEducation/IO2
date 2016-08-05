@@ -1,5 +1,6 @@
 Template.searchBar.events({
     "click #searchButton": function(event, template) {
+      event.preventDefault();
       console.log('search');
       var text="";
       if(template.find("#searchBox")==undefined)
@@ -17,6 +18,9 @@ Template.searchBar.events({
       });
 
     Session.set('searchText', text);
+    var params = {'search_text': text};
+    Router.go('searchText' , params);
+
   },
   'keypress input': function(event, template) {
     if (event.keyCode == 13) {
