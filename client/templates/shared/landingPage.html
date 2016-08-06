@@ -4,8 +4,15 @@
       <div class="column">
         <h1 class="ui header" align="center"><a href="http://equaleducation.org.za"><img src="/images/logo.png"></a></h1>
         <h1 class="ui header" align="center">Welcome to Equal Education's Activity Database</h1>
+        <p align="center">The activities database is a searchable library of activities, resources, and program curricula which can be used to train activists to fight for equality and social justice. It is a project of IETU.
+          <a href="/about"> Learn more</a>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
         <form class = "landingSearch">
-        {{>searchBar}}
+          {{>searchBar}}
         </form>
       </div>
     </div>
@@ -42,101 +49,5 @@
     </div>
   </div>
 </div>
-
-
-
-  <div class="ui alternate stripe vertical segment">
-    <div class="ui stackable center aligned grid container">
-      <div class="fourteen wide column">
-        <h1 class="ui icon header">
-          Activities Database
-          <!-- <img class="ui inline icon image" src="/images/icons/rocket.png"> -->
-        </h1>
-        <div class="ui stackable center aligned vertically padded grid">
-          <div class="eight wide column">
-            <!-- <h3 class="ui header">Enterprise Ready</h3> -->
-            <p>The activities database is a searchable library of activities, resources, and program curricula which can be used to train activists to fight for equality and social justice. It is a project of IETU. </p>
-            <a class="ui large right labeled primary icon button" href="/explore">
-              <i class="right chevron icon"></i>
-              Explore
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="ui alternate stripe vertical segment">
-    <div class="ui stackable center aligned grid container">
-      <div class="fourteen wide column">
-        <h1 class="ui icon header">
-          IETU
-          <!-- <img class="ui inline icon image" src="/images/icons/rocket.png"> -->
-        </h1>
-        <div class="ui stackable center aligned vertically padded grid">
-          <div class="eight wide column">
-            <!-- <h3 class="ui header">Enterprise Ready</h3> -->
-            <p>The Internal Education and Training Unit (IETU) is a sub-unit of Equal Educatin's Policy & Training department dedicated to developing and curating training materials.</p>
-            <a class="ui large right labeled primary icon button" href="/about">
-              <i class="right chevron icon"></i>
-              Learn More
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="ui alternate stripe vertical segment">
-    <div class="ui stackable center aligned grid container">
-      <div class="fourteen wide column">
-        <h1 class="ui icon header">
-          Equal Education
-          <!-- <img class="ui inline icon image" src="/images/icons/rocket.png"> -->
-        </h1>
-        <div class="ui stackable center aligned vertically padded grid">
-          <div class="eight wide column">
-            <!-- <h3 class="ui header">Enterprise Ready</h3> -->
-            <p>Equal Education is a movement of learners, parents, teachers and community members working for quality and equality in South African education, through analysis and activism.</p>
-            <a class="ui large right labeled primary icon button" target="_blank" href="http://www.equaleducation.org.za">
-              <i class="right chevron icon"></i>
-              Equal Education
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  	<!-- <div class="feature alternate ui stripe vertical segment">
-      <div class="ui stackable center aligned three column grid">
-  	    <div class="row">
-  	      <div class="column">
-  	        <h2 class="ui icon header">
-  						<i class="circular puzzle icon"></i>
-  						{{totalNumberOfItems "Activity"}}
-  	        </h2>
-  	        <p>Activities are guides for training on a specific issue or idea. Activities are made up of resources.</p>
-  					<a href="/create/activity" class="ui primary large button">Add New Activity</a>
-  	      </div>
-  	      <div class="column">
-  	        <h2 class="ui icon header">
-  						<i class="circular folder open outline icon"></i>
-  						{{totalNumberOfItems "Resource"}}
-  	        </h2>
-  	        <p>Resources are any tools used in training. They include readings, videos, books, and icebreakers, among others. </p>
-  					<a href="/create/resource" class="ui primary large button">Add New Resource</a>
-  	      </div>
-  	      <div class="column">
-  	        <h2 class="ui icon header">
-  						<i class="circular archive icon"></i>
-  						{{totalNumberOfItems "Curriculum"}}
-  	        </h2>
-  	        <p>Curricula are collections of activities that benefit from being run together. They generally share a common theme. </p>
-  	        <a href="/create/curriculum" class="ui primary large button">Add New Curriculum</a>
-  	      </div>
-  	    </div>
-  	  </div>
-  	</div> -->
-
-
 
 </template>
