@@ -6,8 +6,10 @@ function decode(text) {
 
 Template.searchPage.onCreated( function() {
   console.log('SEARCH PAGE CREATED')
+  
   Session.set('selectedPageSize', 10);
   Session.set('selectedPageNumber', 1);
+
   if (this.currentTab === undefined) {
     this.currentTab = new ReactiveVar( "all" );
   }

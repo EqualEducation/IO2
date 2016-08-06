@@ -19,7 +19,7 @@ Template.searchBar.events({
 
     Session.set('searchText', text);
     var params = {'search_text': text};
-    Router.go('searchText' , params);
+    Router.go('search' , params);
 
   },
   'keypress input': function(event, template) {
