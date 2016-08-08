@@ -123,7 +123,7 @@ Template.registerHelper('contentDisplayName', function(contentType) {
           icon = "flag"
           break;
         case "other":
-          icon = "help"
+          icon = "lab"
           break;
         case "shortreading":
           icon = "file text outline"
