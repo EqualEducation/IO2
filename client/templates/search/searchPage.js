@@ -5,40 +5,21 @@ function decode(text) {
 
 
 Template.searchPage.onCreated( function() {
-  console.log('SEARCH PAGE CREATED')
-  
   Session.set('selectedPageSize', 10);
   Session.set('selectedPageNumber', 1);
 
   if (this.currentTab === undefined) {
     this.currentTab = new ReactiveVar( "all" );
   }
-//
 });
 
 Template.searchPage.onRendered(function(){
   $('.menu .item')
   .tab({
   });
-  // // var url=window.location.href;
-  // // var urlArray=url.split('/');
-  // // var searchText=urlArray[urlArray.length-1];
+
   var searchText = Session.get('searchText');
-  // //console.log(searchText);
-  // if (searchText=="search")
-  // {
-  //   console.log('search page');
-  //   Session.set('searchText',"");
-  // }
-  // else
-  // {
-  //   //console.log('search string:');
-  //   var searchText=decode(searchText);
-  //   Session.set('searchText',searchText)
-  //   //console.log(searchText);
-    $('#searchBox').val(searchText);
-  //   // $("#search-box").keyup();
-  // }
+  $('#searchBox').val(searchText);
 })
 
 Template.searchPage.helpers({
@@ -63,7 +44,8 @@ Template.searchPage.helpers({
       Session.set('selectedPageNumber', 1);
       pageNumber = Session.get('selectedPageNumber');
     }
-;
+
+
     Modules.both.searchItems({searchString: searchTerm, tab: currentTab, pageSize: pageSize, pageNumber: pageNumber}, function(err, data) {
       var numResults = data.searchResults.length;
       var totalNumResults = data.total;
