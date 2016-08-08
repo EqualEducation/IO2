@@ -1,0 +1,52 @@
+<template name="users">
+  <h2>Manage Users</h2>
+  <table class="ui striped table">
+  <thead>
+    <tr>
+      <th>Email Address</th>
+      <th>Editor</th>
+      <th>Admin</th>
+      <!-- <th>Delete</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+      <tr>
+        <td>{{this.emails.[0].address}}</td>
+        <td>
+          <div class="ui toggle checkbox">
+            <input type="checkbox" id="editor_{{@index}}" {{hasRole 'editor' this.roles}}>
+            <label></label>
+          </div>
+        </td>
+        <td>
+          <div class="ui toggle checkbox">
+            <input type="checkbox" id="admin_{{@index}}" {{hasRole 'admin' this.roles}}>
+            <label></label>
+          </div>
+        </td>
+        <!-- <td>No</td> -->
+      </tr>
+    {{/each}}
+  </tbody>
+  <tfoot class="full-width">
+    <tr>
+      <th colspan="3">
+        <div class="ui right floated small button cancel">
+          Cancel
+        </div>
+        <div class="ui right floated small primary labeled icon button save">
+          <i class="user icon"></i> Save Changes
+        </div>
+      </th>
+    </tr>
+  </tfoot>
+</table>
+
+<div class="ui page dimmer">
+  <div class="content">
+    <div class="ui large text loader">Saving...</div>
+  </div>
+</div>
+
+</template>

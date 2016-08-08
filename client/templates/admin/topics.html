@@ -1,0 +1,47 @@
+<template name="topics">
+  <h2>Edit Topics</h2>
+  <div class="ui styled fluid accordion">
+    {{#each mainTopics}}
+    <div class="title">
+      <i class="dropdown icon"></i>
+      {{this}}
+    </div>
+    <div class="content">
+      <h3>Sub Topics</h3>
+      <table>
+        {{#each subtopics this}}
+        <tr>
+          {{this}}
+        </tr>
+        {{/each}}
+        <tr>
+          <form class="ui form segment" id="form_{{subtopicId this}}">
+            <div class="field">
+              <label>Add New Sub Topic to {{this}}</label>
+              <input type="text" name="subtopic" id="{{subtopicId this}}">
+            </div>
+          <div class="ui primary submit button addSubtopic">Add Subtopic</div>
+          <div class="ui error message">
+          </div>
+        </form>
+        </tr>
+      </table>
+    </div>
+    {{/each}}
+    <div>
+      <form class="ui form segment" id="form_mainTopic">
+        <div class="field">
+          <label>Add New Main Topic</label>
+          <input type="text" id="mainTopic">
+        </div>
+        <div class="ui primary submit button addMainTopic">Add Main Topic</div>
+        <div class="ui error message">
+        </div>
+      </form>
+    </div>
+</div>
+
+
+
+
+</template>
