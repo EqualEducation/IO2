@@ -1,5 +1,10 @@
 
 Template.searchResults.helpers({
+  searchTerm: function() {
+    var searchTerm = Session.get("searchText");
+    return searchTerm;
+
+  },
   pageSizeIsEqualTo: function(dropDownPageSize) {
     var selectedPageSize = Session.get('selectedPageSize');
     if (selectedPageSize === undefined) {

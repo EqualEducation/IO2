@@ -8,7 +8,9 @@
     {{#if isEqual this.numResults 0}}
     <span style="float:right;">No results</span>
     {{else}}
-
+    <span style="float:left;">
+      Showing results for "{{searchTerm}}" in &nbsp;
+    </span>
     <span style="float:right;">
       Showing
       <select id="pageSize" class="ui dropdown pageSize">
