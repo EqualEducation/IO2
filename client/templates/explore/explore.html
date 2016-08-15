@@ -29,7 +29,7 @@
                 {{#each allActivitiesForTopics this ..}}
                 {{#with pathName this.itemType}}
                 <a href="{{pathFor route=this _id=../_id}}" target="_blank" id={{../_id}}>{{../details.title}}</a>
-                <br>
+                <p>{{../details.description}}</p>
                 {{/with}}
                 {{/each}}
               </div>
