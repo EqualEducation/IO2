@@ -1,6 +1,3 @@
-Template.searchResults.onRendered(function() {
-  console.log("SEARHC RESULTS");
-});
 
 Template.searchResults.helpers({
   pageSizeIsEqualTo: function(dropDownPageSize) {
