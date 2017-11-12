@@ -29,7 +29,7 @@
         <div class="content">
           <div class="header">
             {{#with pathName this.itemType}}
-              <a href="{{pathFor route=this _id=../_id}}" id={{../_id}}>
+              <a href="{{pathFor route=this _id=../_id}}" target="_blank"  id={{../_id}}>
                 <div class="ui image">
                   {{#if isEqual ../itemType curriculumEnum}}
                     <i class="circular archive icon"></i>
