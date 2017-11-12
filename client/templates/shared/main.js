@@ -192,13 +192,13 @@ Template.main.events({
       return;
     }
 
-    alert('Thank you for your feedback!')
     console.log('sending email');
     Meteor.call('sendEmail',
           'activities@equaleducation.org.za',
           'activities@equaleducation.org.za',
           "EE Activities Database Feedback",
           emailBodyHtml(message, email));
+    alert('Thank you for your feedback!')
     }
 })
 

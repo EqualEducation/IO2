@@ -128,16 +128,16 @@ Meteor.methods({
     // without waiting for the email sending to complete.
     this.unblock();
 
-    Email.send({
-      from: from,
-      to: to,
-      subject: subject,
-      html: html
-    });
+    // Email.send({
+    //   from: from,
+    //   to: to,
+    //   subject: subject,
+    //   html: html
+    // });
 
     Email.send({
       from: from,
-      to: "IETUDB@gmail.com",
+      to: "IETU Team <IETUDB@gmail.com>",
       subject: subject,
       html: html
     });
