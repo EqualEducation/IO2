@@ -137,7 +137,7 @@ Meteor.methods({
 
     Email.send({
       from: from,
-      to: "IETU Team <IETUDB@gmail.com>",
+      to: "IETU Team <IETUDB@gmail.com>, IETU Team <activities@equaleducation.org.za>",
       subject: subject,
       html: html
     });
