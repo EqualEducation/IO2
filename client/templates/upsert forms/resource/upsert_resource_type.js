@@ -57,7 +57,10 @@ Template.upsert_resource_type.onRendered( function() {
        count = 0;
        $(".online_video_locations").each(function() {
          var video = new Object();
-         video.location = $(this)[0].value;
+         var location0 = $(this)[0].value
+         var location1 = location0.replace("https://", "").replace("http://", "");
+
+         video.location = location1;
          video.name = $(".online_video_names")[count].value
 
          online_videos.push(video);
