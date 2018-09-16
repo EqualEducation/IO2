@@ -5,7 +5,7 @@ Template.connectResources.onRendered(function() {
 
 Template.registerHelper("allResourcesForType", function (type) {
   if (type != undefined) {
-    var resources = Resources.find({'type': type});
+    var resources = Resources.find({'type': type},{sort: {"details.title": 1}});
     return resources;
   }
   var resources = Resources.find({});

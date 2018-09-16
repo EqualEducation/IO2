@@ -154,7 +154,14 @@ Template.registerHelper('getOptions', function(optionType) {
 	} else {
 		options = optionsInstance.get();
 	}
-  return options[optionType];
+
+let optionsForType = options[optionType]
+optionsForType.sort(function(option1, option2){
+    if(option1 < option2) return -1;
+    if(option1 > option2) return 1;
+    return 0;
+})
+  return optionsForType;
 })
 
 Template.registerHelper('getSubOptions', function(superOption) {

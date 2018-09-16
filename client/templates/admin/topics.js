@@ -10,7 +10,13 @@ Template.topics.helpers({
   },
   'subtopics' : function(mainTopic) {
     var options = Options.findOne();
-    return options[mainTopic];
+    let optionsByTopic = options[mainTopic]
+    optionsByTopic.sort(function(option1, option2){
+        if(option1 < option2) return -1;
+        if(option1 > option2) return 1;
+        return 0;
+    })
+    return optionsByTopic;
   },
   'subtopicId' : function(subTopic) {
     return subTopic.replace(" ", "");

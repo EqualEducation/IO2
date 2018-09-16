@@ -19,7 +19,7 @@ Template.slot.onRendered(function() {
 })
 
 Template.registerHelper("allActivities", function () {
-  var activities = Activities.find({});
+  var activities = Activities.find({},{sort: {"details.title": 1}});
   return activities;
 });
 
