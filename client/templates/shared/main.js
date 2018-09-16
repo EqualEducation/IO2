@@ -65,6 +65,9 @@ var _resourceDisplayName = function(resourceType) {
       case "shortreading":
         resourceDisplayName = "Short Reading"
         break;
+      case "publication":
+        resourceDisplayName = "EE Publications"
+        break;
       default:
         resourceDisplayName = "Other"
     }
@@ -80,6 +83,9 @@ Template.registerHelper('contentDisplayName', function(contentType) {
       case "book":
         contentDisplayName = "Books"
         break;
+      case "publication":
+          contentDisplayName = "EE Publications"
+          break;
       case "video":
         contentDisplayName = "Videos"
         break;
@@ -116,6 +122,9 @@ Template.registerHelper('contentDisplayName', function(contentType) {
         case "book":
           icon = "book"
           break;
+        case "publication":
+            icon = "bookmark outline"
+            break;
         case "video":
           icon = "camera"
           break;

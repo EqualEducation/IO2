@@ -9,31 +9,43 @@
       <div class="default text">Resources</div>
       <i class="dropdown icon"></i>
       <div class="menu">
+
         <div class="header" style="color: teal">Short Readings</div>
         {{#each allResourcesForType "shortreading"}}
         <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
+
         <div class="header" style="color: teal">Books</div>
         {{#each allResourcesForType "book"}}
           <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
+
+        <div class="header" style="color: teal">EE Publications</div>
+        {{#each allResourcesForType "publication"}}
+          <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
+        {{/each}}
+        <div class="divider"></div>
+
         <div class="header" style="color: teal">Video</div>
         {{#each allResourcesForType "video"}}
         <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
+
         <div class="header" style="color: teal">Icebreaker</div>
         {{#each allResourcesForType "icebreaker"}}
         <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
+
         <div class="header" style="color: teal">Other</div>
         {{#each allResourcesForType "other"}}
         <div class="item" data-type="resourcetype" data-value="{{_id}}">{{details.title}}</div>
         {{/each}}
         <div class="divider"></div>
+
       </div>
   </div>
   <div>

@@ -5,6 +5,8 @@ searchItems = function(searchValue, pageSize, pageNumber, collection, fields, ty
   }
   console.log('paging:');
   console.log(paging)
+  // console.log(collection)
+  console.log(type)
 
   if (!searchValue ||  searchValue === "") {
     var filter = {};
