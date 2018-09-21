@@ -38,6 +38,10 @@
             {{> viewBookDetails item=item}}
           {{/if}}
 
+          {{#if isEqual item.type "publication"}}
+            {{> viewBookDetails item=item}}
+          {{/if}}
+
           {{#if isEqual item.type "icebreaker"}}
             {{> viewIcebreakerDetails item=item}}
           {{/if}}
