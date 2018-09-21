@@ -127,7 +127,11 @@ Meteor.publish("activities-explore-data", function () {
      return Activities.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1,'details.mainTopic':1,'details.subTopic':1}});
 });
 
+Meteor.publish("curricula-explore-data", function () {
+      console.log("publishing curricula-explore-data");
 
+     return Curricula.find({},{fields: {'itemType' : 1, 'details.title' : 1, 'details.description' : 1,'details.mainTopic':1,'details.subTopic':1}});
+});
 
 Meteor.publish("all-resources", function () {
     console.log("publishing resources");

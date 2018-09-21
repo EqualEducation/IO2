@@ -1,0 +1,36 @@
+<template name="explore_curricula">
+<div class="row">
+  <div class="column">
+    <h3>CURRICULA BY MAIN TOPIC</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="ui styled fluid accordion">
+    {{#each mainTopics}}
+      <div class="title">
+        <i class="dropdown icon"></i>
+        {{this}} ({{#with numActivities this}}{{this}}{{/with}})
+      </div>
+      <div class="content">
+        <!-- <a>{{this}} activities by sub-topic</a> -->
+        <div class="accordion">
+          {{#each subTopics this}}
+          <div class="title">
+            <i class="dropdown icon"></i>
+            {{this}} ({{#with numActivitiesWithSubtopic this ..}}{{this}}{{/with}})
+          </div>
+          <div class="content">
+            {{#each allCurriculaForTopics this ..}}
+            {{#with pathName this.itemType}}
+              <a href="{{pathFor route=this _id=../_id}}" target="_blank" id={{../_id}}>{{../details.title}}</a>
+              <p>{{../details.description}}</p>
+            {{/with}}
+            {{/each}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+</template>
