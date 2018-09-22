@@ -1,0 +1,36 @@
+<template name="view_publications_list">
+  <div class="ui link items">
+    {{#each data}}
+      <div class="item">
+        <div class="content">
+          <div class="header">
+            {{#with pathName this.itemType}}
+              <a href="{{pathFor route=this _id=../_id}}" target="_blank"  id={{../_id}}>
+                <div class="ui image">
+                  {{#if isEqual ../itemType resourceEnum}}
+                    <i class="circular {{resourceIcon ../type}} icon"></i>
+                  {{/if}}
+                </div>
+                {{#with itemTitle ..}}
+                  <span>{{this}}</span>
+                {{/with}}
+              </a>
+            {{/with}}
+          </div>
+          <div class="description">
+          <p>{{this.details.description}}</p>
+          </div>
+          <div class="keywords">
+            <div class="ui tag labels">
+              {{#each this.details.keywords}}
+                <a href="#" class="ui label">{{this}}</a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+      </div>
+    {{/each}}
+  </div>
+</template>
