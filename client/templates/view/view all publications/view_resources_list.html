@@ -1,0 +1,10 @@
+<template name="view_resources_list">
+  <div class="ui equal width aligned padded grid fluid">
+    <div class="row">
+      <div class="column">
+        <h1 class="ui header">{{contentDisplayName this.resourceType}}</h1>
+      </div>
+    </div>
+    {{> view_resources_list_content data=this.resources}}
+  </div>
+</template>
