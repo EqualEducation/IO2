@@ -26,6 +26,7 @@ Template.searchBar.events({
     if (event.keyCode == 13) {
         event.stopPropagation();
         var text="";
+
         if(template.find("#searchBox")==undefined)
         {
             text = "";
@@ -41,6 +42,8 @@ Template.searchBar.events({
         });
 
       Session.set('searchText', text);
+      var params = {'search_text': text};
+      Router.go('search' , params);
       return false;
     }
 }
