@@ -4,7 +4,7 @@
       <div class="column">
         <h1 class="ui header" align="center"><a href="http://equaleducation.org.za"><img src="/images/logo.png"></a></h1>
         <h1 class="ui header" align="center">Welcome to Equal Education's Activity Database</h1>
-        <p align="center">The activities database is a searchable library of activities, resources, and program curricula which can be used to train activists to fight for equality and social justice. It is a project of IETU.
+        <p align="center">The activities database is a searchable library of activities, resources, and programme curricula which can be used to train activists to fight for equality and social justice. It is a project of IETU.
           <a href="/about"> Learn more</a>
         </p>
       </div>
@@ -21,29 +21,34 @@
   <div class="feature alternate ui stripe vertical segment" style="margin-top:50px">
   <div class="ui three column center aligned divided relaxed stackable grid container">
     <div class="row">
-      <div class="column">
-        <h2 class="ui icon header">
-          <i class="folder open outline icon"></i>
-          {{totalNumberOfItems "Activity"}}
-        </h2>
-        <p>Activities are guides for training on a specific issue or idea. Activities are made up of resources.</p>
-        <!-- <a class="ui large button" href="/usage/theming.html">Theming Guide</a> -->
+      <div class="column" >
+        <a href="/explore">
+          <h2 class="ui icon header">
+            <i class="folder open outline icon"></i>
+            {{totalNumberOfItems "Activity"}}
+          </h2>
+          <p style="color: black">Activities are guides for training on a specific issue or idea. Activities are made up of resources.</p>
+          <!-- <a class="ui large button" href="/usage/theming.html">Theming Guide</a> -->
+          </a>
       </div>
       <div class="column">
-        <h2 class="ui icon header">
-          <i class="puzzle icon"></i>
-          {{totalNumberOfItems "Resource"}}
-        </h2>
-        <p>Resources are any tools used in training. They include readings, videos, books, and icebreakers, among others. </p>
-        <!-- <div class="ui primary view-ui large button">Browse UI</div> -->
+        <a href="/explore">
+          <h2 class="ui icon header">
+            <i class="puzzle icon"></i>
+            {{totalNumberOfItems "Resource"}}
+          </h2>
+          <p style="color: black">Resources are any tools used in training. They include readings, videos, books, and icebreakers, among others. </p>
+          <!-- <div class="ui primary view-ui large button">Browse UI</div> -->
+        </a>
       </div>
       <div class="column">
-        <h2 class="ui icon header">
-          <i class="archive icon"></i>
-          {{totalNumberOfItems "Curriculum"}}
-        </h2>
-        <p>Curricula are collections of activities that benefit from being run together. They generally share a common theme. </p>
-
+        <a href="/explore">
+          <h2 class="ui icon header">
+            <i class="archive icon"></i>
+            {{totalNumberOfItems "Curriculum"}}
+          </h2>
+          <p style="color: black">Curricula are collections of activities that benefit from being run together. They generally share a common theme. </p>
+        </a>
         <!-- <a href="https://github.com/Semantic-Org/Semantic-UI/issues" class="ui large button">Visit GitHub</a> -->
       </div>
     </div>
