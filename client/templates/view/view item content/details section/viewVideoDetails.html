@@ -1,23 +1,23 @@
 <template name="viewVideoDetails">
+  {{#if exists item.details.year}}
   <tr>
     <td class="heading top aligned">Year:</td>
     <td class="detail">{{item.details.year}}</td>
   </tr>
+  {{/if}}
   {{#if isEqual item.details.duration ""}}
-  <tr>
-    <td class="heading top aligned">Duration:</td>
-    <td class="detail"></td>
-  </tr>
   {{else}}
   <tr>
     <td class="heading top aligned">Duration:</td>
     <td class="detail">{{item.details.duration}} minutes</td>
   </tr>
   {{/if}}
+  {{#if exists item.details.videoType}}
   <tr>
     <td class="heading top aligned">Video Type:</td>
     <td class="detail">{{listView item.details.videoType}}</td>
   </tr>
+  {{/if}}
 </template>
 
 <template name="viewOfflineVideoLocations">

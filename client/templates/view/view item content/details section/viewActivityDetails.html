@@ -1,21 +1,21 @@
 <template name="viewActivityDetails">
+  {{#if exists item.details.method}}
   <tr>
     <td class="heading top aligned">Method:</td>
     <td class="detail">{{listView item.details.method}}</td>
   </tr>
-  {{#if isEqual item.details.duration ""}}
-  <tr>
-    <td class="heading top aligned">Duration:</td>
-    <td class="detail"></td>
-  </tr>
-  {{else}}
-  <tr>
-    <td class="heading top aligned">Duration:</td>
-    <td class="detail">{{item.details.duration}} minutes</td>
-  </tr>
   {{/if}}
+  {{#if isEqual item.details.duration ""}}
+  {{else}}
+        <tr>
+          <td class="heading top aligned">Duration:</td>
+          <td class="detail">{{item.details.duration}} minutes</td>
+        </tr>
+  {{/if}}
+  {{#if exists item.details.complexity}}
   <tr>
     <td class="heading top aligned">Complexity:</td>
     <td class="detail">{{item.details.complexity}}</td>
   </tr>
+  {{/if}}
 </template>

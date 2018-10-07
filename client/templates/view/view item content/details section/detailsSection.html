@@ -7,26 +7,35 @@
     <div class="thirteen wide column">
       <table class="top aligned">
         <tbody>
+          {{#if exists item.details.mainTopic}}
           <tr>
             <td class="heading top aligned">Main Topic:</td>
             <td class="detail">{{item.details.mainTopic}}</td>
           </tr>
+          {{/if}}
+          {{#if exists item.details.subTopic}}
           <tr>
             <td class="heading top aligned">Sub Topic:</td>
             <td class="detail">{{item.details.subTopic}}</td>
           </tr>
+          {{/if}}
+          {{#if exists item.details.source}}
           <tr>
             <td class="heading top aligned">Source:</td>
             <td class="detail">{{item.details.source}}</td>
           </tr>
+          {{/if}}
 
           {{#if isEqual item.type "video"}}
             {{> viewVideoDetails item=item}}
           {{else}}
-            <tr>
-              <td class="heading top aligned">Link:</td>
-              <td class="detail"><a target="_blank" href="{{item.details.link}}">{{item.details.link}}</a></td>
-            </tr>
+            {{#if isEqual item.details.link ""}}
+            {{else}}
+              <tr>
+                <td class="heading top aligned">Link2:</td>
+                <td class="detail"><a target="_blank" href="{{item.details.link}}">{{item.details.link}}</a></td>
+              </tr>
+            {{/if}}
           {{/if}}
 
 

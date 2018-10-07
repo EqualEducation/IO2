@@ -1,6 +1,8 @@
 <template name="viewIcebreakerDetails">
+  {{#if exists item.details.materialsNeeded}}
   <tr>
     <td class ="heading top aligned">Materials Needed?</td>
     <td class="detail">{{item.details.materialsNeeded}}</td>
   </tr>
+  {{/if}}
 </template>

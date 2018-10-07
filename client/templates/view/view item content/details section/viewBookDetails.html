@@ -1,10 +1,14 @@
 <template name="viewBookDetails">
+  {{#if exists item.details.author}}
   <tr>
     <td class ="heading top aligned">Author:</td>
     <td class="detail">{{item.details.author}}</td>
   </tr>
+  {{/if}}
+  {{#if exists item.details.year}}
   <tr>
     <td class ="heading top aligned">Year Published:</td>
     <td class="detail top aligned">{{item.details.year}}</td>
   </tr>
+  {{/if}}
 </template>
