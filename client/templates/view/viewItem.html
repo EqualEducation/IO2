@@ -6,11 +6,6 @@
 			<div class="row">
 				<div class="column">
 						<!-- <a class="ui basic button" href="/search">Back</a> -->
-						<a class="ui primary download button" id="downloadPack">Download {{this.itemType}} Pack</a>
-						<div class="ui custom popup">
-							The pack includes all files associated with this item including resources and activities.
-						</div>
-
 					{{#if isInRole 'admin,editor'}}
 						{{#with editURL this}}
 							<a class="ui primary button" id="editButton" href="{{this}}">Edit</a>

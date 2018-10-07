@@ -27,7 +27,7 @@
           {{/if}}
         </h1>
       </div>
-      <div class="fourteen wide column">
+      <div class="ten wide column">
         <h1>{{item.details.title}}</h1>
         <div class="meta">
           <p>Created by <a>{{item.user_email.address}}</a> in {{convertDate item.createdAt}}</p>
@@ -38,6 +38,12 @@
             {{> linkedActivities item=item}}
           {{/if}}
 
+        </div>
+      </div>
+      <div class="four wide column">
+        <a class="ui primary download button" id="downloadPack">Download {{this.itemType}} Pack</a>
+        <div class="ui custom popup">
+          The pack includes all files associated with this item including resources and activities.
         </div>
       </div>
     </div>
