@@ -9,13 +9,15 @@ Template.viewItemHeader.onRendered(function() {
 Template.viewItemHeader.events({
     'click #downloadPack' : function (event, template) {
       event.preventDefault()
-      console.log("hello!")
-      console.log(this.item)
+      var importantStuff = window.open('', '_blank');
+      importantStuff.document.write('Downloading ' + this.item.details.title);
+
       analytics.track("Download", {
           "ID": this.item._id,
           "Item Type": this.item.itemType,
           "Name" : this.item.details.title
       });
+
       var htmlString = html2docx.generate('#detailsTable', template.css, template.stylesheets)
 
         $('.ui.basic.downloadZip.modal')
@@ -28,7 +30,8 @@ Template.viewItemHeader.events({
              console.log(error)
                alert(error);
            }  else {
-            window.open(result,'_blank');
+            // window.open(result,'_blank');
+            importantStuff.location.href = result;
           }
           $('.ui.basic.downloadZip.modal')
             .modal('hide')
