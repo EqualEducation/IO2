@@ -35,6 +35,12 @@
     },
     {"name": "Icebreaker",
       "subItems": ["Name Games", "Active Games", "Balloon Games", "Jedi Mind Games", "Pair Games", "Team Building Games", "Trust Games"]
+    },
+    {"name": "Movement building",
+    "subItems": ["Organising strategies and tactics", "Student Movements", "Labour Movements", "International Movements"]
+    },
+    {"name": "Gender and Sexuality",
+      "subItems": ["Intersectionality", "Masculinity", "Femininity", "Gender activism", "LGBTQI+ movement", "Gender activism in South Africa", "Gender, power and consent"]
     }
   ]
 }
