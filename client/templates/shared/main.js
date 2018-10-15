@@ -175,7 +175,7 @@ Template.registerHelper('getSubOptions', function(superOption) {
 	} else {
 		options = optionsInstance.get();
 	}
-  return options[superOptionType];
+  return options[superOptionType].sort();
 })
 
 Template.registerHelper('isChecked', function(value) {
